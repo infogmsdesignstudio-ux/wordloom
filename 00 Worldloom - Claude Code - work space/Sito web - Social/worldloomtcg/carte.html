@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Le carte — Worldloom</title>
+<meta name="description" content="Sfoglia tutte le carte di Worldloom: pedine, magie e trappole dei mazzi Frost Land e Kepler-452B.">
+<link rel="icon" href="assets/img/pittogramma.png">
+<link rel="stylesheet" href="assets/css/sito.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="salta" href="#principale">Vai al contenuto</a>
+
+<header class="testata">
+  <div class="testata-interno">
+    <a class="marchio" href="index.html" aria-label="Worldloom, vai alla home">
+      <img class="marchio-pittogramma" src="assets/img/pittogramma.png" alt="">
+      <img class="marchio-testo" src="assets/img/logo-testo.png" alt="Worldloom">
+    </a>
+    <nav class="menu">
+      <a href="come-si-gioca.html">Come si gioca</a>
+      <a href="come-e-nato.html">Com&#39;&egrave; nato</a>
+      <a href="store.html">Store</a>
+      <a href="carte.html" aria-current="page">Carte</a>
+      <a href="manga.html">Manga</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+      <a href="sostieni.html">Sostieni</a>
+    </nav>
+    <div class="testata-fine">
+      <a class="accedi" href="account.html">Accedi</a>
+      <button class="menu-tasto" aria-expanded="false">
+        <span aria-hidden="true">&#9776;</span><span class="menu-tasto-etichetta">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="principale">
+
+  <section class="sezione" style="padding-bottom:0">
+    <div class="contenitore stretto">
+      <span class="occhiello">La teca</span>
+      <h1>Le carte</h1>
+      <p class="guida">
+        Clicca una carta per aprirne la scheda. Due mazzi: <strong>Frost Land</strong>, i
+        primitivi del ghiaccio, e <strong>Kepler-452B</strong>, le manipolatrici d'aura.
+      </p>
+      <p class="guida">
+        Le stampe <strong>Rainbow</strong> sono segnalate e reagiscono alla luce: si riconoscono a
+        colpo d'occhio, ed è proprio questo a renderle speciali.
+      </p>
+    </div>
+  </section>
+
+  <div class="barra-filtri">
+    <div class="contenitore">
+      <div class="filtri">
+        <div class="gruppo-filtro">
+          <span class="occhiello occhiello-tenue">Mazzo</span>
+          <button class="chip" data-gruppo="mazzo" data-valore="tutti" aria-pressed="true">Tutti</button>
+          <button class="chip" data-gruppo="mazzo" data-valore="frost-land" aria-pressed="false">Frost Land</button>
+          <button class="chip" data-gruppo="mazzo" data-valore="kepler-452b" aria-pressed="false">Kepler-452B</button>
+        </div>
+        <div class="gruppo-filtro">
+          <span class="occhiello occhiello-tenue">Tipo</span>
+          <button class="chip" data-gruppo="tipo" data-valore="tutti" aria-pressed="true">Tutti</button>
+          <button class="chip" data-gruppo="tipo" data-valore="alieno" aria-pressed="false">Pedine</button>
+          <button class="chip" data-gruppo="tipo" data-valore="magia" aria-pressed="false">Magie</button>
+          <button class="chip" data-gruppo="tipo" data-valore="trappola" aria-pressed="false">Trappole</button>
+        </div>
+        <div class="gruppo-filtro">
+          <span class="occhiello occhiello-tenue">Finitura</span>
+          <button class="chip" data-gruppo="finitura" data-valore="tutte" aria-pressed="true">Tutte</button>
+          <button class="chip" data-gruppo="finitura" data-valore="normale" aria-pressed="false">Normale</button>
+          <button class="chip" data-gruppo="finitura" data-valore="foil" aria-pressed="false">Rainbow</button>
+        </div>
+        <input class="cerca" id="cerca" type="search" placeholder="Cerca per nome o effetto…" aria-label="Cerca fra le carte">
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-bottom:clamp(64px,10vw,120px)">
+    <div class="contenitore">
+      <p class="conteggio" id="conteggio"></p>
+      <div class="galleria" id="galleria"></div>
+    </div>
+  </section>
+
+</main>
+
+<div class="velo" id="velo"></div>
+
+<footer class="piede">
+  <div class="contenitore">
+    <div class="piede-griglia">
+      <div>
+        <a class="marchio" href="index.html" aria-label="Worldloom">
+          <img class="marchio-pittogramma" src="assets/img/pittogramma.png" alt="">
+          <img class="marchio-testo" src="assets/img/logo-testo.png" alt="Worldloom">
+        </a>
+        <p class="piede-nota" style="margin-top:1.2rem">
+          Gioco di carte collezionabili in sviluppo. Un progetto indipendente, con l&#39;ambizione di
+          diventare uno studio.
+        </p>
+      </div>
+      <div>
+        <h4>Il progetto</h4>
+        <ul>
+          <li><a href="come-si-gioca.html">Come si gioca</a></li>
+          <li><a href="come-e-nato.html">Com&#39;&egrave; nato</a></li>
+          <li><a href="carte.html">Le carte</a></li>
+          <li><a href="manga.html">Manga</a></li>
+          <li><a href="store.html">Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="account.html">Il tuo account</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="account.html">Il tuo account</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="account.html">Il tuo account</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="piede-fondo">
+      <span>&copy; 2026 Worldloom</span>
+      <span>worldloomtcg.com</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/js/carte.js"></script>
+</body>
+</html>

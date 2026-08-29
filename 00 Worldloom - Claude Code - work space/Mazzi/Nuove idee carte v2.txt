@@ -1,0 +1,18 @@
+Male necessario:
+tributa 2 mostri e distruggi 1 carta avversaria
+
+riparti da zero
+scarta tutta la mano almeno 1 carta, distruggi tutte le presnti su entrambi i terreni.
+
+pesca 2 carte ora e on pescare il prossimo turno, si può ativare solo 1 copia di questa carta in qiesto turno e non può esserne attivata un'altra nel prossimo.
+
+Blocca postazione
+tira dado imprevisto
++2 blocca una postazione in primalinea per 2 tuneni dell'avversario ( se creatura presente non può attivare effetti, o essere scambiata con retrovia o attaccare) non si possono evocare in quella zona del campo
++1 un tunro dell'avversario
+0 questo turno
+
+Grido di battaglia
+aumenta di 1 il numeor di attacchi in questo turno
+
+Fai saltare la fase di rifornimento al tuo avversario per il prossimo tunro ma non puoi attaccare o evocare in questo.

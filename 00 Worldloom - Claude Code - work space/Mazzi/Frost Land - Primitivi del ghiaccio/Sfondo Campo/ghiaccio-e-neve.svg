@@ -1,0 +1,81 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="ghiaccioBase" cx="50%" cy="46%" r="75%">
+      <stop offset="0%" stop-color="#dcecf7"/>
+      <stop offset="55%" stop-color="#b9d8ec"/>
+      <stop offset="100%" stop-color="#8fb9d8"/>
+    </radialGradient>
+    <linearGradient id="montagnaGhiaccio1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8f4fb"/>
+      <stop offset="100%" stop-color="#a9c9de"/>
+    </linearGradient>
+    <linearGradient id="montagnaGhiaccio2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cfe4f2"/>
+      <stop offset="100%" stop-color="#7fa6c2"/>
+    </linearGradient>
+    <radialGradient id="vignettaGhiaccio" cx="50%" cy="50%" r="72%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="72%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0b1220" stop-opacity="0.38"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#ghiaccioBase)"/>
+
+  <!-- crepe nel ghiaccio: linee sottili, sparse ai bordi -->
+  <g stroke="#6f95b3" stroke-width="2" fill="none" opacity="0.35">
+    <path d="M 40 120 L 130 160 L 110 240 L 190 260"/>
+    <path d="M 90 250 L 60 340"/>
+    <path d="M 1480 700 L 1400 660 L 1420 590 L 1350 560"/>
+    <path d="M 1420 660 L 1470 610"/>
+    <path d="M 70 780 L 160 810 L 150 870"/>
+    <path d="M 1500 130 L 1420 170 L 1440 240"/>
+  </g>
+
+  <!-- ammassi rocciosi/ghiacciati, vista dall'alto: raggruppati sui bordi, centro libero -->
+  <g opacity="0.92">
+    <!-- angolo alto-sinistra -->
+    <ellipse cx="140" cy="90" rx="150" ry="95" fill="url(#montagnaGhiaccio2)"/>
+    <ellipse cx="70" cy="60" rx="90" ry="60" fill="url(#montagnaGhiaccio1)"/>
+    <ellipse cx="230" cy="60" rx="80" ry="55" fill="url(#montagnaGhiaccio1)"/>
+    <ellipse cx="150" cy="60" rx="55" ry="30" fill="#f4fbff" opacity="0.8"/>
+
+    <!-- angolo alto-destra -->
+    <ellipse cx="1470" cy="80" rx="160" ry="100" fill="url(#montagnaGhiaccio2)"/>
+    <ellipse cx="1540" cy="55" rx="90" ry="58" fill="url(#montagnaGhiaccio1)"/>
+    <ellipse cx="1400" cy="60" rx="75" ry="50" fill="url(#montagnaGhiaccio1)"/>
+    <ellipse cx="1470" cy="55" rx="50" ry="28" fill="#f4fbff" opacity="0.8"/>
+
+    <!-- angolo basso-sinistra -->
+    <ellipse cx="120" cy="830" rx="170" ry="100" fill="url(#montagnaGhiaccio2)"/>
+    <ellipse cx="40" cy="860" rx="85" ry="55" fill="url(#montagnaGhiaccio1)"/>
+    <ellipse cx="220" cy="855" rx="80" ry="50" fill="url(#montagnaGhiaccio1)"/>
+
+    <!-- angolo basso-destra -->
+    <ellipse cx="1490" cy="840" rx="170" ry="105" fill="url(#montagnaGhiaccio2)"/>
+    <ellipse cx="1570" cy="870" rx="85" ry="55" fill="url(#montagnaGhiaccio1)"/>
+    <ellipse cx="1390" cy="860" rx="75" ry="48" fill="url(#montagnaGhiaccio1)"/>
+
+    <!-- piccoli blocchi di ghiaccio sparsi lungo i bordi laterali, centro sgombro -->
+    <ellipse cx="30" cy="450" rx="60" ry="90" fill="url(#montagnaGhiaccio1)" opacity="0.85"/>
+    <ellipse cx="1570" cy="470" rx="60" ry="95" fill="url(#montagnaGhiaccio1)" opacity="0.85"/>
+  </g>
+
+  <!-- pulviscolo di neve -->
+  <g fill="#ffffff" opacity="0.7">
+    <circle cx="300" cy="180" r="2.4"/>
+    <circle cx="420" cy="310" r="1.8"/>
+    <circle cx="560" cy="150" r="2"/>
+    <circle cx="980" cy="200" r="2.2"/>
+    <circle cx="1120" cy="330" r="1.8"/>
+    <circle cx="1240" cy="180" r="2.4"/>
+    <circle cx="380" cy="640" r="2"/>
+    <circle cx="700" cy="720" r="1.8"/>
+    <circle cx="920" cy="660" r="2.2"/>
+    <circle cx="1180" cy="700" r="2"/>
+    <circle cx="640" cy="450" r="1.6"/>
+    <circle cx="960" cy="460" r="1.6"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#vignettaGhiaccio)"/>
+</svg>

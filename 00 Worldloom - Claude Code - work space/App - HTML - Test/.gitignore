@@ -1,0 +1,9 @@
+node_modules
+dist
+src/data/generated
+GIOCA.html
+Risorse grafiche
+password
+
+# Video di riferimento pesante, non serve al gioco
+Esempi per ispirazione

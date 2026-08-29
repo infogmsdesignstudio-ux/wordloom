@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worldloom — Regolamento</title>
+<style>
+:root{
+  --bg:#0b0f1a;--panel:#131a2b;--panel2:#1a2338;--border:#2a3552;
+  --gold:#c9a24b;--text:#e8ecf5;--muted:#9aa5c0;--good:#7fc98f;--bad:#e08a8a;
+  --blue:#7fb0e8;--purple:#b98fd6;
+  --vian:#e8c96f;--assa:#e08a72;--effi:#72c98f;--colo:#6f9ed6;--tess:#b98fd6;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.65;}
+#content{max-width:900px;margin:0 auto;padding:40px 22px 120px;}
+header.cover{text-align:center;padding:30px 0 45px;border-bottom:1px solid var(--border);margin-bottom:30px;}
+header.cover h1{font-size:2.9em;letter-spacing:7px;color:var(--gold);margin:0;font-weight:400;}
+header.cover .sub{color:var(--muted);margin-top:12px;font-style:italic;}
+h2{color:var(--gold);border-bottom:1px solid var(--border);padding-bottom:8px;margin-top:55px;font-size:1.5em;font-weight:400;letter-spacing:1px;}
+h3{color:#dbc98a;margin-top:30px;font-size:1.18em;font-weight:400;}
+h4{color:var(--text);margin-top:20px;font-size:1em;}
+p{margin:12px 0;}
+.toc{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:22px 28px;margin-bottom:36px;
+  columns:2;column-gap:30px;}
+.toc a{color:var(--text);text-decoration:none;display:block;padding:4px 0;font-size:.92em;
+  break-inside:avoid;border-bottom:1px dotted #26304a;}
+.toc a:hover{color:var(--gold);}
+.toc .th{color:var(--gold);font-weight:bold;font-size:.85em;letter-spacing:2px;margin-bottom:8px;
+  text-transform:uppercase;border:none;}
+@media(max-width:600px){.toc{columns:1;}}
+.rule{background:#101728;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:14px 20px;margin:16px 0;}
+.rule .tag{color:var(--gold);font-weight:bold;font-size:.75em;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:5px;}
+.example{background:#141c2e;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:14px 20px;margin:16px 0;}
+.example .tag{color:var(--blue);font-weight:bold;font-size:.75em;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:5px;}
+.warn{background:#241a12;border-left:3px solid #b8763a;border-radius:0 8px 8px 0;padding:14px 20px;margin:16px 0;}
+.warn .tag{color:#d99a5b;font-weight:bold;font-size:.75em;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:5px;}
+.box{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px 22px;margin:18px 0;}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.93em;}
+th,td{border:1px solid var(--border);padding:8px 11px;text-align:left;}
+th{background:var(--panel2);color:var(--gold);font-weight:normal;letter-spacing:.5px;}
+tr:nth-child(even){background:#111827;}
+td.c,th.c{text-align:center;}
+.good{color:var(--good);}.bad{color:var(--bad);}
+.center{text-align:center;}
+.wheel{text-align:center;font-size:1.15em;margin:26px 0;line-height:2.2;}
+.wheel b{padding:3px 10px;border-radius:6px;color:#0d1424;font-weight:700;}
+.arr{color:var(--gold);margin:0 6px;}
+.pill{display:inline-block;background:var(--panel2);border:1px solid var(--border);border-radius:20px;
+  padding:1px 10px;font-size:.8em;margin:1px;}
+.sym{display:inline-block;width:26px;text-align:center;}
+.footer{text-align:center;margin-top:60px;padding-top:20px;border-top:1px solid var(--border);
+  color:var(--muted);font-size:.82em;}
+ul,ol{padding-left:22px;}li{margin:6px 0;}
+/* ---- CARTA DIMOSTRATIVA ---- */
+.cardDemo{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap;margin:24px 0;}
+.wlcard{width:210px;border-radius:10px;overflow:hidden;border:2px solid var(--border);
+  background:#0d1424;flex-shrink:0;font-family:-apple-system,sans-serif;}
+.wl-top{display:flex;justify-content:space-between;align-items:center;padding:6px 9px;
+  font-size:.78em;font-weight:800;color:#0d1424;}
+.wl-cost{display:flex;gap:3px;}
+.wl-cost i{width:8px;height:8px;background:#0d1424;border-radius:2px;display:block;}
+.wl-art{height:96px;display:flex;align-items:center;justify-content:center;font-size:3em;}
+.wl-arch{font-size:.66em;padding:4px;text-align:center;font-weight:700;background:rgba(255,255,255,.07);}
+.wl-fx{font-size:.66em;color:#c9d4e8;padding:9px 10px;line-height:1.4;border-top:1px solid rgba(255,255,255,.09);min-height:52px;}
+.wl-stats{display:flex;justify-content:space-around;padding:8px 4px;font-size:.9em;font-weight:800;
+  border-top:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.28);}
+.wl-dots{display:flex;gap:3px;justify-content:center;padding:0 0 7px;}
+.wl-dots i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:block;}
+.legend{flex:1;min-width:250px;font-size:.9em;}
+.legend div{padding:5px 0;border-bottom:1px dotted #26304a;}
+.legend b{color:var(--gold);}
+/* ---- CAMPO ---- */
+.fieldmap{background:#0d1424;border:1px solid var(--border);border-radius:10px;padding:16px;margin:20px 0;
+  font-family:-apple-system,sans-serif;font-size:.78em;}
+.fm-row{display:flex;gap:6px;margin:5px 0;}
+.fm-slot{flex:1;border:1px dashed #2f3d5e;border-radius:6px;padding:10px 4px;text-align:center;color:var(--muted);}
+.fm-lbl{font-size:.85em;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin:10px 0 3px;}
+.fm-sep{height:1px;background:var(--border);margin:14px 0;}
+.fm-slot.p{border-color:#3d5a7a;color:#8fb6e8;}
+.fm-slot.t{border-color:#3d3055;color:#b98fd6;}
+</style>
+</head>
+<body>
+
+<div id="content">
+<header class="cover">
+  <h1>WORLDLOOM</h1>
+  <div class="sub">Regolamento — leggilo prima della tua prima partita</div>
+</header>
+
+<div class="toc">
+  <div class="th">Indice</div>
+  <a href="#c1">1 · Cos'è Worldloom</a>
+  <a href="#c2">2 · Come si vince</a>
+  <a href="#c3">3 · Preparare la partita</a>
+  <a href="#c4">4 · Il campo di battaglia</a>
+  <a href="#c5">5 · Anatomia di una carta</a>
+  <a href="#c6">6 · Le cinque fasi del turno</a>
+  <a href="#c7">7 · Evocare gli Alieni</a>
+  <a href="#c8">8 · I range delle statistiche</a>
+  <a href="#c9">9 · I cinque Archetipi e la Ruota</a>
+  <a href="#c10">10 · I Ruoli</a>
+  <a href="#c11">11 · Il combattimento</a>
+  <a href="#c12">12 · Il diritto di ripetizione</a>
+  <a href="#c13">13 · Il rifiuto della difesa</a>
+  <a href="#c14">14 · Magie e Trappole</a>
+  <a href="#c15">15 · Gli Imprevisti</a>
+  <a href="#c16">16 · Riepilogo veloce</a>
+</div>
+
+<!-- ============ 1 ============ -->
+<section id="c1">
+<h2>1 · Cos'è Worldloom</h2>
+<p>Sei uno <strong>Stratega</strong>, comandante militare di un mondo alieno. Il tuo <strong>Worldloom</strong> è il tuo esercito: le creature che comandi, gli incantesimi che lanci, le trappole che tendi.</p>
+<p>Affronti un avversario in un duello uno contro uno. Ogni scontro è un'avventura diversa, decisa da una preparazione attenta e da un pizzico di fortuna — o sfortuna.</p>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="c2">
+<h2>2 · Come si vince</h2>
+<div class="rule"><span class="tag">Condizione 1 — Annientare lo Stratega</span>
+Ogni Stratega inizia con <strong>200 Punti Vita</strong>. Portali a zero e vinci.</div>
+<div class="rule"><span class="tag">Condizione 2 — Deck-out</span>
+Se il tuo avversario deve pescare ma il suo Worldloom è vuoto, perde immediatamente. Non è una strategia da perseguire: è più una sconfitta accidentale che un piano.</div>
+<p>Non esiste un tetto massimo ai Punti Vita: alcune carte possono farli salire sopra 200.</p>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="c3">
+<h2>3 · Preparare la partita</h2>
+<table>
+<tr><th>Cosa serve</th><th>Regole</th></tr>
+<tr><td><strong>Worldloom</strong> (mazzo principale)</td><td>Numero di copie ammesse per ciascuna carta: <strong>stampato sulla carta stessa</strong> (badge in basso a destra). Nessuna regola generale di limite copie: cambia da carta a carta.</td></tr>
+<tr><td><strong>Mazzetto Imprevisti</strong></td><td><strong>Uno per giocatore</strong>, separato dal Worldloom. Minimo <strong>10 carte</strong>, massimo <strong>2 copie</strong> identiche.</td></tr>
+<tr><td><strong>Dadi</strong></td><td>Un dado di reazione a 8 facce per ciascun Archetipo presente nel mazzo, più un Dado Imprevisti a 6 facce.</td></tr>
+<tr><td><strong>Segnalini</strong></td><td>Per gli effetti a durata. Il danno <em>non</em> richiede segnalini: si azzera a fine turno.</td></tr>
+</table>
+<div class="rule"><span class="tag">Chi inizia — lancio della moneta</span>
+Prima della prima Fase 1 della partita, si decide a caso chi gioca per primo — un lancio di moneta, o qualunque metodo casuale equivalente concordato al tavolo. Chi vince il lancio inizia; l'altro gioca per secondo e pesca una carta in più nel proprio primo turno per compensare (vedi sotto).</div>
+<p>Nel proprio primo turno, <strong>chi gioca per primo pesca 5 carte</strong>; <strong>chi gioca per secondo ne pesca 6</strong> (5 iniziali + 1, a compensare il turno di svantaggio). Dal turno successivo il Rifornimento è identico per entrambi: <strong>1 carta</strong> a turno (o 2 rinunciando all'attacco, cap. 6). Ciascuno scopre la <strong>prima carta del proprio mazzetto Imprevisti</strong> e la piazza davanti al mazzetto: è scoperta (nome ed effetto sono leggibili), ma resta lì <strong>inattiva</strong> finché non raggiunge i 4 movimenti (cap. 15).</p>
+<div class="rule"><span class="tag">Regola del primo turno</span>
+Nel proprio primo turno nessun giocatore può fare l'<strong>evocazione bonus</strong>. Inoltre <strong>chi gioca per primo non può attaccare</strong> nel suo primo turno: compensa il vantaggio di iniziare.</div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="c4">
+<h2>4 · Il campo di battaglia</h2>
+<div class="fieldmap">
+  <div class="fm-lbl">Zona avversaria</div>
+  <div class="fm-row"><div class="fm-slot">Prima linea</div><div class="fm-slot">Prima linea</div><div class="fm-slot">Prima linea</div><div class="fm-slot p">🌍 Terreno avversario</div></div>
+  <div class="fm-row"><div class="fm-slot">Retrovia</div><div class="fm-slot">Retrovia</div></div>
+  <div class="fm-row"><div class="fm-slot t">Trappola</div><div class="fm-slot t">Trappola</div><div class="fm-slot t">Trappola</div><div class="fm-slot t">Trappola</div><div class="fm-slot t">Trappola</div></div>
+  <div class="fm-sep"></div>
+  <div class="fm-row"><div class="fm-slot t">Trappola</div><div class="fm-slot t">Trappola</div><div class="fm-slot t">Trappola</div><div class="fm-slot t">Trappola</div><div class="fm-slot t">Trappola</div></div>
+  <div class="fm-row"><div class="fm-slot">Retrovia</div><div class="fm-slot">Retrovia</div></div>
+  <div class="fm-row"><div class="fm-slot">Prima linea</div><div class="fm-slot">Prima linea</div><div class="fm-slot">Prima linea</div><div class="fm-slot p">🌍 Terreno</div></div>
+  <div class="fm-lbl">La tua zona</div>
+</div>
+<p style="font-size:.88em;color:var(--muted)">Ogni giocatore ha il proprio slot Terreno, accanto alla propria prima linea (non è una zona centrale condivisa). Vedi il box qui sotto: lo slot è personale, l'<em>effetto</em> attivo vale per entrambi.</p>
+<table>
+<tr><th>Zona</th><th class="c">Slot</th><th>Funzione</th></tr>
+<tr><td><strong>Prima linea</strong></td><td class="c">3</td><td>Gli Alieni qui attaccano e possono essere attaccati. Va tenuta piena quando possibile: vedi la regola qui sotto</td></tr>
+<tr><td><strong>Retrovia</strong></td><td class="c">2</td><td>Gli Alieni qui <strong>non</strong> attaccano, e sono <strong>protetti</strong>: non possono essere bersagliati finché la prima linea non è vuota</td></tr>
+<tr><td><strong>Magie e Trappole</strong></td><td class="c">5</td><td>Carte piazzate coperte o attive</td></tr>
+<tr><td><strong>Terreno</strong></td><td class="c">1 a testa</td><td>Personale: ogni giocatore ha il proprio slot. Ne è però attivo solo uno alla volta in totale (vedi cap. 14): il suo effetto vale per entrambi</td></tr>
+<tr><td><strong>Imprevisti</strong></td><td class="c">1+1</td><td>Per ciascun giocatore: mazzetto coperto sul bordo esterno, e davanti la carta in avanzamento, coperta finché non si attiva</td></tr>
+<tr><td><strong>Worldloom / Cimitero</strong></td><td class="c">—</td><td>Mazzo e scarti</td></tr>
+</table>
+<div class="example"><span class="tag">Esempio — la protezione della retrovia</span>
+Hai un Piccolo Goblin (debole) in prima linea e Il Re Antico (la tua bomba) in retrovia. Finché il Goblin è vivo, l'avversario <strong>non può toccare</strong> Il Re Antico: deve prima abbattere il Goblin. L'unica eccezione è la carta Terreno <em>Marea di Marbion</em>, che annulla la protezione per entrambi.</div>
+<div class="rule"><span class="tag">La prima linea va tenuta piena — avanzamento obbligatorio</span>
+Se un Alieno in prima linea muore e hai almeno un Alieno in retrovia, <strong>lo slot non può restare vuoto</strong>: uno dei tuoi Alieni in retrovia deve avanzare a coprirlo, salvo un effetto di carta che dica esplicitamente il contrario. <strong>Scegli tu quale</strong> Alieno della retrovia avanza, ma uno deve farlo. Per questo, in condizioni normali, non può esistere una prima linea con posti liberi mentre la retrovia ha ancora Alieni vivi.</div>
+<div class="rule"><span class="tag">Spostamenti</span>
+Puoi spostare liberamente i tuoi Alieni tra prima linea e retrovia <strong>solo durante la Fase 3</strong>, insieme a evocazioni, Magie e Trappole. Un Alieno appena evocato non può cambiare fila fino al turno successivo.<br>
+Puoi scambiare un Alieno di prima linea con uno di retrovia solo se <strong>entrambe le file hanno già almeno un Alieno</strong>.<br>
+Non puoi spostare in retrovia il tuo <strong>ultimo</strong> Alieno di prima linea: lo svuoteresti, e la prima linea va tenuta occupata quando possibile (vedi sopra).</div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="c5">
+<h2>5 · Anatomia di una carta</h2>
+<div class="cardDemo">
+  <div class="wlcard">
+    <div class="wl-top" style="background:var(--colo)"><span>IL RE ANTICO</span>
+      <span class="wl-cost"><i></i><i></i><i></i></span></div>
+    <div class="wl-art" style="background:linear-gradient(140deg,#152a3d,#08131a)">🗿</div>
+    <div class="wl-arch" style="color:var(--colo)">Colosso · aggressore · Livello 3</div>
+    <div class="wl-fx">3 attacchi per turno invece di 2.<br>Massimo 1 copia nel Worldloom.</div>
+    <div class="wl-stats">
+      <span style="color:#7fd89b">❤️ 31</span>
+      <span style="color:#7fb0e8">🛡 20</span>
+      <span style="color:#e89090">⚔ 30</span>
+    </div>
+    <div class="wl-dots"><i></i><i></i><i></i></div>
+  </div>
+  <div class="legend">
+    <div><b>Barra del nome</b> — colorata secondo l'Archetipo, così riconosci la fazione a colpo d'occhio</div>
+    <div><b>Quadratini in alto a destra</b> — il costo di evocazione (1, 2 o 3)</div>
+    <div><b>Illustrazione</b> — l'alieno</div>
+    <div><b>Barra Pianeta/Archetipo</b> — Archetipo, Ruolo e Livello</div>
+    <div><b>Riquadro effetto</b> — il testo che la carta esegue</div>
+    <div><b>❤️ Vita</b> — quanto danno regge prima di essere distrutta</div>
+    <div><b>🛡 Parata</b> — quanto blocca col simbolo Scudo</div>
+    <div><b>⚔ Attacco</b> — quanto danno infligge</div>
+    <div><b>Pallini dorati</b> — attacchi disponibili per turno</div>
+  </div>
+</div>
+<div class="rule"><span class="tag">Nota importante</span>
+La <strong>Schivata non è una statistica</strong>. Non c'è nessun numero da leggere: quando esce il simbolo Schivata il colpo è semplicemente schivato, danno zero. Vedi capitolo 11.</div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="c6">
+<h2>6 · Le cinque fasi del turno</h2>
+<div class="box">
+<p><b style="color:var(--gold)">FASE 1 · Rifornimento</b><br>Scegli: peschi <strong>1 carta</strong>, oppure ne peschi <strong>2</strong> rinunciando ad attaccare in questo turno.<br>
+Nel proprio primissimo turno la scelta non si applica: <strong>chi gioca per primo pesca 5 carte</strong>, <strong>chi gioca per secondo ne pesca 6</strong> (5 iniziali + 1, a compensare il turno di svantaggio — cap. 3).</p>
+<p><b style="color:var(--gold)">FASE 2 · Vaticinio</b><br>Tiri il Dado Imprevisti, fai avanzare la tua carta Imprevisto e ne risolvi l'effetto se raggiunge i 4 movimenti.</p>
+<p><b style="color:var(--gold)">FASE 3 · Schieramento</b><br>Evochi Alieni (evocazione normale e bonus), <strong>sposti i tuoi Alieni</strong> tra prima linea e retrovia, attivi Magie e piazzi Trappole coperte.</p>
+<p><b style="color:var(--gold)">FASE 4 · Alla Carica</b><br>Dichiari gli attacchi con i tuoi Alieni in prima linea, contro le creature avversarie o direttamente contro lo Stratega. In questa fase si possono attivare effetti di carte, quando l'effetto stesso lo specifica.</p>
+<p><b style="color:var(--gold)">FASE 5 · Vespro</b><br>Tutto il danno viene <strong>azzerato su entrambi i campi</strong>: ogni Alieno sopravvissuto, tuo o avversario, torna alla Vita piena. Tocca all'avversario.</p>
+</div>
+<div class="rule"><span class="tag">Perché il danno si azzera</span>
+Due motivi. Primo: nessun segnalino da gestire al tavolo. Secondo, e più importante: <strong>chi è in svantaggio non deve mai affrontare creature già logorate dai turni precedenti</strong> del giocatore che sta vincendo.</div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="c7">
+<h2>7 · Evocare gli Alieni</h2>
+<table>
+<tr><th class="c">Costo</th><th>Come si paga</th></tr>
+<tr><td class="c"><strong>1 ◼</strong></td><td>Gratuito. Sono le truppe base.</td></tr>
+<tr><td class="c"><strong>2 ◼◼</strong></td><td>Sacrifichi tuoi Alieni per un totale di <strong>2</strong> livelli: un Livello 2, oppure due Livello 1.</td></tr>
+<tr><td class="c"><strong>3 ◼◼◼</strong></td><td>Sacrifichi tuoi Alieni per un totale di <strong>3</strong> livelli: un Livello 3, oppure un Livello 2 più un Livello 1, oppure tre Livello 1.</td></tr>
+</table>
+<p>La formula generale: un Alieno di costo N richiede tributi per <strong>N livelli</strong>, cioè quanto costa.</p>
+<div class="rule"><span class="tag">Quante evocazioni per turno</span>
+<strong>1 evocazione normale</strong> di qualunque costo, più <strong>1 evocazione bonus</strong> limitata a un Alieno di costo 1, che si paga <strong>scartando una carta a tua scelta</strong> dalla mano.<br>
+L'evocazione bonus <strong>non è disponibile nel primo turno</strong>.</div>
+<div class="rule"><span class="tag">Vincoli</span>
+Un Alieno evocato in questo turno non può essere sacrificato nello stesso turno.<br>
+Un Alieno evocato entra in prima linea se c'è spazio, altrimenti in retrovia, e non può cambiare fila fino al turno successivo.<br>
+I tributi per un'evocazione devono venire <strong>tutti dalla stessa fila</strong>: o solo dalla prima linea, o solo dalla retrovia, mai mischiando le due (puoi comunque scegliere quale fila usare, se hai livelli sufficienti in entrambe).<br>
+Puoi evocare solo nel tuo campo: nessun effetto normale piazza un Alieno nel campo avversario (salvo carte che dicano esplicitamente il contrario, es. presa di controllo temporaneo).</div>
+<div class="example"><span class="tag">Esempio</span>
+Hai in campo due Alieni di Livello 1. Li sacrifichi entrambi: valgono 2 livelli, esattamente quanto serve per evocare un Livello 2. Se invece avessi un Livello 2 già in campo, potresti sacrificare quello solo.<br><br>
+Per un Livello 3 servono 3 livelli: un Livello 2 più un Livello 1, oppure tre Livello 1, oppure un altro Livello 3.</div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section id="c8">
+<h2>8 · I range delle statistiche</h2>
+<div class="rule"><span class="tag">Attacco e Parata dipendono sempre dal Livello</span>
+<strong>Attacco e Parata di una carta non escono mai dal range del suo Livello.</strong> Guardando solo il costo di evocazione sai già quanto può essere forte quella carta.</div>
+<table>
+<tr><th class="c">Livello</th><th class="c">Attacco e Parata</th><th class="c">Vita</th><th>Note</th></tr>
+<tr><td class="c"><strong>1</strong></td><td class="c">1 – 12</td><td class="c">6 – 16</td><td>Evocazione gratuita</td></tr>
+<tr><td class="c"><strong>2</strong></td><td class="c">10 – 18</td><td class="c">14 – 26</td><td>1 tributo</td></tr>
+<tr><td class="c"><strong>3</strong></td><td class="c">16 – 30</td><td class="c">24 – 40</td><td>2 tributi</td></tr>
+</table>
+<div class="rule"><span class="tag">Perché la Vita ha una scala propria</span>
+La Vita usa una scala più alta di Attacco e Parata. Se fosse nello stesso range, ogni colpo ucciderebbe: le creature morirebbero sempre al primo attacco e i giocatori sarebbero costretti a rievocare in continuazione, senza mai costruire una posizione. Con questi valori servono <strong>2-3 colpi</strong> per abbattere una creatura di pari livello.</div>
+<div class="rule"><span class="tag">L'Archetipo non cambia questi numeri</span>
+L'<strong>Archetipo</strong> (cap. 9) non modifica il range di Vita/Attacco/Parata: la banda è unica per Livello, uguale per tutti e cinque gli Archetipi. L'Archetipo decide solo il dado di reazione e i rapporti di efficacia sulla Ruota — non i numeri stampati in carta.</div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section id="c9">
+<h2>9 · I cinque Archetipi e la Ruota</h2>
+<p>Ogni Alieno appartiene a uno di cinque Archetipi. L'Archetipo decide <strong>due cose sole</strong>: quale dado di reazione usa, e contro chi è forte o debole.</p>
+<div class="wheel">
+<b style="background:var(--vian)">Viandante</b><span class="arr">→</span>
+<b style="background:var(--assa)">Assalitore</b><span class="arr">→</span>
+<b style="background:var(--effi)">Effimeri</b><span class="arr">→</span>
+<b style="background:var(--colo)">Colosso</b><span class="arr">→</span>
+<b style="background:var(--tess)">Tessitore</b><span class="arr">→</span>
+<span style="color:var(--muted);font-size:.85em">(torna a Viandante)</span>
+</div>
+<div class="rule"><span class="tag">Regola della Ruota</span>
+Ogni Archetipo è <strong>efficace</strong> contro quello successivo nella ruota, e <strong>inefficace</strong> contro quello precedente. Con tutti gli altri è neutro.</div>
+<table>
+<tr><th>Archetipo</th><th>Efficace contro</th><th>Inefficace contro</th></tr>
+<tr><td style="color:var(--vian)">Viandante</td><td>Assalitore</td><td>Tessitore</td></tr>
+<tr><td style="color:var(--assa)">Assalitore</td><td>Effimeri</td><td>Viandante</td></tr>
+<tr><td style="color:var(--effi)">Effimeri</td><td>Colosso</td><td>Assalitore</td></tr>
+<tr><td style="color:var(--colo)">Colosso</td><td>Tessitore</td><td>Effimeri</td></tr>
+<tr><td style="color:var(--tess)">Tessitore</td><td>Viandante</td><td>Colosso</td></tr>
+</table>
+<h3>I cinque dadi di reazione (8 facce)</h3>
+<table>
+<tr><th>Archetipo</th><th class="c">⚔️ Spada</th><th class="c">🛡️ Scudo</th><th class="c">❤️ Cuore</th><th class="c">💨 Schivata</th><th>Carattere</th></tr>
+<tr><td style="color:var(--vian)">Viandante</td><td class="c">2</td><td class="c">2</td><td class="c">2</td><td class="c">2</td><td>Equilibrato, nessun estremo</td></tr>
+<tr><td style="color:var(--assa)">Assalitore</td><td class="c"><strong>4</strong></td><td class="c">1</td><td class="c">2</td><td class="c">1</td><td>Pura aggressione: si difende contrattaccando, quasi mai schiva</td></tr>
+<tr><td style="color:var(--effi)">Effimeri</td><td class="c">2</td><td class="c">1</td><td class="c">2</td><td class="c"><strong>3</strong></td><td>Agile: schiva più di chiunque</td></tr>
+<tr><td style="color:var(--colo)">Colosso</td><td class="c">1</td><td class="c"><strong>3</strong></td><td class="c">1</td><td class="c"><strong>3</strong></td><td>Muro: para molto, raramente incassa in pieno</td></tr>
+<tr><td style="color:var(--tess)">Tessitore</td><td class="c"><strong>3</strong></td><td class="c">1</td><td class="c">2</td><td class="c">2</td><td>Offensivo: converte la difesa in scontro diretto</td></tr>
+</table>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="c10">
+<h2>10 · I Ruoli</h2>
+<div class="warn"><span class="tag">Chiarimento fondamentale</span>
+<strong>I Ruoli NON sono una seconda ruota da incrociare con gli Archetipi.</strong> Non esistono combinazioni "Colosso + Tank" da imparare a memoria. Un Colosso resta Colosso — stesso dado, stesse forze e debolezze — qualunque Ruolo abbia. Il Ruolo cambia <strong>solo i numeri stampati</strong> e l'eventuale effetto scritto sulla carta.</div>
+<p>Ogni Ruolo modifica <strong>al massimo una statistica</strong>; le altre restano sui valori medi del Livello.</p>
+<table>
+<tr><th>Ruolo</th><th>Statistica che spinge</th><th>Effetto</th></tr>
+<tr><td><strong>Aggressore</strong></td><td>Attacco al massimo</td><td>Se 3 Aggressori alleati attaccano nello stesso turno, tutti e 3 guadagnano +1 Attacco fino a fine turno.</td></tr>
+<tr><td><strong>Difensore</strong></td><td>Parata al massimo</td><td>Se 2 Difensori alleati difendono nello stesso turno, il secondo che si attiva guadagna +2 Parata fino a fine turno.</td></tr>
+<tr><td><strong>Tank</strong></td><td>Vita al massimo</td><td>Quando un Alieno alleato viene distrutto, questo Alieno guadagna +3 Vita permanenti finché resta in campo.</td></tr>
+<tr><td><strong>Evasivo</strong></td><td>Nessuna: vive di effetto</td><td>Se subisce Schivata per la 2ª volta nello stesso turno dallo stesso attaccante, prima del colpo successivo può scambiarsi con un Alieno in retrovia: i colpi restanti colpiscono il nuovo Alieno in prima linea.</td></tr>
+<tr><td><strong>Bilanciato</strong></td><td>Nessuna: valori medi</td><td>Ignora sempre vantaggio e svantaggio della Ruota: ogni suo combattimento è trattato come neutro, in attacco e in difesa.</td></tr>
+</table>
+<div class="example"><span class="tag">Esempio — l'Evasivo</span>
+Il tuo Effimeri Evasivo è in prima linea, Il Re Antico in retrovia. Il Re Antico avversario ti attacca 3 volte. Primo tiro Schivata, secondo tiro Schivata: prima del terzo colpo scambi l'Effimeri con il tuo Re Antico. Il terzo attacco, molto più pericoloso, va a sbattere contro una creatura ben più solida.</div>
+<div class="example"><span class="tag">Esempio — il Bilanciato</span>
+Il tuo Viandante Bilanciato si difende da un Tessitore. Normalmente il Tessitore sarebbe efficace contro il Viandante e avrebbe il diritto di ripetizione. Essendo Bilanciato, lo scontro è neutro: un tiro solo, nessuna ripetizione per nessuno.</div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section id="c11">
+<h2>11 · Il combattimento</h2>
+<div class="rule"><span class="tag">Chi tira</span>
+Tira sempre e solo il <strong>difensore</strong>, con il dado del proprio Archetipo. L'attaccante non tira mai.</div>
+<h3>I quattro simboli</h3>
+<table>
+<tr><th>Simbolo</th><th>Effetto</th></tr>
+<tr><td><span class="sym">⚔️</span><strong>Spada</strong></td><td><strong>Simmetrica.</strong> Si confrontano gli Attacchi dei due Alieni: chi ha l'Attacco più basso subisce la differenza — con un minimo di metà dell'Attacco dell'attaccante se è lui a vincere il confronto (vedi sotto). Anche l'attaccante può farsi male, se perde.</td></tr>
+<tr><td><span class="sym">🛡️</span><strong>Scudo</strong></td><td><strong>Simmetrica.</strong> Si confronta l'Attacco dell'attaccante con la Parata del difensore: chi ha il valore più basso subisce la differenza — con lo stesso minimo di metà Attacco se vince l'attaccante.</td></tr>
+<tr><td><span class="sym">❤️</span><strong>Cuore</strong></td><td>Il difensore subisce danno pieno, pari all'Attacco dell'attaccante. È il risultato peggiore per chi difende.</td></tr>
+<tr><td><span class="sym">💨</span><strong>Schivata</strong></td><td><strong>Nessun danno. Zero.</strong> Nessun calcolo, nessuna eccezione: il colpo è schivato. È il risultato migliore per chi difende.</td></tr>
+</table>
+<div class="example"><span class="tag">Esempio — Scudo simmetrico</span>
+Il tuo Alieno ha Attacco 15. Il difensore ha Parata 19. Esce Scudo: la Parata supera l'Attacco, quindi <strong>il tuo attaccante subisce 4 danni</strong> e il difensore zero. Un muro con Parata alta punisce chi lo attacca senza pensarci.</div>
+<div class="example"><span class="tag">Esempio — Spada simmetrica</span>
+Il tuo Alieno ha Attacco 20, il difensore 14. Esce Spada: la differenza sarebbe 6, ma vince l'attaccante quindi si applica il minimo di metà del suo Attacco (10) se è più alto della differenza — il difensore subisce <strong>10 danni</strong>, non 6.</div>
+<div class="rule"><span class="tag">Pareggio esatto — Spada "pareggio rosso" vs Scudo</span>
+Se gli Attacchi dei due Alieni sono <strong>esattamente uguali</strong> su Spada, non c'è un vincitore del confronto: <strong>entrambi gli Alieni si distruggono a vicenda</strong> ("pareggio rosso"). Se invece è l'Attacco dell'attaccante a pareggiare esattamente la Parata del difensore su Scudo, il colpo non basta a superare la difesa: <strong>nessuno dei due subisce danno</strong>, entrambi restano in campo illesi.</div>
+<div class="rule"><span class="tag">Numero di attacchi</span>
+Non esiste una regola generale che fissi quante volte un Alieno attacca per turno: è <strong>sempre specificato sulla carta</strong>, carta per carta, o concesso da un effetto. Gli attacchi non usati <strong>non si accumulano</strong> per il turno successivo.</div>
+<div class="rule"><span class="tag">Scelta del bersaglio, attacco per attacco</span>
+Chi attacca sceglie il bersaglio <strong>a ogni singolo attacco</strong>, non una volta sola per tutta la sequenza del turno. Se un attacco distrugge il bersaglio e all'Alieno restano colpi nello stesso turno, per il colpo successivo si sceglie di nuovo: un'altra creatura nemica in prima linea, oppure — solo se non ne restano più in prima linea — direttamente lo Stratega.</div>
+<div class="rule"><span class="tag">Attacco diretto</span>
+Se il campo avversario è completamente vuoto, attacchi direttamente lo Stratega usando tutti gli attacchi disponibili del turno.</div>
+<p>Il danno si somma tra un colpo e l'altro dentro lo stesso turno, poi <strong>si azzera</strong> a fine turno se l'Alieno è sopravvissuto.</p>
+</section>
+
+<!-- ============ 12 ============ -->
+<section id="c12">
+<h2>12 · Il diritto di ripetizione</h2>
+<p>La Ruota degli Archetipi non fa tirare due dadi: dà a uno dei due giocatori il potere di <strong>far ritirare un risultato che non gli piace</strong>.</p>
+<table>
+<tr><th>Situazione</th><th>Chi decide</th></tr>
+<tr><td>L'attaccante è <strong>efficace</strong> contro il difensore</td><td>L'<strong>attaccante</strong> può obbligare il difensore a ritirare</td></tr>
+<tr><td>L'attaccante è <strong>inefficace</strong> contro il difensore</td><td>Il <strong>difensore</strong> può scegliere di ritirare</td></tr>
+<tr><td>Matchup <strong>neutro</strong></td><td>Nessuno: si tiene il risultato</td></tr>
+</table>
+<div class="rule"><span class="tag">Regola del consumo — leggila con attenzione</span>
+Il diritto vale <strong>una sola volta per ciascuna coppia attaccante-difensore, per turno</strong>.<br><br>
+Si consuma <strong>solo se lo eserciti davvero</strong>. Se decidi di tenere il risultato, il diritto resta disponibile per gli attacchi successivi contro quella stessa creatura.<br><br>
+Contro una <strong>creatura diversa</strong> è un nuovo combattimento: hai un nuovo diritto, anche nello stesso turno.</div>
+<div class="example"><span class="tag">Esempio completo</span>
+Il tuo Colosso (efficace contro Tessitore) attacca due volte nello stesso turno.<br><br>
+<strong>Caso A</strong> — Primo attacco contro il Tessitore X: esce Schivata, non ti piace, <strong>usi il diritto</strong> e lo obblighi a ritirare. Secondo attacco contro lo stesso Tessitore X: il diritto è esaurito, ti tieni quello che esce.<br><br>
+<strong>Caso B</strong> — Primo attacco contro X: esce Cuore, ottimo per te, <strong>non usi il diritto</strong>. Secondo attacco contro X: il diritto è ancora lì, puoi usarlo.<br><br>
+<strong>Caso C</strong> — Primo attacco contro X: usi il diritto. Secondo attacco contro il Tessitore Y (creatura diversa): <strong>nuovo diritto disponibile</strong>.</div>
+</section>
+
+<!-- ============ 13 ============ -->
+<section id="c13">
+<h2>13 · Il rifiuto della difesa</h2>
+<div class="rule"><span class="tag">Regola</span>
+Quando un tuo Alieno viene attaccato, <strong>prima del tiro</strong> puoi rifiutare la difesa. In quel caso il colpo va dritto al tuo Stratega per <strong>danno pieno</strong> (pari all'Attacco dell'attaccante) e il tuo Alieno resta <strong>completamente illeso</strong>. Nessun contraccolpo per l'attaccante.</div>
+<p>È una decisione che appartiene sempre a <strong>chi tira il dado</strong>, cioè al difensore, mai all'attaccante.</p>
+<div class="example"><span class="tag">Esempio</span>
+Il tuo Colosso Livello 3 (Vita 45) ha già incassato 40 danni in questo turno e ne resta 5. L'avversario lo attacca con un Alieno da Attacco 18. Se difendi e ti va male, il Colosso muore. Se rifiuti la difesa, incassi 18 sul tuo Stratega — ma il Colosso sopravvive, e a fine turno tornerà a Vita piena.</div>
+<p>È lo strumento tattico centrale del gioco: decide <strong>quando conviene pagare con i Punti Vita per salvare una posizione</strong>, e quando invece è meglio rischiare il dado.</p>
+</section>
+
+<!-- ============ 14 ============ -->
+<section id="c14">
+<h2>14 · Magie e Trappole</h2>
+<p>Non hanno costo in risorse. Il freno è scritto nel testo della carta: una condizione, un sacrificio, un limite di copie, un "una volta per turno".</p>
+<h3>I quattro sottotipi di Magia</h3>
+<table>
+<tr><th>Sottotipo</th><th>Quando si attiva</th></tr>
+<tr><td><strong>Normale</strong></td><td>Solo nella Fase 3 del proprio turno, giocata dalla mano</td></tr>
+<tr><td><strong>Terreno</strong></td><td>Solo nella Fase 3 del proprio turno, giocata dalla mano. Occupa il tuo slot Terreno personale (uno a testa, cap. 4); il suo effetto vale per <strong>entrambi</strong> i giocatori. Ne è però attivo solo uno alla volta in totale: se un Terreno è già attivo (tuo o dell'avversario), il tuo lo <strong>distrugge</strong> e prende il suo posto. Una carta Terreno può essere permanente oppure avere una durata fissa dichiarata sul testo (es. "dura 3 turni")</td></tr>
+<tr><td><strong>Continua</strong></td><td>Giocata dalla mano in Fase 3, poi resta attiva sul campo finché non viene rimossa</td></tr>
+<tr><td><strong>Rapida</strong></td><td><strong>L'unico sottotipo</strong> attivabile anche dalla mano fuori dal proprio turno, o da una carta già piazzata nella tua zona Magie e Trappole: in qualunque momento della partita, non solo nella tua Fase 3</td></tr>
+</table>
+<div class="rule"><span class="tag">Piazzare una Magia coperta invece di attivarla subito</span>
+Qualsiasi Magia, di qualsiasi sottotipo, può essere piazzata <strong>coperta</strong> nella tua zona Magie e Trappole invece di essere attivata subito dalla mano — stesso spazio condiviso con le Trappole (5 slot). A differenza delle Trappole non serve aspettare il turno successivo: una Magia piazzata è già pronta, ma resta soggetta alle sue normali regole di tempistica (una Normale/Terreno/Continua si attiva ancora solo nella tua Fase 3; una Rapida in qualunque momento). È un modo per prepararla in anticipo e scegliere con calma quando farla scattare, senza doverla giocare a occhi chiusi nello stesso istante in cui la peschi.</div>
+<h3>Trappole</h3>
+<p>Si piazzano <strong>coperte</strong> in Fase 3 e diventano attivabili <strong>dal turno successivo</strong>. Da quel momento si attivano in qualunque momento della partita, anche nel turno avversario.</p>
+<h3>Risposte a catena — chi ha la priorità</h3>
+<div class="rule"><span class="tag">Un giocatore alla volta, sempre chi ha la priorità</span>
+Quando una carta o un effetto si attiva, non si risolve subito: diventa la carta "in cima" a una pila di risposte in attesa. Chi l'ha appena attivata mantiene la priorità e può subito incatenare un'altra propria carta sopra — vale per entrambi i giocatori, anche sulle proprie stesse carte, non solo per rispondere all'avversario. Quando decide di non aggiungere altro, la priorità passa all'altro giocatore. Quando <strong>entrambi passano di seguito</strong> senza aggiungere nulla, la carta in cima alla pila si risolve davvero e viene tolta: se sotto resta ancora qualcosa, la priorità torna a chi possiede quella carta rimasta; altrimenti la catena finisce e si torna al gioco normale.</div>
+<div class="rule"><span class="tag">Ordine di risoluzione — l'ultima aggiunta si risolve per prima (LIFO)</span>
+La pila si risolve sempre partendo dall'<strong>ultima carta aggiunta</strong>, mai dalla prima. Se una risposta annulla l'effetto sotto di lei ma viene a sua volta annullata da un'altra risposta ancora sopra, l'effetto originale torna valido.</div>
+<div class="warn"><span class="tag">Nota — meccanismo in costruzione</span>
+Questo sistema di priorità a catena è attivo per ora solo nella finestra dell'attacco dichiarato, prima che il combattimento si risolva. Nelle prossime revisioni si estenderà anche a evocazione, Magie, Imprevisti ed effetti delle carte: finché non è completo, in quelle altre situazioni vale la regola più semplice già descritta in questo capitolo (una carta si attiva e si risolve, poi eventualmente ne segue un'altra).</div>
+<h3>Tre carte che generano dubbi</h3>
+<div class="example"><span class="tag">Marea di Marbion — Terreno</span>
+<em>"Per entrambi i giocatori, gli Alieni in retrovia non sono più protetti e possono essere bersagliati."</em><br><br>
+Annulla la regola della retrovia protetta (capitolo 4). Se l'avversario nasconde Il Re Antico dietro un Goblin, questa carta ti permette di colpirlo direttamente. Ma vale anche per lui.</div>
+<div class="example"><span class="tag">Occhio del Drago Linfatico — Trappola</span>
+<em>"L'Alieno attaccante perde tutti gli attacchi rimanenti in questo turno."</em><br><br>
+Il Re Antico (3 attacchi) dichiara il primo colpo. Attivi la trappola: il primo si risolve normalmente, il secondo e il terzo sono cancellati.</div>
+<div class="example"><span class="tag">Blocca l'Avversario — Trappola</span>
+<em>"Per i prossimi 3 turni, quando un Alieno avversario tira il dado di reazione, un simbolo a tua scelta viene trattato come Scudo."</em><br><br>
+Non tocchi il dado fisico. Scegli un simbolo — per esempio Cuore, il più pericoloso — e metti un segnalino accanto con scritto "Cuore → Scudo". Per 3 turni ogni Cuore si legge come Scudo.</div>
+</section>
+
+<!-- ============ 15 ============ -->
+<section id="c15">
+<h2>15 · Gli Imprevisti</h2>
+<div class="rule"><span class="tag">Il mazzetto — uno per giocatore</span>
+Separato dal Worldloom. <strong>Minimo 10 carte</strong>, massimo <strong>2 copie</strong> identiche.
+<strong>Ogni giocatore ha il proprio mazzetto Imprevisti</strong>, coperto, posto sul bordo esterno del proprio lato del campo. Davanti al mazzetto c'è una singola posizione: è lì che la carta in cima avanza, <strong>ma resta coperta</strong> — nome ed effetto non si leggono finché non si attiva. Solo la rotazione della carta (vedi sotto) segna quanto è avanzata. Quando si attiva, si scopre un istante per risolvere l'effetto e va scartata. Poi prende il suo posto la carta successiva del mazzetto, di nuovo coperta.</div>
+<p>All'inizio della tua Fase 2 tiri il <strong>Dado Imprevisti</strong> a 6 facce, che fa avanzare <strong>il tuo</strong> Imprevisto:</p>
+<table>
+<tr><th class="c">Risultato</th><th class="c">Facce</th><th>Effetto</th></tr>
+<tr><td class="c">Nulla</td><td class="c">1</td><td>La carta non avanza</td></tr>
+<tr><td class="c">+1</td><td class="c">3</td><td>La carta avanza di 1 movimento</td></tr>
+<tr><td class="c">+2</td><td class="c">2</td><td>La carta avanza di 2 movimenti</td></tr>
+</table>
+<p>Media: 1,17 movimenti a turno, quindi un'attivazione ogni <strong>3-4 turni circa</strong> per ciascun giocatore.</p>
+<div class="rule"><span class="tag">Come si traccia l'avanzamento — si gira la carta, ancora coperta</span>
+Sulla carta non è stampato nessun contatore "1/2/3/4": nel gioco fisico l'avanzamento si segna <strong>ruotando la carta stessa</strong> di 90° per ogni movimento guadagnato, <strong>tenendola sempre coperta</strong> (dorso verso l'alto). +1 movimento → gira di 90°. Un altro +1 → altri 90° (180° totali). Al terzo movimento è a 270°. Il quarto completa il giro (360°, cioè di nuovo dritta) e la carta si attiva.</div>
+<div class="rule"><span class="tag">Attivazione</span>
+Quando la carta raggiunge <strong>4 movimenti</strong> (giro completo), si scopre: solo ora nome ed effetto diventano leggibili. L'effetto si risolve subito e la carta va scartata nel cimitero del mazzetto Imprevisti. I movimenti in eccesso passano automaticamente alla carta successiva, che prende il suo posto <strong>ancora coperta</strong> e riparte già ruotata di quella quantità.</div>
+<div class="rule"><span class="tag">Simmetria assoluta dell'effetto</span>
+Anche se il mazzetto è personale, <strong>l'effetto di un Imprevisto vale sempre per entrambi i giocatori</strong> e <strong>non può essere annullato</strong> da nessuna carta. Chi lo fa avanzare non ne trae un vantaggio esclusivo: decide soltanto <em>quando</em> arriva. Se un Imprevisto richiede un tiro, si usa sempre il Dado Imprevisti, mai i dadi degli Archetipi.</div>
+<div class="example"><span class="tag">Esempio</span>
+Il tuo Imprevisto (ancora coperto) ha 3 movimenti. Tiri ed esce +2: arriva a 5, supera i 4 richiesti. Si scopre, l'effetto si risolve subito <strong>su entrambi i campi</strong>, poi va scartato. Il movimento in eccesso (1) passa alla carta successiva del tuo mazzetto, che prende il suo posto coperta e con 1 movimento già accumulato.</div>
+</section>
+
+<!-- ============ 16 ============ -->
+<section id="c16">
+<h2>16 · Riepilogo veloce</h2>
+<table>
+<tr><td>Punti Vita iniziali dello Stratega</td><td class="c"><strong>200</strong></td></tr>
+<tr><td>Chi inizia</td><td class="c">deciso a caso (lancio di moneta) prima della partita</td></tr>
+<tr><td>Copie massime per carta</td><td class="c">stampate sulla carta stessa, cambia da carta a carta</td></tr>
+<tr><td>Mazzetto Imprevisti</td><td class="c">uno per giocatore, min. 10 carte, max 2 copie</td></tr>
+<tr><td>Imprevisti in avanzamento</td><td class="c">1 per giocatore, coperto finché non si attiva a 4 movimenti (girando la carta di 90° a movimento)</td></tr>
+<tr><td>Carte pescate al 1° turno</td><td class="c">5 chi inizia · 6 chi gioca per secondo</td></tr>
+<tr><td>Rifornimento dal turno successivo</td><td class="c">1 carta, oppure 2 rinunciando all'attacco del turno (uguale per entrambi)</td></tr>
+<tr><td>Spostamenti prima linea ↔ retrovia</td><td class="c">solo in Fase 3; la prima linea va tenuta piena quando possibile</td></tr>
+<tr><td>Prima linea / Retrovia</td><td class="c">3 / 2</td></tr>
+<tr><td>Slot Magie e Trappole</td><td class="c">5</td></tr>
+<tr><td>Slot Terreno</td><td class="c">1 a testa (personale), ma solo 1 attivo in totale — vale per entrambi</td></tr>
+<tr><td>Evocazioni per turno</td><td class="c">1 normale + 1 bonus (costo 1, scartando 1 carta)</td></tr>
+<tr><td>Tributi richiesti</td><td class="c">pari al costo: Liv.2 → 2 livelli, Liv.3 → 3 livelli</td></tr>
+<tr><td>Evocazione bonus al 1° turno</td><td class="c">non disponibile</td></tr>
+<tr><td>Attacco del primo giocatore al 1° turno</td><td class="c">non consentito</td></tr>
+<tr><td>Attacchi per Alieno</td><td class="c">stampato su ogni carta (di norma 2 al momento)</td></tr>
+<tr><td>Chi tira il dado</td><td class="c">sempre il difensore</td></tr>
+<tr><td>Diritto di ripetizione</td><td class="c">1 per coppia attaccante-difensore, per turno</td></tr>
+<tr><td>Danno da Schivata</td><td class="c">sempre 0</td></tr>
+<tr><td>Il danno si azzera</td><td class="c">sì, su entrambi i campi, a fine di ogni turno</td></tr>
+</table>
+</section>
+
+<div class="footer">Worldloom · Regolamento per giocatori<br>
+Ideato da Giacomo Mario Spreafico</div>
+
+</div>
+</body>
+</html>

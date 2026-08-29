@@ -1,0 +1,943 @@
+<title>Worldloom UX Codex</title>
+<style>
+  :root {
+    --bg: #f3f4f8;
+    --surface: #ffffff;
+    --surface-2: #eceef5;
+    --border: #d8dbe6;
+    --text: #1a2035;
+    --text-dim: #5a6178;
+    --accent: #a8792e;
+    --accent-soft: #f2e2b8;
+    --accent-ink: #4a3410;
+    --ok: #2f8f5b;
+    --ok-bg: #e3f4ea;
+    --pending: #8a5c9a;
+    --pending-bg: #f2e7f6;
+    --limit: #b06a2e;
+    --limit-bg: #f8e9d8;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Fira Code", Consolas, "JetBrains Mono", monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --radius: 10px;
+    --arch-viandante: #b8923f;
+    --arch-assalitore: #c06a4f;
+    --arch-effimeri: #3f9d63;
+    --arch-colosso: #4478b5;
+    --arch-tessitore: #8f5fb5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0e18;
+      --surface: #121a2b;
+      --surface-2: #1a2438;
+      --border: #2a3552;
+      --text: #e8ecf5;
+      --text-dim: #9aa5c0;
+      --accent: #c9a24b;
+      --accent-soft: rgba(201, 162, 75, 0.16);
+      --accent-ink: #f6e6b8;
+      --ok: #6fce9a;
+      --ok-bg: rgba(111, 206, 154, 0.12);
+      --pending: #c99bd9;
+      --pending-bg: rgba(201, 155, 217, 0.12);
+      --limit: #e0a86f;
+      --limit-bg: rgba(224, 168, 111, 0.12);
+      --arch-viandante: #e8c96f;
+      --arch-assalitore: #e08a72;
+      --arch-effimeri: #72c98f;
+      --arch-colosso: #6f9ed6;
+      --arch-tessitore: #b98fd6;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0a0e18;
+    --surface: #121a2b;
+    --surface-2: #1a2438;
+    --border: #2a3552;
+    --text: #e8ecf5;
+    --text-dim: #9aa5c0;
+    --accent: #c9a24b;
+    --accent-soft: rgba(201, 162, 75, 0.16);
+    --accent-ink: #f6e6b8;
+    --ok: #6fce9a;
+    --ok-bg: rgba(111, 206, 154, 0.12);
+    --pending: #c99bd9;
+    --pending-bg: rgba(201, 155, 217, 0.12);
+    --limit: #e0a86f;
+    --limit-bg: rgba(224, 168, 111, 0.12);
+    --arch-viandante: #e8c96f;
+    --arch-assalitore: #e08a72;
+    --arch-effimeri: #72c98f;
+    --arch-colosso: #6f9ed6;
+    --arch-tessitore: #b98fd6;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  body {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  ::selection { background: var(--accent-soft); color: var(--text); }
+
+  code, .mono {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+  }
+
+  a { color: inherit; }
+
+  h1, h2, h3 { text-wrap: balance; font-weight: 700; margin: 0; }
+
+  /* ---------- sidebar ---------- */
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    flex: 0 0 260px;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+    overflow-y: auto;
+    padding: 20px 16px 40px;
+  }
+
+  .sidebar-brand {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 1.02em;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .sidebar-brand .dot { color: var(--accent); }
+
+  .sidebar-sub {
+    font-size: 0.78em;
+    color: var(--text-dim);
+    margin-bottom: 18px;
+  }
+
+  .search {
+    width: 100%;
+    padding: 8px 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 0.86em;
+    margin-bottom: 16px;
+  }
+  .search:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .search::placeholder { color: var(--text-dim); }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .stat {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 4px;
+    text-align: center;
+    background: var(--surface-2);
+  }
+  .stat b { display: block; font-family: var(--font-mono); font-size: 1.1em; }
+  .stat span { font-size: 0.68em; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .nav-group { margin-bottom: 4px; }
+  .nav-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 12px 8px 4px;
+  }
+  .nav-link {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 0.86em;
+    color: var(--text-dim);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+  }
+  .nav-link:hover { color: var(--text); background: var(--surface-2); }
+  .nav-link.active { color: var(--accent-ink); border-left-color: var(--accent); background: var(--accent-soft); }
+
+  /* ---------- main ---------- */
+
+  .content {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 40px clamp(20px, 4vw, 56px) 100px;
+    max-width: 1180px;
+  }
+
+  .page-head { margin-bottom: 36px; }
+  .page-head h1 {
+    font-family: var(--font-mono);
+    font-size: clamp(1.5em, 3vw, 2.1em);
+    margin-bottom: 10px;
+  }
+  .page-head p {
+    color: var(--text-dim);
+    max-width: 62ch;
+    margin: 0 0 14px;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.78em;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .chip-ok { background: var(--ok-bg); color: var(--ok); }
+  .chip-pending { background: var(--pending-bg); color: var(--pending); }
+  .chip-limit { background: var(--limit-bg); color: var(--limit); }
+  .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+
+  section.group { margin-bottom: 48px; scroll-margin-top: 20px; }
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .group-head h2 {
+    font-family: var(--font-mono);
+    font-size: 1.15em;
+  }
+  .group-head .group-desc { color: var(--text-dim); font-size: 0.86em; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-margin-top: 20px;
+  }
+  .card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .card-title { font-weight: 700; font-size: 0.97em; }
+  .card-file {
+    display: block;
+    color: var(--text-dim);
+    font-size: 0.76em;
+    margin-top: 2px;
+  }
+  .card p { margin: 0; color: var(--text-dim); font-size: 0.88em; }
+  .card p b { color: var(--text); font-weight: 600; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.72em;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+  .tag-arch { color: var(--bg); font-weight: 700; border: none; }
+
+  .card[data-hidden="true"] { display: none; }
+
+  /* archetipo tag colors */
+  .tag-viandante { background: var(--arch-viandante); }
+  .tag-assalitore { background: var(--arch-assalitore); }
+  .tag-effimeri { background: var(--arch-effimeri); }
+  .tag-colosso { background: var(--arch-colosso); }
+  .tag-tessitore { background: var(--arch-tessitore); }
+
+  .callout {
+    background: var(--surface-2);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    font-size: 0.88em;
+    color: var(--text-dim);
+  }
+  .callout b { color: var(--text); }
+
+  .no-results {
+    display: none;
+    color: var(--text-dim);
+    font-size: 0.9em;
+    padding: 20px 0;
+  }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.78em;
+  }
+
+  @media (max-width: 860px) {
+    body { flex-direction: column; }
+    .sidebar { position: relative; width: 100%; flex-basis: auto; height: auto; max-height: none; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { padding: 28px 18px 80px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+  }
+
+  html { scroll-behavior: smooth; }
+</style>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-brand">WORLDLOOM<span class="dot">·</span>UX</div>
+  <div class="sidebar-sub">Riferimento vivo dell'interfaccia e delle animazioni — generato dal codice reale, non da un documento a parte.</div>
+
+  <input class="search" id="search" type="text" placeholder="Cerca un aspetto (es. dado, mano, catena)…" />
+
+  <div class="stats-row" id="stats">
+    <div class="stat"><b id="stat-ok">–</b><span>Fatto</span></div>
+    <div class="stat"><b id="stat-limit">–</b><span>Limite noto</span></div>
+    <div class="stat"><b id="stat-pending">–</b><span>Da fare</span></div>
+  </div>
+
+  <nav id="nav"></nav>
+</div>
+
+<div class="content">
+  <div class="page-head">
+    <h1>Worldloom UX Codex</h1>
+    <p>Ogni riquadro qui sotto è un pezzo reale dell'interfaccia — con il file dove vive, le classi/animazioni CSS coinvolte e i campi di stato del reducer. Usalo per puntare a un aspetto preciso quando vuoi cambiarlo, o per vedere a colpo d'occhio cosa è già costruito prima di proporre una nuova animazione.</p>
+    <div class="legend">
+      <span class="chip chip-ok"><span class="chip-dot"></span>Fatto e verificato</span>
+      <span class="chip chip-limit"><span class="chip-dot"></span>Fatto, con un limite noto</span>
+      <span class="chip chip-pending"><span class="chip-dot"></span>Da fare / in roadmap</span>
+    </div>
+  </div>
+
+  <section class="group" id="fondamenta">
+    <div class="group-head">
+      <h2>01 · Fondamenta</h2>
+      <span class="group-desc">Come si vede e si apre una carta, prima ancora di essere sul campo.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Layout carta — 4 varianti</div><span class="card-file">Carta.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Un solo componente copre 4 casi: <b>compatta</b> (mini-carta sul campo, statistiche in overlay), <b>immagine</b> (Complete Card intera, il caso normale), <b>magia/trappola/imprevisto senza immagine</b> e <b>Pedina senza immagine</b> — questi ultimi due usano ora <b>lo stesso guscio</b> a fasce banner/corpo/piede, proporzione 5:7 come una Complete Card.</p>
+        <p><b>Corretto il 2026-08-29:</b> il ramo magia/trappola era un blocco di testo libero che si allungava quanto serviva. Con le carte nuove (effetti lunghi, illustrazione non ancora fatta) la carta diventava alta il doppio delle vicine e sfondava la mano — segnalato dall'utente con uno screenshot. Ora il testo lungo <b>scorre dentro il corpo</b> (<span class="tag">overflow-y: auto</span>) invece di allargare la carta. <b>Misurato in partita reale</b>: sei carte in mano, illustrate e non, tutte <b>117&times;157 px</b>, rapporto 0,745. Banner colorato per tipo: Magia <span class="tag">#6b9ede</span>, Trappola <span class="tag">#a97fd6</span>, Imprevisto <span class="tag">#c9a24b</span>.</p>
+        <div class="tag-row"><span class="tag">carta-immagine</span><span class="tag">carta-mini</span><span class="tag">carta-senza-immagine</span><span class="tag">carta-senza-immagine-banner/corpo/piede</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Regola permanente: proporzione 5:7</div><span class="card-file">index.css</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Regola fissa</span>
+        </div>
+        <p>Ogni slot del campo (creature, Terreno, Magie/Trappole coperte, Cimitero, Worldloom, Imprevisti) ha <b>sempre la stessa dimensione</b>. Mai introdurre uno slot "compatto" più piccolo — fermata due volte in passato per questa regola.</p>
+        <div class="tag-row"><span class="tag">box-sizing: border-box</span><span class="tag">--slot-w / --slot-h</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Zoom carta / anteprima</div><span class="card-file">DettaglioCarta.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Tocchi una mini-carta → si apre a piena grandezza in un modale. Se arriva da una pila con cronologia (es. il Cimitero), compaiono frecce ← → con contatore "N / totale" per scorrere le carte precedenti — assenti per mano/campo/Terreno.</p>
+        <div class="tag-row"><span class="tag">modale-navigazione</span><span class="tag">posizione/onPrecedente/onSuccessivo</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Schermata iniziale</div><span class="card-file">App.jsx · SchermataIniziale()</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Logo grande + due bottoni modalità (🤖 Gioca contro IA, 📱 1 contro 1) + due selettori di mazzo (tuo / avversario). Nessuna configurazione dadi/archetipi qui — quella vive nel cassetto Registro & Dadi, solo a partita in corso.</p>
+        <div class="tag-row"><span class="tag">schermata-iniziale</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Prospettiva: chi vedo ora</div><span class="card-file">prospettiva.js · chiDecideOra()</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Concetto cardine per il 1v1 locale: separa <b>chi possiede</b> una carta (seme fisso "io"/"avversario", per la logica) da <b>chi la vede in basso</b> a schermo (segue il turno/priorità reale). Contro IA i due concetti coincidono sempre.</p>
+        <div class="tag-row"><span class="tag">chiDecideOra(stato)</span><span class="tag">altroSeme()</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Accesso con password</div><span class="card-file">Cancello.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Cancello a schermo intero prima di tutto il resto. Verifica via hash SHA-256 (la password in chiaro non è nel codice), ricordata per la sessione tramite <code>sessionStorage</code>.</p>
+        <div class="tag-row"><span class="tag">wl_sbloccato</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="campo">
+    <div class="group-head">
+      <h2>02 · Campo &amp; zone</h2>
+      <span class="group-desc">La struttura del tavolo: creature, pile, e come si specchia il lato dell'avversario.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Struttura del campo</div><span class="card-file">Campo.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Due righe per zona (prima linea / retrovia), Terreno condiviso e unico al centro, 5 slot Magie e Trappole, Cimitero e mazzo Imprevisti/Worldloom come pile — layout riorganizzato per stare più basso senza rimpicciolire nulla.</p>
+        <div class="tag-row"><span class="tag">FilaSlot</span><span class="tag">FilaMagieTrappole</span><span class="tag">SlotTerreno</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Specchiatura del campo avversario</div><span class="card-file">Campo.jsx / index.css</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Il campo dell'avversario è davvero speculare: Worldloom a sinistra per lui / a destra per te, carte e mano ruotate 180°. Anche gli <b>sfondi</b> coperti (mazzetto, Imprevisti in corso, dorsi Magie/Trappole) ruotano — non solo le carte vere, un bug distinto risolto a parte.</p>
+        <div class="tag-row"><span class="tag">carta-capovolta</span><span class="tag">campo-pila-sfondo-capovolta</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Cimitero</div><span class="card-file">Campo.jsx · PilaCimitero</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Mostra l'illustrazione intera dell'ultima carta scartata (non ritagliata), con badge del conteggio sopra. Quello dell'avversario ruota 180° come tutto il resto della sua zona, anche se qui la faccia è scoperta — scelta di coerenza visiva, non di regola.</p>
+        <div class="tag-row"><span class="tag">campo-slot-cimitero-img</span><span class="tag">object-fit: contain</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Magie e Trappole piazzate</div><span class="card-file">Campo.jsx · FilaMagieTrappole()</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Coperte con lo sfondo Worldloom finché non le attivi. Un Potenziamento già attivo (es. una Spada Sacra legata a un bersaglio) resta invece <b>scoperto</b> con bordo dorato — non più un segreto, non più cliccabile per "riattivarlo".</p>
+        <div class="tag-row"><span class="tag">campo-slot-trappola-scoperta</span><span class="tag">mt.coperta</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Carta Imprevisti in corso</div><span class="card-file">Campo.jsx · PilaImprevisti</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Ruota fisicamente di 90° per ogni movimento accumulato (invece di una vecchia freccina separata), badge "N/4" a parte così resta sempre leggibile. Per l'avversario somma anche il capovolgimento base 180°.</p>
+        <div class="tag-row"><span class="tag">rotate(mio?0:180 + movimenti*90)</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Icona "stordita" 🚫</div><span class="card-file">Carta.jsx / Campo.jsx</span></div>
+          <span class="chip chip-limit"><span class="chip-dot"></span>Scope ristretto</span>
+        </div>
+        <p>Badge su una creatura bloccata da un effetto avversario (oggi solo lo stordimento, da "Aura di Marbion"). Altri due stati esistenti nel motore — <code>fresca</code>, <code>controlloTemporaneo</code> — restano ancora senza badge, fuori scope per scelta esplicita.</p>
+        <div class="tag-row"><span class="tag">carta-mini-bloccata</span><span class="tag">creatura.stordito</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="fasi">
+    <div class="group-head">
+      <h2>03 · Fasi &amp; turno</h2>
+      <span class="group-desc">Come scandisce il tempo la partita — incluso il turno dell'IA e il passaggio del telefono.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">5 fasi, indicatore a pip</div><span class="card-file">App.jsx · IndicatoreFasi()</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Rifornimento → Imprevisti → Preparati allo scontro → Attacco → Fine. I pip sono cliccabili solo in avanti, mai indietro — un modo più diretto del bottone "Continua" per fare lo stesso passo.</p>
+        <div class="tag-row"><span class="tag">FASI</span><span class="tag">fasi-pip-cliccabile</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Turno IA passo-passo</div><span class="card-file">App.jsx / gameReducer.js</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>L'avversario non risolve più tutto il turno in un'unica dispatch invisibile: pesca → evoca → attacca si vedono uno alla volta, un passo ogni 900ms, con testo dedicato ("L'avversario evoca…"). Si ferma da sola se un prompt aspetta te.</p>
+        <p><b>Aggiornato 29-08 (idea 59 Fase 4):</b> il campo <code>s.iaInAttesa</code> e la dispatch <code>avanza-ia</code> sono <b>RITIRATI</b>. Il respiro è ora un passo <code>muta:"ia"</code> di <code>s.sequenza</code> con <code>durataMs: TEMPI.ia.respiro</code> (stessi 900ms) — vedi la card "Coda di step unica — il direttore" nella sezione VFX.</p>
+        <div class="tag-row"><span class="tag">muta:"ia"</span><span class="tag">TEMPI.ia.respiro</span><span class="tag">passoIaInScena</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Banner di fase (Rifornimento → Vespro)</div><span class="card-file">TitoloFase.jsx · index.css · gameReducer.js</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto e verificato</span>
+        </div>
+        <p>Fascia dorata che attraversa il centro del campo annunciando ogni cambio di fase: riga di attribuzione, <code>FASE n / 5</code>, nome della fase. Overlay non bloccante (<code>pointer-events:none</code>), il campo sotto resta cliccabile.</p>
+        <p><b>Idea 59 Fase 5 (29-08):</b> non è più un <code>useEffect</code> che osserva <code>s.fase</code>, è un passo <code>banner</code> della fila — quindi arriva sempre <b>al momento cronologicamente giusto</b>, non "quando il numero di fase cambia nello stato". Due cose che prima non esistevano affatto: il cartello <b>Vespro</b> (<code>s.fase</code> non vale mai 5, il turno passa da 4 a 0 — quel cartello non era mai comparso in vita del gioco) e i cartelli del <b>turno avversario</b> (erano soppressi in partenza: <code>faseEffettiva = null</code> quando non toccava a un umano).</p>
+        <p><b>Sui due lati è identico</b> — stessa posizione, tipografia e durata — con un'unica differenza: la riga di attribuzione "Il tuo turno" / "Turno avversario" (in 1v1 locale "Giocatore 1/2"). <b>Non si capovolge mai</b> per l'avversario, a differenza delle carte in campo: è un overlay a schermo intero letto da chi guarda. L'attribuzione viene da <code>passo.dati.chiave</code>, congelata dal reducer — durante il Vespro il turno nello stato è già girato.</p>
+        <p><b>Tempi misurati dal vivo</b> (poller DOM a 40ms, partita vsIA reale): fasi 1-4 <b>~1750ms</b> (1749 · 1752 · 1755 · 1758 · 1761 · 1765 · 1768 · 1796 · 1804 · 1812) · <b>Vespro ~2600ms</b> (misurati <b>2595</b> e <b>2635</b>). Il Vespro ha +850ms di sola <b>tenuta</b>: entrata (500ms) e uscita (450ms) restano identiche in millisecondi assoluti, tramite un secondo set di <code>@keyframes</code> (<code>-lungo</code>) con le percentuali ricalcolate su 2600 invece delle stesse riscalate. Le due durate vivono in <code>TEMPI.banner</code> e arrivano al CSS come <code>--t-banner-fase</code> / <code>--t-banner-vespro</code>.</p>
+        <p><b>Catena cronologica misurata su un turno avversario intero:</b> <code>Vespro mio (2595ms) → Rifornimento avversario → volo della carta pescata → Vaticinio → dado Imprevisti → Schieramento → Alla Carica → pop-up "Difendi"</code>. Il Vaticinio parte solo dopo che <code>.carta-volante</code> è sparita dal DOM (P2.2) e il Vespro solo a calcolo danni finito (P2.1).</p>
+        <div class="tag-row"><span class="tag">banner:"bannerFase"</span><span class="tag">bannerInScena</span><span class="tag">accodaBannerFase</span><span class="tag">TEMPI.banner</span><span class="tag">--t-banner-fase</span><span class="tag">--t-banner-vespro</span><span class="tag">titolo-fase-fascia</span><span class="tag">titolo-fase-fascia-lungo</span><span class="tag">titolo-fase-attribuzione</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Barra PV + contatore turno</div><span class="card-file">App.jsx · BarraPv()</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Barra di riempimento + numero rosso fluttuante quando arriva danno diretto allo Stratega. Badge "Turno N" accanto al nome, un unico contatore condiviso mostrato su entrambe le barre.</p>
+        <div class="tag-row"><span class="tag">barra-pv-danno-flottante</span><span class="tag">barra-pv-turno</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Passa il telefono</div><span class="card-file">App.jsx · Partita()</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Solo in modalità 1v1 locale: schermata a copertura totale ("Passa il telefono a Giocatore N") finché non confermi "Sono pronto" — niente campo/mano visibili sotto, per non rivelare la mano dell'altro nell'istante del passaggio. Può scattare anche a metà turno durante un combattimento.</p>
+        <div class="tag-row"><span class="tag">telefonoConfermatoPer</span><span class="tag">partitaAvviataAlle</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="combattimento">
+    <div class="group-head">
+      <h2>04 · Combattimento</h2>
+      <span class="group-desc">Dal balzo dell'attaccante al numero di danno, passando per il dado.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Balzo dell'attaccante</div><span class="card-file">Campo.jsx / index.css</span></div>
+          <span class="chip chip-limit"><span class="chip-dot"></span>Limite noto</span>
+        </div>
+        <p>La carta attaccante balza avanti (translateY −38px, scale 1.12) e torna indietro appena scegli il bersaglio. Limite: se il tuo attaccante muore nello stesso scontro (contraccolpo/pareggio), sparisce dal campo prima che il balzo si veda — nessun crash, solo l'animazione mancata in quel caso.</p>
+        <div class="tag-row"><span class="tag">@keyframes attacco-balzo-io</span><span class="tag">@keyframes attacco-balzo-avversario</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Bersaglio evidenziato</div><span class="card-file">Campo.jsx · CellaCreatura()</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Il bersaglio scelto resta evidenziato di rosso per tutta la durata dello scontro, prima ancora che compaia qualunque pop-up — sia quando attacchi tu, sia quando attacca l'IA.</p>
+        <div class="tag-row"><span class="tag">campo-slot-bersaglio</span><span class="tag">comb.difensoreId</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Dado animato</div><span class="card-file">LancioDado.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Ottagono colorato per Archetipo (Trappole/dado di reazione) o esagono viola per gli Imprevisti. Cicla facce casuali ~700ms poi si ferma sul risultato vero già deciso dal reducer — pura messa in scena, nessuna pausa nella logica.</p>
+        <div class="tag-row"><span class="tag">@keyframes lancio-dado-gira</span><span class="tag">@keyframes lancio-dado-assesta</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Vassoio dadi (legenda)</div><span class="card-file">Dado.jsx</span></div>
+          <span class="chip chip-limit"><span class="chip-dot"></span>Solo anteprima</span>
+        </div>
+        <p>Il cassetto Registro &amp; Dadi mostra le 5 facce per Archetipo + Imprevisti come riferimento consultabile — cliccarle simula un tiro finto ("sta tirando…"), non collegato al combattimento vero.</p>
+        <div class="tag-row"><span class="tag">dado-vassoio</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Pop-up Difendi / Ripetizione</div><span class="card-file">PromptCombattimento.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Confronto statistiche fianco a fianco — sempre la tua creatura a sinistra in verde, quella avversaria a destra in rosso, "CONTRO" al centro — indipendentemente da chi attacca o difende. Aspetta che balzo <b>e</b> dado siano stati rivelati dalla coda prima di comparire.</p>
+        <div class="tag-row"><span class="tag">ConfrontoCombattimento</span><span class="tag">idBalzoRichiesto</span><span class="tag">idDadoRichiesto</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Numero di danno / esito</div><span class="card-file">Carta.jsx / index.css</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Numero fluttuante sulla carta appena il dado si ferma: rosso = danno, verde "0" = schivata, arancione "0" = pareggio. Il numero VERO della Vita lampeggia rosso in sincrono con lo stesso evento.</p>
+        <div class="tag-row"><span class="tag">carta-esito</span><span class="tag">@keyframes vita-flash-danno</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Colori sulle statistiche alterate</div><span class="card-file">Campo.jsx / Carta.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Attacco/Parata si colorano verde se un Potenziamento (o un passivo) le ha alzate rispetto al valore stampato in carta, rosso se le ha abbassate — persistente finché l'effetto resta attivo, non solo un lampo.</p>
+        <div class="tag-row"><span class="tag">carta-stat-alterata-su</span><span class="tag">carta-stat-alterata-giu</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="catena">
+    <div class="group-head">
+      <h2>05 · Catena di effetti</h2>
+      <span class="group-desc">Lo stack a priorità stile Magic: the Gathering — motore puro + scenografia sul campo.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Motore della catena</div><span class="card-file">catena.js</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Modulo puro, non sa nulla di carte: chi aggiunge un frame mantiene la priorità (può incatenare le proprie carte), passa quando non ha altro, si risolve LIFO quando entrambi passano di fila. Una contromossa alla contromossa fa tornare valido l'effetto originale.</p>
+        <div class="tag-row"><span class="tag">nuovaCatena</span><span class="tag">aggiungiFrame</span><span class="tag">LIFO</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Striscia della catena</div><span class="card-file">CatenaStriscia.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Pannello flottante <b>senza sfondo opaco</b>, fisso in alto al centro — non un pannello verticale a bordo campo. Le carte in coda crescono in una striscia orizzontale: l'ultima aggiunta (cima della pila, si risolve per prima) è quella grande a destra. <b>Idea 59 Fase 2 (29-08):</b> il componente non ha più guardie di timing proprie né timer locali — legge dal passo in scena di <code>s.sequenza</code> (<code>scelta:catena</code> = decisione + countdown, <code>muta:catenaRisoluzione</code> = scenografia di un frame). La cronaca dei frame risolti viene da <code>s.catena.risolti</code> (non più uno stato React locale).</p>
+        <div class="tag-row"><span class="tag">position: fixed; top:10px; left:50%</span><span class="tag">catena-striscia-carta-grande</span><span class="tag">sceltaCatenaInScena</span><span class="tag">catenaRisoluzioneInScena</span><span class="tag">s.catena.risolti</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Eleggibilità sul campo, non in lista</div><span class="card-file">Campo.jsx · FilaMagieTrappole()</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Redesign esplicito dopo playtest dal vivo: niente più lista testuale "quale carta vuoi aggiungere" in un pop-up. Le tue carte eleggibili si illuminano di bordo dorato pulsante direttamente nella loro posizione reale sul campo — le tocchi lì, come si faceva prima della catena.</p>
+        <div class="tag-row"><span class="tag">campo-slot-trappola-catena-eleggibile</span><span class="tag">@keyframes campo-slot-catena-pulsa</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Finestre agganciate</div><span class="card-file">gameReducer.js</span></div>
+          <span class="chip chip-limit"><span class="chip-dot"></span>Parziale</span>
+        </div>
+        <p>La catena copre oggi <b>attacco dichiarato</b> ed <b>evocazione</b> (Sezioni 1–3). Magie/Trappole dirette dopo il tiro e gli Imprevisti restano ancora sul vecchio flusso a scelta singola — Sezioni 4–5 della roadmap, non ancora agganciate.</p>
+        <div class="tag-row"><span class="tag">apriFinestraCatena</span><span class="tag">Sezione 4/5: da fare</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Scenografia di risoluzione</div><span class="card-file">CatenaStriscia.jsx · RisoluzioneFrame()</span></div>
+          <span class="chip chip-limit"><span class="chip-dot"></span>Fatto, con un limite noto</span>
+        </div>
+        <p>Quando entrambi passano, ogni frame si risolve uno alla volta (LIFO) come passo <code>muta:catenaRisoluzione</code> della fila: la carta si ingrandisce al centro col numero d'ordine <code>#N</code>, una linea tratteggiata dorata (path quadratico + punto animato su <code>getPointAtLength</code>) collega il centro al bersaglio reale sul campo, che si illumina di rosso; segno ✓/✕ sui frame già risolti nella striscia. Durata <code>TEMPI.catena.scenografia</code> (700ms), poi <code>sequenza-passo-concluso</code> applica l'effetto vero. <b>Limite noto (P1.4):</b> la diagnostica temporanea del bug "la linea va a caso fuori dal campo" è ancora attiva (banner rosso + riga nel Registro); nella verifica dal vivo Fase 2 il bersaglio era corretto, ma un solo caso — P1.4 resta aperto.</p>
+        <div class="tag-row"><span class="tag">muta:catenaRisoluzione</span><span class="tag">catena-linea-overlay</span><span class="tag">catena-risoluzione-carta</span><span class="tag">TEMPI.catena.scenografia</span><span class="tag">P1.4: diagnostica attiva</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="vfx">
+    <div class="group-head">
+      <h2>06 · VFX &amp; notifiche</h2>
+      <span class="group-desc">Il motore di sequenziamento generale, e i due strati che lo usano: notifiche e Magie con bersaglio.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Coda di step unica — il direttore (idea 59, COMPLETA: Fasi 1-5)</div><span class="card-file">gameReducer.js / App.jsx / Sequenziatore.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto e verificato</span>
+        </div>
+        <p><b>Combattimento (Fase 1), catena (Fase 2) e i tre voli pesca/evocazione/spostamento (Fase 3)</b> non usano più i campi-evento sparsi: il reducer mette i momenti in fila in <code>s.sequenza</code> (array ordinato, <code>[0]</code> = in scena adesso). Un solo direttore, <code>&lt;Sequenziatore&gt;</code>, guarda la testa e la fa avanzare: passi <code>anim</code> (dado, balzo, numero, <b>pesca/evoca/sposta</b>) con timer di sicurezza + segnale del componente d'animazione; passi <code>scelta</code> (Difendi/incassa, Diritto di ripetizione, decisione catena col countdown "Risolvi" 15s) senza timer, li chiude il pop-up / la dispatch; passi <code>muta</code> (morte differita, scenografia di risoluzione di un frame di catena) applicano la mutazione di stato <b>dopo</b> la scenografia. Niente prosegue — IA, avanzamento di fase, altri pop-up — finché la fila non è vuota. Per la catena: <code>catena.js</code> (motore LIFO/priorità) invariato; l'helper <code>sincronizzaPassoCatena</code> tiene <code>s.sequenza</code> allineata con <code>s.catena</code>.</p>
+        <p><b>Sequenza di uno scontro (misurata dal vivo):</b> <code>scelta: difendi</code> → <code>dado</code> (~1,17s: 9×80ms roll + 450ms fermo) → <code>scelta: ripeti</code> (se c'è il diritto) → <code>balzo</code> (0,55s CSS + 50ms stacco) → <code>numero di danno</code> (1,15s) → <code>muta: morte</code> (contraccolpo 240 + volo 380 + impatto 120). La creatura letale <b>resta in campo (0 Vita)</b> finché il passo <code>muta</code> non è in cima → poi rimozione + avanzamento automatico. Elimina strutturalmente il "BUG NOTO priorità zero" (task 48).</p>
+        <p><b>Fase 3 (2026-08-29) — decisione architetturale:</b> <code>s.sequenza</code> è ora il <b>master assoluto</b> anche rispetto a <code>s.codaVisiva</code> — <code>legacyOccupato</code> è stato ELIMINATO dal direttore (prima aspettava la coda visiva/notifiche/voli prima di avviare il timer di un passo). Ora è la coda visiva a fermarsi finché la fila ha un passo <code>anim</code>/<code>muta</code> (vedi card sotto): niente più rischio che il dado Imprevisti o una notifica "scavalchino" un volo accodato nella stessa dispatch.</p>
+        <p><b>Fase 4 (2026-08-29) — il turno IA è nella fila.</b> Il pacing dell'avversario era l'ultimo meccanismo parallelo rimasto: campo <code>s.iaInAttesa</code> + dispatch <code>avanza-ia</code> + un <code>useEffect</code> con timer fisso di 900ms in App.jsx + <code>iaBloccataDaPrompt</code> (OR di 8 condizioni). <b>Tutti e quattro RITIRATI.</b> Al loro posto un passo <code>muta</code> nome <code>"ia"</code> con <code>dati:{azione:"evoca"|"attacca"}</code> e <code>durataMs: TEMPI.ia.respiro</code> (900ms). Quando il respiro scade, <code>eseguiMuta</code> toglie il passo dalla fila <b>prima</b> di eseguire la mossa, così le guardie "non partire a fila piena" restano valide. <b>Il passo successivo non è mai calcolato in anticipo:</b> lo accoda chi finisce quello corrente — un respiro per l'evocazione, poi uno per ogni singolo scontro. I messaggi si leggono dal passo in scena (<code>passoIaInScena</code>): "L'avversario evoca…" → (durante il volo di evocazione) "Turno avversario…" → "L'avversario sta per attaccare…".</p>
+        <p><b>Limite noto chiuso — attacchi diretti allo Stratega.</b> A campo nemico sgombro il danno diretto passa da <code>s.codaVisiva</code>, non dalla fila: <code>proseguiSeIA</code> trovava la fila vuota e ricorreva <b>sincrona</b>, risolvendo tutti gli attacchi in una dispatch sola. Ora ognuno ha il suo respiro. <b>Misurato dal vivo: ~1800ms costanti fra un attacco diretto e il successivo</b> (900 respiro + 300 margine del direttore + 600 <code>RITARDO_PRIMA_DI_MS.dannoDiretto</code> per il numero rosso), su 4 turni IA consecutivi.</p>
+        <p><b>Due invarianti, entrambi nati da bug veri colti in verifica.</b> (1) <b>Il passo <code>ia</code> sta sempre in fondo alla fila</b> — applicato dentro <code>accodaPassi</code>, non lasciato ai chiamanti: qualunque passo accodato dopo gli finisce davanti. Senza, risolvendo il 1° frame di una catena a 2 la fila usciva <code>[muta:ia, scelta:catena]</code> e l'IA sarebbe ripartita col giocatore ancora in sospeso. (2) <b>Anti-deadlock</b>: il passo <code>ia</code> è l'<b>unica eccezione</b> alla regola di Fase 3 "la coda visiva aspetta la fila" — è respiro, non scenografia, ed è proprio il momento in cui la coda deve mostrare quel che è appena successo. Implementata a metà, il turno IA si è bloccato per sempre su "L'avversario evoca…" (la coda aspettava la fila, il respiro aspettava la coda). Le due guardie vivono ora come selettori veri in <code>sequenza.js</code> — <code>filaBloccaCodaVisiva</code> e <code>scenaLiberaPerIa</code> — apposta per poterle blindare invece di duplicarle inline nei componenti.</p>
+        <p><b>Fase 5 (2026-08-29) — anche le transizioni di fase sono nella fila: il refactor è completo.</b> Quarto e ultimo tipo di passo, <code>banner</code> (<code>nome:"bannerFase"</code>, <code>dati:{chiave,fase}</code>): si comporta come un <code>anim</code> ma senza un elemento che si muove. Accodato in <b>cinque punti scelti perché sia la fila stessa a garantire la cronologia</b> — <code>iniziaTurno</code> (1 Rifornimento, prima della pescata) · in cima a <code>completaRifornimento</code> (2 Vaticinio: tutti i chiamanti hanno già accodato <code>anim:pesca</code>, quindi il cartello ci finisce <b>dietro</b>) · ramo <code>imprevistoEsito</code> di <code>applicaEventoVisivo</code> (3 Schieramento, dopo il dado) · <code>continuaFase</code>+<code>avanzaIA</code> (4 Alla Carica) · <code>fineTurno</code> <b>dopo</b> <code>flushSequenza</code> (5 Vespro — prima verrebbe svuotato dalla fila che si sta chiudendo). <code>banner</code> entra in <code>filaBloccaCodaVisiva</code> (serve: il Vaticinio va davanti al dado Imprevisti, che è in coda visiva) ma <b>non</b> in <code>scenaLiberaPerIa</code>: è unidirezionale come <code>anim</code>, quindi non riapre il deadlock di Fase 4. L'invariante "il passo <code>ia</code> in fondo" fa un lavoro vero qui: il banner Schieramento <b>scavalca</b> il respiro già in fila, così si legge "Schieramento" e <i>poi</i> l'avversario evoca.</p>
+        <p><b>Tempi:</b> unica sorgente <code>src/game/tempi.js</code> (<code>TEMPI</code>, incluso <code>TEMPI.pesca/evoca/sposta</code>, <code>TEMPI.ia.respiro</code> e <code>TEMPI.banner</code>). App.jsx inietta <code>--t-balzo</code> / <code>--t-numero-danno</code> / <code>--t-banner-fase</code> / <code>--t-banner-vespro</code> su <code>:root</code>, le <code>@keyframes</code> di index.css li leggono con <code>var(…, fallback)</code>. Blindato: i 6 test di <code>Engine/test-blindati/</code> (<code>tempi</code> · <code>combattimento</code> · <code>catena</code> · <code>voli</code> · <code>turno-ia</code> · <code>banner-fase</code>).</p>
+        <div class="tag-row"><span class="tag">s.sequenza</span><span class="tag">sequenza-passo-concluso</span><span class="tag">&lt;Sequenziatore&gt;</span><span class="tag">src/game/tempi.js</span><span class="tag">src/game/sequenza.js</span><span class="tag">--t-balzo</span><span class="tag">--t-numero-danno</span><span class="tag">muta:"ia"</span><span class="tag">TEMPI.ia.respiro</span><span class="tag">accodaPassoIa</span><span class="tag">sincronizzaPassoIa</span><span class="tag">filaBloccaCodaVisiva</span><span class="tag">scenaLiberaPerIa</span><span class="tag">banner:"bannerFase"</span><span class="tag">accodaBannerFase</span><span class="tag">bannerInScena</span><span class="tag">TEMPI.banner</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Coda visiva — il motore legacy (Imprevisti / notifiche / VFX)</div><span class="card-file">gameReducer.js / App.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Tutto ciò che <b>non</b> è migrato alla coda di step (a idea 59 completa: il dado Imprevisti e i flussi qui sotto) vive su <code>s.codaVisiva</code>: dado Imprevisti, notifiche, VFX Magia, Imboscata Trappola, danno diretto. <b>Pesca/evocazione/spostamento sono usciti da qui in Fase 3</b> — ora sono passi <code>anim</code> di <code>s.sequenza</code>. Un <code>useEffect</code> in App.jsx rivela questi eventi uno alla volta con un ritardo per tipo, ma <b>solo quando <code>s.sequenza</code> non ha un passo <code>anim</code>/<code>muta</code> in ballo</b> (il rapporto si è invertito in Fase 3: prima la fila aspettava questa coda, ora è questa coda ad aspettare la fila). Un passo <code>scelta</code> da solo (es. la finestra della catena) non blocca — così una notifica già in coda può ancora comparire prima che il pop-up si apra. <b>Fase 4:</b> non blocca nemmeno il passo <code>muta:"ia"</code> (il respiro del turno IA), unica eccezione fra i <code>muta</code> — vedi l'anti-deadlock nella card sopra. <b>Fase 5:</b> anche il tipo <code>banner</code> blocca questa coda, ed è per questo che il cartello "Vaticinio" si vede <i>prima</i> che il dado Imprevisti (che sta proprio qui dentro) cominci a rotolare.</p>
+        <div class="tag-row"><span class="tag">s.codaVisiva</span><span class="tag">avanza-coda-visiva</span><span class="tag">RITARDO_PRIMA_DI_MS</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Notifica effetto illustrata</div><span class="card-file">NotificaEffetto.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Pop-up esplicito e bloccante per OGNI attivazione — Imprevisto, Trappola, Magia, effetto creatura — con l'illustrazione vera della carta, non solo testo. Va chiuso a mano, non sparisce da solo, e mette in pausa sia i prompt sia il pacing dell'IA finché non lo chiudi.</p>
+        <div class="tag-row"><span class="tag">s.notificaEffetto</span><span class="tag">chiudi-notifica</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">VFX source→target delle Magie</div><span class="card-file">VfxMagia.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Nuovo</span>
+        </div>
+        <p>Un'orbe dorata viaggia davvero dalla carta sorgente al bersaglio (~550ms + impatto), non solo un lampo statico. La posizione della sorgente si cattura <b>al click sul bersaglio</b>, prima che il dispatch la rimuova dal DOM — altrimenti al momento della rivelazione non ci sarebbe più nulla da misurare.</p>
+        <div class="tag-row"><span class="tag">data-fonte-magia</span><span class="tag">data-creatura-id</span><span class="tag">evento: "vfxMagia"</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Fase "pinnata" durante il dado Imprevisti</div><span class="card-file">gameReducer.js</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Mentre il dado Imprevisti anima, sia la barra delle fasi sia la carta Imprevisti restano ferme al valore "prima" — passano al nuovo valore solo quando la coda arriva all'ultimo evento della sequenza, mai una via di mezzo visibile.</p>
+        <div class="tag-row"><span class="tag">s.faseVisibile</span><span class="tag">s.imprevistoVisivo</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="pesca">
+    <div class="group-head">
+      <h2>07 · Pesca &amp; mazzo</h2>
+      <span class="group-desc">Come una carta entra in mano.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Volo vero della pescata (idea 59, Fase 3)</div><span class="card-file">AnimazionePescata.jsx / gameReducer.js</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto e verificato</span>
+        </div>
+        <p>Ogni pescata è ora un passo <code>anim</code> nome <code>"pesca"</code> di <code>s.sequenza</code> (ex stato diretto <code>s.pescaInCorso</code>, RITIRATO): la carta solleva dal mazzo → vola al centro ingrandendosi → gira (reveal, solo per chi pesca davvero) → pausa di lettura → vola in mano rimpicciolendo. Il direttore non prosegue (dado Imprevisti, IA, cambio fase) finché il volo non è atterrato — <code>AnimazionePescata.jsx</code> segnala la fine con <code>sequenza-passo-concluso</code>.</p>
+        <p><b>Prima mano di chi inizia per secondo (turno 1, 5-6 carte, chiude F.2):</b> invece di un unico volo multiplo, sono <b>N passi da 1 carta</b> — il direttore le fa atterrare una alla volta, leggibile come una vera distribuzione. Il Rifornimento normale (1-2 carte) resta un solo passo con lo stagger interno del componente. Verificato dal vivo: 5 carte mie in sequenza + log IA "pesca 6 carte (5 iniziali + 1, gioca per secondo)".</p>
+        <div class="tag-row"><span class="tag">anim:pesca</span><span class="tag">avviaVoloPescata</span><span class="tag">unaAllaVolta</span><span class="tag">pescaInScena</span><span class="tag">uidInVoloPesca</span><span class="tag">TEMPI.pesca</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Pesche bonus non pulsano la pila</div><span class="card-file">gameReducer.js</span></div>
+          <span class="chip chip-limit"><span class="chip-dot"></span>Scelta deliberata</span>
+        </div>
+        <p>Solo le pesche del Rifornimento fanno pulsare il Worldloom (<code>PilaMazzo</code>, keyed sul passo <code>anim:pesca</code> in scena). Le pesche "bonus" da effetti Imprevisti/carte (effettiCarta.js) animano solo la carta stessa — per non allargare lo stato oltre il flusso principale.</p>
+        <div class="tag-row"><span class="tag">pescaInScena</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Volo vero dell'evocazione e dello spostamento fila (idea 59, Fase 3)</div><span class="card-file">AnimazioneEvocazione.jsx / AnimazionePosizionamento.jsx / gameReducer.js</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto e verificato</span>
+        </div>
+        <p>Stesso principio della pescata: <code>anim:evoca</code> (solleva dalla mano → centro schermo ingrandita, sosta leggibile → slot finale, rimpicciolendo → impatto) e <code>anim:sposta</code> (avanzata con scia di polvere / ritirata scatto-poi-freno, linguaggi deliberatamente asimmetrici) sono passi della fila, ex stati diretti <code>s.evocazioneInCorso</code>/<code>s.movimentiInCorso</code> (RITIRATI). La creatura è già vera in campo/nella nuova fila (stato di gioco) ma resta invisibile lì finché il passo non atterra. Per l'evocazione dell'IA (nessun click reale) il componente usa da solo un fallback DOM (area "mano avversaria") — verificato dal vivo senza classi "in volo" residue.</p>
+        <div class="tag-row"><span class="tag">anim:evoca</span><span class="tag">anim:sposta</span><span class="tag">evocaInScena</span><span class="tag">spostaInScena</span><span class="tag">TEMPI.evoca</span><span class="tag">TEMPI.sposta</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="opzioni">
+    <div class="group-head">
+      <h2>08 · Opzioni &amp; audio</h2>
+      <span class="group-desc">Il pannello impostazioni, montato fuori dalla partita.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Musica di sottofondo</div><span class="card-file">PannelloOpzioni.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Ingranaggio ⚙️ sempre visibile (schermata iniziale e partita). Un solo <code>new Audio()</code> creato una volta in loop, interruttore Attiva/Disattivata persistito in <code>localStorage</code>. Parte al primo tocco della pagina — i browser bloccano l'audio prima di un'interazione.</p>
+        <div class="tag-row"><span class="tag">wl_musica_attiva</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="1v1">
+    <div class="group-head">
+      <h2>09 · Modalità 1 contro 1 locale</h2>
+      <span class="group-desc">Stesso motore, stesso codice — solo la prospettiva a schermo cambia con chi ha davvero la decisione.</span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Ciclo di turno completo</div><span class="card-file">gameReducer.js / Campo.jsx / Mano.jsx</span></div>
+          <span class="chip chip-ok"><span class="chip-dot"></span>Fatto</span>
+        </div>
+        <p>Rifornimento, evocazione (con tributo), Magie a effetto immediato, Trappole coperte, spostamento prima linea/retrovia e l'intero combattimento funzionano per entrambi i giocatori umani — passaggio del telefono automatico anche a metà turno.</p>
+        <div class="tag-row"><span class="tag">modalitaGioco: "1v1locale"</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Fuori scope (per ora)</div><span class="card-file">roadmap</span></div>
+          <span class="chip chip-pending"><span class="chip-dot"></span>Da fare</span>
+        </div>
+        <p>Evocazione bonus, "piazza Magia coperta" per le Rapide (si lega alla temporizzazione di interruzione, non ancora generalizzata), nomi personalizzati al posto di "Giocatore 1/2".</p>
+        <div class="tag-row"><span class="tag">non generalizzato</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="group" id="roadmap">
+    <div class="group-head">
+      <h2>10 · Roadmap &amp; confronto con la proposta esterna</h2>
+      <span class="group-desc">Cosa manca ancora, e cosa è emerso confrontando questo sistema con la chat ChatGPT sulla "Chain UI" generica.</span>
+    </div>
+
+    <div class="callout" style="margin-bottom:14px">
+      <b>Dalla chat ChatGPT (UX generica per TCG):</b> proponeva una Chain UI verticale a sinistra del campo, non interattiva per il riordino, e un principio VFX "source→target". Confronto: il principio <b>non interattiva</b> combacia già con quanto costruito qui; l'orientamento <b>verticale-sinistra</b> è in contrasto con lo spazio già occupato dalle zone reali di gioco (il Worldloom dell'avversario vive proprio lì) — valutato, non adottato, in attesa di conferma. Il principio <b>source→target</b> è stato invece adottato per le Magie con bersaglio (vedi VfxMagia.jsx sopra).
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Coda di step unica — idea 59</div><span class="card-file">Engine/Idea59_Coda_Step.md</span></div>
+          <span class="chip chip-pending"><span class="chip-dot"></span>Fasi 2/5 fatte</span>
+        </div>
+        <p><b>Tutte e 5 le Fasi fatte e blindate (29-08) — refactor COMPLETO</b>: combattimento, catena, i tre voli (pesca/evocazione/spostamento), il turno IA e i banner di fase. Vedi il riquadro "Coda di step unica — il direttore" nella sezione VFX. Il caso "la mia carta muore nello stesso scontro in cui attacca" (task 48) è risolto strutturalmente (morte = passo <code>muta</code> differito); la scenografia di risoluzione della catena (Sezione 7) è il passo <code>muta:catenaRisoluzione</code>; la prima mano di chi inizia per secondo arriva una carta alla volta (F.2); il turno dell'avversario è scandito uno scontro alla volta, attacchi diretti compresi; le transizioni di fase sono passi <code>banner</code> (P2.1-P2.4). <b>Cosa resta fuori dalla fila:</b> il dado Imprevisti e gli altri flussi di <code>s.codaVisiva</code> — con loro restano anche i due campi di pinning <code>faseVisibile</code>/<code>imprevistoVisivo</code>, che la Fase 5 <b>non</b> ha ritirato (deviazione dichiarata: servono a ritardare due letture attraverso quel dado).</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Audio effetti</div><span class="card-file">idea 60</span></div>
+          <span class="chip chip-pending"><span class="chip-dot"></span>Da fare</span>
+        </div>
+        <p>Pesca, attacco, danno, vittoria/sconfitta — oggi solo la musica di sottofondo esiste, nessun effetto sonoro legato alle azioni.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Passata di accessibilità</div><span class="card-file">idea 64</span></div>
+          <span class="chip chip-pending"><span class="chip-dot"></span>Da fare</span>
+        </div>
+        <p>Contrasto colori Archetipi, leggibilità icone — non ancora affrontata.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">Layout Chain UI: verticale vs orizzontale</div><span class="card-file">decisione aperta</span></div>
+          <span class="chip chip-pending"><span class="chip-dot"></span>In attesa di conferma</span>
+        </div>
+        <p>Raccomandazione: tenere l'orizzontale attuale (non consuma spazio fisso di layout, non si sovrappone alle zone reali del campo su mobile). Da confermare esplicitamente prima di un secondo redesign.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Generato leggendo il codice reale del progetto (src/game/*, src/components/*) e la cronologia di lavoro in CLAUDE.md — non un documento scritto a parte da tenere sincronizzato a mano.
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var groups = Array.from(document.querySelectorAll("section.group"));
+    var nav = document.getElementById("nav");
+
+    groups.forEach(function (g) {
+      var title = g.querySelector("h2").textContent;
+      var wrap = document.createElement("div");
+      wrap.className = "nav-group";
+      var t = document.createElement("div");
+      t.className = "nav-group-title";
+      t.textContent = title;
+      wrap.appendChild(t);
+
+      g.querySelectorAll(".card").forEach(function (card, i) {
+        if (!card.id) card.id = g.id + "-" + i;
+        var name = card.querySelector(".card-title");
+        if (!name) return;
+        var a = document.createElement("a");
+        a.href = "#" + card.id;
+        a.className = "nav-link";
+        a.textContent = name.textContent;
+        wrap.appendChild(a);
+      });
+      nav.appendChild(wrap);
+    });
+
+    // active link on scroll
+    var links = Array.from(document.querySelectorAll(".nav-link"));
+    var targets = links.map(function (l) { return document.querySelector(l.getAttribute("href")); }).filter(Boolean);
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var link = links[targets.indexOf(entry.target)];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(function (l) { l.classList.remove("active"); });
+          link.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-10% 0px -70% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+
+    // stats
+    document.getElementById("stat-ok").textContent = document.querySelectorAll(".chip-ok").length;
+    document.getElementById("stat-limit").textContent = document.querySelectorAll(".chip-limit").length;
+    document.getElementById("stat-pending").textContent = document.querySelectorAll(".chip-pending").length;
+
+    // search filter
+    var input = document.getElementById("search");
+    var allCards = Array.from(document.querySelectorAll(".card"));
+    input.addEventListener("input", function () {
+      var q = input.value.trim().toLowerCase();
+      allCards.forEach(function (card) {
+        var hay = card.textContent.toLowerCase();
+        card.dataset.hidden = q && hay.indexOf(q) === -1 ? "true" : "false";
+      });
+      groups.forEach(function (g) {
+        var visible = Array.from(g.querySelectorAll(".card")).some(function (c) { return c.dataset.hidden !== "true"; });
+        g.style.display = q && !visible ? "none" : "";
+      });
+    });
+  })();
+</script>

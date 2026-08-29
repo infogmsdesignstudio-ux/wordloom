@@ -1,0 +1,189 @@
+{
+  "worldloom_mazzo": 1,
+  "nome": "prova",
+  "worldloom": [
+    {
+      "nome": "Custode del Ghiaccio",
+      "quantita": 1
+    },
+    {
+      "nome": "Il Re Antico",
+      "quantita": 1
+    },
+    {
+      "nome": "Lupo Famelico",
+      "quantita": 1
+    },
+    {
+      "nome": "Piccolo Goblin",
+      "quantita": 1
+    },
+    {
+      "nome": "Esploratore Gallerie",
+      "quantita": 1
+    },
+    {
+      "nome": "Corruttore dei Deboli",
+      "quantita": 1
+    },
+    {
+      "nome": "Maestro delle Lame",
+      "quantita": 1
+    },
+    {
+      "nome": "Il Braccio Destro",
+      "quantita": 1
+    },
+    {
+      "nome": "Araldo Tempesta",
+      "quantita": 1
+    },
+    {
+      "nome": "Mago Sorprendente",
+      "quantita": 1
+    },
+    {
+      "nome": "Condottiero Fiero",
+      "quantita": 1
+    },
+    {
+      "nome": "Maestro del Patto Cremisi",
+      "quantita": 1
+    },
+    {
+      "nome": "La Base Alimentare",
+      "quantita": 1
+    },
+    {
+      "nome": "Manipolatrice Viola",
+      "quantita": 3
+    },
+    {
+      "nome": "Manipolatrice Rossa",
+      "quantita": 3
+    },
+    {
+      "nome": "Manipolatrice Verde",
+      "quantita": 3
+    },
+    {
+      "nome": "Manipolatrice Nera",
+      "quantita": 2
+    },
+    {
+      "nome": "Manipolatrice Blu",
+      "quantita": 2
+    },
+    {
+      "nome": "Manipolatrice Gialla",
+      "quantita": 2
+    },
+    {
+      "nome": "Manipolatrice Bianca",
+      "quantita": 2
+    },
+    {
+      "nome": "Aliena di Midollo",
+      "quantita": 2
+    },
+    {
+      "nome": "Crisbota Simbiotica",
+      "quantita": 2
+    },
+    {
+      "nome": "Cavaliere di Marbion",
+      "quantita": 3
+    },
+    {
+      "nome": "Vecchio Domatore",
+      "quantita": 2
+    },
+    {
+      "nome": "Coleottero Prisma",
+      "quantita": 2
+    },
+    {
+      "nome": "Lucertola Schiva",
+      "quantita": 2
+    },
+    {
+      "nome": "Manipolatrice Suprema",
+      "quantita": 1
+    },
+    {
+      "nome": "Drago Linfatico",
+      "quantita": 1
+    },
+    {
+      "nome": "Lince Petalosa",
+      "quantita": 2
+    },
+    {
+      "nome": "Manipolatore di Strumenti",
+      "quantita": 2
+    },
+    {
+      "nome": "Potere Divino",
+      "quantita": 1
+    },
+    {
+      "nome": "Serpente Radiale",
+      "quantita": 1
+    },
+    {
+      "nome": "Anello Forgiato",
+      "quantita": 2
+    },
+    {
+      "nome": "Collana del Potere",
+      "quantita": 2
+    },
+    {
+      "nome": "Spada Sacra di Ghiaccio",
+      "quantita": 2
+    },
+    {
+      "nome": "Fontana d'Energia",
+      "quantita": 2
+    },
+    {
+      "nome": "Valanga di Ghiaccio",
+      "quantita": 1
+    }
+  ],
+  "imprevisti": [
+    {
+      "nome": "Tempesta Selvaggia",
+      "quantita": 1
+    },
+    {
+      "nome": "Ombra Condivisa",
+      "quantita": 1
+    },
+    {
+      "nome": "Legge del Piu' Forte",
+      "quantita": 1
+    },
+    {
+      "nome": "Legge della Ribalta",
+      "quantita": 1
+    },
+    {
+      "nome": "Riserve dell'Ultima Ora",
+      "quantita": 1
+    },
+    {
+      "nome": "Respiro della Vita",
+      "quantita": 2
+    },
+    {
+      "nome": "Convergenza Astrale",
+      "quantita": 2
+    },
+    {
+      "nome": "Richiamo degli Effimeri",
+      "quantita": 1
+    }
+  ],
+  "sfondoCampo": null
+}

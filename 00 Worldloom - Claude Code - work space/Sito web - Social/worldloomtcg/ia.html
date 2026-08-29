@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>IA allo scoperto — Worldloom</title>
+<meta name="description" content="Come è usata l'intelligenza artificiale in Worldloom: cosa è fatto a mano, cosa è assistito, cosa è generato. Riga per riga.">
+<link rel="icon" href="assets/img/pittogramma.png">
+<link rel="stylesheet" href="assets/css/sito.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="salta" href="#principale">Vai al contenuto</a>
+
+<header class="testata">
+  <div class="testata-interno">
+    <a class="marchio" href="index.html" aria-label="Worldloom, vai alla home">
+      <img class="marchio-pittogramma" src="assets/img/pittogramma.png" alt="">
+      <img class="marchio-testo" src="assets/img/logo-testo.png" alt="Worldloom">
+    </a>
+    <nav class="menu">
+      <a href="come-si-gioca.html">Come si gioca</a>
+      <a href="come-e-nato.html">Com&#39;&egrave; nato</a>
+      <a href="store.html">Store</a>
+      <a href="carte.html">Carte</a>
+      <a href="manga.html">Manga</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+      <a href="sostieni.html">Sostieni</a>
+    </nav>
+    <div class="testata-fine">
+      <a class="accedi" href="account.html">Accedi</a>
+      <button class="menu-tasto" aria-expanded="false">
+        <span aria-hidden="true">&#9776;</span><span class="menu-tasto-etichetta">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="principale">
+
+  <section class="sezione">
+    <div class="contenitore stretto">
+      <span class="occhiello">Trasparenza</span>
+      <h1>IA allo scoperto</h1>
+
+      <div class="dichiarazione" style="margin:2rem 0 3rem">
+        <p>
+          Worldloom è fatto con l'intelligenza artificiale, e lo dichiaro qui, in apertura, invece che
+          in fondo a una pagina di condizioni. Ho intenzione di scriverlo
+          <strong>sulla carta stessa</strong>: il nome di chi l'ha realizzata e il modello usato,
+          come si fa da sempre con l'illustratore.
+        </p>
+      </div>
+
+      <p class="guida">
+        Nei giochi da tavolo questa dichiarazione di solito arriva dopo: qualcuno riconosce
+        un'immagine, parte la polemica, l'editore risponde. Io preferisco che sia la prima cosa
+        che leggi, prima ancora di decidere se il gioco ti piace.
+      </p>
+    </div>
+  </section>
+
+  <section class="sezione sezione-scura sezione-bordata" id="tabella">
+    <div class="contenitore">
+      <div class="stretto">
+        <span class="occhiello">Riga per riga</span>
+        <h2 class="titolo-filetto">Chi ha fatto cosa</h2>
+        <p class="guida" style="margin-bottom:2.4rem">
+          Questa tabella è il cuore della pagina. Il resto è contorno.
+        </p>
+      </div>
+
+      <div class="tabella-avvolta appare">
+        <table class="chiara">
+          <thead>
+            <tr>
+              <th scope="col">Parte del progetto</th>
+              <th scope="col">Come è fatta</th>
+              <th scope="col">Dettaglio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Regole del gioco</th>
+              <td><span class="tag tag-umano">Umano</span></td>
+              <td>Scritte, giocate e corrette al tavolo. Il regolamento è interamente a mano.</td>
+            </tr>
+            <tr>
+              <th scope="row">Progettazione delle carte</th>
+              <td><span class="tag tag-umano">Umano</span></td>
+              <td>Ogni effetto, costo e statistica è una decisione di design presa e rivista a mano.</td>
+            </tr>
+            <tr>
+              <th scope="row">Bilanciamento</th>
+              <td><span class="tag tag-umano">Umano</span></td>
+              <td>Fatto giocando: partite reali e simulazioni ripetute sul motore, con i numeri alla mano.</td>
+            </tr>
+            <tr>
+              <th scope="row">Motore di gioco e app</th>
+              <td><span class="tag tag-assistito">IA assistita</span></td>
+              <td>
+                Architettura e scelte tecniche mie, scrittura del codice assistita — come oggi si
+                usa un correttore o un refactoring automatico in qualsiasi editor.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Testi delle carte</th>
+              <td><span class="tag tag-umano">Umano</span></td>
+              <td>
+                Scritti da me. L'IA mi ha aiutato a riformularli e a renderli coerenti fra loro,
+                come farebbe un correttore di bozze: le carte sono mie.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Illustrazioni</th>
+              <td><span class="tag tag-generato">IA generata</span></td>
+              <td>
+                Generate con IA, poi selezionate, corrette e composte nel layout della carta.
+                Il modello usato sarà indicato su ogni singola carta.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Impaginazione delle carte</th>
+              <td><span class="tag tag-umano">Umano</span></td>
+              <td>Layout, gerarchia, tipografia e palette: progettati e applicati da me.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione sezione-bordata">
+    <div class="contenitore stretto">
+      <span class="occhiello">Il punto</span>
+      <h2 class="titolo-filetto">Generare è facile. Tenere insieme un mondo no.</h2>
+      <p class="guida">
+        Chiunque può ottenere una bella immagine in trenta secondi. Un gioco di carte, però, è un
+        mazzo intero che deve sembrare disegnato dalla stessa mano.
+        Stessa palette, stessa luce, stesso rapporto fra figura e sfondo, stessa aria in decine
+        di illustrazioni diverse.
+      </p>
+      <p class="guida">
+        Quella coerenza nasce dal decidere una direzione artistica e poi scartare, rifare, ritoccare
+        finché il mazzo regge lo sguardo tutto insieme. È lì che è finito il tempo — un tempo che
+        si misura in anni.
+      </p>
+      <p class="guida">
+        L'IA, in questo progetto, è un collaboratore. Come lo è stato il livello a bolla digitale
+        per chi impaginava, o il primo strumento che ha permesso di annullare una pennellata.
+        Ognuno di quegli strumenti ha lasciato intatta la creatività di chi lo usava, togliendo
+        l'attrito fra l'idea e la sua forma. È grazie a questo aiuto che il gioco è arrivato fin
+        qui: per anni era rimasto un raccoglitore di regole scritte a penna.
+      </p>
+      <p class="guida">
+        Per me l'IA è una possibilità, e usarla resta a tutti gli effetti una scelta creativa. Credo
+        che sia il modo di usarla a fare la differenza fra un prodotto e un progetto — e che chi
+        la usa debba avere il coraggio di firmarla.
+      </p>
+    </div>
+  </section>
+
+  <section class="sezione sezione-scura sezione-bordata">
+    <div class="contenitore stretto">
+      <span class="occhiello">L'impegno</span>
+      <h2 class="titolo-filetto">Il credito sulla carta</h2>
+      <p class="guida">
+        L'idea che voglio portare avanti è semplice: se una carta la firma un illustratore, si
+        scrive il suo nome. Se la realizza una persona con uno strumento, si scrivono tutti e
+        due — chi ha fatto le scelte e con cosa le ha fatte.
+      </p>
+      <p class="guida">
+        È una riga di credito, allo stesso posto in cui i giochi di carte l'hanno sempre messa. Chi
+        compra sa esattamente cosa sta comprando.
+      </p>
+
+      <div class="tabella-avvolta appare" style="margin-top:2rem">
+        <table class="chiara">
+          <thead>
+            <tr>
+              <th scope="col">Sulla carta comparirà</th>
+              <th scope="col">Significato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Nome dell'autore</th>
+              <td>Chi ha fatto le scelte visive di quell'illustrazione.</td>
+            </tr>
+            <tr>
+              <th scope="row">Strumento usato</th>
+              <td>Il modello con cui l'immagine è stata generata.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="nota-modulo" style="margin-top:1.4rem">
+        Le righe di credito arriveranno sulle carte di questo sito man mano che vengono compilate, e
+        compariranno da sole nella scheda di ogni carta.
+      </p>
+    </div>
+  </section>
+
+  <section class="sezione sezione-bordata">
+    <div class="contenitore stretto" style="text-align:center">
+      <h2>Domande?</h2>
+      <p class="guida" style="margin:0 auto 2rem">
+        Se su questa pagina hai un'opinione, scrivimela: è esattamente il tipo di conversazione che
+        voglio avere.
+      </p>
+      <div class="bottoni" style="justify-content:center">
+        <a class="btn btn-fantasma" href="carte.html">Guarda le carte</a>
+        <a class="btn btn-oro" href="sostieni.html">Sostieni il progetto</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="piede">
+  <div class="contenitore">
+    <div class="piede-griglia">
+      <div>
+        <a class="marchio" href="index.html" aria-label="Worldloom">
+          <img class="marchio-pittogramma" src="assets/img/pittogramma.png" alt="">
+          <img class="marchio-testo" src="assets/img/logo-testo.png" alt="Worldloom">
+        </a>
+        <p class="piede-nota" style="margin-top:1.2rem">
+          Gioco di carte collezionabili in sviluppo. Un progetto indipendente, con l&#39;ambizione di
+          diventare uno studio.
+        </p>
+      </div>
+      <div>
+        <h4>Il progetto</h4>
+        <ul>
+          <li><a href="come-si-gioca.html">Come si gioca</a></li>
+          <li><a href="come-e-nato.html">Com&#39;&egrave; nato</a></li>
+          <li><a href="carte.html">Le carte</a></li>
+          <li><a href="manga.html">Manga</a></li>
+          <li><a href="store.html">Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="account.html">Il tuo account</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="account.html">Il tuo account</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="account.html">Il tuo account</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="piede-fondo">
+      <span>&copy; 2026 Worldloom</span>
+      <span>worldloomtcg.com</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/js/sito.js"></script>
+</body>
+</html>

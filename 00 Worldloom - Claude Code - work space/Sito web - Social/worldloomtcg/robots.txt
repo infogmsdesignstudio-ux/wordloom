@@ -1,0 +1,5 @@
+# Il sito non deve ancora risultare visibile: nessun motore di ricerca lo deve indicizzare.
+# Quando si decide di pubblicare davvero, sostituire con "Disallow:" (vuoto) e togliere il
+# meta robots noindex dalle cinque pagine HTML.
+User-agent: *
+Disallow: /

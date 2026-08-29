@@ -1,0 +1,2377 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   WORLDLOOM — sistema di design del sito worldloomtcg.com
+
+   Registro: notturno, sobrio, artigianale. Il sito è una teca: fondo scuro e
+   silenzioso, le carte sono l'unica cosa che brilla.
+
+   Palette e font NON sono inventati: vengono dall'app (src/index.css) — stesso
+   fondo #0B0F1A, stesso testo #E8ECF5, stessi Cinzel + Cormorant Garamond.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("../fonts/cinzel.ttf") format("truetype");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("../fonts/cormorant-garamond.ttf") format("truetype");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+:root {
+  /* Base — dall'app */
+  --notte: #0b0f1a;
+  --notte-2: #121826;
+  --notte-3: #0e1421;
+  --nebbia: #1c2436;
+  --ghiaccio: #e8ecf5;
+  --ghiaccio-tenue: #a6b0c4;
+  --ghiaccio-fioco: #6d7a90;
+
+  /* Accento UNICO. L'arcobaleno foil non è un colore del sito: è un effetto,
+     e compare solo quando una carta gira. Se lo si usa come decorazione smette
+     di significare "carta speciale". */
+  --oro: #d8b14a;
+  --oro-caldo: #f0cd76;
+  --oro-fondo: rgba(216, 177, 74, 0.12);
+
+  /* Accenti di sezione derivati dal contenuto vero, usati solo nella galleria */
+  --frost: #6fc8e8;
+  --kepler: #a98ce0;
+
+  --display: "Cinzel", Georgia, "Times New Roman", serif;
+  --corpo: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+
+  --max: 1180px;
+  --max-testo: 720px;
+  --raggio: 4px;
+
+  --ombra-carta: 0 24px 60px -14px rgba(0, 0, 0, 0.85);
+  --transizione: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--notte);
+  color: var(--ghiaccio);
+  font-family: var(--corpo);
+  font-size: 20px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+/* ─────────────────────────── Tipografia ─────────────────────────── */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.6em;
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-weight: 700;
+}
+h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+}
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+.guida {
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  color: var(--ghiaccio-tenue);
+  max-width: 60ch;
+}
+
+/* L'etichetta maiuscola spaziata: il dettaglio piccolo che fa sembrare
+   "prodotto vero" invece che "template". Ripreso da Riftbound. */
+.occhiello {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--oro);
+  margin: 0 0 1.2rem;
+  display: block;
+}
+
+.occhiello-tenue {
+  color: var(--ghiaccio-fioco);
+}
+
+/* Filetto d'oro sotto i titoli di sezione — con un rombo al centro, per dare
+   quel tanto di lavorato che una riga secca non ha. */
+.titolo-filetto::after {
+  content: "";
+  display: block;
+  width: 96px;
+  height: 7px;
+  margin-top: 1.1rem;
+  opacity: 0.85;
+  background: linear-gradient(var(--oro), var(--oro)) left center / 38px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right center / 38px 1px no-repeat;
+  position: relative;
+}
+
+.titolo-filetto {
+  position: relative;
+}
+
+.titolo-filetto::before {
+  content: "";
+  position: absolute;
+  left: 45px;
+  bottom: -3px;
+  width: 6px;
+  height: 6px;
+  background: var(--oro);
+  transform: rotate(45deg);
+  opacity: 0.85;
+}
+
+/* Fregio di separazione col pittogramma: due filetti e il nodo al centro. */
+.fregio {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+  margin: clamp(40px, 6vw, 64px) 0;
+}
+
+.fregio::before,
+.fregio::after {
+  content: "";
+  height: 1px;
+  flex: 1 1 auto;
+  max-width: 190px;
+  background: linear-gradient(to right, transparent, var(--nebbia) 22%, var(--nebbia) 78%, transparent);
+}
+
+.fregio img {
+  width: 40px;
+  height: 40px;
+  opacity: 0.55;
+  flex: none;
+}
+
+
+/* ─────────────────────────── Impianto ─────────────────────────── */
+
+.contenitore {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 40px);
+}
+
+.stretto {
+  max-width: var(--max-testo);
+}
+
+.sezione {
+  padding: clamp(64px, 10vw, 120px) 0;
+}
+
+.sezione-bordata {
+  border-top: 1px solid var(--nebbia);
+}
+
+.sezione-scura {
+  background: var(--notte-3);
+}
+
+/* ─────────────────────────── Bottoni ─────────────────────────── */
+
+.bottoni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 2rem;
+}
+
+.btn {
+  font-family: var(--display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 15px 30px;
+  border-radius: var(--raggio);
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background var(--transizione), color var(--transizione),
+    border-color var(--transizione), transform 0.2s ease;
+  background: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Non un rettangolo giallo pieno: una stampa a caldo. L'oro è un metallo, quindi
+   ha un verso di luce (gradiente diagonale), un bordo più scuro che lo stacca dal
+   fondo, e un riflesso che lo attraversa quando ci passi sopra. */
+.btn-oro {
+  /* Oro pieno e netto: il metallo ha un verso di luce, ma resta dentro il bordo.
+     Niente alone che sborda: le ombre sono interne, così il bottone si stacca dal
+     fondo per contrasto e non per bagliore. */
+  background: linear-gradient(163deg, #f8e0a2 0%, #e2c065 26%, #c9a238 52%, #dcb457 72%, #f3d68d 100%);
+  color: #241a08;
+  border-color: #8f6c19;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -1px 0 rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-oro::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  transition: left 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.btn-oro:hover::after {
+  left: 125%;
+}
+
+.btn-oro:hover {
+  background: linear-gradient(163deg, #fbe9bb 0%, #ecce7c 26%, #d6ae44 52%, #e7c268 72%, #f9e2a4 100%);
+  border-color: #a8801f;
+}
+
+.btn-fantasma {
+  border-color: var(--nebbia);
+  color: var(--ghiaccio);
+}
+.btn-fantasma:hover {
+  border-color: var(--oro);
+  color: var(--oro);
+  background: rgba(216, 177, 74, 0.06);
+}
+
+/* ─────────────────────────── Testata ─────────────────────────── */
+
+.testata {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(11, 15, 26, 0.86);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--nebbia);
+}
+
+/* La testata è più larga della colonna di contenuto (1180): con sette voci, il
+   collegamento all'accesso e il pulsante Menu, a 1180 tutto finirebbe attaccato.
+   Qui i 1320 servono a lasciare aria vera fra i tre blocchi. */
+.testata-interno {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 40px);
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Blocco finale: accesso + pulsante del menu */
+.testata-fine {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: none;
+}
+
+.accedi {
+  font-family: var(--display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  color: var(--ghiaccio-tenue);
+  white-space: nowrap;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transizione), border-color var(--transizione);
+}
+
+.accedi:hover {
+  color: var(--oro);
+  border-bottom-color: var(--oro);
+}
+
+/* Quando la sessione di prova è aperta, il collegamento cambia mestiere e mostra
+   il nome: un nome lungo verrebbe accorciato invece di spingere fuori la testata. */
+.accedi.dentro {
+  color: var(--oro);
+  max-width: 14ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .testata-fine {
+    gap: 12px;
+  }
+  .accedi.dentro {
+    max-width: 9ch;
+  }
+}
+
+/* Il marchio vero: pittogramma (il nodo intrecciato) + logotipo, presi
+   dalle risorse dell'app — non ricostruiti in tipografia. */
+.marchio {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ghiaccio);
+  white-space: nowrap;
+}
+
+/* Il pittogramma sta FERMO: è il marchio, non un elemento decorativo da animare. */
+.marchio-pittogramma {
+  width: 34px;
+  height: 34px;
+  flex: none;
+}
+
+.marchio-testo {
+  height: 17px;
+  width: auto;
+}
+
+.piede .marchio-pittogramma {
+  width: 40px;
+  height: 40px;
+}
+.piede .marchio-testo {
+  height: 20px;
+}
+
+.menu {
+  display: flex;
+  gap: clamp(16px, 2.2vw, 30px);
+  align-items: center;
+}
+
+.menu a {
+  font-family: var(--display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  color: var(--ghiaccio-tenue);
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transizione), border-color var(--transizione);
+  white-space: nowrap;
+}
+
+.menu a:hover {
+  color: var(--ghiaccio);
+}
+
+.menu a[aria-current="page"] {
+  color: var(--oro);
+  border-bottom-color: var(--oro);
+}
+
+.menu-tasto {
+  display: none;
+  background: none;
+  border: 1px solid var(--nebbia);
+  color: var(--ghiaccio);
+  border-radius: var(--raggio);
+  padding: 9px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Il pulsante che apre l'albero completo: c'è sempre, anche su schermo largo,
+   perché è da lì che si raggiungono i sottocapitoli. */
+.menu-tasto {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.menu-tasto:hover {
+  border-color: var(--oro);
+  color: var(--oro);
+}
+
+.menu-tasto-etichetta {
+  display: inline;
+}
+
+/* Sopra questa soglia i sette link in linea hanno spazio vero attorno; sotto,
+   invece di comprimersi fino ad attaccarsi, spariscono e resta il solo pulsante
+   Menu — che porta allo stesso albero completo. */
+@media (max-width: 1320px) {
+  .menu {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-tasto-etichetta {
+    display: none;
+  }
+}
+
+/* ─────────────────────── Menu a tutto schermo ───────────────────────
+   Copre la pagina, mostra tutte le sezioni con i loro sottocapitoli, poi
+   sparisce. Rispetto a una colonna fissa a sinistra: non ruba larghezza
+   (la galleria carte la vuole tutta) e funziona identico su telefono. */
+
+.navigazione {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(9, 12, 21, 0.985);
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s ease, visibility 0.45s;
+}
+
+.navigazione.aperta {
+  opacity: 1;
+  visibility: visible;
+}
+
+.navigazione-interno {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 30px clamp(20px, 5vw, 40px) 70px;
+  position: relative;
+  min-height: 100%;
+}
+
+/* Il nodo del marchio in filigrana dietro l'albero */
+.navigazione::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(760px, 92vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: url("../img/pittogramma.png") center / contain no-repeat;
+  opacity: 0.045;
+  pointer-events: none;
+}
+
+.navigazione-testa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 44px;
+  margin-bottom: clamp(34px, 6vw, 62px);
+}
+
+.navigazione-chiudi {
+  background: none;
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  color: var(--ghiaccio-tenue);
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 11px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  transition: color var(--transizione), border-color var(--transizione);
+}
+
+.navigazione-chiudi:hover {
+  color: var(--oro);
+  border-color: var(--oro);
+}
+
+.nav-griglia {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: clamp(28px, 4vw, 48px) clamp(24px, 3vw, 40px);
+  position: relative;
+}
+
+.nav-sezione > a {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 600;
+  color: var(--ghiaccio);
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 12px;
+  transition: color var(--transizione);
+}
+
+.nav-sezione > a:hover {
+  color: var(--oro);
+}
+
+.nav-sezione ul {
+  list-style: none;
+  margin: 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--nebbia);
+}
+
+.nav-sezione li {
+  margin-bottom: 11px;
+}
+
+.nav-sezione li a {
+  color: var(--ghiaccio-tenue);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color var(--transizione), padding-left var(--transizione);
+  display: inline-block;
+}
+
+.nav-sezione li a:hover {
+  color: var(--oro);
+  padding-left: 6px;
+}
+
+.navigazione-piede {
+  margin-top: clamp(38px, 6vw, 64px);
+  padding-top: 26px;
+  border-top: 1px solid var(--nebbia);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 30px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.navigazione-piede a {
+  color: var(--ghiaccio-fioco);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.navigazione-piede a:hover {
+  color: var(--oro);
+}
+
+/* ─────────────────────── Indice della pagina ───────────────────────
+   Barra appiccicata sotto la testata con le sezioni della pagina corrente:
+   risolve lo scorrimento lungo senza rubare una colonna al layout. */
+
+.indice-pagina {
+  position: sticky;
+  top: 74px;
+  z-index: 45;
+  background: rgba(11, 15, 26, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--nebbia);
+}
+
+.indice-interno {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 12px clamp(20px, 5vw, 40px);
+  display: flex;
+  align-items: center;
+  gap: 10px 20px;
+  flex-wrap: wrap;
+}
+
+.indice-pagina .occhiello {
+  margin: 0;
+}
+
+.indice-pagina a {
+  font-family: var(--display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ghiaccio-tenue);
+  text-decoration: none;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transizione), border-color var(--transizione);
+}
+
+.indice-pagina a:hover {
+  color: var(--ghiaccio);
+}
+
+.indice-pagina a.corrente {
+  color: var(--oro);
+  border-bottom-color: var(--oro);
+}
+
+/* Le sezioni raggiunte da un'ancora si fermano sotto testata + indice,
+   invece di finirci dietro. */
+[id] {
+  scroll-margin-top: 130px;
+}
+
+/* ─────────────────────────── Hero ─────────────────────────── */
+
+.hero {
+  position: relative;
+  padding: clamp(56px, 9vw, 104px) 0 clamp(64px, 10vw, 120px);
+  overflow: hidden;
+}
+
+/* Alone freddo dietro la carta: dà profondità senza aggiungere un colore
+   alla palette (è solo il fondo che si schiarisce). */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -18%;
+  left: 50%;
+  width: min(1100px, 130vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(111, 200, 232, 0.09) 0%,
+    rgba(169, 140, 224, 0.05) 38%,
+    transparent 66%
+  );
+  pointer-events: none;
+}
+
+.hero-interno {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(32px, 6vw, 72px);
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-interno {
+    grid-template-columns: 1fr;
+  }
+  .hero-vetrina {
+    order: -1;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+}
+
+.hero h1 {
+  margin-bottom: 0.4em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--oro);
+}
+
+/* ─────────────────────────── Carta foil ─────────────────────────────
+   Ricetta confermata dall'utente in Mazzi/00 Layout generico/worldloom-cards/
+   foil-demo.html. Riportata identica nei valori: color-dodge a 0.5, soft-light
+   a 0.4, bascula 1.7s. Qui in più: il tilt segue il mouse. */
+
+.scena {
+  perspective: 1300px;
+}
+
+.carta-foil {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 744 / 1039;
+  border-radius: 14px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease;
+  box-shadow: var(--ombra-carta);
+  background: var(--notte-2);
+}
+
+.carta-foil.in-movimento {
+  transition: none;
+}
+
+.carta-foil img.carta-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foil-arcobaleno,
+.foil-riflesso {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease, background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.in-movimento .foil-arcobaleno,
+.in-movimento .foil-riflesso {
+  transition: opacity 0.6s ease;
+}
+
+/* L'arcobaleno appartiene SOLO alle stampe foil. Una carta normale riceve un
+   riflesso sobrio e basta: se brillano tutte, il foil non significa più niente. */
+.carta-foil.e-foil:hover .foil-arcobaleno,
+.carta-foil.e-foil:hover .foil-riflesso,
+.carta-foil.e-foil.attiva .foil-arcobaleno,
+.carta-foil.e-foil.attiva .foil-riflesso {
+  opacity: var(--pico);
+}
+
+.carta-foil:not(.e-foil):hover .foil-riflesso {
+  opacity: 0.22;
+}
+
+.foil-arcobaleno {
+  --pico: 0.5;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 18%,
+    rgba(255, 95, 168, 0.95) 27%,
+    rgba(255, 179, 95, 0.95) 33%,
+    rgba(232, 232, 95, 0.95) 39%,
+    rgba(107, 240, 160, 0.95) 45%,
+    rgba(95, 200, 255, 0.95) 51%,
+    rgba(157, 107, 255, 0.95) 57%,
+    transparent 66%,
+    transparent 100%
+  );
+  background-size: 320% 320%;
+  background-position: 50% 50%;
+  mix-blend-mode: color-dodge;
+}
+
+.foil-riflesso {
+  --pico: 0.4;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 45%);
+  background-size: 70% 70%;
+  background-position: 50% 50%;
+  mix-blend-mode: soft-light;
+}
+
+/* "Bascula": mostra il foil da sola, senza mouse. Indispensabile su mobile e
+   per chi arriva la prima volta e non sa che la carta è interattiva. */
+@keyframes foil-bascula-tilt {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  24% {
+    transform: rotateX(-3deg) rotateY(16deg);
+  }
+  58% {
+    transform: rotateX(3deg) rotateY(-16deg);
+  }
+  84% {
+    transform: rotateX(-1deg) rotateY(4deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes foil-bascula-brillio {
+  0% {
+    opacity: 0;
+    background-position: 50% 50%;
+  }
+  10% {
+    opacity: var(--pico);
+  }
+  24% {
+    background-position: 82% 32%;
+  }
+  58% {
+    background-position: 18% 68%;
+  }
+  84% {
+    background-position: 50% 50%;
+  }
+  92% {
+    opacity: var(--pico);
+  }
+  100% {
+    opacity: 0;
+    background-position: 50% 50%;
+  }
+}
+
+.carta-foil.bascula {
+  animation: foil-bascula-tilt 1.7s ease-in-out 1;
+}
+.carta-foil.bascula.e-foil .foil-arcobaleno,
+.carta-foil.bascula.e-foil .foil-riflesso {
+  animation: foil-bascula-brillio 1.7s ease-in-out 1;
+}
+
+/* Contrassegno della finitura speciale, sull'angolo della carta */
+.bollo-finitura {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  z-index: 3;
+  font-family: var(--display);
+  font-size: 0.54rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 5px 9px;
+  border-radius: 20px;
+  color: #0b0f1a;
+  background: linear-gradient(115deg, #ff5fa8, #ffb35f, #e8e85f, #6bf0a0, #5fc8ff, #9d6bff);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+
+/* ─────────────────────────── Pilastri ─────────────────────────── */
+
+.griglia {
+  display: grid;
+  gap: clamp(20px, 3vw, 34px);
+}
+.griglia-3 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.griglia-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Non un quadrato appoggiato lì: un pannello con un verso di luce dall'alto e
+   un filetto d'oro in testa, che gli dà un sopra e un sotto. */
+.pilastro {
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  padding: clamp(26px, 3vw, 36px);
+  background: linear-gradient(to bottom, #161d2e 0%, var(--notte-2) 55%, #0f1421 100%);
+  transition: border-color var(--transizione), transform var(--transizione),
+    box-shadow var(--transizione);
+  position: relative;
+  overflow: hidden;
+}
+
+.pilastro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(216, 177, 74, 0.55) 30%, rgba(216, 177, 74, 0.55) 70%, transparent);
+}
+
+.pilastro:hover {
+  border-color: rgba(216, 177, 74, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.9);
+}
+
+.pilastro-numero {
+  font-family: var(--display);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  color: var(--oro);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.pilastro p {
+  color: var(--ghiaccio-tenue);
+  margin-bottom: 0;
+  font-size: 1.02rem;
+}
+
+/* ─────────────────────────── Passi (Il gioco) ─────────────────────────── */
+
+.passi {
+  counter-reset: passo;
+  display: grid;
+  gap: 2px;
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  overflow: hidden;
+  background: var(--nebbia);
+}
+
+.passo {
+  counter-increment: passo;
+  background: var(--notte-2);
+  padding: clamp(24px, 3vw, 34px);
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.passo::before {
+  content: counter(passo, decimal-leading-zero);
+  font-family: var(--display);
+  font-size: 1.9rem;
+  color: var(--oro);
+  opacity: 0.65;
+  line-height: 1;
+}
+
+.passo h3 {
+  margin-bottom: 0.35em;
+}
+
+.passo p {
+  color: var(--ghiaccio-tenue);
+  margin-bottom: 0;
+  font-size: 1.02rem;
+}
+
+@media (max-width: 600px) {
+  .passo {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* ─────────────────────────── Galleria carte ─────────────────────────── */
+
+.barra-filtri {
+  position: sticky;
+  top: 74px;
+  z-index: 40;
+  background: rgba(11, 15, 26, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--nebbia);
+  padding: 18px 0;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.filtri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  align-items: center;
+}
+
+.gruppo-filtro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.gruppo-filtro > .occhiello {
+  margin: 0 4px 0 0;
+}
+
+.chip {
+  font-family: var(--display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--nebbia);
+  background: none;
+  color: var(--ghiaccio-tenue);
+  cursor: pointer;
+  transition: all var(--transizione);
+  white-space: nowrap;
+}
+
+.chip:hover {
+  color: var(--ghiaccio);
+  border-color: var(--ghiaccio-fioco);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--oro-fondo);
+  border-color: var(--oro);
+  color: var(--oro);
+}
+
+.cerca {
+  flex: 1 1 200px;
+  min-width: 180px;
+  background: var(--notte-2);
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  color: var(--ghiaccio);
+  font-family: var(--corpo);
+  font-size: 1rem;
+  padding: 10px 14px;
+}
+
+.cerca:focus {
+  outline: none;
+  border-color: var(--oro);
+}
+
+.cerca::placeholder {
+  color: var(--ghiaccio-fioco);
+}
+
+.conteggio {
+  font-size: 0.9rem;
+  color: var(--ghiaccio-fioco);
+  margin-bottom: 1.4rem;
+}
+
+.galleria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: clamp(18px, 2.4vw, 30px);
+}
+
+/* Su telefono 190px lascerebbe una sola carta enorme per riga: si sfoglia peggio.
+   Due colonne restano leggibili e fanno capire subito che è una galleria. */
+@media (max-width: 520px) {
+  .galleria {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+.cella {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  display: block;
+}
+
+.cella .scena {
+  perspective: 1000px;
+}
+
+.cella-nome {
+  font-family: var(--display);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  margin: 12px 0 3px;
+  transition: color var(--transizione);
+}
+
+.cella:hover .cella-nome {
+  color: var(--oro);
+}
+
+.cella-meta {
+  font-size: 0.82rem;
+  color: var(--ghiaccio-fioco);
+  letter-spacing: 0.04em;
+}
+
+/* Pallino del mazzo: gli unici due colori oltre all'oro, e derivano dal
+   contenuto vero (Frost Land = ghiaccio, Kepler = aura). */
+.pallino {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 7px;
+  vertical-align: 1px;
+}
+.pallino-frost-land {
+  background: var(--frost);
+}
+.pallino-kepler-452b {
+  background: var(--kepler);
+}
+
+.vuoto {
+  color: var(--ghiaccio-tenue);
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* Casella "ne arrivano altre": chiude la galleria e il catalogo dicendo che il
+   lavoro continua. Ha la stessa proporzione di una carta, così la fila resta a posto. */
+.in-arrivo {
+  aspect-ratio: 744 / 1039;
+  border: 1px dashed var(--nebbia);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 18px;
+  background: linear-gradient(160deg, #141b2b, #0e1421);
+  color: var(--ghiaccio-fioco);
+  transition: border-color var(--transizione), color var(--transizione);
+}
+
+.in-arrivo:hover {
+  border-color: rgba(216, 177, 74, 0.45);
+  color: var(--oro);
+}
+
+.in-arrivo-segno {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.in-arrivo-testo {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+}
+
+/* Nel catalogo dello store la casella riempie la scheda prodotto, quindi
+   lascia perdere la proporzione carta e si adatta all'altezza della fila. */
+.prodotto .in-arrivo {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 260px;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+/* ─────────────────────────── Scheda carta (dettaglio) ─────────────────────────── */
+
+.velo {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(5, 7, 12, 0.9);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  overflow-y: auto;
+}
+
+.velo.aperto {
+  display: flex;
+}
+
+.scheda {
+  max-width: 900px;
+  width: 100%;
+  background: var(--notte-2);
+  border: 1px solid var(--nebbia);
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 44px);
+  padding: clamp(24px, 4vw, 44px);
+  position: relative;
+  max-height: 100%;
+}
+
+@media (max-width: 760px) {
+  .scheda {
+    grid-template-columns: 1fr;
+  }
+  .scheda-immagine {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+.chiudi {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--ghiaccio-tenue);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--raggio);
+}
+.chiudi:hover {
+  color: var(--oro);
+}
+
+.scheda h2 {
+  margin-bottom: 0.2em;
+}
+
+.scheda-sottotitolo {
+  color: var(--ghiaccio-fioco);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.6rem;
+}
+
+.statistiche {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(78px, 1fr));
+  gap: 1px;
+  background: var(--nebbia);
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  overflow: hidden;
+  margin-bottom: 1.6rem;
+}
+
+.stat {
+  background: var(--notte-3);
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.stat-valore {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  color: var(--oro);
+  line-height: 1;
+}
+
+.stat-nome {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+  margin-top: 7px;
+}
+
+.effetto {
+  border-left: 2px solid var(--oro);
+  padding: 2px 0 2px 18px;
+  color: var(--ghiaccio);
+  font-size: 1.06rem;
+  margin-bottom: 1.6rem;
+}
+
+.crediti {
+  border-top: 1px solid var(--nebbia);
+  padding-top: 16px;
+  font-size: 0.9rem;
+  color: var(--ghiaccio-fioco);
+}
+
+.crediti dt {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+}
+
+.crediti dd {
+  margin: 2px 0 12px;
+  color: var(--ghiaccio-tenue);
+}
+
+/* ─────────────────────────── Tabella IA ─────────────────────────── */
+
+.tabella-avvolta {
+  overflow-x: auto;
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+}
+
+table.chiara {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  min-width: 560px;
+}
+
+table.chiara th,
+table.chiara td {
+  text-align: left;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--nebbia);
+  vertical-align: top;
+}
+
+table.chiara thead th {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--oro);
+  background: var(--notte-3);
+  white-space: nowrap;
+}
+
+table.chiara tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table.chiara tbody th {
+  font-family: var(--corpo);
+  font-weight: 600;
+  color: var(--ghiaccio);
+  width: 30%;
+}
+
+table.chiara td {
+  color: var(--ghiaccio-tenue);
+}
+
+/* Elenco dei simboli del dado.
+   Prima era una <table>, che dentro una colonna stretta sforava la larghezza minima
+   e tirava fuori una barra di scorrimento orizzontale (segnalata dall'utente). Questi
+   quattro simboli sono una lista, non dati tabellari: così si adattano e restano uniti. */
+.simboli {
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  overflow: hidden;
+}
+
+.simbolo {
+  display: grid;
+  grid-template-columns: minmax(96px, auto) 1fr;
+  gap: 0 18px;
+  align-items: baseline;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--nebbia);
+}
+
+.simbolo:last-child {
+  border-bottom: none;
+}
+
+.simbolo-nome {
+  font-family: var(--display);
+  font-size: 0.94rem;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.simbolo p {
+  margin: 0;
+  color: var(--ghiaccio-tenue);
+  font-size: 0.97rem;
+}
+
+@media (max-width: 560px) {
+  .simbolo {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}
+
+/* Pastiglia di attribuzione: umano / assistito / generato */
+.tag {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 5px 11px;
+  border-radius: 20px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.tag-umano {
+  color: var(--frost);
+  border-color: rgba(111, 200, 232, 0.45);
+  background: rgba(111, 200, 232, 0.08);
+}
+.tag-assistito {
+  color: var(--oro);
+  border-color: rgba(216, 177, 74, 0.45);
+  background: var(--oro-fondo);
+}
+.tag-generato {
+  color: var(--kepler);
+  border-color: rgba(169, 140, 224, 0.45);
+  background: rgba(169, 140, 224, 0.08);
+}
+
+/* Dichiarazione in apertura della pagina IA */
+.dichiarazione {
+  border: 1px solid rgba(216, 177, 74, 0.35);
+  border-left-width: 3px;
+  border-radius: var(--raggio);
+  background: var(--oro-fondo);
+  padding: clamp(24px, 3.4vw, 38px);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.5;
+}
+
+.dichiarazione p:last-child {
+  margin-bottom: 0;
+}
+
+/* ─────────────────────────── Anteprima del gioco ─────────────────────────── */
+
+/* Riquadro dell'app: NON è giocabile e non porta da nessuna parte per scelta.
+   Cliccandolo compare la scritta "ci stiamo lavorando". */
+.vetrina-app {
+  position: relative;
+  border: 1px solid var(--nebbia);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--notte-3);
+  cursor: pointer;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  display: block;
+}
+
+.vetrina-app img {
+  width: 100%;
+  opacity: 0.9;
+  transition: opacity var(--transizione), transform 0.7s var(--transizione);
+}
+
+.vetrina-app:hover img {
+  opacity: 1;
+  transform: scale(1.012);
+}
+
+.vetrina-tenda {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: linear-gradient(to top, rgba(11, 15, 26, 0.93) 0%, rgba(11, 15, 26, 0.35) 60%, rgba(11, 15, 26, 0.2) 100%);
+  text-align: center;
+  padding: 24px;
+}
+
+.vetrina-etichetta {
+  font-family: var(--display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ghiaccio);
+  border: 1px solid var(--nebbia);
+  background: rgba(11, 15, 26, 0.8);
+  padding: 13px 26px;
+  border-radius: 30px;
+  transition: all var(--transizione);
+}
+
+.vetrina-app:hover .vetrina-etichetta {
+  border-color: var(--oro);
+  color: var(--oro);
+}
+
+.vetrina-app.svelata .vetrina-etichetta {
+  border-color: var(--oro);
+  background: var(--oro);
+  color: var(--notte);
+}
+
+/* ─────────────────────────── Sostieni ─────────────────────────── */
+
+.pietre-miliari {
+  display: grid;
+  gap: 0;
+  border-left: 1px solid var(--nebbia);
+  margin-left: 8px;
+}
+
+.pietra {
+  position: relative;
+  padding: 0 0 34px 30px;
+}
+
+.pietra::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--notte);
+  border: 1px solid var(--ghiaccio-fioco);
+}
+
+.pietra.fatta::before {
+  background: var(--oro);
+  border-color: var(--oro);
+}
+
+.pietra h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25em;
+}
+
+.pietra p {
+  color: var(--ghiaccio-tenue);
+  font-size: 0.98rem;
+  margin-bottom: 0;
+}
+
+.pietra-stato {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.pietra.fatta .pietra-stato {
+  color: var(--oro);
+}
+
+.modulo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 1.6rem;
+}
+
+.modulo input[type="email"] {
+  flex: 1 1 260px;
+  background: var(--notte);
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  color: var(--ghiaccio);
+  font-family: var(--corpo);
+  font-size: 1.05rem;
+  padding: 15px 18px;
+}
+
+.modulo input[type="email"]:focus {
+  outline: none;
+  border-color: var(--oro);
+}
+
+.modulo input::placeholder {
+  color: var(--ghiaccio-fioco);
+}
+
+.nota-modulo {
+  font-size: 0.88rem;
+  color: var(--ghiaccio-fioco);
+  margin-top: 1rem;
+}
+
+.esito {
+  margin-top: 1.2rem;
+  padding: 15px 20px;
+  border: 1px solid rgba(216, 177, 74, 0.4);
+  border-radius: var(--raggio);
+  background: var(--oro-fondo);
+  color: var(--ghiaccio);
+  font-size: 1rem;
+  display: none;
+}
+
+.esito.visibile {
+  display: block;
+}
+
+.esito a {
+  color: var(--oro);
+}
+
+/* Azione secondaria dentro un messaggio: si comporta da bottone, si legge da link */
+.come-collegamento {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--oro);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ─────────────────────────── Edizioni e finiture ─────────────────────────── */
+
+.edizioni {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: clamp(20px, 3vw, 36px);
+}
+
+.edizione {
+  text-align: center;
+}
+
+.edizione .occhiello {
+  margin: 1.1rem 0 0.3rem;
+}
+
+.edizione p {
+  font-size: 0.94rem;
+  color: var(--ghiaccio-fioco);
+  margin: 0;
+}
+
+/* Segnaposto per l'illustrazione alternativa, che non esiste ancora: si dichiara
+   per quello che è invece di riusare un'altra carta e far finta. */
+.edizione-attesa {
+  aspect-ratio: 744 / 1039;
+  border: 1px dashed var(--nebbia);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px;
+  background: linear-gradient(160deg, #141b2b, #0e1421);
+  color: var(--ghiaccio-fioco);
+  font-family: var(--display);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+/* Scala delle rarità */
+.rarita-scala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1.6rem;
+}
+
+.rarita-voce {
+  font-family: var(--display);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--nebbia);
+  color: var(--ghiaccio-tenue);
+}
+
+.rarita-voce[data-livello="alta"] {
+  border-color: rgba(216, 177, 74, 0.5);
+  color: var(--oro);
+}
+
+/* ─────────────────────────── Manifesto ("Perché") ─────────────────────────── */
+
+/* Il blocco che porta l'argomento centrale: grande, con un filetto d'oro a
+   sinistra, pensato per essere letto e non scorso. */
+.affermazione {
+  border-left: 2px solid var(--oro);
+  padding-left: clamp(20px, 3vw, 34px);
+  margin: clamp(30px, 4vw, 44px) 0;
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.7vw, 1.95rem);
+  line-height: 1.32;
+  color: var(--ghiaccio);
+}
+
+.contrapposto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1px;
+  background: var(--nebbia);
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  overflow: hidden;
+}
+
+.contrapposto > div {
+  background: var(--notte-2);
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.contrapposto h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.6em;
+}
+
+.contrapposto p {
+  color: var(--ghiaccio-tenue);
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.contrapposto .prima h3 {
+  color: var(--ghiaccio-fioco);
+}
+.contrapposto .dopo h3 {
+  color: var(--oro);
+}
+
+/* Scenetta di combattimento: quattro esiti possibili dello stesso attacco */
+.esiti {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: clamp(16px, 2.4vw, 24px);
+}
+
+.esito-voce {
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  padding: clamp(20px, 2.6vw, 28px);
+  background: var(--notte-2);
+}
+
+.esito-simbolo {
+  font-size: 1.6rem;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.esito-voce h3 {
+  font-size: 0.98rem;
+  margin-bottom: 0.4em;
+}
+
+.esito-voce p {
+  font-size: 0.94rem;
+  color: var(--ghiaccio-tenue);
+  margin: 0;
+}
+
+/* ─────────────────────────── Store ─────────────────────────── */
+
+.prodotti {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(20px, 2.8vw, 30px);
+}
+
+.prodotto {
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  background: linear-gradient(to bottom, #161d2e, #0f1421);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--transizione), transform var(--transizione);
+}
+
+.prodotto:hover {
+  border-color: rgba(216, 177, 74, 0.4);
+  transform: translateY(-3px);
+}
+
+.prodotto-figura {
+  aspect-ratio: 4 / 3;
+  background: var(--notte-3);
+  border-bottom: 1px solid var(--nebbia);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.prodotto-figura img {
+  width: 55%;
+  border-radius: 6px;
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.9);
+}
+
+.prodotto-corpo {
+  padding: clamp(20px, 2.6vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.prodotto h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.prodotto p {
+  color: var(--ghiaccio-tenue);
+  font-size: 0.96rem;
+  margin: 0;
+  flex: 1;
+}
+
+.prodotto-piede {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--nebbia);
+  padding-top: 1rem;
+  margin-top: 0.4rem;
+}
+
+.prezzo {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  color: var(--oro);
+}
+
+.prezzo-nota {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+}
+
+/* ─────────────────────────── Account ─────────────────────────── */
+
+.pannelli {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(20px, 3vw, 34px);
+}
+
+.pannello {
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  background: var(--notte-2);
+  padding: clamp(26px, 3.2vw, 36px);
+}
+
+.pannello h3 {
+  font-size: 1.1rem;
+}
+
+.campo {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.campo span {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+  margin-bottom: 6px;
+}
+
+.campo input {
+  width: 100%;
+  background: var(--notte);
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  color: var(--ghiaccio);
+  font-family: var(--corpo);
+  font-size: 1.02rem;
+  padding: 13px 16px;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: var(--oro);
+}
+
+.campo input::placeholder {
+  color: var(--ghiaccio-fioco);
+}
+
+/* ─────────────────────────── Area personale ───────────────────────────
+   Schermate del "dopo il login". L'accesso è finto e serve solo a poter
+   costruire e provare queste viste: vedi assets/js/accesso.js. */
+
+.barra-utente {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  background: linear-gradient(to bottom, #161d2e, #0f1421);
+  padding: clamp(20px, 2.6vw, 28px);
+}
+
+.barra-utente-nome {
+  font-family: var(--display);
+  font-size: 1.15rem;
+}
+
+.barra-utente-nome span {
+  color: var(--oro);
+}
+
+/* Avviso permanente: queste schermate girano su un accesso finto */
+.avviso-prova {
+  border: 1px solid rgba(169, 140, 224, 0.4);
+  border-left-width: 3px;
+  border-radius: var(--raggio);
+  background: rgba(169, 140, 224, 0.08);
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  color: var(--ghiaccio-tenue);
+}
+
+.avviso-prova strong {
+  color: var(--kepler);
+}
+
+.riga {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px 18px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--nebbia);
+}
+
+.riga:last-child {
+  border-bottom: none;
+}
+
+.riga-nome {
+  font-family: var(--display);
+  font-size: 0.95rem;
+}
+
+.riga-meta {
+  font-size: 0.88rem;
+  color: var(--ghiaccio-fioco);
+}
+
+.riga-valore {
+  font-family: var(--display);
+  color: var(--oro);
+  font-size: 0.95rem;
+}
+
+.elenco-pulito {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contatore {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+}
+
+@media (max-width: 460px) {
+  .riga {
+    grid-template-columns: 1fr auto;
+  }
+  .riga-meta {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ─────────────────────────── Manga ─────────────────────────── */
+
+.capitoli {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(18px, 2.6vw, 28px);
+}
+
+.capitolo {
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  background: var(--notte-2);
+  padding: clamp(22px, 3vw, 30px);
+  transition: border-color var(--transizione), transform var(--transizione);
+}
+
+.capitolo:hover {
+  border-color: rgba(216, 177, 74, 0.4);
+  transform: translateY(-3px);
+}
+
+.capitolo-numero {
+  font-family: var(--display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--oro);
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+.capitolo h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4em;
+}
+
+.capitolo p {
+  color: var(--ghiaccio-tenue);
+  font-size: 0.98rem;
+  margin-bottom: 0;
+}
+
+.capitolo-stato {
+  display: inline-block;
+  margin-top: 1.1rem;
+  font-family: var(--display);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+  border: 1px solid var(--nebbia);
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+
+/* Riquadro vuoto in attesa delle tavole: si dichiara per quello che è. */
+.tavola-attesa {
+  aspect-ratio: 3 / 4;
+  border: 1px dashed var(--nebbia);
+  border-radius: var(--raggio);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ghiaccio-fioco);
+  font-family: var(--display);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  text-align: center;
+  padding: 20px;
+  background: var(--notte-3);
+}
+
+/* ─────────────────────────── Dal tavolo (recensioni) ───────────────────────
+   ⚠️ Queste schede vanno riempite SOLO con frasi dette davvero da chi ha giocato,
+   con il suo nome. Una recensione inventata su un sito che porta a una campagna
+   di crowdfinanziamento è pubblicità ingannevole, e la community dei giochi da
+   tavolo le riconosce in poche ore. Finché non ci sono, restano le caselle in
+   attesa: dicono la verità e fanno il loro lavoro lo stesso. */
+
+.recensioni {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(18px, 2.6vw, 28px);
+}
+
+.recensione {
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  background: linear-gradient(to bottom, #161d2e, #0f1421);
+  padding: clamp(24px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recensione-virgolette {
+  font-family: var(--display);
+  font-size: 2.4rem;
+  line-height: 0.6;
+  color: var(--oro);
+  opacity: 0.55;
+}
+
+.recensione p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--ghiaccio);
+}
+
+.recensione-firma {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--nebbia);
+  font-family: var(--display);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+}
+
+/* Casella ancora senza una voce vera */
+.recensione-attesa {
+  border-style: dashed;
+  background: var(--notte-3);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 190px;
+  color: var(--ghiaccio-fioco);
+}
+
+.recensione-attesa .recensione-virgolette {
+  opacity: 0.25;
+}
+
+.recensione-attesa p {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ghiaccio-fioco);
+  line-height: 1.8;
+}
+
+/* ─────────────────────────── Seguici ─────────────────────────── */
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 2rem;
+}
+
+.social-voce {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--ghiaccio);
+  border: 1px solid var(--nebbia);
+  border-radius: var(--raggio);
+  background: linear-gradient(to bottom, #161d2e, #0f1421);
+  padding: 16px 22px;
+  transition: border-color var(--transizione), transform var(--transizione);
+}
+
+.social-voce:hover {
+  border-color: rgba(216, 177, 74, 0.45);
+  transform: translateY(-2px);
+}
+
+.social-voce svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  color: var(--oro);
+}
+
+.social-nome {
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  display: block;
+}
+
+.social-tag {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--ghiaccio-fioco);
+  margin-top: 2px;
+}
+
+.social-voce:hover .social-tag {
+  color: var(--ghiaccio-tenue);
+}
+
+/* ─────────────────────────── Contatti ─────────────────────────── */
+
+.contatto {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--display);
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  letter-spacing: 0.04em;
+  color: var(--oro);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(216, 177, 74, 0.35);
+  padding-bottom: 4px;
+  transition: border-color var(--transizione);
+}
+
+.contatto:hover {
+  border-bottom-color: var(--oro);
+}
+
+/* ─────────────────────────── Piede ─────────────────────────── */
+
+.piede {
+  border-top: 1px solid var(--nebbia);
+  padding: clamp(44px, 6vw, 70px) 0 40px;
+  background: var(--notte-3);
+}
+
+.piede-griglia {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 34px;
+  margin-bottom: 42px;
+}
+
+@media (max-width: 700px) {
+  .piede-griglia {
+    grid-template-columns: 1fr;
+  }
+}
+
+.piede h4 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--oro);
+  margin-bottom: 1rem;
+}
+
+.piede ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.piede li {
+  margin-bottom: 9px;
+}
+
+.piede a {
+  color: var(--ghiaccio-tenue);
+  text-decoration: none;
+  font-size: 0.98rem;
+  transition: color var(--transizione);
+}
+
+.piede a:hover {
+  color: var(--oro);
+}
+
+.piede-nota {
+  color: var(--ghiaccio-fioco);
+  font-size: 0.9rem;
+  max-width: 44ch;
+}
+
+.piede-fondo {
+  border-top: 1px solid var(--nebbia);
+  padding-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  color: var(--ghiaccio-fioco);
+  font-size: 0.86rem;
+}
+
+/* ─────────────────────────── Comparsa allo scroll ─────────────────────────── */
+
+/* La comparsa allo scroll parte nascosta SOLO se il JavaScript è vivo (classe `js`
+   messa da uno script in testa alla pagina). Senza quella condizione, un errore di
+   caricamento lascerebbe metà sito invisibile: qui il caso peggiore è che il
+   contenuto compaia senza animazione. */
+.js .appare {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .appare.dentro {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────── Accessibilità ─────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--oro);
+  outline-offset: 3px;
+}
+
+.salta {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--oro);
+  color: var(--notte);
+  padding: 12px 20px;
+  z-index: 200;
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  text-decoration: none;
+}
+
+.salta:focus {
+  left: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .appare {
+    opacity: 1;
+    transform: none;
+  }
+}

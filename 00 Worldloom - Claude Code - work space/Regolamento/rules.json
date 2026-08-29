@@ -1,0 +1,45 @@
+{
+  "generato_da": "Worldloom_Regolamento_v2.1.html (capitoli 8 e 17)",
+  "nota_revisione": "Range aggiornati (non più differenziati per Archetipo): i profili numerici delle carte esistenti vanno ribilanciati in un passo successivo.",
+  "pv_stratega_iniziali": 200,
+  "range_attacco_parata_per_livello": {
+    "1": [1, 12],
+    "2": [10, 18],
+    "3": [16, 30]
+  },
+  "range_vita_per_livello": {
+    "1": [6, 16],
+    "2": [14, 26],
+    "3": [24, 40]
+  },
+  "range_per_livello_e_archetipo": {
+    "1": {
+      "viandante":  { "vita": [6, 16], "attacco": [1, 12], "parata": [1, 12] },
+      "assalitore": { "vita": [6, 16], "attacco": [1, 12], "parata": [1, 12] },
+      "effimeri":   { "vita": [6, 16], "attacco": [1, 12], "parata": [1, 12] },
+      "colosso":    { "vita": [6, 16], "attacco": [1, 12], "parata": [1, 12] },
+      "tessitore":  { "vita": [6, 16], "attacco": [1, 12], "parata": [1, 12] }
+    },
+    "2": {
+      "viandante":  { "vita": [14, 26], "attacco": [10, 18], "parata": [10, 18] },
+      "assalitore": { "vita": [14, 26], "attacco": [10, 18], "parata": [10, 18] },
+      "effimeri":   { "vita": [14, 26], "attacco": [10, 18], "parata": [10, 18] },
+      "colosso":    { "vita": [14, 26], "attacco": [10, 18], "parata": [10, 18] },
+      "tessitore":  { "vita": [14, 26], "attacco": [10, 18], "parata": [10, 18] }
+    },
+    "3": {
+      "viandante":  { "vita": [24, 40], "attacco": [16, 30], "parata": [16, 30] },
+      "assalitore": { "vita": [24, 40], "attacco": [16, 30], "parata": [16, 30] },
+      "effimeri":   { "vita": [24, 40], "attacco": [16, 30], "parata": [16, 30] },
+      "colosso":    { "vita": [24, 40], "attacco": [16, 30], "parata": [16, 30] },
+      "tessitore":  { "vita": [24, 40], "attacco": [16, 30], "parata": [16, 30] }
+    }
+  },
+  "dadi_reazione_per_archetipo": {
+    "viandante":  { "facce": 8, "spada": 2, "scudo": 2, "cuore": 2, "schivata": 2 },
+    "assalitore": { "facce": 8, "spada": 4, "scudo": 1, "cuore": 2, "schivata": 1 },
+    "effimeri":   { "facce": 8, "spada": 2, "scudo": 1, "cuore": 2, "schivata": 3 },
+    "colosso":    { "facce": 8, "spada": 1, "scudo": 3, "cuore": 1, "schivata": 3 },
+    "tessitore":  { "facce": 8, "spada": 3, "scudo": 1, "cuore": 2, "schivata": 2 }
+  }
+}

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 610" width="640" height="610">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#c9a24b"/>
+  </marker>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="6" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<g transform="translate(0,10)">
+  <path d="M 373.4 138.8 Q 439.0 146.1 467.7 207.3" fill="none" stroke="#c9a24b" stroke-width="3" opacity="0.85" marker-end="url(#arrow)"/>
+  <path d="M 508.8 314.8 Q 522.1 379.5 472.8 425.7" fill="none" stroke="#c9a24b" stroke-width="3" opacity="0.85" marker-end="url(#arrow)"/>
+  <path d="M 383.3 498.0 Q 325.9 530.6 266.7 498.0" fill="none" stroke="#c9a24b" stroke-width="3" opacity="0.85" marker-end="url(#arrow)"/>
+  <path d="M 170.3 435.2 Q 121.5 390.7 134.3 324.3" fill="none" stroke="#c9a24b" stroke-width="3" opacity="0.85" marker-end="url(#arrow)"/>
+  <path d="M 164.2 213.2 Q 191.4 153.1 258.5 144.7" fill="none" stroke="#c9a24b" stroke-width="3" opacity="0.85" marker-end="url(#arrow)"/>
+
+  <g filter="url(#glow)">
+    <circle cx="320.0" cy="100.0" r="62" fill="#3d3418" stroke="#e8c96f" stroke-width="3"/>
+  </g>
+  <circle cx="320.0" cy="100.0" r="52" fill="none" stroke="#e8c96f" stroke-width="1" opacity="0.4"/>
+
+  <g filter="url(#glow)">
+    <circle cx="529.2" cy="252.0" r="62" fill="#3d2018" stroke="#e08a72" stroke-width="3"/>
+  </g>
+  <circle cx="529.2" cy="252.0" r="52" fill="none" stroke="#e08a72" stroke-width="1" opacity="0.4"/>
+
+  <g filter="url(#glow)">
+    <circle cx="449.3" cy="498.0" r="62" fill="#153d24" stroke="#72c98f" stroke-width="3"/>
+  </g>
+  <circle cx="449.3" cy="498.0" r="52" fill="none" stroke="#72c98f" stroke-width="1" opacity="0.4"/>
+
+  <g filter="url(#glow)">
+    <circle cx="190.7" cy="498.0" r="62" fill="#152a3d" stroke="#6f9ed6" stroke-width="3"/>
+  </g>
+  <circle cx="190.7" cy="498.0" r="52" fill="none" stroke="#6f9ed6" stroke-width="1" opacity="0.4"/>
+
+  <g filter="url(#glow)">
+    <circle cx="110.8" cy="252.0" r="62" fill="#2e1a3d" stroke="#b98fd6" stroke-width="3"/>
+  </g>
+  <circle cx="110.8" cy="252.0" r="52" fill="none" stroke="#b98fd6" stroke-width="1" opacity="0.4"/>
+
+  <text x="320.0" y="100.0" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#e8c96f">Viandante</text>
+  <text x="529.2" y="252.0" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#e08a72">Assalitore</text>
+  <text x="449.3" y="498.0" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#72c98f">Effimeri</text>
+  <text x="190.7" y="498.0" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#6f9ed6">Colosso</text>
+  <text x="110.8" y="252.0" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#b98fd6">Tessitore</text>
+</g>
+</svg>

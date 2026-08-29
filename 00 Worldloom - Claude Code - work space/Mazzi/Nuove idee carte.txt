@@ -1,0 +1,248 @@
+distruggi esercito: magia
+attiva quando hai almeno 1 creatura sul terrono viandante, tira il suo dado archetipo:
+se esce scudo entrambi i giocatori scartano la propria mano e ripescano lo stesso numero di carte
+Se esce vita guardi la mano avversaria, ne scegli una e la scarti, il resto la rimette sul mazzo e la mischia.
+se esce scudo ne scegli 1  a caso dalla mano avversaria e la scarti. 
+se esce schiva non succede niente
+
+Blocco degli eventi: magia rapida
+tutti gli effetti delle carte per questo tunro vengono bloccati
+
+Rifornimento accompagnato fortunato: magia continua
+ogni volta che evoci una creatura tira il suo dado archetipo, se esce cuore peschi 1 carta.
+
+Blocca strategia: trappola
+qualsiasi effetto che sta per attivarsi si blocca a patto che scarti una carta e la carta in questione viene distrutta.
+
+controattacco disperato: trappola contiua
+quando una tua creatura vinee attaccata se ho 2 o più creature attiva questo effetto: mischia le carte e fanne scegliere 1 all'avversario, se è quella bersagliato dall'attacco essa si distrugge senza calcolo dei danni se invece non lo è la creatura attaccante perde i suoi attacchi per questo turno.
+
+impossibile: magia rapida
+tira 1 dado archetipo a tua scelta, i risultati di quel dado o sono gli stessi per qualunque archetipo per tutto il resto di questo turno.
+
+Intervento superiore: trappola
+interruzione attivazione effetto, se creautra lasciala sul terreno se già presente se magia o trappola invece distruggila
+
+saccheggio: magia rapida
+Ruba 1 potenziamento ad una creautura avversaria.
+
+
+tutto calcolato: trappola
+blocca imprevisto appena attivato
+
+prendi il rischio? MAGIA
+ATTIVA SOLO SE HAI ALMENO UNA CREATURA SUL TERRTENO tira il dado imprevisti:
+SE ESCE 0 DISTRUGGI UN TUO MOSTRO SUL TERRENO
+SE ESCE +1 DISTRUGGI 1 CARTA AVV
+SE ESCE +2 EVOCA DALLA MANO UNA CREATURA DI LV1 O LV2
+
+TRAPPOLE VELCOI: TRAPPOLA 
+USA LE TRAPPOLE SENZA SPETTARE 1 TURNO.
+DISTRUGGI QUESTA CARTA DOPO 3 TURNI.
+
+DISTRUGGI TERRENO: MAGIA
+DISTRUGGI UNA CARTA MAGIA TERRENO IN GIOCO
+
+BLOCCA RESUSCITA: TRAPPOLA
+QUANDO L'AVVERSARIO STA EVOCANDO 1 CREATURA DAL CIMITERO DISTRUGGILA E CANCELLA DALL'ESISTENZA.
+METTILA NEL CAMPO, FUORI DALA STORIA.
+
+FARFALLA INEBRIANTE: CREATURA DI MARBION
+TIRA  IL DADO ARCHETIPO SE ESCE SCHIVA ATTIVA QUESTO EFFETTO: STORDICìSCI UNA CREATURA BERSAGLIO ESSA Può ATTACCARE 1 SOLA VOTLA.
+pUOI ATTIVARE QUESTO EFFETTO 1 VOLTA PER TURNO.
+
+COLORI ACCECCANTI:  MAGIA
+COSTRINGI UNA CREATURA BERSAGLIO AD ATTACARTI ORA IN QUESTO TURNO.
+
+rIFUGIO DEGLI EFFIMERI: MAGIA CONTINUA
+SE UN EFFIMERO STA PER MORIRE TIRA INVECE IL DADO SE ESCE SCHIVA NON VA AL CIMITERO MA TORNA IN  MANO
+
+TEMPERATURA GLAICAILE:
+IL FREDDO DINMINUSISCE I MOVIMENTI E LA DIFESA DELLE CREATURE NON DI URANO DI -5
+
+gOBLIN CHIAMA GOBLIN: MAGIA CONTINUA
+OGNI CREATURA APPENA EVOCATO CON GOBLIN SCRITTO NEL NOME TI FA PESCARE 1 CARTA, SE LA CARTA APPENA PESCATA HA NEL NOME LA PAROLA GOBLIN LA TIENI IN MANO SE INVECE NON LO è SCEGLI UNO DI QUESTI EFFETTI:
+RIMETTI LA NEL MAZZO E MISCHIA,
+TIENILA IN MANO E DISTRUGGI LA CREATURA APPENA EVOCATA.
+
+FUSIONE COLORI: MAGIA 
+TUTTE LE MANIPOLATRICI DI MARBON, KEPLER 452-B GUADAGNANO +2 PER OGNUNA DI ESSE PRESENTE USL CAMPO.
+ES: C'è NE SONO 2 ENTRAMBE GUADAGNANO + 4
+C'è NE SONO 3 TUTTE GUADAGNANO +6
+
+PIANTA CARNIVORA: CREATURA
+DIVORA 1 TUO ALINEO TRA LA PRIMA LINEA E LA RETROVIA PER GUADAGNARE PERMAENTEMENTE +2 A TUTTE LE STATS.
+
+SIMBIOSI NERA: MAGIA CONTINUA
+SE LA MANIPOLATRICE NERA è SUL TERRENO NELLA RETROVIA INSIMEE A PIANTA CARNIVEìORA IN PRIMA LINEA L'EFFETTO DELLA PIANTA MUTA:
+DISINTEGRA DALL'ESISTENZA E DAL TEMPO 2 CREAUTRE NEL CIMITERO E AUMENTA TUTTE LE STATS DI QUESTA CREATURA DI +2
+SE QUESTA CARTA LSCIA IL TERRENO I SUOI EFFETTI CADONO CON ESSA
+
+LINCE PETALOSA PROTETTIVA: CREATURA
+PER OGNI CUCCIOLO DI LINCE PETALOSA PROTETTIVA SUL TERRENO GUADAGNA  + 2 IN ATTACCO
+
+CUCCIOLO DI LINCE PETALOSA: CREATURA
+IL CICLO DELLA VITA è MERAVIGLIOSO
+
+L'ACQUA è VITALE: MAGIA RAPIDA
+DAI SUBITO è 10MDI VITA AD UNA CREATURA A TUA SCELTA
+
+STRATEIA DELLO STRATEGA: MAGIA
+SCARTA 5 CARTE DAL DECK AL CIMITERO
+
+VERMI DEL RICICLO: CREAUTRA
+SE CI SONO 3 VERMI DEL RICICLO NEL CIMITERO,
+QUANDO ENTRA L'ULTIMO VEMRE NEL CIMITERO EVOCA SPECIALMENTE 1 CREATURA DAL TUO CIMITERO IL PROSSIMO TURNO O GUADAGNA 50 PUNTI VITA.
+
+REFGINA DEL RECICLO: TRAPPOLA
+QUANDO LA MANIPOLATRICE NERA MUORE EVOCA 3 PEDINE CON IL NOME VERME DEL RICILO CON STATS 1 1 1 SUL CAMPO DI BATTAGLIA. QUELLE NON POSSIBILI DA EVOCARE VANNO DIRETTAMENTE AL CIMITERO.
+
+IMPREVISTO:
+OGNI GIOCATORE RECUPERAM DAL CIMITERO AVVERSARIO UNA CREATURA DI òIVELLO 1 E LA EVOCA SIL SUO TERRENO IN PRIMA LINEA, SE è OCCUPATA FA SCANSARE UNA CREATURA A SCELTA DEL GIOCATORE IN RETROVIA, SE TUTTE LE POSIZIONI SONO OCCUPATE DISTRUGGI 1 CARTA PER FARLE POSTO A TUA SCELTA.
+LA CREATURA EVOCATA IN QUESTO MODO MUORE DOPO 2 TURNI.
+
+IMPREVISTO:
+OGNI GIOCATORE NON Può UTILIZZARE EVOCAZIONI BONUS E PESCATE EXTRA PER IL SUO PROSSIMO TURNO.
+
+IMPREVISTO:
+VANTAGGIO E SCANTAGGIO VENGONO IGNORATI PER QUESTO TUNRO
+
+MAGIA TERRENO: BARAONDA DI GHIACCIO
+FA COSI FREDDO CHE MUOVERSI è IMPOSSIBILE TUTTE LE CREATURE NON APPARTENENTI AD URANO AL POSTO DI SCHIVARE SUBISCONON 3 DANNI DI DEFAULTS.
+
+IMPREVISTO:
+EVOCAZIONE SPECIALE DI 1 CREATURA DI LV 3 DAL WORLDOOM DOVE POSSIBILE, SE NON VI è PRESENTE SPAZIO DISTRUGGERE UNA CREATURA.
+
+IMPRTEVISTO:
+APOCALISSE DEGLI SFORTUNATI: LANCIA  DADO IMPREVISTO PER OGNI CREATURA SUL TERRENO, TUTTI I RISULTATI SOTTO IL 2 DELLA PORTANO ALLA MORTE DELLA CREAUTRA.§
+
+TRAPPOLA:
+QUANO SI ATTIVA UNA MAGIA ANNULLANE L'EFFETTO E PER I PROSSIMI 3 TUNRI IL GICOATORE AVVERSARIO NON PROTRà ATTIVARE MAGIE MA SOLO TRAPPOLE.
+
+MAGIA: PER QUESTO RUNO SCEGLI UA TUA CREATURA E ASSEGNALE UN DADO ARCHETIPO A TUA SCETLA
+
+TRAPPOLA: QUANDO IL TUO NEMICO ATTACCA, CONTRINGILO AD USARE UN DADO ARCHETIPO A TUA SCELTA
+
+FATALISTA: MAGIA RAPIDA
+ATTIVA QUESTA CARTA ALL'INZIO DEL TUNRO AVVERSARIO DOPO LO SVOGLIMENTO IMPREVISTI, PER TUTTIO IL TURNO NON Può LASCIAR PASSARE ATTACCHI SE NE HA LA Possibilità OGNI SUA CREATURA DEVE DIFENDERSI.
+sCEGLIE LUI QUALE CREATURA USARE PER DIFENDERSI.
+
+IL DESTINO NELLE TUE MANI:
+DETERMINA IL RPIMO SIMBOLO CON LA QUALE TI DIFENDERAI A PRIRORI
+
+IL DESTINO DELL'AVVERSARIO è SEGNATO,:
+DURANTE UN TUO ATTACCO ADLL'AVVERSARIO DETERMINA QUALE RISLUTATO DEL DADO USCIRAà SENZA FARLO TIRARE ED APPKICA IL CALCOLO DEI DANNI, IMMAGINE: ( CREAUTRA CHE RICEVE COLPI DA TUTTE LE DIREZIONI IN STILE FANTSM
+
+RIFORNIMENTO GUIDATO:
+PESCA TANT E CARTE QUANTE CREATURE HAI IN PRIMA LINEA
+
+mAGIA TERENO:
+LE CREATURE DIO AMRBION GUADAGNNO 1 ATTACO IN PIù A PATTO CHE IN QUESTO RUNO TU SCARTI 2 CARTE
+
+Carte esempio:
+
+Marchio del sole:
+Tira il dado imp: se esce 2 attiva l'effetto se esce 1 scarta 1 carta e attiva effetto se esce 0 scarta 1 carta e non attiva effetto.
+Marchia un bersaglio. Tira il dado del bersaglio scelto e fai djventare la statistics evidenziata 0 finche questa xarta rimane attiva suk terreno
+Se esce schiva la schivata prende tutto il danno dell'attacco.
+
+Servitore di marbium, 
+creatura di livello 1 effetto tirando sesce cuore e spada. Scegli la magia e trappola e mettila in mano se escee. Scudo o schiva distruggi questa carta.
+
+Pescatore dell'oasi livello 1 creatura di marbio. Effetto Pesca una carta.
+Se la carta pescata è un mostro di livello 1, bandisci questa carta. Se invece hai pescato una magia una trappola, usala, puoi usarla in questo turlo o posizionarla. Se invece è un mostro di livello 23 bandici entrambi. Questa carta è la carta pescata. Se la magia da trappola con nel nome indicato marbion puoi metterla in mano ed evocare specialmente un mostro di livello uno dalla mano o cimitero.
+
+Ladro di luce, creature di livello 1. Ti rondado se c'è scudo non puoi attaccare in questo turno se esce spada i tuoi mostri possono attaccare più di una volta. Seche cuore o skivata in questo effetto non sortisce alcun effetto.
+Puoi attivare questo effetto una volta per turno
+
+Il sole scotta 
+ una magia. Effetto tiro andato. Esce spada, verdi 20 punti vita, sushi Quora guadagna 20 punti vita 16 8 segno lì fuori di questi 2, i giocatori perdono entrambi 20 punti vita, oppure distruggo una loro carta dal terreno se possibile, se no dalla mano.
+
+Antidolorifico è una magia. 
+Questa carta non può essere attivata al primo turno di entrambi i giocatori. Se non controlli mostri tiro tira un dado: a capo. .
+ Esce simbolo scudo, recupera un mostro dal tuo cimitero con lo scudo più alto di livello 1. Se c'è spada, recupera dal tuo cimitero un mostro con la spada più alta il livello 1 sesce cuore e il tuo versario non può attaccare produttori direttamente. Se c'è schiva recupera il mostro che vuoi purchè di livello 1.
+
+Per giorno cerestiale questa carta non drappola continua 
+quando il tuo avversario lancia dichiara un attacco tirando. 
+Fintanto che questa carta ha coperto attiva sul terreno se esce il risultato schiva bersaglio mostro versa. mostra avversario non può più attaccare. 
+Sesce cuore. Identifica un tuo mostro sul terreno tutti mostri sul tuo terreno con quella tributo guadagnano. +5 d'attacco sei scudo +5 di difesa se esce. Cuore +5 di vita.
+Se un tuo mostro eh, mi è distrutto in battaglia, nonostante sia sotto l'effetto di questa carta, distruggi questa carta.
+
+Ultima chiamata dal cero magia. Ti rondado si esce spado, scudo, scarta una carta, se esce cuore schiva e scana carta.
+
+L'estate più calda del paradiso. Magia continua tutti i tuoi mostri con il nome indicato paradiso, ottengono più un punto a loro. Ogni attributo.
+
+Amico del paradiso, guadagna 10 punti vite sei almeno tra mostri paradiso. Sul terreno.
+
+Allarme temperatura bassa magia. Se il tuo avversario controlla più mostretà il prossimo turno non può evocare. Se il numero di mostri è lo stesso entrambi i giocatori scartano un mostro che decide in loro opponento.
+
+Scudo solenne trappola se il tuo avversario ti attacca direttamente e tirò se c'è spada subisce il danno il tuo avversario. È il tuo vessario può addirittura ritaccare. Se sei cuore guadagna i punti attacco dell'avversario al posto che perderli e interrompi l'attacco. Sei ci scudo o schiva invece annulla soltanto l'attacco?
+
+Il priscialto si è elevato creatura di livello tra.
+Tra mostri da offrire come Tribute stacca non può attaccare direttamente ma nessuno magia nessuno trappola nessun effetto la può bloccare o distruggere soltanto un combattimento può essere mandata al cimitero. Se questa carta vi è distrutta in battaglia, scarta tutta la tua mano. Sei questa carta distrugge? In un unico colpo, il mosto avversario guadagna 5 punti vita.
+
+Guardiamo di marbion. Questa è un colosso. Tenk. 0 attacco solo difesa e vita. Il suo effetto tira un dato esce spada distruggi tutti i tuoi mostri. Se esce cuore questa carta non può essere attaccata per il prossimo turno dell'avversario. Se esce scudo tutti mostri dell'avversario che hanno spada più bassa dallo scudo si distruggono ma se un suo mosto a spada più alta questa carta si distrugge e subisce la spada. Di quel mosto direttamente entro i punti vita.
+
+Soldato l'esercito di marbio nel vello 1 effetto sei mano ai cavalieri dell'esercito di marvion poi. Tributare solo questa carta per avvocarla.
+
+Cavaliere dell'esercito di marbion sei stato avocato tramite l'effetto di soldato dell'esercito di marbion, puoi pescare una carta. Puoi attiva uno di questi effetti? Questa carta è obbligata ad attaccare tutti i turni che ha in campo se questa carta attacca viene distrutta in battaglia, tiro andato spada, torna in vita. Cuore, scudo, scarta una carta, schiva, un ottimo nessun effetto. Torna in vita soltanto una volta per turno.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

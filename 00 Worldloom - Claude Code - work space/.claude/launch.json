@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "worldloom-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "App - HTML - Test",
+      "port": 5173
+    },
+    {
+      "name": "sito-worldloom",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["Sito web - Social/worldloomtcg/serve.mjs", "4321"],
+      "port": 4321
+    }
+  ]
+}

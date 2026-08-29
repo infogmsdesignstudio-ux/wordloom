@@ -1,0 +1,4003 @@
+/* Font del brand (richiesta esplicita utente 2026-08-28): Cinzel per titoli/bottoni/etichette
+   (capitali romani classici, stessa famiglia del logo WORLDLOOM), Cormorant Garamond per il testo
+   di lettura. File .ttf variabili bundlati nel GIOCA.html a file singolo. NON si applica alle carte
+   (Carta.jsx / DettaglioCarta.jsx) — vedi il reset .carta più in basso. */
+@font-face {
+  font-family: "Cinzel";
+  src: url("./assets/fonts/cinzel.ttf") format("truetype");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("./assets/fonts/cormorant-garamond.ttf") format("truetype");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+:root {
+  --wl-display: "Cinzel", Georgia, "Times New Roman", serif;
+  --wl-body: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  /* Font originale delle carte, tenuto qui per il reset che le esclude dal nuovo look. */
+  --wl-carta: -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0b0f1a;
+  color: #e8ecf5;
+  font-family: var(--wl-body);
+}
+
+/* Titoli, bottoni ed etichette dell'interfaccia nel font del logo. I controlli di form
+   (button/select/input/textarea) non ereditano font-family da soli: vanno elencati. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: var(--wl-display);
+}
+
+/* Le carte restano identiche a prima (font di sistema): il nuovo look è solo per l'interfaccia. */
+.carta,
+.carta *,
+.carta-mini,
+.carta-mini * {
+  font-family: var(--wl-carta);
+}
+
+.app {
+  /* 1000px (il vecchio limite) è più stretto di quanto il campo di battaglia riprogettato serva
+     davvero: la sola riga Magia/Trappola+Terreno+pile arriva a ~850px di suo, più il rail (150px) —
+     un tetto a 1000px la faceva sforare e disallineare rispetto alle altre due righe. 1400px lascia
+     spazio vero, coerente con "usa lo spazio orizzontale disponibile" — resta comunque centrato,
+     non infinito, su un monitor molto largo. */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* P0.6 — fit-to-window del tavolo di gioco (piano B, transform:scale).
+   .tavolo-fit esce dal max-width di .app e occupa tutta la larghezza della finestra (full-bleed),
+   così adatta() può far crescere il tavolo oltre i 1400px su schermi grandi; overflow:hidden
+   ritaglia lo spazio che il layout riserva a .tavolo (natH) ma che, scalato, resta vuoto sotto il
+   contenuto visibile — l'altezza reale gliela mette adatta() via style. display:flex + center per
+   tenere .tavolo centrato quando la finestra è più stretta della sua larghezza di progetto.
+   .tavolo ha una larghezza di PROGETTO fissa (--tavolo-w): il layout interno (campo/mano, .row con
+   space-between) resta identico a ogni dimensione di finestra — cambia solo la scala finale via
+   transform (origin top/center → cresce/rimpicciolisce restando centrato). */
+:root {
+  --tavolo-w: 1400px;
+}
+.tavolo-fit {
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  display: flex;
+  justify-content: center;
+  /* NON stirare .tavolo all'altezza (ridotta) di .tavolo-fit: deve tenere la sua altezza naturale
+     di contenuto, è il transform a rimpicciolirlo. Con lo stretch il contenuto sforava il box e
+     veniva ritagliato. */
+  align-items: flex-start;
+}
+.tavolo {
+  width: var(--tavolo-w);
+  flex: 0 0 auto;
+  transform-origin: top center;
+}
+
+.cancello {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: radial-gradient(ellipse at center, #131a2b 0%, #05070c 100%);
+}
+
+.cancello-box {
+  background: #131a2b;
+  border: 1px solid #c9a24b;
+  border-radius: 12px;
+  padding: 36px 30px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(201, 162, 75, 0.15);
+}
+
+.cancello-box h1 {
+  letter-spacing: 4px;
+  color: #c9a24b;
+  font-size: 1.6em;
+  margin: 0 0 6px;
+  font-family: var(--wl-display);
+}
+
+.cancello-box p {
+  color: #8b97b5;
+  font-size: 0.88em;
+  margin-bottom: 20px;
+}
+
+.cancello-box input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #2a3552;
+  background: #0d1424;
+  color: #e8ecf5;
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.cancello-box button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  background: #c9a24b;
+  color: #20160a;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.cancello-errore {
+  color: #e08a8a;
+  font-size: 0.85em;
+  height: 18px;
+  margin-top: 8px;
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-pittogramma {
+  height: auto;
+  max-height: 44px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.app-logo-testo {
+  height: auto;
+  max-height: 30px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.app-mazzo-select {
+  font-family: var(--wl-display);
+  font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: 0.5px;
+  color: #e8ecf5;
+  background: #131a2b;
+  border: 1px solid #2a3552;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* Selettore mazzo custom (cap. richiesta utente 2026-08-28): un solo menu per lato, con miniatura
+   icona dei mazzi salvati (i <select> nativi non mostrano immagini). */
+.app-selettore-mazzo {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.app-selettore-mazzo-bottone {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--wl-display);
+  font-weight: 700;
+  font-size: 1.05em;
+  color: #e8ecf5;
+  background: #131a2b;
+  border: 1px solid #2a3552;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.app-selettore-mazzo-bottone > span:not(.app-selettore-mazzo-freccia) {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-selettore-mazzo-freccia {
+  flex-shrink: 0;
+  color: #8b97b5;
+}
+
+.app-selettore-mazzo-icona {
+  flex-shrink: 0;
+  height: 30px;
+  width: auto;
+  border-radius: 3px;
+  object-fit: contain;
+}
+
+.app-selettore-mazzo-pannello {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: #131a2b;
+  border: 1px solid #2a3552;
+  border-radius: 8px;
+  padding: 4px;
+  max-height: 320px;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+.app-selettore-mazzo-gruppo {
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #7c86a6;
+  padding: 6px 8px 2px;
+}
+
+.app-selettore-mazzo-voce {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 8px;
+  color: #d7dcec;
+  font-size: 0.92em;
+  cursor: pointer;
+  text-align: left;
+}
+
+.app-selettore-mazzo-voce:hover:not(:disabled) {
+  background: #1d2740;
+}
+
+.app-selettore-mazzo-voce:disabled {
+  color: #5c6480;
+  cursor: not-allowed;
+}
+
+
+.errore {
+  color: #e08a8a;
+}
+
+/* Schermata iniziale: solo il logo grande e il popup di scelta modalità, niente configurazione dadi. */
+.schermata-iniziale {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  gap: 6px;
+  padding: 24px 0;
+}
+
+.schermata-iniziale-pittogramma {
+  height: auto;
+  max-height: 120px;
+  width: auto;
+  max-width: 80%;
+  display: block;
+  margin-bottom: 4px;
+  filter: drop-shadow(0 0 22px rgba(201, 162, 75, 0.35));
+}
+
+.schermata-iniziale-logo {
+  height: auto;
+  max-height: 56px;
+  width: auto;
+  max-width: 90%;
+  display: block;
+  margin-bottom: 28px;
+}
+
+.schermata-iniziale-pop {
+  background: #131a2b;
+  border: 1px solid #2a3552;
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.schermata-iniziale-btn {
+  position: relative;
+  padding: 16px 18px;
+  border-radius: 10px;
+  border: 1px solid #2a3552;
+  background: #18233c;
+  color: #e8ecf5;
+  font-weight: bold;
+  font-size: 1.05em;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.schermata-iniziale-btn:hover:not(:disabled) {
+  border-color: #c9a24b;
+  transform: translateY(-1px);
+}
+
+.schermata-iniziale-btn-ia {
+  background: #c9a24b;
+  border-color: #c9a24b;
+  color: #20160a;
+}
+
+.schermata-iniziale-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.schermata-iniziale-badge {
+  display: block;
+  font-size: 0.6em;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  color: #8b97b5;
+}
+
+.schermata-iniziale-mazzo {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85em;
+  color: #8b97b5;
+}
+
+/* Lancio della moneta (cap. UX Addendum M, validato su demo_lancio_moneta.html): prima cosa in
+   assoluto prima di ogni nuova partita — scegli Logo o Pittogramma, poi la moneta gira in 3D. */
+.lancio-moneta-stage {
+  background: #131a2b;
+  border: 1px solid #2a3552;
+  border-radius: 14px;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 380px;
+  min-height: 300px;
+  perspective: 900px;
+}
+
+.lancio-moneta-scelta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.lancio-moneta-titolo {
+  font-size: 0.8em;
+  color: #c9a24b;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.lancio-moneta-bottoni {
+  display: flex;
+  gap: 14px;
+}
+
+.lancio-moneta-btn {
+  width: 150px;
+  padding: 16px 12px;
+  border-radius: 10px;
+  border: 1px solid #2a3552;
+  background: #18233c;
+  color: #e8ecf5;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.72em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.lancio-moneta-btn:hover {
+  border-color: #c9a24b;
+  transform: translateY(-2px);
+}
+
+.lancio-moneta-btn-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+.lancio-moneta-btn-pittogramma {
+  display: block;
+  height: 32px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.lancio-moneta-moneta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.lancio-moneta-moneta {
+  width: 110px;
+  height: 110px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.lancio-moneta-faccia {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  background: radial-gradient(circle at 35% 30%, #e8d4a8, #c9a24b 70%, #8a6d2e);
+  border: 3px solid #6b5423;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35);
+  padding: 18px;
+}
+
+.lancio-moneta-faccia img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lancio-moneta-faccia-pittogramma {
+  transform: rotateY(180deg);
+}
+
+.lancio-moneta-girando {
+  animation: lancio-moneta-gira 2.1s cubic-bezier(0.2, 0.6, 0.35, 1) forwards;
+}
+
+@keyframes lancio-moneta-gira {
+  0% {
+    transform: rotateY(0deg) translateY(0);
+  }
+  10% {
+    transform: rotateY(360deg) translateY(-30px);
+  }
+  25% {
+    transform: rotateY(900deg) translateY(-45px);
+  }
+  45% {
+    transform: rotateY(1620deg) translateY(-30px);
+  }
+  65% {
+    transform: rotateY(2160deg) translateY(-10px);
+  }
+  82% {
+    transform: rotateY(2520deg) translateY(-2px);
+  }
+  100% {
+    transform: rotateY(var(--angolo-finale)) translateY(0);
+  }
+}
+
+.lancio-moneta-esito {
+  font-size: 0.85em;
+  color: #8b97b5;
+  text-align: center;
+  max-width: 300px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: lancio-moneta-esito-comparsa 0.3s ease;
+}
+
+@keyframes lancio-moneta-esito-comparsa {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.lancio-moneta-esito b {
+  color: #c9a24b;
+}
+
+.lancio-moneta-esito-vinto b {
+  color: #7fc98f;
+}
+
+.lancio-moneta-esito-perso b {
+  color: #e08a8a;
+}
+
+.lancio-moneta-continua {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #c9a24b;
+  background: #c9a24b;
+  color: #20160a;
+  font-weight: bold;
+  font-size: 0.95em;
+  cursor: pointer;
+}
+
+.carta {
+  width: 100%;
+  border: 1px solid #2a3552;
+  border-radius: 10px;
+  background: #131a2b;
+  padding: 12px;
+}
+
+.carta-cliccabile {
+  cursor: pointer;
+}
+
+.carta-selezionata {
+  border-color: #c9a24b;
+  box-shadow: 0 0 0 2px rgba(201, 162, 75, 0.55);
+}
+
+/* Complete card: l'illustrazione gia' impaginata sostituisce la resa HTML della carta */
+.carta.carta-immagine {
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  aspect-ratio: 750 / 1050;
+}
+
+.carta.carta-immagine img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 9px;
+}
+
+/* Nessuna Complete Card disponibile (illustrazione non ancora fornita, cap. richiesta utente
+   2026-08-13): stessa identica proporzione 5:7 di .carta-immagine, così occupa lo stesso spazio delle
+   carte illustrate accanto invece di allungarsi quanto serve. Struttura a fasce banner/corpo/piede che
+   imita quella di una Complete Card vera (banner colorato per Archetipo, corpo con l'effetto, piede
+   con le statistiche) invece del blocco di testo libero di prima. */
+.carta.carta-senza-immagine {
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 750 / 1050;
+  display: flex;
+  flex-direction: column;
+  background: #0d1424;
+  border-radius: 9px;
+}
+
+.carta-senza-immagine-banner {
+  flex: 0 0 auto;
+  padding: 7px 8px;
+  font-weight: bold;
+  font-size: 0.85em;
+  color: #0d1424;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.carta-senza-immagine-corpo {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.carta-senza-immagine-corpo .carta-arch {
+  margin-top: 0;
+}
+
+.carta-senza-immagine-piede {
+  flex: 0 0 auto;
+  padding: 6px 8px;
+  border-top: 1px solid #2a3552;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.carta-senza-immagine-piede .carta-attacchi {
+  margin-top: 4px;
+}
+
+.carta-nome {
+  font-weight: bold;
+}
+
+.carta-arch {
+  font-size: 0.8em;
+  color: #9aa5c0;
+  margin: 4px 0;
+}
+
+.carta-fx {
+  font-size: 0.8em;
+  margin: 6px 0;
+  line-height: 1.35;
+}
+
+.carta-fx-etichetta {
+  display: block;
+  font-size: 0.75em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #8b97b5;
+}
+
+.carta-fx-ruolo {
+  color: #c9d0e0;
+}
+
+.carta-fx-carta {
+  color: #c9a24b;
+}
+
+.carta-stats {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.carta-attacchi {
+  font-size: 0.75em;
+  color: #9aa5c0;
+  margin-top: 6px;
+}
+
+/* Versione compatta della carta, usata negli slot del campo: si vede per intero (niente ritaglio),
+   le statistiche live restano in una fascia sottile sotto l'immagine perché possono cambiare dal vivo. */
+.carta-mini {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #2a3552;
+  border-radius: 5px;
+  background: #0a0e18;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carta-mini-img {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.carta-mini-zoom {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 3;
+  width: 16px;
+  height: 16px;
+  line-height: 14px;
+  padding: 0;
+  border: 1px solid rgba(232, 236, 245, 0.5);
+  border-radius: 50%;
+  background: rgba(10, 14, 24, 0.75);
+  color: #e8ecf5;
+  font-size: 0.6em;
+  font-style: italic;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.carta-mini-zoom:hover {
+  background: #c9a24b;
+  color: #1a1206;
+  border-color: #c9a24b;
+}
+
+/* Esito del combattimento (cap. 11): numero fluttuante sopra la carta, al posto del vecchio popup
+   "Calcola i danni". Wrapper a parte dal numero animato: la controrotazione (carte avversarie
+   capovolte) e l'animazione di float agiscono su elementi diversi, così non si sovrascrivono. */
+.carta-esito {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.carta-capovolta .carta-esito {
+  transform: rotate(180deg);
+}
+
+.carta-esito-numero {
+  font-weight: 900;
+  font-size: 1.5em;
+  text-shadow: 0 0 8px currentColor, 0 1px 3px rgba(0, 0, 0, 0.85);
+  /* idea 59: durata dalla sorgente unica src/game/tempi.js (TEMPI.numeroDanno), iniettata su :root
+     da App.jsx. Fallback = valore storico, copre il primo paint. */
+  animation: danno-flottante var(--t-numero-danno, 1.15s) ease-out forwards;
+}
+
+.carta-esito-danno {
+  color: #ff5a5a;
+}
+
+.carta-esito-pareggio {
+  color: #e8a23d;
+}
+
+.carta-esito-schivata {
+  color: #5adf7d;
+}
+
+/* Animazione di attacco (cap. 11): la carta attaccante balza avanti verso il campo avversario e
+   torna subito indietro. Le carte avversarie sono sempre ruotate 180° (.carta-capovolta): la
+   keyframe per "avversario" include rotate(180deg) in ogni fotogramma per non perdere il
+   capovolgimento mentre anima (le due proprietà transform in classi diverse non si sommerebbero,
+   vince solo l'ultima applicata) — translateY(-Npx) dentro un rotate(180deg) produce comunque uno
+   spostamento verso il basso sullo schermo, cioè verso il campo di chi guarda (te).
+   Sposta il verso "in avanti" verso l'avversario invece che verso di te). */
+/* idea 59: durata del balzo dalla sorgente unica src/game/tempi.js (TEMPI.balzo), iniettata su :root
+   da App.jsx (var --t-balzo). Fallback = valore storico. */
+.carta-attacca-io {
+  animation: attacco-balzo-io var(--t-balzo, 0.55s) ease-in-out;
+  position: relative;
+  z-index: 20;
+}
+
+.carta-attacca-avversario {
+  animation: attacco-balzo-avversario var(--t-balzo, 0.55s) ease-in-out;
+  position: relative;
+  z-index: 20;
+}
+
+@keyframes attacco-balzo-io {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  35%,
+  55% {
+    transform: translateY(-38px) scale(1.12);
+  }
+}
+
+@keyframes attacco-balzo-avversario {
+  0%,
+  100% {
+    transform: rotate(180deg) translateY(0) scale(1);
+  }
+  35%,
+  55% {
+    transform: rotate(180deg) translateY(-38px) scale(1.12);
+  }
+}
+
+/* Titolo di fase animato (cap. UX Sezione 2): fascia + testo al centro del campo che annunciano il
+   cambio di fase. Timing preso 1:1 da demo_titolo_fase.html su una durata totale di 1.75s: fascia
+   entra 0→500ms (transform) / 0→350ms (opacità), tiene ferma fino a 1250ms, poi esce con transform
+   1250→1700ms e opacità 1350→1750ms (100ms di ritardo, esattamente come nella demo). Il testo appare
+   a 260ms, tiene fino a 1250ms, sparisce entro 1550ms. Due @keyframes separati per la fascia
+   (transform e opacità hanno durate/curve diverse, non si possono esprimere con un solo
+   timing-function) più uno per il testo.
+
+   Idea 59 Fase 5: la DURATA non è più scritta due volte (qui e in TitoloFase.jsx) — arriva da
+   src/game/tempi.js via le custom property --t-banner-fase / --t-banner-vespro iniettate da
+   iniettaTempiCss(). Il fallback nelle var() copre il primo paint prima che l'effetto giri.
+
+   Variante "-lungo" (Vespro, P2.1 "restare a schermo più a lungo, segna il cambio turno"): durata
+   totale 2600ms invece di 1750ms, ma con entrata e uscita IDENTICHE in millisecondi assoluti — gli
+   850ms in più sono tutti di tenuta. Per questo servono keyframes separati con le percentuali
+   ricalcolate su 2600 (500ms=19.23%, tenuta fino a 2100ms=80.77%, uscita transform fino a
+   2550ms=98.08%; opacità fascia 350ms=13.46% e sfuma 2200ms=84.62%→2600ms; testo 260ms=10%,
+   560ms=21.54%, tenuta fino a 80.77%, sparito a 2400ms=92.31%). Riusare le stesse @keyframes con una
+   durata più lunga avrebbe riscalato TUTTO, rallentando l'entrata invece di tenere fermo il cartello. */
+.titolo-fase-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+}
+
+.titolo-fase-fascia {
+  position: absolute;
+  top: 38%;
+  left: 0;
+  right: 0;
+  height: 92px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 75, 0.32) 30%, rgba(201, 162, 75, 0.32) 70%, transparent);
+  filter: saturate(0.45) brightness(0.9);
+  animation: titolo-fase-fascia-transform var(--t-banner-fase, 1750ms) forwards,
+    titolo-fase-fascia-opacita var(--t-banner-fase, 1750ms) forwards;
+}
+
+.titolo-fase-fascia-lungo {
+  animation: titolo-fase-fascia-transform-lungo var(--t-banner-vespro, 2600ms) forwards,
+    titolo-fase-fascia-opacita-lungo var(--t-banner-vespro, 2600ms) forwards;
+}
+
+@keyframes titolo-fase-fascia-transform {
+  0% {
+    transform: translateY(-50%) translateX(-130%);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.25, 1);
+  }
+  28.57% {
+    transform: translateY(-50%) translateX(0%);
+    animation-timing-function: linear;
+  }
+  71.43% {
+    transform: translateY(-50%) translateX(0%);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0.4);
+  }
+  97.14%,
+  100% {
+    transform: translateY(-50%) translateX(130%);
+  }
+}
+
+@keyframes titolo-fase-fascia-opacita {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease;
+  }
+  20% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  77.14% {
+    opacity: 1;
+    animation-timing-function: ease;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Variante lunga (Vespro): stessi millisecondi assoluti di entrata/uscita su un totale di 2600ms. */
+@keyframes titolo-fase-fascia-transform-lungo {
+  0% {
+    transform: translateY(-50%) translateX(-130%);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.25, 1);
+  }
+  19.23% {
+    transform: translateY(-50%) translateX(0%);
+    animation-timing-function: linear;
+  }
+  80.77% {
+    transform: translateY(-50%) translateX(0%);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0.4);
+  }
+  98.08%,
+  100% {
+    transform: translateY(-50%) translateX(130%);
+  }
+}
+
+@keyframes titolo-fase-fascia-opacita-lungo {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease;
+  }
+  13.46% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  84.62% {
+    opacity: 1;
+    animation-timing-function: ease;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.titolo-fase-testo {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 56;
+  animation: titolo-fase-testo-opacita var(--t-banner-fase, 1750ms) forwards;
+}
+
+.titolo-fase-testo-lungo {
+  animation: titolo-fase-testo-opacita-lungo var(--t-banner-vespro, 2600ms) forwards;
+}
+
+@keyframes titolo-fase-testo-opacita {
+  0%,
+  14.86% {
+    opacity: 0;
+    animation-timing-function: ease;
+  }
+  32% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  71.43% {
+    opacity: 1;
+    animation-timing-function: ease;
+  }
+  88.57%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes titolo-fase-testo-opacita-lungo {
+  0%,
+  10% {
+    opacity: 0;
+    animation-timing-function: ease;
+  }
+  21.54% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  80.77% {
+    opacity: 1;
+    animation-timing-function: ease;
+  }
+  92.31%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Riga di attribuzione (idea 59 Fase 5, P2.4): dice di chi è il turno che il cartello sta
+   annunciando. È l'UNICA differenza fra il banner del mio turno e quello dell'avversario — stessa
+   posizione, stessa tipografia, stessa durata, e mai capovolto (è un overlay a schermo intero letto
+   da chi guarda, non una carta nella metà avversaria). Il valore arriva da passo.chiave, congelata
+   dal reducer: durante il Vespro il turno nello stato è già girato. */
+.titolo-fase-attribuzione {
+  font-size: 0.56em;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(232, 236, 245, 0.55);
+  margin-bottom: 5px;
+}
+
+.titolo-fase-numero {
+  font-size: 0.68em;
+  letter-spacing: 2px;
+  color: #c9a24b;
+  margin-bottom: 4px;
+}
+
+.titolo-fase-nome {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #e8ecf5;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7);
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Animazione di lancio dado (cap. 9/15): il dado rotola sul campo fino a fermarsi sul risultato,
+   resta visibile un istante, poi sparisce da solo — il gioco intanto è già proseguito nello stato
+   sottostante (nessuna pausa, come per gli esiti di combattimento). */
+.lancio-dado-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  pointer-events: none;
+  z-index: 60;
+  animation: lancio-dado-scompare 2.3s ease-in forwards;
+}
+
+/* Striscia della catena di effetti (cap. catena.js, redesign 2026-08-13): a differenza dei pop-up
+   modali (.modale-sfondo, sfondo quasi opaco che copre tutto), questa resta un pannello fluttuante
+   SENZA backdrop — il campo di gioco sotto deve restare visibile e cliccabile, perché le carte
+   eleggibili si toccano direttamente lì (.campo-slot-trappola-catena-eleggibile), non da una lista qui. */
+.catena-striscia-overlay {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 94vw;
+  background: rgba(10, 14, 24, 0.93);
+  border: 1px solid #c9a24b;
+  border-radius: 12px;
+  padding: 10px 16px 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+}
+
+.catena-striscia-titolo {
+  color: #e8ecf5;
+  font-size: 0.85em;
+  text-align: center;
+}
+
+.catena-striscia-carte {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  overflow-x: auto;
+  max-width: 100%;
+  padding-bottom: 2px;
+}
+
+.catena-striscia-carta {
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #2a3552;
+}
+
+.catena-striscia-carta-piccola {
+  width: 38px;
+  height: 53px;
+  opacity: 0.7;
+}
+
+.catena-striscia-carta-grande {
+  width: 108px;
+  height: 151px;
+  border: 2px solid #c9a24b;
+  box-shadow: 0 0 16px rgba(201, 162, 75, 0.75);
+}
+
+.catena-striscia-istruzioni {
+  color: #9aa5c0;
+  font-size: 0.78em;
+  text-align: center;
+  margin: 0;
+}
+
+/* Bottone "Risolvi" con anello di countdown (cap. UX Sezione 7, sostituisce il vecchio "Lascia
+   proseguire"): tap esplicito o scadenza del timer hanno lo stesso effetto. Sempre visibile durante
+   una finestra di priorità, anche a zero carte eleggibili. */
+.catena-risolvi-bottone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  background: #18233c;
+  color: #e8ecf5;
+  font-size: 0.68em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.catena-risolvi-anello {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.catena-risolvi-anello-sfondo {
+  fill: none;
+  stroke: #2a3552;
+  stroke-width: 3;
+}
+
+.catena-risolvi-anello-progresso {
+  fill: none;
+  stroke: #c9a24b;
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+/* Scenografia di risoluzione di un frame (cap. UX Sezione 7, Pezzo 2): numero d'ordine LIFO + esito
+   (✓ risolta / ✕ annullata) sulle mini-carte della striscia, e la carta ingrandita al centro durante
+   l'animazione della linea di connessione verso il bersaglio. */
+.catena-striscia-carta-wrap {
+  position: relative;
+  display: flex;
+}
+
+.catena-striscia-carta-bersaglio {
+  border-color: #d95555;
+  box-shadow: 0 0 12px rgba(217, 85, 85, 0.8);
+}
+
+.catena-striscia-esito {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05em;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+}
+
+.catena-striscia-esito-risolta {
+  color: #c9a24b;
+}
+
+.catena-striscia-esito-annullata {
+  color: #d95555;
+}
+
+.catena-striscia-ordine {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  font-size: 0.62em;
+  color: #e8ecf5;
+  background: rgba(10, 14, 24, 0.9);
+  border-radius: 4px;
+  padding: 0 3px;
+  text-shadow: none;
+}
+
+.catena-risoluzione-carta {
+  position: relative;
+}
+
+.catena-risoluzione-ordine {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #c9a24b;
+  color: #14181f;
+  font-size: 0.78em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.catena-risoluzione-annullata {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #d95555;
+  font-weight: bold;
+  font-size: 0.85em;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  background: rgba(10, 14, 24, 0.75);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Linea di connessione dalla carta in risoluzione (centro schermo) al suo bersaglio reale sul campo
+   (cap. UX Sezione 7, Pezzo 2): un punto viaggia lungo il path vero (getPointAtLength in
+   CatenaStriscia.jsx), non un'interpolazione lineare approssimata. */
+.catena-linea-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 55;
+  pointer-events: none;
+}
+
+.catena-linea-path {
+  fill: none;
+  stroke: #c9a24b;
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+  opacity: 0.85;
+}
+
+.catena-linea-punto {
+  fill: #d95555;
+  filter: drop-shadow(0 0 4px rgba(217, 85, 85, 0.9));
+}
+
+/* Coda di attivazioni (cap. UX Sezione 6, NotificaEffetto.jsx): mini-carte nella striscia in alto
+   (che riusa .catena-striscia-overlay/-carte già esistenti — coerenza visiva totale) con stato
+   attesa/attiva/risolta, più lo zoom centrale non bloccante per quella in corso di lettura. */
+.attivazione-mini-carta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attivazione-mini-carta-attiva .catena-striscia-carta {
+  border-color: #c9a24b;
+  box-shadow: 0 0 10px rgba(201, 162, 75, 0.7);
+  transform: scale(1.1);
+}
+
+.attivazione-mini-carta-risolta .catena-striscia-carta {
+  opacity: 0.3;
+}
+
+.attivazione-mini-carta-spunta {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c9a24b;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+/* Zoom centrale: overlay a piena pagina ma non bloccante (pointer-events:none, nessun backdrop) — il
+   campo sotto resta visibile e cliccabile per tutta la sequenza, a differenza del vecchio pop-up
+   modale che sostituisce. */
+.attivazione-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.attivazione-zoom-carta {
+  width: 120px;
+  height: 168px;
+  border-radius: 8px;
+  border: 1px solid #c9a24b;
+  background: linear-gradient(160deg, #243247, #141a22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  animation: attivazione-zoom-comparsa 0.25s ease;
+  overflow: hidden;
+}
+
+@keyframes attivazione-zoom-comparsa {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.attivazione-zoom-immagine {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.attivazione-zoom-titolo {
+  font-size: 0.8em;
+  color: #c9a24b;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.attivazione-zoom-testo {
+  font-size: 0.68em;
+  color: #9aa5c0;
+  line-height: 1.4;
+}
+
+/* VFX source→target delle Magie con bersaglio (VfxMagia.jsx): stesso accento dorato già usato per la
+   catena, colore neutro unico indipendentemente da alleato/nemico. left/top sono coordinate reali di
+   viewport (getBoundingClientRect), position:fixed le usa direttamente. */
+.vfx-magia-orbe {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f6e6b8 0%, #c9a24b 60%, rgba(201, 162, 75, 0) 100%);
+  box-shadow: 0 0 14px 4px rgba(201, 162, 75, 0.8);
+  transform: translate(-50%, -50%);
+  transition: left 0.55s cubic-bezier(0.3, 0, 0.2, 1), top 0.55s cubic-bezier(0.3, 0, 0.2, 1);
+  z-index: 350;
+  pointer-events: none;
+}
+
+.vfx-magia-orbe-impatto {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform: translate(-50%, -50%) scale(2.6);
+  opacity: 0;
+}
+
+@keyframes lancio-dado-scompare {
+  0%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.lancio-dado-dado {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--colore-dado, #e8c96f);
+  box-shadow:
+    0 0 24px var(--colore-dado, #e8c96f),
+    0 4px 16px rgba(0, 0, 0, 0.65);
+}
+
+.lancio-dado-ottagono {
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.lancio-dado-esagono {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.lancio-dado-rotola {
+  animation: lancio-dado-gira 0.72s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.lancio-dado-fermo {
+  animation: lancio-dado-assesta 0.4s ease-out;
+}
+
+@keyframes lancio-dado-gira {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes lancio-dado-assesta {
+  0% {
+    transform: scale(1.4) rotate(0deg);
+  }
+  60% {
+    transform: scale(0.9) rotate(6deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.lancio-dado-simbolo {
+  font-size: 1.9em;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.85));
+}
+
+.lancio-dado-etichetta {
+  font-size: 0.85em;
+  font-weight: 800;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.02em;
+  background: rgba(5, 7, 13, 0.55);
+  padding: 2px 10px;
+  border-radius: 8px;
+}
+
+/* Le carte dell'avversario (in campo e in mano) sono capovolte: le vede lui, non tu — come sedersi
+   dall'altra parte di un tavolo vero. L'iconcina ℹ resta invece dritta e leggibile: apre comunque un
+   popup normale, non ha senso che sia a testa in giù pure lei. */
+.carta-capovolta {
+  transform: rotate(180deg);
+}
+
+.carta-capovolta .carta-mini-zoom {
+  transform: rotate(180deg);
+}
+
+.carta-mini-liv {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: #2a3552;
+  color: #e8ecf5;
+  font-size: 0.55em;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 0 4px;
+}
+
+/* Icona "bloccato" (cap. richiesta utente): oggi solo per una creatura stordita ("Aura di Marbion",
+   non può attaccare in questo turno) — angolo libero in basso a sinistra, sopra tutto il resto tranne
+   il numero fluttuante dell'esito combattimento (z-index 4). */
+/* ===== Etichetta stat a fianco dello slot (cap. P3.3) =====
+   La carta nello slot è ora tutta illustrazione (come Magia/Trappola/Cimitero); le stat e i simboli
+   di stato stanno qui, in una fascia larga quanto lo slot e alta pochi px. Posizione assoluta =
+   nessun impatto sulla griglia (non tocca gap/equidistanza/nudge retrovia): si infila nel varco
+   diagonale libero (prima linea = colonne 1/3/5, retrovia = colonne 2/4, sfalsate). */
+.slot-etichetta {
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1px;
+  padding: 1px 2px;
+  background: rgba(5, 7, 13, 0.92);
+  border: 1px solid rgba(201, 162, 75, 0.35);
+  border-radius: 3px;
+  font-size: 0.46rem;
+  font-weight: bold;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: slot-etichetta-accendi 0.45s ease-out both;
+}
+/* Sotto per la prima linea, sopra per la retrovia (dal punto di vista di chi possiede la fila). */
+.slot-etichetta-prima {
+  top: calc(100% + 2px);
+}
+.slot-etichetta-retro {
+  bottom: calc(100% + 2px);
+}
+/* Lato avversario: ruota 180° (rivolta verso di lui, cap. P0.9) e l'ancora si inverte — la sua
+   "sotto" è il mio "sopra" a schermo. */
+.campo-zona-specchiata .slot-etichetta {
+  transform: rotate(180deg);
+}
+.campo-zona-specchiata .slot-etichetta-prima {
+  top: auto;
+  bottom: calc(100% + 2px);
+}
+.campo-zona-specchiata .slot-etichetta-retro {
+  bottom: auto;
+  top: calc(100% + 2px);
+}
+.slot-etichetta-stato {
+  min-width: 0.7em;
+  text-align: center;
+}
+/* "Si spengono" mentre la carta è in volo (evocazione/spostamento/morte): l'etichetta resta ferma e
+   buia finché la creatura non è di nuovo a posto. */
+.slot-etichetta-spenta {
+  opacity: 0;
+}
+.slot-etichetta-su {
+  color: #7fc98f;
+}
+.slot-etichetta-giu {
+  color: #e08a8a;
+}
+@keyframes slot-etichetta-accendi {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.carta-mini-nome {
+  flex: 1 1 auto;
+  min-height: 0;
+  font-size: 0.62em;
+  font-weight: bold;
+  line-height: 1.15;
+  margin-top: 12px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* Attacco/Parata alterati da un Potenziamento rispetto al valore stampato in carta: verde se in
+   positivo, rosso se in negativo, colore normale (ereditato) se invariati (usato dal ramo "carta
+   senza illustrazione" di Carta.jsx — nel campo le stat sono in .slot-etichetta). */
+.carta-stat-alterata-su {
+  color: #7fc98f;
+}
+
+.carta-stat-alterata-giu {
+  color: #e08a8a;
+}
+
+.scaffolding {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.scaffolding > div {
+  border: 1px solid #2a3552;
+  border-radius: 10px;
+  padding: 12px 16px;
+  background: #0d1424;
+}
+
+/* Registro e Dadi vivono in un cassetto: fuori dal flusso della pagina finché non lo apri,
+   così non aggiungono mai altezza fissa sotto il campo (cap. UX). */
+.btn-registro {
+  margin-left: auto;
+}
+
+/* Bottone Opzioni (cap. PannelloOpzioni.jsx, richiesta utente 2026-08-15): fisso in alto a destra,
+   sempre visibile sia nella schermata iniziale sia durante la partita, sopra a tutto il resto. */
+.opzioni-bottone {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 600;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 1px solid #2a3552;
+  background: rgba(19, 26, 43, 0.9);
+  color: #e8ecf5;
+  font-size: 0.8em;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.opzioni-bottone:hover {
+  border-color: #c9a24b;
+}
+
+.opzioni-riga {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0;
+  font-size: 0.9em;
+}
+
+.opzioni-switch {
+  border: 1px solid #2a3552;
+  border-radius: 20px;
+  background: #0d1424;
+  color: #9aa5c0;
+  padding: 6px 14px;
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.opzioni-switch-attivo {
+  border-color: #7fc98f;
+  color: #7fc98f;
+  background: rgba(127, 201, 143, 0.12);
+}
+
+/* Conferma "Ricomincia" in-linea (niente confirm() nativo) */
+.opzioni-conferma {
+  display: flex;
+  gap: 8px;
+}
+
+.opzioni-switch-pericolo {
+  border-color: #a05050;
+  color: #f0d0d0;
+  background: #5a2323;
+}
+
+.scaffolding-drawer-sfondo {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 7, 13, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 40;
+}
+
+.scaffolding-drawer-sfondo.aperto {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scaffolding-drawer {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+  width: min(100%, 1000px);
+  max-height: 72vh;
+  overflow-y: auto;
+  background: #0b0f1a;
+  border: 1px solid #2a3552;
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 -14px 40px rgba(0, 0, 0, 0.55);
+  transition: transform 0.25s ease;
+  z-index: 41;
+  padding: 0 16px 16px;
+}
+
+.scaffolding-drawer.aperto {
+  transform: translate(-50%, 0);
+}
+
+.scaffolding-drawer-testa {
+  position: sticky;
+  top: 0;
+  background: #0b0f1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0 10px;
+  border-bottom: 1px solid #2a3552;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #c9a24b;
+}
+
+.scaffolding-drawer-testa button {
+  background: none;
+  border: none;
+  color: #8b97b5;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+.scaffolding-drawer-testa button:hover {
+  color: #e8ecf5;
+}
+
+.azioni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.azioni button {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid #2a3552;
+  background: #18233c;
+  color: #e8ecf5;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-conferma-tributo {
+  background: #c9a24b !important;
+  border-color: #c9a24b !important;
+  color: #20160a !important;
+}
+
+.messaggio {
+  font-size: 0.85em;
+  color: #c9a24b;
+  min-height: 1.2em;
+}
+
+.campo {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #2a3552;
+  border-radius: 14px;
+  padding: calc(12px * var(--campo-scale, 1)) calc(10px * var(--campo-scale, 1));
+  margin: 10px 0;
+  background-color: #05070d;
+  background-image:
+    radial-gradient(ellipse at 50% 38%, rgba(120, 90, 200, 0.22), transparent 60%),
+    radial-gradient(ellipse at 15% 85%, rgba(50, 90, 160, 0.18), transparent 55%),
+    radial-gradient(1.6px 1.6px at 20px 30px, rgba(255, 255, 255, 0.9), transparent 60%),
+    radial-gradient(1.2px 1.2px at 90px 80px, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 150px 40px, rgba(255, 255, 255, 0.8), transparent 60%),
+    radial-gradient(1px 1px at 60px 130px, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.3px 1.3px at 170px 150px, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1px 1px at 110px 10px, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1.2px 1.2px at 5px 100px, rgba(255, 255, 255, 0.6), transparent 60%);
+  background-repeat: no-repeat, no-repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat;
+  background-size: 100% 100%, 100% 100%, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px;
+}
+
+/* ===== Campo: layout compatto, dimensione carta fissa (ispirato a Magic/Yu-Gi-Oh) =====
+   Regola fissa: TUTTI gli slot del campo (creature, Terreno, Magie/Trappole coperte, Cimitero,
+   Worldloom, Imprevisti) usano sempre la stessa dimensione e la stessa proporzione 5:7 della carta
+   vera. Mai uno slot "compatto"/più piccolo per le pile di riferimento: stessa grandezza per tutti.
+
+   --campo-scale (redesign campo di battaglia 2026-08-27, bozza confermata "v11" — vedi mockup
+   pubblicato in sessione, poi scalato proporzionalmente e integrato invariato): il gioco si gioca
+   sempre in orizzontale, e le due zone (avversario + mia) devono stare INSIEME in uno schermo
+   landscape senza scroll verticale tra loro, anche sul più piccolo dei device di riferimento
+   (iPhone SE, 667x375 CSS px). Su desktop/schermi alti resta 1 (nessun cambiamento): TUTTE le
+   dimensioni del campo (slot, cerchi del rail, gap, margini) sono espresse come "valore v11 *
+   var(--campo-scale)" — un solo numero da aggiustare, non un redesign, esattamente come il
+   transform:scale() della bozza. Il breakpoint usa orientation:landscape + max-height (non
+   max-width): è l'ALTEZZA disponibile il vincolo vero su un telefono in landscape, non la
+   larghezza (che di solito abbonda). */
+:root {
+  --campo-scale: 1;
+  --slot-w: calc(83px * var(--campo-scale));
+  --slot-h: calc(116px * var(--campo-scale));
+}
+
+/* --campo-scale resta a 1: il "fit to window" del campo è passato a un vero transform:scale() su
+   .tavolo (App.jsx, adatta() / P0.6, piano B) — misura il contenuto reale e la finestra e scala
+   TUTTO il tavolo insieme (campo + rail + mano + titoli + bottoni), non solo le parti espresse in
+   var(--campo-scale). Il vecchio @media (max-height:500px) è stato rimosso: copriva un caso solo,
+   ignorava la larghezza, e lasciava comunque fuori la "cornice" non scalabile. Le tante regole
+   calc(... * var(--campo-scale)) qui sotto restano innocue (moltiplicano per 1) — non vale la pena
+   toccarle una per una, il transform le ingloba tutte. */
+
+.campo-zona {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(6px * var(--campo-scale));
+  border-radius: 10px;
+  padding: calc(5px * var(--campo-scale)) calc(6px * var(--campo-scale));
+  transition: box-shadow 0.35s, background 0.35s;
+}
+
+/* Sfondo campo di battaglia (cap. editor mazzi): z-index negativo così dipinge SOTTO il rail/field
+   in-flow di .campo-zona (che sono contenuto normale, non posizionato — per le regole di stacking
+   CSS un discendente positioned con z-index negativo dipinge prima del contenuto in-flow dello
+   stesso contesto) ma sopra lo sfondo stellato dell'antenato .campo. border-radius ereditato dal
+   genitore, altrimenti gli angoli dell'immagine sporgerebbero oltre quelli arrotondati della zona. */
+.campo-zona-sfondo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+.campo-attivo {
+  background: rgba(255, 178, 102, 0.06);
+  box-shadow: 0 0 0 1px rgba(255, 178, 102, 0.5), 0 0 26px rgba(255, 178, 102, 0.25);
+}
+
+.campo-riga {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  margin: 2px 0;
+}
+
+/* ===== Griglia campo di battaglia — bozza "v11" invariata, solo scalata (vedi --campo-scale sopra) =====
+   Tre righe (.field, una sotto l'altra) condividono la stessa griglia a 5 colonne di slot: prima
+   linea occupa le colonne 1-3-5, retrovia si incastra sfalsata nelle colonne 2-4 (nei "varchi" tra
+   le creature davanti, non allineata sotto), Magia/Trappola usa tutte e 5. Ogni riga (.row) ha
+   anche una coppia di pile di riferimento sulla destra (per l'avversario, a sinistra — l'ordine è
+   già invertito lato JS in Campo.jsx). Regola permanente invariata: tutti gli slot restano alla
+   stessa dimensione (var(--slot-w)/--slot-h) — qui cambia solo QUANTI slot ci sono per riga, mai
+   la loro grandezza. */
+.field {
+  /* flex:1 (mancava): senza, .field si restringeva al solo contenuto (le righe), lasciando vuoto
+     tutto lo spazio rimanente dentro .campo-zona a destra — trovato dal vivo (tanto sfondo blu
+     inutilizzato). Ora riempie tutta la larghezza rimasta a fianco del rail, e .row{justify-content:
+     space-between} può davvero distribuire creature/pile su tutta quella larghezza invece che
+     restare compresso. */
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: calc(0.75rem * var(--campo-scale)) calc(1.1rem * var(--campo-scale));
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.5rem * var(--campo-scale));
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(0.4rem * var(--campo-scale));
+  justify-content: space-between;
+}
+
+.campo-creature-griglia {
+  display: grid;
+  grid-template-columns: repeat(5, var(--slot-w));
+  column-gap: calc(40px * var(--campo-scale));
+  /* dense: senza, il posizionamento automatico di CSS Grid non "torna indietro" a riempire una
+     colonna già superata dal cursore — la retrovia (colonne 2 e 4, ma nel markup dopo la prima
+     linea che ha già occupato le colonne 1-3-5) finiva su una seconda riga implicita invece di
+     stare sulla stessa riga, raddoppiando l'altezza della griglia. Trovato dal vivo (134px invece
+     di 67px attesi), non solo teorico. */
+  grid-auto-flow: dense;
+}
+
+/* La retrovia sale leggermente verso la prima linea (bozza v11: -8px a scala 1) — solo le creature,
+   mai la riga intera (che trascinerebbe con sé anche Cimitero/Esilio, rompendo l'equidistanza
+   verticale tra le tre coppie di pile e rischiando di sovrapporle agli Imprevisti sopra). */
+.campo-creature-griglia-retro {
+  margin-top: calc(-8px * var(--campo-scale));
+}
+
+/* Lato avversario: le sue righe vanno risorse -> retrovia -> prima dall'alto in basso (specchio
+   verticale, cap. Campo.jsx), quindi il "morso" della retrovia verso la prima linea va verso il
+   BASSO. Senza, il -8px verso l'alto schiaccia la sua retrovia contro la riga Magie/Trappole
+   (bug segnalato dal vivo 2026-08-27). */
+.campo-creature-griglia-retro-specchiata {
+  margin-top: 0;
+  transform: translateY(calc(8px * var(--campo-scale)));
+}
+
+/* Coppia di pile di riferimento a fianco di ogni riga (Imprevisti, Cimitero+Esilio,
+   Worldloom+Extra Worldloom) — bozza v11: 14px a scala 1. */
+.campo-pila-coppia {
+  display: flex;
+  gap: calc(14px * var(--campo-scale));
+}
+
+/* Esilio / Extra Worldloom: solo spazio riservato per ora, nessuna funzione — bordo tratteggiato
+   per distinguerli visivamente da uno slot vuoto "vero" (campo-slot-vuoto), che invece è un posto
+   di gioco reale semplicemente non occupato in questo momento. */
+.campo-slot-riservato-capovolta {
+  transform: rotate(180deg);
+}
+
+.campo-slot-riservato {
+  border-style: dashed;
+  border-color: #4a3a22;
+  color: #8a6f38;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.55em;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  padding: 4px;
+}
+
+/* ===== Rail comandi (anello PV + cerchio fase + ⚙ + timer) — bozza "v11" invariata, solo scalata =====
+   Sostituisce le vecchie BarraPv/IndicatoreFasi (prima sopra/sotto il campo in App.jsx): ora è a
+   fianco di ciascuna zona, sinistra per la mia, destra per quella dell'avversario (l'ordine è
+   invertito lato JS in Campo.jsx, non qui). */
+.rail {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Campo avversario "visto da lui": tutto quel che sta nella sua metà è orientato verso di lui, come
+   seduti l'uno di fronte all'altro a un tavolo vero. Numeri e info compresi -- l'utente li vedrà
+   capovolti, è voluto (richiesta esplicita 2026-08-27: "si gira tutto", P0.9 + seguito).
+   Rovescia il precedente di task 58/B9 (allora i contatori restavano dritti per leggibilità): ora
+   NON si contro-ruota più niente nella zona specchiata. */
+.campo-zona-specchiata .rail {
+  transform: rotate(180deg);
+}
+
+/* Contatori delle pile (Worldloom / Cimitero / mazzetto Imprevisti): non stanno dentro un elemento
+   già ruotato, quindi li giro qui. */
+.campo-zona-specchiata .campo-pila-conteggio {
+  transform: rotate(180deg);
+}
+
+/* Badge "N/4" e "🎲 +N" degli Imprevisti: fratelli separati dalla carta che gira (task 51/58),
+   quindi restavano dritti — ora ruotano anche loro (mantengo il translateX di centratura). */
+.campo-zona-specchiata .imprevisto-avanzamento,
+.campo-zona-specchiata .imprevisto-tiro-badge {
+  transform: translateX(-50%) rotate(180deg);
+}
+
+/* Iconcina ℹ e numero di danno flottante sulle carte avversarie: erano contro-ruotati (rotate(180)
+   dentro .carta-capovolta) per restare dritti — annullo la contro-rotazione così girano con la
+   carta. Solo in campo: la mano avversaria (.carta-capovolta fuori da .campo-zona-specchiata) resta
+   com'era. */
+.campo-zona-specchiata .carta-capovolta .carta-mini-zoom,
+.campo-zona-specchiata .carta-capovolta .carta-esito {
+  transform: none;
+}
+
+.rail-anchor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(1.5rem * var(--campo-scale));
+}
+
+/* Anello PV: 5% più grande del cerchio fase (84px contro 80px a scala 1, bozza v11). */
+.hp-ring {
+  width: calc(84px * var(--campo-scale));
+  height: calc(84px * var(--campo-scale));
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(circle at 35% 30%, #2a3550, #12151f 70%);
+  box-shadow: inset 0 0 0 1px #35405c, inset 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 18px rgba(127, 201, 143, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* Colore della PUNTA dell'arco = quanti PV restano: verde pieno al 100%, sfuma verso il rosso man
+     mano che scende, rosso pieno a 0 (P3.1, richiesta esplicita). --percento (Campo.jsx, Rail) è già
+     la quota d'arco rimasta, in %. */
+  --hp-punta: color-mix(in oklab, #7fc98f, #e06868 calc(100% - var(--percento, 100%)));
+}
+
+.hp-ring::before {
+  content: "";
+  position: absolute;
+  inset: calc(-6px * var(--campo-scale));
+  border-radius: 50%;
+  /* L'arco pieno è una sfumatura CONTINUA: verde alla base (0deg) → colore-PV alla punta
+     (var(--percento)) → poi il fondo scuro per la parte "persa". */
+  background: conic-gradient(
+    from 0deg,
+    #7fc98f 0deg,
+    var(--hp-punta, #7fc98f) var(--percento, 90%),
+    #26314a var(--percento, 90%) 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+}
+
+.hp-ring .crack {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0.35;
+  pointer-events: none;
+  background: repeating-conic-gradient(from 20deg, transparent 0 24deg, rgba(0, 0, 0, 0.5) 24.5deg 25deg);
+}
+
+.hp-num {
+  font-family: var(--wl-display);
+  font-weight: 600;
+  color: #e8e8f0;
+  line-height: 1;
+  text-align: center;
+  font-size: calc(1.1rem * var(--campo-scale));
+}
+
+.hp-num small {
+  display: block;
+  font-weight: 400;
+  color: #5c6480;
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+  font-size: calc(0.52rem * var(--campo-scale));
+}
+
+.rail-danno-flottante {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #c0392b;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-size: calc(0.62rem * var(--campo-scale));
+  animation: rail-danno-flottante-anim 1.1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes rail-danno-flottante-anim {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+
+/* ⚙ + timer, nello spazio tra anello PV e cerchio fase (bozza v11: gap 2.2rem, gear 29px, timer
+   46px a scala 1). */
+.rail-mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(2.2rem * var(--campo-scale));
+}
+
+.gear {
+  width: calc(29px * var(--campo-scale));
+  height: calc(29px * var(--campo-scale));
+  border-radius: 50%;
+  border: 1px solid #232c42;
+  /* Ora è un <button> vero (prima un <div> decorativo) — resetta gli stili di default del browser
+     per i bottoni (sfondo grigiastro, padding, famiglia font) così resta identico a prima. */
+  background: transparent;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* line-height:1 (non "normal", il default del browser): il glifo ⚙ porta con sé molto spazio
+     verticale extra nei suoi metrici di font che il solo align-items:center di flex non compensa
+     — restava visibilmente più in alto/in basso del centro del cerchio. line-height:1 stringe la
+     riga alla dimensione reale del glifo, poi flex lo centra per davvero. */
+  line-height: 1;
+  color: #8b93ab;
+  font-size: calc(0.84rem * var(--campo-scale));
+  flex-shrink: 0;
+  /* Rifinitura (cap. "centra icona impostazioni nel suo cerchio"): anche con line-height:1, il
+     riquadro d'inchiostro del glifo ⚙ resta ~1px più in alto del centro geometrico del cerchio
+     (verificato via canvas, bounding box del rendering reale) — un mero pixel su 29px ma visibile.
+     Nudge verticale in em (scala con font-size, quindi anche con --campo-scale) invece di un px
+     fisso. */
+  transform: translateY(0.08em);
+}
+
+.gear:hover {
+  border-color: #c9a24b;
+  color: #e8ecf5;
+}
+
+.timer {
+  width: calc(46px * var(--campo-scale));
+  height: calc(46px * var(--campo-scale));
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: radial-gradient(circle at 35% 30%, #241a12, #100c08 75%);
+  box-shadow: inset 0 0 0 1px #4a3a22, inset 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.timer .fill {
+  position: absolute;
+  inset: calc(-4px * var(--campo-scale));
+  border-radius: 50%;
+  /* --percento-timer (Campo.jsx, Rail): quota d'arco rimasta sui 180s di turno, aggiornata ogni
+     secondo — 252deg era solo il placeholder statico prima che il countdown vero esistesse. */
+  background: conic-gradient(#8a6f38 0deg var(--percento-timer, 252deg), transparent var(--percento-timer, 252deg) 360deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+  transition: background 1s linear;
+}
+
+.timer-num {
+  position: relative;
+  z-index: 1;
+  font-family: var(--wl-display);
+  font-size: calc(13px * var(--campo-scale));
+  font-variant-numeric: tabular-nums;
+  color: #e8d9b8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Ultimi 30s: lo stesso principio già usato per il numero rosso di danno — un segnale che non
+   richiede di leggere il numero per accorgersene. */
+.timer-basso .fill {
+  background: conic-gradient(#c0483a 0deg var(--percento-timer, 0deg), transparent var(--percento-timer, 0deg) 360deg);
+}
+.timer-basso .timer-num {
+  color: #ff8f7a;
+}
+
+/* Indicatore di fase: TONDO, 80px a scala 1 (bozza v11) — base per il +5% dell'anello PV sopra. */
+.phase-badge {
+  width: calc(80px * var(--campo-scale));
+  height: calc(80px * var(--campo-scale));
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: radial-gradient(circle at 35% 30%, #1c2438, #0d1220 75%);
+  box-shadow: inset 0 0 0 1px #8a6f38, inset 0 2px 5px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.phase-badge-cliccabile {
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px #c9a24b, inset 0 2px 5px rgba(0, 0, 0, 0.6), 0 0 12px rgba(201, 162, 75, 0.3);
+}
+
+.phase-badge-smorzata {
+  opacity: 0.55;
+  filter: grayscale(1);
+}
+
+/* Zona senza turno attivo: cerchio fase spento, nessuna sigla — stesso comportamento della vecchia
+   pillola che spariva del tutto quando non era il tuo turno. */
+.phase-badge-inerte {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px #232c42;
+}
+
+.phase-badge .code {
+  font-family: var(--wl-display);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #c9a24b;
+  font-size: calc(1.15rem * var(--campo-scale));
+}
+
+.phase-badge .turno {
+  font-size: calc(0.55rem * var(--campo-scale));
+  color: #5c6480;
+  margin-top: 2px;
+}
+
+.chevron {
+  width: calc(22px * var(--campo-scale));
+  height: calc(22px * var(--campo-scale));
+  border-radius: 6px;
+  background: #131a2b;
+  border: 1px solid #3c4664;
+  color: #8b97b5;
+  cursor: pointer;
+  font-size: calc(0.7em * var(--campo-scale));
+  line-height: 1;
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+}
+
+.chevron:hover {
+  border-color: #c9a24b;
+  color: #e8ecf5;
+}
+
+.campo-gruppo-titolo {
+  font-size: 0.58em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #8b97b5;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.campo-slot {
+  width: var(--slot-w);
+  height: var(--slot-h);
+  /* border-box: alcune varianti (trappola, terreno, cimitero, pila) aggiungono padding/border propri
+     — senza border-box quel padding si sommava alla larghezza/altezza fissa qui sopra, rendendo quegli
+     slot visibilmente più grandi delle celle creatura (regola permanente: stessa dimensione per tutti). */
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  border: 1px dashed #22304d;
+  border-radius: 6px;
+  display: flex;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Slot vuoto (creatura / Magia-Trappola / Terreno / Cimitero / Imprevisti non occupato): bordo
+   tratteggiato in tono oro tenue invece del blu scuro quasi invisibile di prima — più leggibile a
+   colpo d'occhio dove si può ancora giocare (P3.4, richiesta esplicita dell'utente). */
+.campo-slot-vuoto {
+  opacity: 0.7;
+  border-color: rgba(201, 162, 75, 0.45);
+}
+
+.campo-pila {
+  position: relative;
+  border-style: solid;
+  border-color: #2a3552;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4px;
+}
+
+/* Stesso retro del Worldloom (impostato inline), col bordo viola a distinguere la zona Imprevisti */
+.campo-pila-imprevisti {
+  border-color: #a97fd6;
+  box-shadow: inset 0 0 0 1px rgba(169, 127, 214, 0.35);
+}
+
+/* Sfondo della pila (Worldloom, mazzetto Imprevisti) separato dal conteggio sopra (cap. task 58):
+   il dorso dell'avversario va capovolto 180° come ogni sua carta coperta, ma il numero deve
+   restare dritto e leggibile — da qui il livello a parte invece di ruotare l'intero slot. */
+.campo-pila-sfondo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  /* L'emblema nell'arte sta a ~44% dell'altezza: 38% lo porta al centro dello slot (cap. F.1). */
+  background-position: center 38%;
+  border-radius: inherit;
+}
+
+.campo-pila-sfondo-capovolta {
+  transform: rotate(180deg);
+}
+
+/* Lo sfondo qui sopra è ora un elemento posizionato: senza uno stack esplicito il conteggio
+   (elemento statico normale) finirebbe disegnato sotto di lui invece che sopra. */
+.campo-pila .campo-pila-conteggio {
+  position: relative;
+  z-index: 1;
+}
+
+.campo-pila-conteggio {
+  background: rgba(5, 7, 13, 0.85);
+  border: 1px solid #c9a24b;
+  color: #e8ecf5;
+  font-size: 0.72em;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 1px 6px;
+}
+
+/* Cimitero: mostra l'illustrazione intera dell'ultima carta scartata (non ritagliata, come le
+   creature in prima linea), scoperta, col conteggio sopra */
+.campo-slot-cimitero {
+  border-style: solid;
+  border-color: #2a3552;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4px;
+  overflow: hidden;
+}
+
+.campo-slot-cimitero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+}
+
+.campo-slot-cimitero-img-capovolta {
+  transform: rotate(180deg);
+}
+
+/* L'immagine è ora un <img> assoluto (non più uno sfondo), quindi il conteggio va rialzato di
+   stack esplicitamente per restargli sopra invece di finirci sotto. */
+.campo-slot-cimitero .campo-pila-conteggio {
+  position: relative;
+  z-index: 1;
+}
+
+/* Stesso gap di .campo-pila-coppia — cap. redesign campo di battaglia landscape-only: entrambi
+   ridotti a 4px (erano 14px) per stare nel budget verticale/orizzontale ristretto di un telefono in
+   landscape. */
+/* Stesso gap di .campo-pila-coppia (bozza v11: 14px a scala 1) — prima era rimasto a un vecchio
+   4px fisso, non scalato: le due slot Imprevisti avevano il bordo sinistro disallineato di 10px
+   rispetto a Cimitero/Esilio e Worldloom/Extra sotto di loro (tutte e tre le coppie condividono la
+   stessa colonna destra, ma solo questa aveva un gap interno diverso) — bug reale trovato dal vivo
+   confrontando le coordinate esatte, non solo a occhio. */
+.campo-imprevisti-coppia {
+  display: flex;
+  gap: calc(14px * var(--campo-scale, 1));
+}
+
+.mano {
+  margin: 16px 0;
+}
+
+.mano-titolo {
+  font-size: 0.68em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8b97b5;
+  margin-bottom: 6px;
+}
+
+.mano-carte {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding-bottom: 6px;
+}
+
+.mano-carte .carta {
+  width: 150px;
+  flex: 0 0 150px;
+}
+
+/* Ventaglio (cap. redesign campo di battaglia, bozza confermata "v11" — richiesta esplicita
+   dell'utente): le carte si accavallano leggermente invece di andare a capo una accanto all'altra.
+   nowrap + gap:0: lo spostamento vero lo fa il transform inline (Mano.jsx, transformVentaglio),
+   calcolato per carta/totale — qui serve solo permettere all'accavallamento di esistere invece di
+   forzare le carte fianco a fianco. */
+.mano-ventaglio {
+  flex-wrap: nowrap;
+  gap: 0;
+}
+
+.mano-ventaglio-carta {
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.mano-ventaglio-carta:hover,
+.mano-ventaglio-carta:focus-within {
+  z-index: 50 !important;
+}
+
+/* Mano più compatta: stesso layout della carta, in scala ridotta (il font usa em quindi segue a cascata).
+   width esplicita (non solo flex-basis): ora vive dentro .mano-ventaglio-carta, un wrapper normale
+   non un contenitore flex — vedi Mano.jsx. */
+.mano-carte-piccole .carta {
+  width: 100px;
+  flex: 0 0 100px;
+  font-size: 0.7em;
+  padding: 8px;
+  cursor: zoom-in;
+}
+
+.mano-vuota {
+  color: #8b97b5;
+  font-size: 0.8em;
+}
+
+.carta-retro {
+  /* width esplicita, non solo flex-basis: ora vive dentro .mano-ventaglio-carta (un wrapper
+     normale, non un contenitore flex), dove "flex" da solo non basterebbe più a darle una
+     dimensione — vedi Mano.jsx, ManoAvversaria. */
+  width: 90px;
+  flex: 0 0 90px;
+  aspect-ratio: 2 / 3;
+  border-radius: 10px;
+  border: 1px solid #2a3552;
+  overflow: hidden;
+  background: #131a2b;
+}
+
+.carta-retro img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Animazione di pesca (cap. 6, task 50): le carte nuove "salgono" dal Worldloom verso la mano —
+   sia le mie (visibili) sia quelle dell'avversario (dorso coperto) — funziona per entrambi perché
+   la chiave React è lo _uid stabile della carta, non l'indice: solo le carte davvero nuove
+   rimontano e animano. Le carte avversarie sono sempre ruotate 180° (.carta-capovolta): serve una
+   keyframe separata con rotate(180deg) in ogni fotogramma, altrimenti l'animazione sovrascrive il
+   rotate statico — con il segno di translateY invertito, in modo che il verso percepito ("sale da
+   sotto") resti lo stesso per entrambi i lati nonostante la rotazione. */
+@media (prefers-reduced-motion: no-preference) {
+  /* :not(.carta-in-volo) — cap. UX Sezione 3: mentre il volo vero della pescata (AnimazionePescata.jsx)
+     è in corso, la carta vera resta nascosta (vedi .carta-in-volo sotto) e questa vecchia animazione
+     "sul posto" non deve competere con quella nuova. */
+  .carta-scivola-dentro:not(.carta-in-volo) {
+    animation: carta-scivola-dentro 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .carta-capovolta.carta-scivola-dentro:not(.carta-in-volo) {
+    animation-name: carta-scivola-dentro-capovolta;
+  }
+}
+
+/* Carta già vera in stato.mano ma ancora "in volo" (cap. UX Sezione 3): invisibile finché
+   AnimazionePescata.jsx non atterra, ma resta nel flusso — lo slot occupa già il suo spazio, niente
+   salto di layout quando ricompare. */
+.carta-in-volo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes carta-scivola-dentro {
+  0% {
+    opacity: 0;
+    transform: translateY(56px) scale(0.45);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes carta-scivola-dentro-capovolta {
+  0% {
+    opacity: 0;
+    transform: rotate(180deg) translateY(-56px) scale(0.45);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(180deg) translateY(0) scale(1);
+  }
+}
+
+/* Il volo vero della pescata (cap. UX Sezione 3, AnimazionePescata.jsx): clone fluttuante fixed,
+   indipendente dalla carta vera in mano (nascosta nel frattempo da .carta-in-volo sopra). Due facce
+   sovrapposte con backface-visibility per il flip 3D (stessa tecnica di demo_pescata.html): il dorso è
+   sempre presente, il fronte (solo se "rivela") è pre-ruotato 180° così diventa visibile solo quando
+   l'intero elemento raggiunge rotateY(180deg). */
+.carta-volante {
+  position: fixed;
+  width: var(--slot-w);
+  height: var(--slot-h);
+  transform-style: preserve-3d;
+  z-index: 70;
+  pointer-events: none;
+}
+
+.carta-volante-faccia {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+.carta-volante-faccia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carta-volante-dorso {
+  border: 1px solid #2a3552;
+}
+
+.carta-volante-fronte {
+  transform: rotateY(180deg);
+  background: #131a2b;
+  border: 1px solid #c9a24b;
+}
+
+.carta-volante-senza-immagine {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.75em;
+  font-weight: bold;
+  color: #e8ecf5;
+  padding: 6px;
+}
+
+/* Il volo vero dell'evocazione (cap. UX Sezione 4, AnimazioneEvocazione.jsx): clone fluttuante fixed
+   dalla carta in mano allo slot di campo, stessa tecnica di .carta-volante sopra (niente flip qui, la
+   carta è già scoperta in mano). All'impatto si sostituisce con un anello dorato che si espande e
+   sfuma — stesso linguaggio cromatico di .campo-pila-pulsa. */
+.carta-volante-evocazione {
+  position: fixed;
+  width: var(--slot-w);
+  height: var(--slot-h);
+  z-index: 65;
+  pointer-events: none;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+.carta-volante-evocazione img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.evocazione-impatto {
+  position: fixed;
+  width: var(--slot-w);
+  height: var(--slot-h);
+  transform: translate(-50%, -50%);
+  z-index: 66;
+  pointer-events: none;
+  border-radius: 6px;
+  /* "aumentare lo sbam" (richiesta esplicita, sequenza evocazione riprogettata 2026-08-27): 0.25s -> */
+  /* 0.35s, picco più grande e bordo più acceso rispetto a prima. */
+  animation: evocazione-impatto 0.35s ease-out;
+}
+
+@keyframes evocazione-impatto {
+  0% {
+    box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.95);
+    background: rgba(201, 162, 75, 0.6);
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  50% {
+    box-shadow: 0 0 20px 8px rgba(201, 162, 75, 0.5);
+    background: rgba(201, 162, 75, 0.2);
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+  100% {
+    box-shadow: 0 0 42px 20px rgba(201, 162, 75, 0);
+    background: rgba(201, 162, 75, 0);
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+}
+
+/* Il volo vero dello spostamento fila (cap. UX Sezione 5, AnimazionePosizionamento.jsx): clone
+   fluttuante fixed, stessa tecnica di .carta-volante-evocazione ma con tilt (rotate) invece del flip —
+   linguaggio di movimento deliberatamente distinto dall'evocazione. */
+.carta-volante-movimento {
+  position: fixed;
+  width: var(--slot-w);
+  height: var(--slot-h);
+  z-index: 65;
+  pointer-events: none;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.carta-volante-movimento img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Scia di polvere della sola Avanzata (cap. UX Sezione 5): un campione della posizione reale del clone
+   ogni ~55ms, che sfuma da solo in 0.35s — nessuna scia per la Ritirata, asimmetria deliberata. */
+.movimento-scia {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  z-index: 64;
+  pointer-events: none;
+  border-radius: 6px;
+  background: rgba(201, 162, 75, 0.25);
+  animation: movimento-scia-sfuma 0.35s ease-out forwards;
+}
+
+@keyframes movimento-scia-sfuma {
+  0% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Morte in combattimento (cap. UX Sezione 8, AnimazioneMorte.jsx): stesso principio di
+   .carta-volante-movimento, ma il tilt arriva fino a 180° (capovolta, coperta) e l'opacità scende
+   durante il volo — linguaggio distinto sia dall'evocazione (flip) sia dallo spostamento (tilt lieve). */
+.carta-volante-morte {
+  position: fixed;
+  width: var(--slot-w);
+  height: var(--slot-h);
+  z-index: 65;
+  pointer-events: none;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.carta-volante-morte img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Il Worldloom pulsa nel momento in cui la carta parte, per legare visivamente pila e mano. */
+.campo-pila-pulsa {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 2px solid #c9a24b;
+  animation: campo-pila-pulsa 0.6s ease-out;
+}
+
+@keyframes campo-pila-pulsa {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.85);
+    box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.55);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+    box-shadow: 0 0 14px 6px rgba(201, 162, 75, 0);
+  }
+}
+
+/* Animazione di piazzamento: creature, Magie/Trappole coperte e Terreno "sbocciano" nel loro slot
+   quando compaiono — vale per entrambi i giocatori, perché ogni slot pieno ha una chiave React
+   stabile (id della creatura / _uid della carta / nome del Terreno) diversa da quella dello slot
+   vuoto: React lo rimonta davvero, quindi l'animazione riparte solo per un piazzamento vero. */
+@media (prefers-reduced-motion: no-preference) {
+  /* :not(.campo-slot-evocazione-in-volo/.campo-slot-movimento-in-volo/.campo-slot-morte-in-volo) — cap.
+     UX Sezioni 4/5/8: mentre un volo vero (evocazione, spostamento fila o morte) è in corso, la
+     creatura vera resta nascosta e questa vecchia animazione "sul posto" non deve competere con quella
+     nuova (stesso principio già in campo per la pescata). */
+  .campo-slot:not(.campo-slot-vuoto):not(.campo-slot-evocazione-in-volo):not(.campo-slot-movimento-in-volo):not(.campo-slot-morte-in-volo) {
+    animation: carta-piazzata 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+/* Creatura già vera in campo ma ancora "in volo" (cap. UX Sezioni 4/5/8): invisibile finché la relativa
+   animazione (AnimazioneEvocazione.jsx / AnimazionePosizionamento.jsx / AnimazioneMorte.jsx) non
+   atterra, ma lo slot resta nel DOM — serve da bersaglio reale per il volo stesso (data-creatura-id) e
+   non lascia un salto di layout quando ricompare.
+   .campo-slot-morte-in-volo in particolare resta nel DOM ancora più a lungo delle altre due: la
+   creatura è ancora vera nell'array di stato (rimozione sospesa, cap. confermaMorteInCorso), quindi lo
+   slot continua a occupare il suo posto nella fila finché l'animazione non conferma. */
+.campo-slot-evocazione-in-volo,
+.campo-slot-movimento-in-volo,
+.campo-slot-morte-in-volo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Avanzamento automatico in prima linea senza scelta (cap. UX Sezione 8, Step 8, caso non ambiguo):
+   nessun volo vero possibile qui (nessun click da cui misurare la posizione di partenza), solo
+   un'entrata breve — non lo scatto istantaneo di prima. */
+@keyframes carta-avanzata-auto {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.carta-avanzata-auto {
+  animation: carta-avanzata-auto 0.3s ease-out;
+}
+
+@keyframes carta-piazzata {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dado-titolo {
+  font-size: 0.68em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8b97b5;
+  margin-bottom: 8px;
+}
+
+.dado-tray {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dado-slot {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.dado-vassoio {
+  width: 78px;
+  border: 1px solid #2a3552;
+  border-radius: 8px;
+  padding: 5px;
+  background: #0d1424;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.dado-slot:hover .dado-vassoio,
+.dado-slot:focus-visible .dado-vassoio {
+  box-shadow: 0 0 0 2px var(--colore-dado);
+  transform: translateY(-2px);
+}
+
+.dado-vassoio-nome {
+  font-size: 0.58em;
+  font-weight: bold;
+  color: var(--colore-dado);
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+.dado-vassoio-facce {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.dado-mini-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dado-vassoio-conteggi {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+  font-size: 0.52em;
+  color: #9aa5c0;
+  margin-top: 3px;
+}
+
+.dado-in-uso {
+  margin-top: 10px;
+  font-size: 0.75em;
+  color: #c9a24b;
+}
+
+.dado-in-uso-nota {
+  color: #8b97b5;
+  font-size: 0.9em;
+}
+
+.log-titolo {
+  font-size: 0.68em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8b97b5;
+  margin-bottom: 8px;
+}
+
+.log-voci {
+  max-height: 160px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.log-voce {
+  font-size: 0.78em;
+  color: #c9d0e0;
+  border-bottom: 1px solid #1a2338;
+  padding-bottom: 4px;
+}
+
+.log-vuoto {
+  font-size: 0.78em;
+  color: #8b97b5;
+  margin: 0;
+}
+
+.modale-sfondo {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 11, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 500;
+}
+
+.modale-box {
+  width: 100%;
+  max-width: 300px;
+}
+
+.modale-box .carta {
+  box-shadow: 0 0 30px rgba(201, 162, 75, 0.25);
+}
+
+/* Frecce avanti/indietro per scorrere la cronologia di una pila (es. il Cimitero, cap. task 54) */
+.modale-navigazione {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.modale-navigazione-freccia {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #c9a24b;
+  background: #18233c;
+  color: #e8ecf5;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modale-navigazione-freccia:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.modale-navigazione-freccia:not(:disabled):hover {
+  background: #c9a24b;
+  color: #20160a;
+}
+
+.modale-navigazione-conteggio {
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #f0d78c;
+  font-variant-numeric: tabular-nums;
+  min-width: 3.5em;
+  text-align: center;
+}
+
+.modale-azioni {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.modale-evoca,
+.modale-chiudi {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #2a3552;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modale-evoca {
+  background: #c9a24b;
+  border-color: #c9a24b;
+  color: #20160a;
+}
+
+.modale-chiudi {
+  background: #18233c;
+  color: #e8ecf5;
+}
+
+.modale-secondaria {
+  background: #2a2040;
+  border-color: #a97fd6;
+  color: #d9c9f0;
+}
+
+.modale-prompt {
+  background: #131a2b;
+  border: 1px solid #c9a24b;
+  border-radius: 12px;
+  padding: 20px 18px;
+  max-width: 380px;
+}
+
+.modale-prompt h3 {
+  color: #c9a24b;
+  margin: 0 0 10px;
+}
+
+.modale-prompt p {
+  font-size: 0.85em;
+  color: #c9d0e0;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Prompt obbligatorio a inizio Fase 1 (cap. UX Sezione 3, SceltaRifornimento.jsx): due riquadri grandi
+   invece dei vecchi bottoni inline — nessuno zoom-carta, pannello scuro con bordo oro come gli altri
+   modali (.modale-sfondo li copre già come backdrop). */
+.scelta-rifornimento-box {
+  background: #131a2b;
+  border: 1px solid #c9a24b;
+  border-radius: 12px;
+  padding: 20px 18px;
+  max-width: 380px;
+  width: 100%;
+}
+
+.scelta-rifornimento-titolo {
+  color: #c9a24b;
+  margin: 0 0 14px;
+  text-align: center;
+}
+
+.scelta-rifornimento-riquadri {
+  display: flex;
+  gap: 10px;
+}
+
+.scelta-rifornimento-riquadro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #18233c;
+  border: 1px solid #2a3552;
+  border-radius: 10px;
+  padding: 18px 10px;
+  cursor: pointer;
+  color: #e8ecf5;
+}
+
+.scelta-rifornimento-riquadro:hover {
+  border-color: #c9a24b;
+  background: #1c2947;
+}
+
+.scelta-rifornimento-numero {
+  font-size: 2em;
+  font-weight: bold;
+  color: #c9a24b;
+  line-height: 1;
+}
+
+.scelta-rifornimento-etichetta {
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9aa5c0;
+  margin-bottom: 8px;
+}
+
+.scelta-rifornimento-nota {
+  font-size: 0.72em;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.scelta-rifornimento-nota-buona {
+  color: #7fc98f;
+}
+
+.scelta-rifornimento-nota-cattiva {
+  color: #e08a72;
+}
+
+/* Simbolo del dado appena uscito, con la stessa icona/colore per Archetipo del dado animato
+   (cap. task 55) invece del solo testo — riusa SIMBOLO_ICONA/COLORE_ARCHETIPO da LancioDado.jsx. */
+.prompt-simbolo-uscito {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.prompt-simbolo-icona {
+  font-size: 1.4em;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+/* Statistiche di attaccante e difensore fianco a fianco (cap. task 55) */
+.prompt-confronto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(5, 7, 13, 0.55);
+  border: 1px solid #2a3552;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+
+.prompt-confronto-creatura {
+  flex: 1;
+  min-width: 0;
+}
+
+.prompt-confronto-nome {
+  font-size: 0.78em;
+  font-weight: bold;
+  color: #e8ecf5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* La tua carta sempre a sinistra/verde, quella avversaria sempre a destra/rossa (punto 12 originale
+   del feedback), indipendentemente da chi attacca o difende in questo scontro — stessi colori già
+   usati per le statistiche alterate dai Potenziamenti, per coerenza visiva. */
+.prompt-confronto-mia .prompt-confronto-nome {
+  color: #7fc98f;
+}
+
+.prompt-confronto-avversaria .prompt-confronto-nome {
+  color: #e08a8a;
+}
+
+.prompt-confronto-stats {
+  display: flex;
+  gap: 8px;
+  font-size: 0.75em;
+  font-weight: bold;
+  color: #c9d0e0;
+  margin-top: 2px;
+}
+
+.prompt-confronto-vs {
+  flex: 0 0 auto;
+  font-size: 0.7em;
+  font-weight: bold;
+  color: #9aa5c0;
+  text-transform: uppercase;
+}
+
+.barra-pv {
+  background: #131a2b;
+  border: 1px solid #2a3552;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin: 8px 0;
+}
+
+.barra-pv-testa {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  margin-bottom: 6px;
+}
+
+.barra-pv-nome {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.barra-pv-mia .barra-pv-nome {
+  color: #7fc98f;
+}
+
+.barra-pv-avversaria .barra-pv-nome {
+  color: #e08a8a;
+}
+
+.barra-pv-turno {
+  margin-left: 8px;
+  padding: 1px 7px;
+  border: 1px solid #2a3552;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.75em;
+  font-weight: normal;
+  letter-spacing: 0;
+  color: #c9a24b;
+}
+
+.barra-pv-numero {
+  position: relative;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.barra-pv-danno-flottante {
+  position: absolute;
+  right: 0;
+  top: -2px;
+  color: #ff5a5a;
+  font-weight: 900;
+  font-size: 1.3em;
+  text-shadow: 0 0 8px rgba(255, 90, 90, 0.65);
+  pointer-events: none;
+  animation: danno-flottante 1.15s ease-out forwards;
+}
+
+/* Lampo di colore sul numero VERO della Vita (cap. richiesta utente: colori dinamici in combattimento),
+   stessa durata del numero fluttuante .carta-esito-numero-danno che compare nello stesso momento. */
+@keyframes vita-flash-danno {
+  0% {
+    color: #ff5a5a;
+  }
+  100% {
+    color: #e8ecf5;
+  }
+}
+.carta-vita-danno {
+  /* idea 59: stessa durata del numero fluttuante di combattimento (src/game/tempi.js, var --t-numero-danno). */
+  animation: vita-flash-danno var(--t-numero-danno, 1.15s) ease-out forwards;
+}
+
+@keyframes danno-flottante {
+  0% {
+    opacity: 0;
+    transform: translateY(4px) scale(0.85);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.2);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-32px) scale(1);
+  }
+}
+
+.barra-pv-traccia {
+  height: 9px;
+  background: #0a1020;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.barra-pv-riempimento {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.barra-pv-mia .barra-pv-riempimento {
+  background: linear-gradient(90deg, #4a8f6a, #6fc98f);
+}
+
+.barra-pv-avversaria .barra-pv-riempimento {
+  background: linear-gradient(90deg, #9e4848, #e06868);
+}
+
+.fasi {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin: 8px 0;
+  flex-wrap: wrap;
+}
+
+.fasi-pillola {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  background: #131a2b;
+  border: 1px solid transparent;
+  color: #8b97b5;
+}
+
+.fasi-pillola-cliccabile {
+  cursor: pointer;
+  border-color: #3c4664;
+}
+
+.fasi-pillola-cliccabile:hover {
+  border-color: #c9a24b;
+  color: #e8ecf5;
+}
+
+.fasi-pillola-monogramma {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #c9a24b;
+  color: #1a1206;
+  font-weight: bold;
+  font-size: 0.68em;
+  flex-shrink: 0;
+}
+
+.fasi-pillola-nome {
+  font-size: 0.68em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.fasi-pillola-gruppo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fasi-chevron {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #131a2b;
+  border: 1px solid #3c4664;
+  color: #8b97b5;
+  cursor: pointer;
+  font-size: 0.7em;
+  line-height: 1;
+}
+
+.fasi-chevron:hover {
+  border-color: #c9a24b;
+  color: #e8ecf5;
+}
+
+/* Menu a tendina verso l'alto (cap. UX Sezione 2 — salta a fase). */
+.fasi-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 6px;
+  background: #0f1526;
+  border: 1px solid #3c4664;
+  border-radius: 8px;
+  padding: 4px;
+  min-width: 170px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+
+.fasi-menu-voce {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 0.68em;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: #c7cfe6;
+}
+
+.fasi-menu-voce-futura {
+  cursor: pointer;
+}
+
+.fasi-menu-voce-futura:hover {
+  background: rgba(201, 162, 75, 0.15);
+  color: #e8ecf5;
+}
+
+.fasi-menu-voce-passata {
+  opacity: 0.4;
+}
+
+.fasi-menu-voce-attuale {
+  color: #c9a24b;
+  font-weight: bold;
+}
+
+.fasi-menu-monogramma {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #232c47;
+  color: #c7cfe6;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+
+.fasi-menu-voce-attuale .fasi-menu-monogramma {
+  background: #c9a24b;
+  color: #1a1206;
+}
+
+.fasi-menu-pallino {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c9a24b;
+  flex-shrink: 0;
+}
+
+/* Promemoria "niente attacco questo turno" (cap. UX Sezione 3): la pillola "Alla Carica" (solo quando
+   ci sei davvero sopra) e la sua voce nel menu a tendina (sempre, per ricordarlo anche prima) si
+   smorzano — opacità ridotta e scala di grigi — con un badge rosso accanto. */
+.fasi-pillola-smorzata {
+  opacity: 0.55;
+  filter: grayscale(1);
+}
+
+.fasi-menu-voce-smorzata {
+  opacity: 0.7;
+  filter: grayscale(0.6);
+}
+
+.fasi-badge-no-atk {
+  font-size: 0.6em;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  color: #ffb4b4;
+  background: rgba(200, 60, 60, 0.25);
+  border: 1px solid rgba(200, 60, 60, 0.6);
+  border-radius: 4px;
+  padding: 1px 4px;
+  flex-shrink: 0;
+}
+
+.fasi-turno-di {
+  font-size: 0.7em;
+  color: #8b97b5;
+  padding-left: 8px;
+}
+
+.campo-slot-bersaglio {
+  border: 2px solid #e06868 !important;
+  box-shadow: 0 0 14px rgba(224, 104, 104, 0.75);
+}
+
+.campo-slot-esaurito {
+  opacity: 0.45;
+}
+
+.campo-slot-imprevisto-attivo {
+  border: 1px solid #a97fd6;
+  background: rgba(169, 127, 214, 0.12);
+  align-items: center;
+  justify-content: center;
+  /* overflow visibile (cap. F.1, richiesta esplicita "deve stare sopra come se stessi girando
+     fisicamente la carta"): la carta coperta riempie lo slot e ruotando di 90° i suoi angoli escono
+     dai bordi — come giri una carta vera sul tavolo — invece di essere tagliati. */
+  overflow: visible;
+}
+
+/* Slot Imprevisti quando mostra SOLO il cimitero (Imprevisto risolto scoperto, nessuna carta in
+   avanzamento sopra) — bordo pieno come il Cimitero creature, cap. P3.2. La sola immagine scarto
+   (object-fit:contain) non sborda mai, quindi qui overflow:hidden va bene per ritagliarla al bordo. */
+.campo-slot-imprevisto-cimitero {
+  border-style: solid;
+  border-color: #2a3552;
+  overflow: hidden;
+}
+
+/* ℹ e conteggio del cimitero Imprevisti sopra i livelli assoluti (immagine scarto / carta ruotata). */
+.campo-slot-imprevisto-attivo .campo-pila-conteggio,
+.campo-slot-imprevisto-cimitero .campo-pila-conteggio,
+.campo-slot-imprevisto-attivo .carta-mini-zoom,
+.campo-slot-imprevisto-cimitero .carta-mini-zoom {
+  position: relative;
+  z-index: 3;
+}
+.campo-slot-imprevisto-attivo .carta-mini-zoom,
+.campo-slot-imprevisto-cimitero .carta-mini-zoom {
+  position: absolute;
+}
+
+/* La carta Imprevisti coperta ruota fisicamente di 90° per movimento accumulato (cap. 15), invece
+   di una freccina separata: è un livello a parte rispetto allo slot, così il contatore N/4 sotto
+   resta sempre dritto e leggibile mentre solo la carta gira. */
+.imprevisto-carta-ruotata {
+  position: absolute;
+  /* Carta a piena dimensione dello slot (cap. F.1, richiesta "deve stare sopra come se stessi girando
+     fisicamente la carta"): al valore 0 copre tutto lo slot come una carta appoggiata; ruotando di
+     90°/movimento i suoi angoli escono dai bordi (lo slot è overflow:visible) — come si gira una
+     carta vera — e in landscape lascia intravedere sopra/sotto l'Imprevisto risolto scoperto. */
+  inset: 0;
+  z-index: 2;
+  border-radius: 5px;
+  background-size: cover;
+  /* L'emblema nell'arte (logo-worldloom.jpg) sta a ~44% dell'altezza: spostando il fuoco più in alto
+     lo si porta al centro del riquadro carta (cap. F.1: "il simbolo non è centrato"). */
+  background-position: center 38%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  transition: transform 0.4s ease;
+}
+
+.imprevisto-avanzamento {
+  position: absolute;
+  z-index: 3;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.62em;
+  font-weight: bold;
+  color: #f0d78c;
+  background: rgba(10, 14, 24, 0.78);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+/* Ultimo risultato del Dado Imprevisti: resta visibile finché non arriva un nuovo tiro */
+.imprevisto-tiro-badge {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.65em;
+  font-weight: bold;
+  color: #1a1206;
+  background: #c9a24b;
+  border-radius: 10px;
+  padding: 2px 8px;
+  box-shadow: 0 0 8px rgba(201, 162, 75, 0.6);
+  z-index: 2;
+}
+
+.campo-slot-trappola {
+  background: linear-gradient(160deg, #2a1d45, #120a1e);
+  /* La sigla "background" qui sopra è una shorthand: azzera anche background-size/position ereditati
+     da .campo-slot (cover/center), che tornerebbero ad auto/0% 0% — con lo sfondo Worldloom (inline,
+     per-istanza) mostrato "auto" e ancorato in alto a sinistra si vedeva solo un ritaglio 92×129 nel
+     suo angolo in alto a sinistra: quell'angolo dell'immagine è cielo stellato puro (il simbolo e la
+     scritta sono al centro/in basso), da cui il bug segnalato "sfondo a stelline invece del Worldloom".
+     Le due righe sotto ripristinano esplicitamente cover/center, così si vede lo stesso ritaglio
+     centrato di tutte le altre pile coperte (Worldloom/Imprevisti/Cimitero). */
+  background-size: cover;
+  background-position: center 38%;
+  border: 1px solid #3d3055;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+}
+
+.campo-slot-trappola-pronta {
+  border-color: #a97fd6;
+  box-shadow: 0 0 8px rgba(169, 127, 214, 0.45);
+}
+
+/* Potenziamento già attivo e legato a un bersaglio (cap. B6): non è più un segreto, bordo dorato
+   invece del viola "pronta ad attivarsi" — non c'è più nulla da attivare, è solo un promemoria. */
+.campo-slot-trappola-scoperta {
+  border-color: #c9a24b;
+  box-shadow: 0 0 6px rgba(201, 162, 75, 0.35);
+}
+
+.campo-slot-attivabile {
+  cursor: pointer;
+}
+
+.campo-slot-attivabile:hover {
+  border-color: #c9a24b;
+  box-shadow: 0 0 10px rgba(201, 162, 75, 0.55);
+}
+
+/* Carta eleggibile come risposta nella catena di effetti (cap. catena.js, redesign 2026-08-13):
+   pulsa in oro per farsi notare, si tocca direttamente qui invece che da una lista in un pop-up. */
+.campo-slot-trappola-catena-eleggibile {
+  cursor: pointer;
+  border-color: #c9a24b !important;
+  animation: campo-slot-catena-pulsa 1.2s ease-in-out infinite;
+}
+
+@keyframes campo-slot-catena-pulsa {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(201, 162, 75, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(201, 162, 75, 1);
+  }
+}
+
+.campo-slot-terreno {
+  background: linear-gradient(160deg, #16304d, #081420);
+  border: 1px solid #6b9ede;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+}
+
+.terreno-etichetta {
+  font-size: 0.5em;
+  font-weight: bold;
+  color: #a9c4e8;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.terreno-etichetta-capovolta {
+  transform: rotate(180deg);
+}
+
+.modale-lista-trappole {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.modale-lista-trappole button {
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #c9a24b;
+  cursor: pointer;
+}
+
+.modale-trappola-testo {
+  display: block;
+  font-size: 0.8em;
+  font-weight: normal;
+  opacity: 0.85;
+  margin-top: 3px;
+}
+
+.carta-magia {
+  background: linear-gradient(160deg, #16304d, #0d1424);
+  border-color: #6b9ede;
+}
+
+.carta-trappola {
+  background: linear-gradient(160deg, #2a1d45, #120a1e);
+  border-color: #a97fd6;
+}
+
+.carta-tipo-badge {
+  font-size: 0.7em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #9aa5c0;
+  margin-bottom: 4px;
+}
+
+/* Editor Mazzi (cap. editor mazzi, primo giro funzionale — non ancora la veste grafica definitiva
+   della Fase 4/restyling). Schermo pieno, scorrevole, stessa palette scura/oro del resto dell'app. */
+.editor-mazzi-schermo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 14px 90px;
+}
+
+.editor-mazzi-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.editor-mazzi-header h2 {
+  margin: 0;
+  color: #c9a24b;
+}
+
+.editor-mazzi-header select,
+.editor-mazzi-filtri select {
+  background: #131a2b;
+  color: #e8e8f0;
+  border: 1px solid #2a3552;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 0.9em;
+}
+
+.editor-mazzi-nome-input {
+  background: #131a2b;
+  color: #e8e8f0;
+  border: 1px solid #2a3552;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 1.05em;
+  font-family: var(--wl-body);
+  flex: 1;
+  min-width: 180px;
+}
+
+.editor-mazzi-contatori {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.85em;
+  text-align: right;
+}
+
+.editor-mazzi-ok {
+  color: #7fc98f;
+}
+
+.editor-mazzi-no {
+  color: #e08a8a;
+}
+
+.editor-mazzi-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.editor-mazzi-tabs button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #2a3552;
+  background: #131a2b;
+  color: #9aa5c0;
+  cursor: pointer;
+}
+
+.editor-mazzi-tabs button.attiva {
+  border-color: #c9a24b;
+  color: #c9a24b;
+  font-weight: bold;
+}
+
+.editor-mazzi-filtri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.editor-mazzi-gruppo {
+  margin-bottom: 14px;
+}
+
+.editor-mazzi-gruppo h4 {
+  color: #c9a24b;
+  margin: 10px 0 6px;
+  font-size: 0.95em;
+}
+
+.editor-mazzi-riga {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid #2a3552;
+  border-radius: 8px;
+  background: #101627;
+  margin-bottom: 6px;
+}
+
+.editor-mazzi-riga-bandita {
+  opacity: 0.5;
+}
+
+.editor-mazzi-riga-sx {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* Miniatura Complete card prima del nome, alta quanto la riga (cap. richiesta utente 2026-08-28). */
+.editor-mazzi-riga-mini {
+  flex-shrink: 0;
+  height: 60px;
+  width: auto;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.editor-mazzi-riga-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.editor-mazzi-riga-nome {
+  font-weight: bold;
+  color: #e8e8f0;
+}
+
+.editor-mazzi-riga-badge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.editor-mazzi-badge {
+  font-size: 0.72em;
+  padding: 1px 6px;
+  border-radius: 10px;
+  border: 1px solid #2a3552;
+  color: #9aa5c0;
+}
+
+.editor-mazzi-badge-mondo {
+  font-style: italic;
+  border-style: dashed;
+}
+
+.editor-mazzi-stat {
+  font-size: 0.78em;
+  color: #9aa5c0;
+}
+
+.editor-mazzi-bandita-label {
+  font-size: 0.8em;
+  color: #e08a8a;
+  white-space: nowrap;
+}
+
+.editor-mazzi-stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.editor-mazzi-stepper button {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #c9a24b;
+  background: #131a2b;
+  color: #c9a24b;
+  cursor: pointer;
+  font-size: 1em;
+  line-height: 1;
+}
+
+.editor-mazzi-stepper button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.editor-mazzi-stepper span {
+  min-width: 40px;
+  text-align: center;
+  font-size: 0.85em;
+  color: #e8e8f0;
+}
+
+.editor-mazzi-vuoto {
+  color: #9aa5c0;
+  font-style: italic;
+}
+
+.editor-mazzi-errori {
+  background: rgba(224, 138, 138, 0.12);
+  border: 1px solid #e08a8a;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.85em;
+  color: #e08a8a;
+}
+
+.editor-mazzi-azioni {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.editor-mazzi-azioni button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #2a3552;
+  background: #131a2b;
+  color: #e8e8f0;
+  cursor: pointer;
+}
+
+.editor-mazzi-btn-salva {
+  background: #c9a24b !important;
+  border-color: #c9a24b !important;
+  color: #20160a !important;
+  font-weight: bold;
+}
+
+/* Sfondo campo di battaglia (cap. editor mazzi) */
+.editor-mazzi-sfondi-nota {
+  color: #8b93ab;
+  font-size: 0.85em;
+  margin: 0 0 12px;
+}
+
+.editor-mazzi-sfondi-griglia {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.editor-mazzi-sfondo-miniatura {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 2px solid #2a3552;
+  background: #101627;
+  color: #9aa5c0;
+  cursor: pointer;
+  font-size: 0.78em;
+  text-align: center;
+}
+
+.editor-mazzi-sfondo-miniatura img,
+.editor-mazzi-sfondo-nessuno {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 5px;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-mazzi-sfondo-nessuno {
+  background: #05070d;
+  color: #4a5578;
+  font-size: 1.6em;
+}
+
+.editor-mazzi-sfondo-miniatura.selezionata {
+  border-color: #c9a24b;
+  color: #c9a24b;
+}
+
+.editor-mazzi-sfondi-vuoto {
+  color: #8b93ab;
+  font-size: 0.85em;
+  grid-column: 1 / -1;
+}
+
+/* Scegli icona mazzo (cap. richiesta utente 2026-08-28). */
+.editor-mazzi-icone-griglia {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+}
+
+.editor-mazzi-icona-scelta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 8px;
+  border: 2px solid #2a3552;
+  background: #101627;
+  color: #9aa5c0;
+  cursor: pointer;
+  font-size: 0.7em;
+}
+
+.editor-mazzi-icona-scelta img,
+.editor-mazzi-icona-scelta .editor-mazzi-sfondo-nessuno {
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.editor-mazzi-icona-scelta.selezionata {
+  border-color: #c9a24b;
+  color: #c9a24b;
+}
+
+/* Miniatura icona accanto al nome del mazzo nella lista editor. */
+.editor-mazzi-riga-mazzo-icona {
+  flex-shrink: 0;
+  height: 46px;
+  width: auto;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.editor-mazzi-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editor-mazzi-riga-mazzo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 12px;
+  border: 1px solid #2a3552;
+  border-radius: 8px;
+  background: #101627;
+}
+
+.editor-mazzi-riga-mazzo-totali {
+  font-size: 0.78em;
+  color: #9aa5c0;
+}
+
+.editor-mazzi-riga-mazzo-stat {
+  font-size: 0.78em;
+  color: #c9a24b;
+}
+
+.schermata-iniziale-statistiche {
+  font-size: 0.85em;
+  color: #9aa5c0;
+  margin-top: 4px;
+}
+
+.editor-mazzi-riga-mazzo-azioni {
+  display: flex;
+  gap: 6px;
+}
+
+.editor-mazzi-riga-mazzo-azioni button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #2a3552;
+  background: #131a2b;
+  color: #9aa5c0;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.editor-mazzi-btn-elimina-conferma {
+  background: #5a2323 !important;
+  border-color: #a05050 !important;
+  color: #f0d0d0 !important;
+  font-weight: bold;
+}
+
+/* Avviso in-linea (import mazzo) — al posto di alert(), che dopo qualche volta il browser blocca. */
+.editor-mazzi-messaggio {
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(201, 162, 75, 0.12);
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  color: #e8ecf5;
+  font-size: 0.9em;
+  cursor: pointer;
+}

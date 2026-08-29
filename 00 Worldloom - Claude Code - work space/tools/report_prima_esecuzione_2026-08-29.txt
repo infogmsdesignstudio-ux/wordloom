@@ -1,0 +1,426 @@
+==============================================================================
+WORLDLOOM — validazione dati carte
+==============================================================================
+File analizzati : FrostLand_carte.xlsx, FrostLand_proposte.xlsx, Kepler452B_carte.xlsx, Kepler452B_proposte.xlsx
+Righe carta     : 268
+Range cap. 8    : L1: A/P 1-12, Vita 6-16 · L2: A/P 10-18, Vita 14-26 · L3: A/P 16-30, Vita 24-40
+Budget testo    : misurato con PIL + georgia.ttf
+
+! AVVISO · 1·tipo-effetto·consolidamento — 130
+    FrostLand_carte.xlsx · Carte · r18
+      «Anello Forgiato» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r19
+      «Collana del Potere» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r20
+      «Spada Sacra di Ghiaccio» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r21
+      «Fontana d'Energia» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r22
+      «Valanga di Ghiaccio» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r23
+      «Resuscita Pedina» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r24
+      «Aura di Marbion» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r25
+      «Nebbia di Marbion» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r26
+      «Marea di Marbion» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r27
+      «Terreno Ribelle» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r28
+      «Fato Spezzato» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r29
+      «Imboscata Potente» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r30
+      «Mezzo Fato Avverso» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r31
+      «Lo Specchio Travolgente» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r32
+      «Occhio del Drago Linfatico» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r33
+      «Intervento Divino» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r36
+      «La Base Alimentare» — «ricerca» → «summon» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r37
+      «Copiare È Vantaggioso» — «copy» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r38
+      «Culla del Mondo» — «summon_token» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r39
+      «Distruzione Sofferta» — «kill» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r40
+      «Eco del Gelo» — «copy» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r41
+      «Potenziamento Estremo» — «buff_temp» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r42
+      «L'Inganno Vincente» — «steal_temp» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r43
+      «Spezza Volontà» — «counter» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r44
+      «Temperatura Glaciale» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r45
+      «Goblin Chiama Goblin» — «continua» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r46
+      «Baraonda di Ghiaccio» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r47
+      «Allarme Temperatura Bassa» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r48
+      «Blocco degli Eventi» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r49
+      «Fortuna del Gelo» — «continua» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r50
+      «Impossibile» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r51
+      «Intervento Superiore» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r52
+      «Prendi il Rischio?» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r53
+      «Distruggi Terreno» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r54
+      «Blocca Resuscita» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r55
+      «Blocca Magie per 3 turni» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r56
+      «Destino Obbligato» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r57
+      «Destino Obbligato» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r58
+      «Fatalista» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r59
+      «Il Destino dell'Avversario e' Segnato» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r60
+      «Il Destino dell'Avversario e' Segnato» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r61
+      «Rifornimento Guidato» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r62
+      «Antidolorifico» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r63
+      «Riparti da Zero» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r64
+      «Anticipo sul Futuro» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r65
+      «Anticipo sul Futuro» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r66
+      «Blocca Postazione» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r67
+      «Blocca Postazione» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r68
+      «Grido di Battaglia» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r69
+      «Grido di Battaglia» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r70
+      «Salta Rifornimento» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_carte.xlsx · Carte · r73
+      «Imboscata Potente» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r22
+      «Corazza di Brina» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r23
+      «Richiamo del Clan» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r24
+      «Sangue Congelato» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r25
+      «Frattura Glaciale» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r26
+      «Eco del Ghiacciaio» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r27
+      «Marchio del Predatore» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r28
+      «Distesa Perenne» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r29
+      «Bufera Costante» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r30
+      «Gallerie del Sottoghiaccio» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r31
+      «Lago Sommerso» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r32
+      «Crepaccio Improvviso» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r33
+      «Gelo Paralizzante» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r34
+      «Scudo di Ghiaccio Vivo» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    FrostLand_proposte.xlsx · Carte · r35
+      «Vendetta del Clan» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r15
+      «Anello Forgiato» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r16
+      «Collana del Potere» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r17
+      «Spada Sacra di Ghiaccio» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r18
+      «Fontana d'Energia» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r19
+      «Valanga di Ghiaccio» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r20
+      «Resuscita Pedina» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r21
+      «Aura di Marbion» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r22
+      «Nebbia di Marbion» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r23
+      «Marea di Marbion» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r24
+      «Terreno Ribelle» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r25
+      «Fato Spezzato» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r26
+      «Imboscata Potente» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r27
+      «Mezzo Fato Avverso» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r28
+      «Lo Specchio Travolgente» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r29
+      «Occhio del Drago Linfatico» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r30
+      «Intervento Divino» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r32
+      «Artigiano Potente» — «ricerca» → «summon» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r34
+      «Diplomatico Aureo» — «dado_entrata» → «summon» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r37
+      «Lince Petalosa» — «vanilla» → «none» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r38
+      «Manipolatore di Strumenti» — «recupero» → «summon» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r40
+      «Serpente Radiale» — «morte» → «death» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r41
+      «Cristallo Riflesso» — «counter» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r42
+      «Il Rifiuto della Terra» — «boardwipe» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r47
+      «Verme del Riciclo» — «morte» → «death» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r51
+      «Amico di Marbion» — «inizio_turno» → «turn» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r55
+      «Simbiosi Nera» — «continua» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r56
+      «Regina del Riciclo» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r57
+      «Fusione Colori» — «continua» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r58
+      «Marcia di Marbion» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r59
+      «Distruggi Esercito» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r60
+      «Rifornimento Accompagnato Fortunato» — «continua» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r61
+      «Blocca Strategia» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r62
+      «Controattacco Disperato» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r63
+      «Saccheggio» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r64
+      «Tutto Calcolato» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r65
+      «Trappole Veloci» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r66
+      «L'Acqua e' Vitale» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r67
+      «L'Acqua e' Vitale» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r68
+      «Strategia dello Stratega» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r69
+      «Destino Conquistato» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r70
+      «Destino Conquistato» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r71
+      «Il Destino nelle Tue Mani» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r72
+      «Il Destino nelle Tue Mani» — «rapida» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r73
+      «Scudo Solenne» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r74
+      «Scudo Solenne» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r76
+      «Il Sole Scotta» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r77
+      «L'Estate piu' Calda di Marbion» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r78
+      «L'Estate piu' Calda di Marbion» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r79
+      «Per Giorno Celestiale» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_carte.xlsx · Carte · r80
+      «Male Necessario» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r21
+      «Aura Condivisa» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r22
+      «Filo del Destino» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r23
+      «Prisma Rifrangente» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r24
+      «Dissolvenza» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r25
+      «Richiamo dell'Aurora» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r26
+      «Trama Spezzata» — «normale» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r27
+      «Cielo d'Aurora» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r28
+      «Campo Magnetico» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r29
+      «Nebbia Prismatica» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r30
+      «Giardino Sospeso» — «terreno» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r31
+      «Velo d'Aura» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r32
+      «Riflesso Cromatico» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r33
+      «Nodo Scorsoio» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+    Kepler452B_proposte.xlsx · Carte · r34
+      «Sciame Difensivo» — «trappola» → «carta_effetto» secondo la proposta di lista chiusa (NON applicata, serve ok utente)
+
+! AVVISO · 1·tipo-effetto·da-decidere — 12
+    FrostLand_carte.xlsx · Carte · r34
+      «Condottiero Fiero» — «sopravvivenza» non ha una destinazione univoca nella proposta (candidati: passive / death) — serve una scelta dell'utente
+    FrostLand_carte.xlsx · Carte · r35
+      «Maestro del Patto Cremisi» — «rischio» non ha una destinazione univoca nella proposta (candidati: attack / onsym) — serve una scelta dell'utente
+    FrostLand_carte.xlsx · Carte · r74
+      «Condottiero Fiero» — «sopravvivenza» non ha una destinazione univoca nella proposta (candidati: passive / death) — serve una scelta dell'utente
+    FrostLand_proposte.xlsx · Carte · r20
+      «Divoratore Cremisi» — «onkill» non ha una destinazione univoca nella proposta (candidati: attack) — serve una scelta dell'utente
+    Kepler452B_carte.xlsx · Carte · r33
+      «Cervo Luminoso» — «schivata» non ha una destinazione univoca nella proposta (candidati: defend / passive) — serve una scelta dell'utente
+    Kepler452B_carte.xlsx · Carte · r35
+      «Draghetto Arcobaleno» — «fusione» non ha una destinazione univoca nella proposta (candidati: passive) — serve una scelta dell'utente
+    Kepler452B_carte.xlsx · Carte · r36
+      «Drago Linfatico» — «paralisi» non ha una destinazione univoca nella proposta (candidati: attack / passive) — serve una scelta dell'utente
+    Kepler452B_carte.xlsx · Carte · r39
+      «Potere Divino» — «fusione» non ha una destinazione univoca nella proposta (candidati: passive) — serve una scelta dell'utente
+    Kepler452B_carte.xlsx · Carte · r83
+      «Draghetto Arcobaleno» — «fusione» non ha una destinazione univoca nella proposta (candidati: passive) — serve una scelta dell'utente
+    Kepler452B_carte.xlsx · Carte · r84
+      «Drago Linfatico» — «paralisi» non ha una destinazione univoca nella proposta (candidati: attack / passive) — serve una scelta dell'utente
+    Kepler452B_carte.xlsx · Carte · r85
+      «Potere Divino» — «fusione» non ha una destinazione univoca nella proposta (candidati: passive) — serve una scelta dell'utente
+    Kepler452B_proposte.xlsx · Carte · r17
+      «Tessitore d'Ombre» — «onkill» non ha una destinazione univoca nella proposta (candidati: attack) — serve una scelta dell'utente
+
+! AVVISO · 4·range — 37
+    FrostLand_carte.xlsx · Carte · r2
+      «Mammut Glaciale» — L1 · Vita=18 fuori dal range 6–16 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r4
+      «Troll Folle» — L1 · Vita=18 fuori dal range 6–16 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r5
+      «Modellatore Ghiaccio» — L1 · Vita=17 fuori dal range 6–16 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r6
+      «Evocatore del Sangue» — L2 · Vita=30 fuori dal range 14–26 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r6
+      «Evocatore del Sangue» — L2 · Attacco=8 fuori dal range 10–18 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r7
+      «Figlio del Gelo» — L3 · Vita=45 fuori dal range 24–40 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r8
+      «Custode del Ghiaccio» — L3 · Vita=44 fuori dal range 24–40 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r9
+      «Il Re Antico» — L3 · Vita=43 fuori dal range 24–40 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r13
+      «Corruttore dei Deboli» — L2 · Parata=8 fuori dal range 10–18 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r14
+      «Il Braccio Destro» — L2 · Parata=8 fuori dal range 10–18 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r15
+      «Maestro delle Lame» — L2 · Parata=8 fuori dal range 10–18 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r35
+      «Maestro del Patto Cremisi» — L2 · Parata=9 fuori dal range 10–18 (cap. 8)
+    FrostLand_carte.xlsx · Carte · r71
+      «Il Re Antico» — L3 · Vita=43 fuori dal range 24–40 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r2
+      «Scheggia Vivente» — L1 · Vita=18 fuori dal range 6–16 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r9
+      «Sentinella Congelata» — L1 · Vita=18 fuori dal range 6–16 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r13
+      «Mangiatore di Ghiaccio» — L2 · Vita=30 fuori dal range 14–26 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r13
+      «Mangiatore di Ghiaccio» — L2 · Attacco=9 fuori dal range 10–18 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r14
+      «Capoclan Sottoghiaccio» — L2 · Parata=9 fuori dal range 10–18 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r15
+      «Fabbro delle Lame» — L2 · Parata=9 fuori dal range 10–18 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r16
+      «Custode del Sangue» — L2 · Vita=28 fuori dal range 14–26 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r16
+      «Custode del Sangue» — L2 · Attacco=8 fuori dal range 10–18 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r17
+      «Ombra della Tormenta» — L2 · Parata=8 fuori dal range 10–18 (cap. 8)
+    FrostLand_proposte.xlsx · Carte · r18
+      «Titano dei Ghiacciai» — L3 · Vita=45 fuori dal range 24–40 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r39
+      «Potere Divino» — L3 · Vita=45 fuori dal range 24–40 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r44
+      «Pianta Carnivora» — L2 · Parata=6 fuori dal range 10–18 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r45
+      «Lince Petalosa Protettiva» — L2 · Parata=9 fuori dal range 10–18 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r47
+      «Verme del Riciclo» — L1 · Vita=5 fuori dal range 6–16 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r52
+      «Guardiano di Marbion» — L3 · Vita=44 fuori dal range 24–40 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r52
+      «Guardiano di Marbion» — L3 · Attacco=0 fuori dal range 16–30 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r54
+      «Cavaliere dell'Esercito di Marbion» — L2 · Attacco=19 fuori dal range 10–18 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r75
+      «Il Prescelto si e' Elevato» — L3 · Vita=45 fuori dal range 24–40 (cap. 8)
+    Kepler452B_carte.xlsx · Carte · r85
+      «Potere Divino» — L3 · Vita=45 fuori dal range 24–40 (cap. 8)
+    Kepler452B_proposte.xlsx · Carte · r9
+      «Guardiano dei Cristalli» — L1 · Vita=18 fuori dal range 6–16 (cap. 8)
+    Kepler452B_proposte.xlsx · Carte · r14
+      «Cacciatrice di Aure» — L2 · Parata=8 fuori dal range 10–18 (cap. 8)
+    Kepler452B_proposte.xlsx · Carte · r15
+      «Colosso di Quarzo» — L2 · Vita=29 fuori dal range 14–26 (cap. 8)
+    Kepler452B_proposte.xlsx · Carte · r15
+      «Colosso di Quarzo» — L2 · Attacco=9 fuori dal range 10–18 (cap. 8)
+    Kepler452B_proposte.xlsx · Carte · r16
+      «Sciame Iridescente» — L2 · Parata=9 fuori dal range 10–18 (cap. 8)
+
+! AVVISO · 5·testo-uguale-codici-diversi — 1
+    FrostLand_carte.xlsx · Carte · r37
+      «Copiare È Vantaggioso» — stesso Testo Effetto parola per parola, codici diversi: copiare (Copiare È Vantaggioso) · cristallo (Cristallo Riflesso) · spezzavolonta (Spezza Volontà)
+
+! AVVISO · 6·campi-stampa — 5
+    (globale)
+      «-» — colonna 'Pianeta' vuota su 157 righe ufficiali (FrostLand_carte.xlsx, Kepler452B_carte.xlsx) — warning per scelta esplicita: si promuove a errore quando l'utente li compila
+    (globale)
+      «-» — colonna 'Autore' vuota su 157 righe ufficiali (FrostLand_carte.xlsx, Kepler452B_carte.xlsx) — warning per scelta esplicita: si promuove a errore quando l'utente li compila
+    (globale)
+      «-» — colonna 'Numero' vuota su 157 righe ufficiali (FrostLand_carte.xlsx, Kepler452B_carte.xlsx) — warning per scelta esplicita: si promuove a errore quando l'utente li compila
+    (globale)
+      «-» — colonna 'Anno' vuota su 157 righe ufficiali (FrostLand_carte.xlsx, Kepler452B_carte.xlsx) — warning per scelta esplicita: si promuove a errore quando l'utente li compila
+    (globale)
+      «-» — colonna 'ID Carta' vuota su 157 righe ufficiali (FrostLand_carte.xlsx, Kepler452B_carte.xlsx) — warning per scelta esplicita: si promuove a errore quando l'utente li compila
+
+! AVVISO · 7·keyword-orfana — 1
+    Kepler452B_carte.xlsx · Carte · r42
+      «Il Rifiuto della Terra» — parola chiave «Volante» non definita in tools/keywords.json ne' in un nome di carta
+
+! AVVISO · 9·budget-testo·componi_carte — 12
+    Kepler452B_carte.xlsx · Carte · r47
+      «Verme del Riciclo» — 4 righe contro 3 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 1 righe)
+    Kepler452B_carte.xlsx · Carte · r49
+      «Pescatore dell'Oasi» — 7 righe contro 3 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 4 righe)
+    Kepler452B_carte.xlsx · Carte · r50
+      «Ladro di Luce» — 4 righe contro 3 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 1 righe)
+    Kepler452B_carte.xlsx · Carte · r52
+      «Guardiano di Marbion» — 5 righe contro 3 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 2 righe)
+    Kepler452B_carte.xlsx · Carte · r54
+      «Cavaliere dell'Esercito di Marbion» — 8 righe contro 3 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 5 righe)
+    Kepler452B_carte.xlsx · Carte · r55
+      «Simbiosi Nera» — 7 righe contro 6 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 1 righe)
+    Kepler452B_carte.xlsx · Carte · r73
+      «Scudo Solenne» — 9 righe contro 6 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 3 righe)
+    Kepler452B_carte.xlsx · Carte · r74
+      «Scudo Solenne» — 9 righe contro 6 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 3 righe)
+    Kepler452B_carte.xlsx · Carte · r75
+      «Il Prescelto si e' Elevato» — 6 righe contro 3 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 3 righe)
+    Kepler452B_carte.xlsx · Carte · r76
+      «Il Sole Scotta» — 7 righe contro 6 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 1 righe)
+    Kepler452B_carte.xlsx · Carte · r79
+      «Per Giorno Celestiale» — 7 righe contro 6 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 1 righe)
+    Kepler452B_carte.xlsx · Imprevisti · r14
+      «Marchio del Sole» — 10 righe contro 6 disponibili: componi_carte.py TRONCA il testo con '…' sulla carta composta (eccedenza: 4 righe)
+
+! AVVISO · 9·budget-testo·due-renderer — 1
+    (globale)
+      «-» — esistono DUE renderer con budget diversi (componi_carte.py 3/6 righe · worldloom-cards/render.js ~6/~9 secondo SPEC.md §6) e i documenti non concordano su quale sia vivo (Roadmap T.9 vs CLAUDE.md/skill pipeline-carte). Il controllo sopra misura solo componi_carte.py; per l'altro: `node render.js` in Mazzi/00 Layout generico/worldloom-cards/ stampa da solo le carte in overflow.
+
+------------------------------------------------------------------------------
+ERRORI: 0   AVVISI: 199
+ESITO: OK — nessun errore bloccante.
+------------------------------------------------------------------------------

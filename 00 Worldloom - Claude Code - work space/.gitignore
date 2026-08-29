@@ -1,0 +1,35 @@
+# App React (build/dipendenze, regenerabili con npm install / npm run build)
+App - HTML - Test/node_modules
+App - HTML - Test/dist
+App - HTML - Test/src/data/generated
+
+# Asset sorgente pesanti, non necessari al gioco vero (solo per comporre le Complete Card
+# o per la grafica di stampa) — restano sul disco locale, non in git. Quello che serve
+# davvero al gioco (cards.json, Complete cards) resta tracciato.
+Mazzi/*/Images
+Mazzi/00 Layout generico
+
+# Grafo di conoscenza Graphify: rigenerabile con `graphify . --update --code-only`.
+graphify-out
+
+# Archivio documenti morti + backup pre-lavoro-grosso: locali a questa macchina, non in git
+# (il contenuto storico è comunque nei commit passati; le copie di sicurezza sono una rete
+# di salvataggio locale, cfr. skill documenti-e-backup)
+Archivio
+App - HTML - Test/Versioni gioco
+Backup sorgente*
+
+# File temporanei/di sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# Impostazioni Claude Code locali a questa macchina, non da condividere/commitare
+.claude/settings.local.json
+
+# Sito: dati, immagini e font sono COPIE di file gia' tracciati altrove nel repo,
+# rigenerabili con `python "Sito web - Social/worldloomtcg/sync_carte.py"`.
+# In git resta solo il sorgente del sito (html/css/js + gli script).
+Sito web - Social/worldloomtcg/assets/img
+Sito web - Social/worldloomtcg/assets/fonts
+Sito web - Social/worldloomtcg/assets/data

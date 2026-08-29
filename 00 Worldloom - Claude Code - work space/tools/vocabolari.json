@@ -1,0 +1,235 @@
+{
+  "_leggimi": [
+    "Vocabolari chiusi usati da tools/validate_cards.py.",
+    "Ogni lista qui dentro e' AUTORITATIVA: un valore fuori lista e' un errore, non un avviso.",
+    "Fonti verificate (2026-08-29), non inventate: vedi il campo 'fonte' di ogni sezione."
+  ],
+
+  "ruolo": {
+    "fonte": [
+      "App - HTML - Test/src/data/effettiRuolo.js (EFFETTO_RUOLO, letto dal motore)",
+      "componi_carte.py (EFFETTO_RUOLO, stampato sulla carta)",
+      "Regolamento/Worldloom_Regolamento_v2.1.html cap. 10"
+    ],
+    "ammessi": ["bilanciato", "aggressore", "difensore", "tank", "evasivo", "supporto"]
+  },
+
+  "archetipo": {
+    "fonte": [
+      "App - HTML - Test/src/game/costanti.js (RUOTA)",
+      "Regolamento/Worldloom_Regolamento_v2.1.html cap. 9"
+    ],
+    "ammessi": ["Viandante", "Assalitore", "Effimeri", "Colosso", "Tessitore"]
+  },
+
+  "rarita": {
+    "fonte": "foglio 'Come compilare' riga Rarita (entrambi gli Excel ufficiali)",
+    "ammessi": ["Comune", "Rara", "Epica", "Ultra Rara", "Leggendaria"]
+  },
+
+  "sottotipo": {
+    "fonte": "foglio 'Come compilare' riga Sottotipo + Regolamento cap. 14",
+    "ammessi": ["Normale", "Continua", "Terreno", "Rapida"],
+    "nota": "Vale solo per Tipo Carta = Magia o Trappola. Le Pedine lo lasciano vuoto."
+  },
+
+  "tipo_carta": {
+    "fonte": "genera_cards_json.py (funzione genera): 'Alieno' e' accettato come sinonimo storico di 'Pedina'",
+    "ammessi": ["Pedina", "Magia", "Trappola"],
+    "tollerati_storici": ["Alieno"]
+  },
+
+  "tipo_effetto": {
+    "stato": "CONGELATO — lista chiusa = insieme realmente presente nei dati al 2026-08-29",
+    "fonte": "rilevato dai quattro Excel; NESSUN valore inventato",
+    "nota_importante": [
+      "Il motore NON legge mai questa colonna: verificato con grep su tutto src/ —",
+      "nessuna occorrenza di 'effetto.tipo' / 'tipoEffetto'. Il comportamento di una carta",
+      "dipende solo da 'Codice Effetto'. Questa colonna e' quindi documentazione, non logica:",
+      "riordinarla e' a rischio zero per il gioco.",
+      "La lista sotto e' CONGELATA allo stato attuale: serve a impedire NUOVA deriva",
+      "(un valore mai visto prima e' un errore) mentre si decide la lista definitiva."
+    ],
+    "ammessi": [
+      "ally_death",
+      "attack",
+      "attivata",
+      "boardwipe",
+      "buff_temp",
+      "continua",
+      "copy",
+      "counter",
+      "dado_entrata",
+      "death",
+      "defend",
+      "fusione",
+      "inizio_turno",
+      "kill",
+      "morte",
+      "none",
+      "normale",
+      "onkill",
+      "onsym",
+      "paralisi",
+      "passive",
+      "rapida",
+      "recupero",
+      "ricerca",
+      "rischio",
+      "schivata",
+      "sopravvivenza",
+      "steal_temp",
+      "summon",
+      "summon_token",
+      "terreno",
+      "trappola",
+      "turn",
+      "vanilla"
+    ],
+
+    "proposta_lista_chiusa": {
+      "stato": "PROPOSTA — NON applicata. Serve l'ok esplicito dell'utente (nessuna decisione di game design presa da sola).",
+      "criterio": [
+        "Oggi la colonna mescola tre assi diversi:",
+        "  (a) QUANDO scatta l'effetto  -> passive, summon, attack, defend, death, turn, onsym, ally_death...",
+        "  (b) CHE TIPO di carta e'     -> normale, terreno, trappola, continua, rapida  (duplica la colonna 'Sottotipo')",
+        "  (c) COSA FA l'effetto        -> kill, copy, counter, boardwipe, ricerca, recupero, steal_temp...",
+        "L'asse (b) e' gia' coperto dalla colonna 'Sottotipo'; l'asse (c) e' gia' coperto da 'Codice Effetto'.",
+        "La proposta tiene solo l'asse (a) — il trigger — che e' anche quello che il foglio",
+        "'Come compilare' documenta gia' oggi con i suoi 9 valori."
+      ],
+      "lista_proposta": [
+        "none",
+        "passive",
+        "summon",
+        "attack",
+        "defend",
+        "death",
+        "ally_death",
+        "turn",
+        "onsym",
+        "attivata",
+        "carta_effetto"
+      ],
+      "glossario_proposta": {
+        "none": "Nessun effetto (vanilla).",
+        "passive": "Sempre attivo mentre la Pedina e' in campo, senza innesco.",
+        "summon": "Scatta quando la Pedina entra in campo.",
+        "attack": "Scatta quando questa Pedina attacca.",
+        "defend": "Scatta quando questa Pedina difende.",
+        "death": "Scatta quando questa Pedina viene distrutta.",
+        "ally_death": "Scatta quando muore un'altra Pedina alleata.",
+        "turn": "Scatta a ogni turno / a inizio turno.",
+        "onsym": "Dipende dal simbolo uscito sul dado.",
+        "attivata": "Abilita' che il giocatore sceglie di attivare (di norma 1 volta per turno).",
+        "carta_effetto": "Magia o Trappola: il 'quando' e' scritto in 'Sottotipo' (Normale/Continua/Terreno/Rapida), non qui."
+      },
+      "mappa_conversione": {
+        "_certe": {
+          "vanilla": "none",
+          "morte": "death",
+          "inizio_turno": "turn",
+          "normale": "carta_effetto",
+          "terreno": "carta_effetto",
+          "trappola": "carta_effetto",
+          "continua": "carta_effetto",
+          "rapida": "carta_effetto",
+          "kill": "carta_effetto",
+          "copy": "carta_effetto",
+          "buff_temp": "carta_effetto",
+          "summon_token": "carta_effetto",
+          "boardwipe": "carta_effetto",
+          "steal_temp": "carta_effetto",
+          "counter": "carta_effetto",
+          "dado_entrata": "summon",
+          "ricerca": "summon",
+          "recupero": "summon"
+        },
+        "_da_confermare_con_utente": {
+          "sopravvivenza": {
+            "candidati": ["passive", "death"],
+            "carta": "Condottiero Fiero",
+            "perche_ambiguo": "Sostituisce la morte invece di reagirvi: e' un continuo che modifica una regola, non un trigger di morte."
+          },
+          "rischio": {
+            "candidati": ["attack", "onsym"],
+            "carta": "Maestro del Patto Cremisi",
+            "perche_ambiguo": "Tira un dado PRIMA di ogni suo combattimento: e' innescato dall'attacco ma l'esito dipende dal simbolo."
+          },
+          "schivata": {
+            "candidati": ["defend", "passive"],
+            "carta": "Cervo Luminoso",
+            "perche_ambiguo": "Il primo attacco subito e' schivato d'ufficio, senza tirare: e' un continuo, non una reazione al tiro."
+          },
+          "paralisi": {
+            "candidati": ["attack", "passive"],
+            "carta": "Drago Linfatico",
+            "perche_ambiguo": "Cambia come si risolve il SUO attacco: continuo dal punto di vista della carta, ma visibile solo attaccando."
+          },
+          "fusione": {
+            "candidati": ["passive"],
+            "carte": ["Draghetto Arcobaleno", "Potere Divino"],
+            "perche_ambiguo": "E' un passive condizionato dalla presenza di altre carte; 'fusione' descrive il tema, non il trigger."
+          },
+          "onkill": {
+            "candidati": ["attack"],
+            "carte": ["Divoratore Cremisi (proposte)", "Tessitore d'Ombre (proposte)"],
+            "perche_ambiguo": "Nessun trigger 'quando distrugge' nella lista proposta: o si aggiunge 'onkill' alla lista, o confluisce in 'attack'."
+          }
+        }
+      }
+    }
+  },
+
+  "campi_stampa_obbligatori": {
+    "stato": "WARNING — richiesta esplicita dell'utente: restano avvisi finche' non vengono compilati",
+    "fonte": "foglio 'Come compilare' righe Pianeta/Autore/Numero/Anno/ID Carta: dicono tutte 'Vuoto per ora'",
+    "campi": ["Rarita", "Pianeta", "Autore", "Numero", "Anno", "ID Carta"],
+    "nota": [
+      "componi_carte.py NON legge queste colonne: stampa AUTORE come costante, il numero di",
+      "collezione come indice progressivo e l'ID carta come hash del nome. Quindi la carta OGGI",
+      "e' componibile lo stesso — il blocco alla stampa segnalato dall'analisi esterna non esiste",
+      "nella pipeline attuale. Restano da compilare se si vuole che quei dati vengano dall'Excel."
+    ]
+  },
+
+  "budget_testo": {
+    "stato": "misurato sul renderer componi_carte.py — vedi 'contraddizione_da_risolvere'",
+    "fonte": "componi_carte.py — funzione testo_a_capo(), parametro max_righe",
+    "nota": [
+      "I numeri sotto sono quelli che componi_carte.py applica DAVVERO. Un testo piu' lungo non",
+      "'sfora': viene TRONCATO con '…' sulla carta composta, in silenzio, senza alcun messaggio."
+    ],
+    "contraddizione_da_risolvere": {
+      "problema": "Nel progetto esistono DUE renderer di carta, con budget di testo diversi, e i documenti non concordano su quale sia vivo.",
+      "renderer_A": {
+        "file": "componi_carte.py (root)",
+        "budget": "3 righe per le Pedine · 6 righe per Magie/Trappole/Terreni/Imprevisti",
+        "chi_lo_dichiara_vivo": ["CLAUDE.md (sezione Pipeline dati)", ".claude/skills/pipeline-carte/SKILL.md"],
+        "comportamento_fuori_budget": "tronca in silenzio con '…'"
+      },
+      "renderer_B": {
+        "file": "Mazzi/00 Layout generico/worldloom-cards/render.js + template/card.html",
+        "spec": "Mazzi/00 Layout generico/worldloom-cards/SPEC.md §6 'Regola dura sul testo'",
+        "budget": "~6 righe per le creature (riga efficacia compresa) · ~9 righe per magie/trappole/imprevisti",
+        "chi_lo_dichiara_vivo": ["Engine/Roadmap_Sessione_2026-08-27.md punto T.9 ('componi_carte.py e' codice morto dall'11 agosto')"],
+        "comportamento_fuori_budget": "render.js ha gia' un rilevatore di overflow proprio: stampa nome, px richiesti e px disponibili di ogni carta che sborda"
+      },
+      "conseguenza": [
+        "Il controllo 9 misura il renderer A, perche' e' l'unico riproducibile qui in modo esatto",
+        "(stessa funzione di andata a capo, stesso font, stessa larghezza). Il renderer B ha il suo",
+        "rilevatore interno: si verifica lanciando `node render.js` in worldloom-cards/.",
+        "Finche' l'utente non dice quale dei due e' la pipeline viva, questo resta un AVVISO e non",
+        "un errore, e i due budget vanno letti come due misure diverse, non come una in conflitto."
+      ],
+      "nota_analisi_esterna": [
+        "L'analisi esterna citava una spec grafica 'claude/direzione-grafica-full-art.md' §2.4/§2.7/§3.4.",
+        "Quel percorso NON esiste nel progetto. Il documento con quelle stesse sezioni",
+        "(2.4 Riga tipo · 2.7 Piede · 3.4 Rarita') e' SPEC.md di worldloom-cards: e' quello il riferimento.",
+        "I suoi '~6 righe / ~9 righe' sono corretti — ma valgono per il renderer B, non per componi_carte.py."
+      ]
+    },
+    "pedina": { "max_righe": 3, "font": "georgia.ttf", "dimensione_pt": 19, "larghezza_px": 650 },
+    "magia_trappola_terreno_imprevisto": { "max_righe": 6, "font": "georgia.ttf", "dimensione_pt": 20, "larghezza_px": 650 }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "_leggimi": [
+    "Glossario delle parole chiave ammesse nei Testi Effetto delle carte.",
+    "tools/validate_cards.py estrae da ogni Testo Effetto le parole con l'iniziale maiuscola",
+    "che NON sono a inizio frase, e segnala quelle che non compaiono ne' qui ne' dentro il nome",
+    "di una carta esistente. Serve a intercettare le keyword orfane (es. 'Volante').",
+    "",
+    "Aggiungere una voce qui NON crea la regola: significa dichiarare che la parola e' definita",
+    "nel Regolamento. Se una parola arriva qui senza essere nel Regolamento, il problema si e'",
+    "solo spostato. Il campo 'fonte' dice dove e' definita."
+  ],
+
+  "statistiche": {
+    "fonte": "Regolamento v2.1 cap. 5 e cap. 8",
+    "termini": ["Vita", "Attacco", "Parata"]
+  },
+
+  "simboli_dado": {
+    "fonte": "Regolamento v2.1 cap. 9 e cap. 11",
+    "termini": ["Spada", "Scudo", "Cuore", "Schivata"]
+  },
+
+  "archetipi": {
+    "fonte": "Regolamento v2.1 cap. 9 (Ruota)",
+    "termini": ["Viandante", "Assalitore", "Effimeri", "Colosso", "Tessitore", "Ruota", "Archetipo", "Archetipi"]
+  },
+
+  "ruoli": {
+    "fonte": "Regolamento v2.1 cap. 10 + src/data/effettiRuolo.js",
+    "termini": ["Ruolo", "Bilanciato", "Aggressore", "Difensore", "Tank", "Evasivo", "Supporto"]
+  },
+
+  "tipi_di_carta": {
+    "fonte": "Regolamento v2.1 cap. 5, 14, 15",
+    "termini": [
+      "Pedina", "Pedine",
+      "Alieno", "Alieni",
+      "Magia", "Magie",
+      "Trappola", "Trappole",
+      "Terreno", "Terreni",
+      "Imprevisto", "Imprevisti",
+      "Stratega", "Strateghi"
+    ],
+    "nota": "'Alieno/Alieni' e' terminologia storica: presente solo nei due file *_proposte, mai negli Excel ufficiali."
+  },
+
+  "sottotipi": {
+    "fonte": "Regolamento v2.1 cap. 14 + foglio 'Come compilare' riga Sottotipo",
+    "termini": ["Normale", "Continua", "Rapida"]
+  },
+
+  "zone_e_mazzi": {
+    "fonte": "Regolamento v2.1 cap. 3, 4, 15",
+    "termini": ["Worldloom", "Cimitero", "Campo", "Mano", "Prima", "Linea", "Retrovia"],
+    "nota": "'Prima' e 'Linea' sono elencate separate perche' il controllo lavora parola per parola."
+  },
+
+  "meccaniche": {
+    "fonte": "Regolamento v2.1 cap. 6, 7, 11, 12, 13, 15",
+    "termini": [
+      "Livello",
+      "Dado",
+      "Fase",
+      "Rifornimento",
+      "Evocazione",
+      "Tributo",
+      "Potenziamento", "Potenziamenti",
+      "Diritto", "Ripetizione",
+      "Lascia", "Passare"
+    ]
+  },
+
+  "famiglie_di_carte": {
+    "fonte": "nomi di carta esistenti — qui stanno solo le forme PLURALI, che nessun nome di carta contiene al singolare",
+    "termini": ["Manipolatrici"],
+    "nota": "Le forme singolari (Manipolatrice, Goblin, Larva, Verme…) sono gia' coperte perche' compaiono dentro il nome di una carta reale."
+  },
+
+  "mondi": {
+    "fonte": "nomi dei due set: Mazzi/Frost Land … e Mazzi/Marbion - Kepler - 452 B …",
+    "termini": ["Frost", "Land", "Marbion", "Kepler"],
+    "nota": "La colonna 'Pianeta' degli Excel e' vuota su tutte le righe: il mondo esiste nei testi ma non nei dati."
+  },
+
+  "da_definire_o_rimuovere": {
+    "stato": "NON ammesse — elencate qui solo per tracciarle. Il validatore le segnala comunque.",
+    "termini": {
+      "Volante": {
+        "citata_da": "Il Rifiuto della Terra (Kepler452B_carte.xlsx, codice 'rifiutoterra')",
+        "problema": "Non compare in nessun altro punto: ne' nel Regolamento v2.1, ne' in un'altra carta, ne' nel motore.",
+        "decisione_richiesta": "O si definisce 'Volante' nel Regolamento, o si riscrive il testo della carta. Serve l'utente."
+      }
+    }
+  }
+}

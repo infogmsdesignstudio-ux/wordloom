@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Area personale — Worldloom</title>
+<meta name="description" content="Area personale di prova: i tuoi mazzi, la tua collezione e le carte registrate.">
+<link rel="icon" href="assets/img/pittogramma.png">
+<link rel="stylesheet" href="assets/css/sito.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="salta" href="#principale">Vai al contenuto</a>
+
+<header class="testata">
+  <div class="testata-interno">
+    <a class="marchio" href="index.html" aria-label="Worldloom, vai alla home">
+      <img class="marchio-pittogramma" src="assets/img/pittogramma.png" alt="">
+      <img class="marchio-testo" src="assets/img/logo-testo.png" alt="Worldloom">
+    </a>
+    <nav class="menu">
+      <a href="come-si-gioca.html">Come si gioca</a>
+      <a href="come-e-nato.html">Com&#39;&egrave; nato</a>
+      <a href="store.html">Store</a>
+      <a href="carte.html">Carte</a>
+      <a href="manga.html">Manga</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+      <a href="sostieni.html">Sostieni</a>
+    </nav>
+    <div class="testata-fine">
+      <a class="accedi" href="account.html">Accedi</a>
+      <button class="menu-tasto" aria-expanded="false">
+        <span aria-hidden="true">&#9776;</span><span class="menu-tasto-etichetta">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="principale">
+
+  <section class="sezione">
+    <div class="contenitore">
+      <div class="stretto">
+        <span class="occhiello">Area personale</span>
+        <h1>Ciao, <span id="saluto">—</span></h1>
+      </div>
+
+      <div class="barra-utente" style="margin-top:2rem">
+        <div>
+          <div class="barra-utente-nome">Stratega <span id="saluto-2"></span></div>
+          <span class="contatore" id="contatore">—</span>
+        </div>
+        <button class="btn btn-fantasma" type="button" id="esci">Esci</button>
+      </div>
+
+      <div class="avviso-prova" style="margin-top:1.6rem">
+        <strong>Accesso di prova.</strong> Queste schermate girano su un accesso finto scritto nel
+        codice della pagina, pensato per costruire e provare l'interfaccia in locale. I dati qui
+        sotto sono di esempio e restano nella scheda del browser finché la chiudi.
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione sezione-scura sezione-bordata">
+    <div class="contenitore">
+      <div class="pannelli appare">
+
+        <div class="pannello">
+          <span class="occhiello">I tuoi mazzi</span>
+          <h3>Due mazzi salvati</h3>
+          <ul class="elenco-pulito" style="margin:1.2rem 0">
+            <li class="riga">
+              <span class="riga-nome">Muraglia di ghiaccio</span>
+              <span class="riga-meta">Frost Land</span>
+              <span class="riga-valore">42</span>
+            </li>
+            <li class="riga">
+              <span class="riga-nome">Aura e controllo</span>
+              <span class="riga-meta">Kepler-452B</span>
+              <span class="riga-valore">41</span>
+            </li>
+            <li class="riga">
+              <span class="riga-nome">Incrocio dei mondi</span>
+              <span class="riga-meta">Frost Land + Kepler</span>
+              <span class="riga-valore">38</span>
+            </li>
+          </ul>
+          <a class="btn btn-fantasma" href="carte.html">Sfoglia le carte</a>
+        </div>
+
+        <div class="pannello">
+          <span class="occhiello">La tua collezione</span>
+          <h3>Le carte che possiedi</h3>
+          <ul class="elenco-pulito" id="collezione" style="margin:1.2rem 0"></ul>
+          <form id="aggiungi-carta" novalidate>
+            <label class="campo">
+              <span>Aggiungi una carta</span>
+              <input type="text" name="carta" placeholder="Es. Mammut Glaciale" autocomplete="off">
+            </label>
+            <button class="btn btn-oro" type="submit">Aggiungi</button>
+          </form>
+          <div class="esito">
+            Carta aggiunta all'elenco di prova. Resta qui finché tieni aperta la scheda.
+          </div>
+        </div>
+
+        <div class="pannello">
+          <span class="occhiello">Il tuo profilo</span>
+          <h3>Come ti vedono gli altri</h3>
+          <ul class="elenco-pulito" style="margin:1.2rem 0">
+            <li class="riga">
+              <span class="riga-nome">Partite giocate</span>
+              <span class="riga-meta">di esempio</span>
+              <span class="riga-valore">14</span>
+            </li>
+            <li class="riga">
+              <span class="riga-nome">Mondo preferito</span>
+              <span class="riga-meta">di esempio</span>
+              <span class="riga-valore">Frost Land</span>
+            </li>
+            <li class="riga">
+              <span class="riga-nome">Capitoli letti</span>
+              <span class="riga-meta">di esempio</span>
+              <span class="riga-valore">1</span>
+            </li>
+          </ul>
+          <p class="nota-modulo">
+            Queste voci sono segnaposto: servono a decidere insieme quali informazioni vale la pena
+            mostrare qui.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="piede">
+  <div class="contenitore">
+    <div class="piede-griglia">
+      <div>
+        <a class="marchio" href="index.html" aria-label="Worldloom">
+          <img class="marchio-pittogramma" src="assets/img/pittogramma.png" alt="">
+          <img class="marchio-testo" src="assets/img/logo-testo.png" alt="Worldloom">
+        </a>
+        <p class="piede-nota" style="margin-top:1.2rem">
+          Gioco di carte collezionabili in sviluppo. Un progetto indipendente, con l'ambizione di
+          diventare uno studio.
+        </p>
+      </div>
+      <div>
+        <h4>Il progetto</h4>
+        <ul>
+          <li><a href="come-si-gioca.html">Come si gioca</a></li>
+          <li><a href="come-e-nato.html">Com&#39;&egrave; nato</a></li>
+          <li><a href="carte.html">Le carte</a></li>
+          <li><a href="manga.html">Manga</a></li>
+          <li><a href="store.html">Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Chi c&#39;&egrave; dietro</h4>
+        <ul>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="ia.html">IA allo scoperto</a></li>
+          <li><a href="account.html">Il tuo account</a></li>
+          <li><a href="mailto:info@worldloomtcg.com">info@worldloomtcg.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="piede-fondo">
+      <span>© 2026 Worldloom</span>
+      <span>worldloomtcg.com</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/js/sito.js"></script>
+<script type="module" src="assets/js/area.js"></script>
+</body>
+</html>

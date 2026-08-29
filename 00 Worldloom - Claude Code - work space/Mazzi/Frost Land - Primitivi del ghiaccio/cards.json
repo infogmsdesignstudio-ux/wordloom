@@ -1,0 +1,1480 @@
+{
+  "generato_da": "Mazzi/Frost Land - Primitivi del ghiaccio/Excel/FrostLand_carte.xlsx",
+  "numero_carte_uniche": 73,
+  "numero_copie_totali": 122,
+  "carte": [
+    {
+      "id": "mammut-glaciale__v1__comune__normale",
+      "nome": "Mammut Glaciale",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "ally_death",
+        "testo": "Quando una tua Pedina muore: +4 Vita permanenti.",
+        "codice": "mammut"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 1,
+      "ruolo": "tank",
+      "vita": 18,
+      "attacco": 2,
+      "parata": 9,
+      "attacchi": 2,
+      "immagine": "mammut-glaciale.png"
+    },
+    {
+      "id": "guardiano-glaciale__v1__comune__normale",
+      "nome": "Guardiano Glaciale",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "passive",
+        "testo": "+5 Parata se è l'unica Pedina nella tua prima linea.",
+        "codice": "guardiano"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 1,
+      "ruolo": "difensore",
+      "vita": 16,
+      "attacco": 2,
+      "parata": 12,
+      "attacchi": 2,
+      "immagine": "guardiano-glaciale.png"
+    },
+    {
+      "id": "troll-folle__v1__comune__normale",
+      "nome": "Troll Folle",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "attack",
+        "testo": "+5 Attacco quando attacca una Pedina di Livello superiore.",
+        "codice": "troll"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 1,
+      "ruolo": "tank",
+      "vita": 18,
+      "attacco": 2,
+      "parata": 9,
+      "attacchi": 2,
+      "immagine": "troll-folle.png"
+    },
+    {
+      "id": "modellatore-ghiaccio__v1__comune__normale",
+      "nome": "Modellatore Ghiaccio",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "summon",
+        "testo": "All'evocazione: un tuo Colosso guadagna +4 Parata.",
+        "codice": "modell"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 1,
+      "ruolo": "bilanciato",
+      "vita": 17,
+      "attacco": 5,
+      "parata": 9,
+      "attacchi": 2,
+      "immagine": "modellatore-ghiaccio.png"
+    },
+    {
+      "id": "evocatore-del-sangue__v1__comune__normale",
+      "nome": "Evocatore del Sangue",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "summon",
+        "testo": "All'evocazione: crea una pedina Sangue (Colosso L1).",
+        "codice": "evocatore"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 2,
+      "ruolo": "tank",
+      "vita": 30,
+      "attacco": 8,
+      "parata": 17,
+      "attacchi": 2,
+      "immagine": "evocatore-del-sangue.png"
+    },
+    {
+      "id": "figlio-del-gelo__v1__comune__normale",
+      "nome": "Figlio del Gelo",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "summon",
+        "testo": "All'evocazione: tutte le Pedine nemiche −4 Attacco per 2 turni.",
+        "codice": "gelo"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 3,
+      "ruolo": "tank",
+      "vita": 45,
+      "attacco": 20,
+      "parata": 30,
+      "attacchi": 2,
+      "immagine": "figlio-del-gelo.png"
+    },
+    {
+      "id": "custode-del-ghiaccio__v1__comune__normale",
+      "nome": "Custode del Ghiaccio",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "passive",
+        "testo": "Tutti i tuoi altri Colosso: +3 Attacco e +3 Parata.",
+        "codice": "custode"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 3,
+      "ruolo": "difensore",
+      "vita": 44,
+      "attacco": 20,
+      "parata": 30,
+      "attacchi": 2,
+      "immagine": "custode-del-ghiaccio.png"
+    },
+    {
+      "id": "il-re-antico__v1__comune__rainbow",
+      "nome": "Il Re Antico",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Rainbow",
+      "effetto": {
+        "tipo": "passive",
+        "testo": "3 attacchi per turno invece di 2. Massimo 1 copia nel Worldloom.",
+        "codice": "re"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 3,
+      "ruolo": "aggressore",
+      "vita": 43,
+      "attacco": 24,
+      "parata": 26,
+      "attacchi": 3,
+      "immagine": "il-re-antico.png"
+    },
+    {
+      "id": "lupo-famelico__v1__comune__normale",
+      "nome": "Lupo Famelico",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "attack",
+        "testo": "+4 Attacco se è l'unica Pedina nella tua prima linea.",
+        "codice": "lupo"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Assalitore",
+      "livello": 1,
+      "ruolo": "aggressore",
+      "vita": 10,
+      "attacco": 12,
+      "parata": 2,
+      "attacchi": 2,
+      "immagine": "lupo-famelico.png"
+    },
+    {
+      "id": "piccolo-goblin__v1__comune__normale",
+      "nome": "Piccolo Goblin",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "summon",
+        "testo": "All'evocazione: evoca gratis un altro Piccolo Goblin dalla mano.",
+        "codice": "goblin"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Effimeri",
+      "livello": 1,
+      "ruolo": "evasivo",
+      "vita": 9,
+      "attacco": 10,
+      "parata": 2,
+      "attacchi": 2,
+      "immagine": "piccolo-goblin.png"
+    },
+    {
+      "id": "esploratore-gallerie__v1__comune__normale",
+      "nome": "Esploratore Gallerie",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "summon",
+        "testo": "All'evocazione: se hai un altro Effimeri, peschi una carta.",
+        "codice": "esplor"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Effimeri",
+      "livello": 1,
+      "ruolo": "evasivo",
+      "vita": 9,
+      "attacco": 10,
+      "parata": 2,
+      "attacchi": 2,
+      "immagine": "esploratore-gallerie.png"
+    },
+    {
+      "id": "corruttore-dei-deboli__v1__comune__normale",
+      "nome": "Corruttore dei Deboli",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "summon",
+        "testo": "All'evocazione: infliggi 8 danni a una Pedina nemica di Livello 1.",
+        "codice": "corrutt"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Assalitore",
+      "livello": 2,
+      "ruolo": "aggressore",
+      "vita": 18,
+      "attacco": 18,
+      "parata": 8,
+      "attacchi": 2,
+      "immagine": "corruttore-dei-deboli.png"
+    },
+    {
+      "id": "il-braccio-destro__v1__comune__normale",
+      "nome": "Il Braccio Destro",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "onsym",
+        "testo": "Se il simbolo è uguale al precedente dello stesso turno, danno raddoppiato.",
+        "codice": "braccio"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Assalitore",
+      "livello": 2,
+      "ruolo": "aggressore",
+      "vita": 18,
+      "attacco": 18,
+      "parata": 8,
+      "attacchi": 2,
+      "immagine": "il-braccio-destro.png"
+    },
+    {
+      "id": "maestro-delle-lame__v1__comune__normale",
+      "nome": "Maestro delle Lame",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "summon",
+        "testo": "All'evocazione: distruggi la Pedina nemica con meno Vita se è di Livello 1.",
+        "codice": "lame"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Assalitore",
+      "livello": 2,
+      "ruolo": "aggressore",
+      "vita": 18,
+      "attacco": 18,
+      "parata": 8,
+      "attacchi": 2,
+      "immagine": "maestro-delle-lame.png"
+    },
+    {
+      "id": "araldo-tempesta__v1__comune__normale",
+      "nome": "Araldo Tempesta",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "onsym",
+        "testo": "Se esce Spada mentre attacca, infligge 4 danni extra.",
+        "codice": "araldo"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Assalitore",
+      "livello": 1,
+      "ruolo": "aggressore",
+      "vita": 10,
+      "attacco": 12,
+      "parata": 2,
+      "attacchi": 2,
+      "immagine": "araldo-tempesta.png"
+    },
+    {
+      "id": "mago-sorprendente__v1__comune__rainbow",
+      "nome": "Mago Sorprendente",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Rainbow",
+      "effetto": {
+        "tipo": "defend",
+        "testo": "Quando difende, puoi ritirare il dado (1 volta per turno).",
+        "codice": "mago"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Tessitore",
+      "livello": 3,
+      "ruolo": "bilanciato",
+      "vita": 33,
+      "attacco": 30,
+      "parata": 22,
+      "attacchi": 2,
+      "immagine": "mago-sorprendente.png"
+    },
+    {
+      "id": "condottiero-fiero__v1__comune__rainbow",
+      "nome": "Condottiero Fiero",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Rainbow",
+      "effetto": {
+        "tipo": "sopravvivenza",
+        "testo": "La prima volta che subirebbe un colpo letale in un turno, sopravvive con 1 Vita invece di essere distrutto.",
+        "codice": "condottiero"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Assalitore",
+      "livello": 2,
+      "ruolo": "tank",
+      "vita": 20,
+      "attacco": 16,
+      "parata": 10,
+      "attacchi": 2,
+      "immagine": "condottiero-fiero.png"
+    },
+    {
+      "id": "maestro-del-patto-cremisi__v1__comune__normale",
+      "nome": "Maestro del Patto Cremisi",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rischio",
+        "testo": "Prima di ogni suo combattimento tira 1 dado: con Spada dimezza la propria Vita e raddoppia il proprio Attacco fino a fine turno; con qualsiasi altro risultato perde 2 Attacco fino a fine turno.",
+        "codice": "cremisi"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Tessitore",
+      "livello": 2,
+      "ruolo": "bilanciato",
+      "vita": 19,
+      "attacco": 17,
+      "parata": 9,
+      "attacchi": 2,
+      "immagine": "maestro-del-patto-cremisi.png"
+    },
+    {
+      "id": "la-base-alimentare__v1__comune__normale",
+      "nome": "La Base Alimentare",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "ricerca",
+        "testo": "Quando entra in campo, se hai un'altra copia in mano evocala gratuitamente; altrimenti cerca un'altra copia nel tuo Worldloom e aggiungila alla mano.",
+        "codice": "basealim"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Effimeri",
+      "livello": 1,
+      "ruolo": "evasivo",
+      "vita": 11,
+      "attacco": 10,
+      "parata": 4,
+      "attacchi": 2,
+      "immagine": "la-base-alimentare.png"
+    },
+    {
+      "id": "il-re-antico__v1__comune__normale",
+      "nome": "Il Re Antico",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "passive",
+        "testo": "3 attacchi per turno invece di 2. Massimo 1 copia nel Worldloom.",
+        "codice": "re"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Colosso",
+      "livello": 3,
+      "ruolo": "aggressore",
+      "vita": 43,
+      "attacco": 24,
+      "parata": 26,
+      "attacchi": 3,
+      "immagine": "il-re-antico.png"
+    },
+    {
+      "id": "mago-sorprendente__v1__comune__normale",
+      "nome": "Mago Sorprendente",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "defend",
+        "testo": "Quando difende, puoi ritirare il dado (1 volta per turno).",
+        "codice": "mago"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Tessitore",
+      "livello": 3,
+      "ruolo": "bilanciato",
+      "vita": 33,
+      "attacco": 30,
+      "parata": 22,
+      "attacchi": 2,
+      "immagine": "mago-sorprendente.png"
+    },
+    {
+      "id": "condottiero-fiero__v1__comune__normale",
+      "nome": "Condottiero Fiero",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "sopravvivenza",
+        "testo": "La prima volta che subirebbe un colpo letale in un turno, sopravvive con 1 Vita invece di essere distrutto.",
+        "codice": "condottiero"
+      },
+      "tipoCarta": "pedina",
+      "archetipo": "Assalitore",
+      "livello": 2,
+      "ruolo": "tank",
+      "vita": 20,
+      "attacco": 16,
+      "parata": 10,
+      "attacchi": 2,
+      "immagine": "condottiero-fiero.png"
+    },
+    {
+      "id": "anello-forgiato__v1__comune__normale",
+      "nome": "Anello Forgiato",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Una tua Pedina: +5 Attacco e +3 Parata finche' resta in campo.",
+        "codice": "buff_5_3"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "collana-del-potere__v1__comune__normale",
+      "nome": "Collana del Potere",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Una tua Pedina: +3 Attacco e +2 Parata finche' resta in campo.",
+        "codice": "buff_3_2"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "spada-sacra-di-ghiaccio__v1__comune__normale",
+      "nome": "Spada Sacra di Ghiaccio",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Una tua Pedina: +5 Attacco finche' resta in campo.",
+        "codice": "buff_5_0"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "fontana-denergia__v1__comune__normale",
+      "nome": "Fontana d'Energia",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Tutte le tue Pedine: +3 Attacco fino a fine turno.",
+        "codice": "mass_atk"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "valanga-di-ghiaccio__v1__comune__normale",
+      "nome": "Valanga di Ghiaccio",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Distruggi una Pedina nemica con Attacco pari o inferiore alla meta' della tua piu' forte.",
+        "codice": "kill"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "resuscita-pedina__v1__comune__normale",
+      "nome": "Resuscita Pedina",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Rievoca una Pedina dal tuo cimitero. Non conta come evocazione del turno.",
+        "codice": "revive"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "aura-di-marbion__v1__comune__normale",
+      "nome": "Aura di Marbion",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Una Pedina nemica non puo' attaccare nel suo prossimo turno.",
+        "codice": "stun"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "nebbia-di-marbion__v1__comune__normale",
+      "nome": "Nebbia di Marbion",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "terreno",
+        "testo": "TERRENO - Per entrambi, il danno da Scudo si riduce di 3.",
+        "codice": "terr_scudo"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "terreno"
+    },
+    {
+      "id": "marea-di-marbion__v1__comune__normale",
+      "nome": "Marea di Marbion",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "terreno",
+        "testo": "TERRENO - Per entrambi, le retrovie non sono piu' protette.",
+        "codice": "terr_marbion"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "terreno"
+    },
+    {
+      "id": "terreno-ribelle__v1__comune__normale",
+      "nome": "Terreno Ribelle",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "terreno",
+        "testo": "TERRENO - Per entrambi, il danno da Spada aumenta di 3.",
+        "codice": "terr_spada"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "terreno"
+    },
+    {
+      "id": "culla-del-mondo__v1__comune__normale",
+      "nome": "Culla del Mondo",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "summon_token",
+        "testo": "Evoca 2 pedine Goblin con Vita 5, Attacco 5 e Parata 5 sulla tua Prima Linea o Retrovia.",
+        "codice": "cullamondo"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "distruzione-sofferta__v1__comune__normale",
+      "nome": "Distruzione Sofferta",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "kill",
+        "testo": "Sacrifica la tua Pedina con Attacco più alto: distruggi fino a 2 Pedine avversarie a tua scelta.",
+        "codice": "distrsoff"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "eco-del-gelo__v1__comune__normale",
+      "nome": "Eco del Gelo",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "copy",
+        "testo": "Ripeti immediatamente l'effetto dell'ultima Magia o Trappola che hai attivato in questo turno.",
+        "codice": "ecogelo"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "potenziamento-estremo__v1__comune__normale",
+      "nome": "Potenziamento Estremo",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "buff_temp",
+        "testo": "Raddoppia Vita, Attacco e Parata di una tua Pedina fino alla fine del turno. Alla fine del turno, scarta quella Pedina.",
+        "codice": "potestremo"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "temperatura-glaciale__v1__rara__normale",
+      "nome": "Temperatura Glaciale",
+      "variante": 1,
+      "rarita": "Rara",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "terreno",
+        "testo": "TERRENO - Per entrambi, le pedine non di Frost Land: -4 Parata.",
+        "codice": "terr_gelo"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "terreno"
+    },
+    {
+      "id": "goblin-chiama-goblin__v1__comune__normale",
+      "nome": "Goblin Chiama Goblin",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "continua",
+        "testo": "CONTINUA - Ogni volta che evochi una pedina con 'Goblin' nel nome: pesca 1 carta. Se ha 'Goblin' nel nome, la tieni. Altrimenti scegli: rimescolala nel Worldloom, oppure tienila e la pedina Goblin appena evocata muore.",
+        "codice": "goblinchiama"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "baraonda-di-ghiaccio__v1__rara__normale",
+      "nome": "Baraonda di Ghiaccio",
+      "variante": 1,
+      "rarita": "Rara",
+      "copie": 1,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "terreno",
+        "testo": "TERRENO - Per entrambi, quando una pedina non di Frost Land ottiene Schivata: invece di schivare subisce 3 danni.",
+        "codice": "terr_baraonda"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "terreno"
+    },
+    {
+      "id": "allarme-temperatura-bassa__v1__ultra-rara__normale",
+      "nome": "Allarme Temperatura Bassa",
+      "variante": 1,
+      "rarita": "Ultra Rara",
+      "copie": 1,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Se l'avversario controlla piu' pedine di te: non puo' evocare (ne' evocazioni normali ne' bonus) nel suo prossimo turno. Se ne controllate lo stesso numero: ogni giocatore distrugge una propria pedina scelta dall'avversario. Se l'avversario ne controlla meno di te: scarta una carta dalla tua mano, oppure questa carta viene distrutta senza effetto.",
+        "codice": "allarmetemp"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "fortuna-del-gelo__v1__rara__normale",
+      "nome": "Fortuna del Gelo",
+      "variante": 1,
+      "rarita": "Rara",
+      "copie": 2,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "continua",
+        "testo": "CONTINUA - Ogni volta che evochi una pedina: scegli una tua pedina in prima linea e lancia il suo dado Archetipo. Con Schivata, pesca 1 carta.",
+        "codice": "fortunagelo"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "impossibile__v1__ultra-rara__normale",
+      "nome": "Impossibile",
+      "variante": 1,
+      "rarita": "Ultra Rara",
+      "copie": 1,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rapida",
+        "testo": "MAGIA RAPIDA - Scegli il dado Archetipo di una delle tue pedine in campo e lancialo. Fino alla fine del turno in corso, ogni tiro del dado di reazione da' automaticamente quel risultato, senza tirare: il tuo se ti stai difendendo, quello dell'avversario se stai attaccando tu.",
+        "codice": "impossibile"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "prendi-il-rischio?__v1__comune__normale",
+      "nome": "Prendi il Rischio?",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Attivabile solo se controlli almeno una pedina. Tira il dado Imprevisti. 0: distruggi una tua pedina a tua scelta. +1: distruggi 1 carta dell'avversario a tua scelta, di qualsiasi tipo. +2: evoca specialmente dalla mano una pedina di Livello 1 o 2, senza tributo (non conta come evocazione del turno).",
+        "codice": "prendirischio"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "distruggi-terreno__v1__comune__normale",
+      "nome": "Distruggi Terreno",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 3,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Distruggi la Magia Terreno attualmente in gioco.",
+        "codice": "distruggiterreno"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "fatalista__v1__leggendaria__normale",
+      "nome": "Fatalista",
+      "variante": 1,
+      "rarita": "Leggendaria",
+      "copie": 1,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rapida",
+        "testo": "MAGIA RAPIDA - Attivala all'inizio del tuo turno, dopo gli Imprevisti. Per tutto questo turno, l'avversario non puo' scegliere 'Lascia passare': ogni volta che attacchi una sua pedina o lui direttamente, deve difendersi. E' lui a scegliere quale pedina usa per difendere, quando puo'.",
+        "codice": "fatalista"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "il-destino-dellavversario-e-segnato__v1__ultra-rara__normale",
+      "nome": "Il Destino dell'Avversario e' Segnato",
+      "variante": 1,
+      "rarita": "Ultra Rara",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rapida",
+        "testo": "MAGIA RAPIDA - Durante un tuo attacco: scegli il simbolo del tiro di reazione dell'avversario, senza farlo tirare. Il combattimento si risolve come se fosse uscito quello.",
+        "codice": "destinoavvsegnato"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "il-destino-dellavversario-e-segnato__v1__comune__normale",
+      "nome": "Il Destino dell'Avversario e' Segnato",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rapida",
+        "testo": "MAGIA RAPIDA - Durante un tuo attacco: scegli il simbolo del tiro di reazione dell'avversario, senza farlo tirare. Il combattimento si risolve come se fosse uscito quello.",
+        "codice": "destinoavvsegnato"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "rifornimento-guidato__v1__epica__normale",
+      "nome": "Rifornimento Guidato",
+      "variante": 1,
+      "rarita": "Epica",
+      "copie": 1,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Pesca tante carte quante tue pedine hai in prima linea.",
+        "codice": "rifornguidato"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "antidolorifico__v1__comune__normale",
+      "nome": "Antidolorifico",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Non attivabile al primo turno di nessuno dei due giocatori. Attivabile solo se non controlli pedine: tira il dado Imprevisti. 0: l'avversario non puo' attaccarti direttamente fino al tuo prossimo turno. +1: recupera dal cimitero la pedina di Livello 1 con Parata piu' alta. +2: recupera dal cimitero la pedina di Livello 1 con Attacco piu' alto.",
+        "codice": "antidolorifico"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "riparti-da-zero__v1__comune__normale",
+      "nome": "Riparti da Zero",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Scarta tutta la tua mano (devi averne almeno 1 carta): distruggi tutte le pedine, le Magie e le Trappole presenti sul campo, di entrambi i giocatori, incluso il Terreno attivo.",
+        "codice": "ripartidazero"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "anticipo-sul-futuro__v1__comune__normale",
+      "nome": "Anticipo sul Futuro",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 3,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Pesca 2 carte. Salta la pesca del Rifornimento del tuo prossimo turno. Puoi attivare al massimo 1 copia di questa carta per turno, e nessuna nel turno successivo a quello in cui l'hai attivata.",
+        "codice": "anticipofuturo"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "anticipo-sul-futuro__v1__rara__normale",
+      "nome": "Anticipo sul Futuro",
+      "variante": 1,
+      "rarita": "Rara",
+      "copie": 3,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "Pesca 2 carte. Salta la pesca del Rifornimento del tuo prossimo turno. Puoi attivare al massimo 1 copia di questa carta per turno, e nessuna nel turno successivo a quello in cui l'hai attivata.",
+        "codice": "anticipofuturo"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "blocca-postazione__v1__rara__normale",
+      "nome": "Blocca Postazione",
+      "variante": 1,
+      "rarita": "Rara",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rapida",
+        "testo": "MAGIA RAPIDA - Tira il dado Imprevisti e scegli una postazione VUOTA in prima linea dell'avversario: questa carta si posiziona fisicamente li', occupandola come se fosse stata evocata in quel punto, impedendo di evocarci o spostarci una pedina finche' resta. Con +2 resta per 2 turni, con +1 per 1 turno, con 0 solo per questo turno, poi va al cimitero. Non puo' essere tributata ne' contata come pedina per nessun effetto.",
+        "codice": "bloccapostazione"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "blocca-postazione__v1__comune__normale",
+      "nome": "Blocca Postazione",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rapida",
+        "testo": "MAGIA RAPIDA - Tira il dado Imprevisti e scegli una postazione VUOTA in prima linea dell'avversario: questa carta si posiziona fisicamente li', occupandola come se fosse stata evocata in quel punto, impedendo di evocarci o spostarci una pedina finche' resta. Con +2 resta per 2 turni, con +1 per 1 turno, con 0 solo per questo turno, poi va al cimitero. Non puo' essere tributata ne' contata come pedina per nessun effetto.",
+        "codice": "bloccapostazione"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "grido-di-battaglia__v1__ultra-rara__normale",
+      "nome": "Grido di Battaglia",
+      "variante": 1,
+      "rarita": "Ultra Rara",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rapida",
+        "testo": "MAGIA RAPIDA - Ogni tua pedina, sia in prima linea che in retrovia, ottiene +1 attacco disponibile in questo turno.",
+        "codice": "gridodibattaglia"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "grido-di-battaglia__v1__comune__normale",
+      "nome": "Grido di Battaglia",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "rapida",
+        "testo": "MAGIA RAPIDA - Ogni tua pedina, sia in prima linea che in retrovia, ottiene +1 attacco disponibile in questo turno.",
+        "codice": "gridodibattaglia"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "salta-rifornimento__v1__comune__normale",
+      "nome": "Salta Rifornimento",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 3,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "normale",
+        "testo": "L'avversario salta la Fase di Rifornimento (niente pesca) nel suo prossimo turno. Per attivarla, in questo tuo turno non puoi ne' attaccare ne' evocare.",
+        "codice": "saltariforn"
+      },
+      "tipoCarta": "magia",
+      "sottotipo": "normale"
+    },
+    {
+      "id": "fato-spezzato__v1__comune__normale",
+      "nome": "Fato Spezzato",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "Annulla un attacco dichiarato contro di te.",
+        "codice": "cancel"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "imboscata-potente__v1__comune__rainbow",
+      "nome": "Imboscata Potente",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Rainbow",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "Annulla l'attacco e distruggi la Pedina attaccante.",
+        "codice": "ambush"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "mezzo-fato-avverso__v1__comune__normale",
+      "nome": "Mezzo Fato Avverso",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "La tua Pedina ritira il dado di reazione.",
+        "codice": "reroll"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "lo-specchio-travolgente__v1__comune__normale",
+      "nome": "Lo Specchio Travolgente",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "Il danno di questo attacco colpisce l'attaccante.",
+        "codice": "mirror"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "occhio-del-drago-linfatico__v1__comune__normale",
+      "nome": "Occhio del Drago Linfatico",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "L'attaccante perde tutti gli attacchi rimanenti in questo turno.",
+        "codice": "stopatk"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "intervento-divino__v1__comune__normale",
+      "nome": "Intervento Divino",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "Annulla un attacco diretto e infliggi allo Stratega nemico danni pari all'Attacco dell'attaccante.",
+        "codice": "divine"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "copiare-è-vantaggioso__v1__comune__normale",
+      "nome": "Copiare È Vantaggioso",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "copy",
+        "testo": "Annulla un attacco dichiarato contro una tua Pedina.",
+        "codice": "copiare"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "linganno-vincente__v1__comune__normale",
+      "nome": "L'Inganno Vincente",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "steal_temp",
+        "testo": "Quando l'avversario evoca una Pedina di Livello 1, prendine il controllo per 2 turni; poi restituiscila al campo avversario.",
+        "codice": "ingannovinc"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "spezza-volontà__v1__comune__normale",
+      "nome": "Spezza Volontà",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "counter",
+        "testo": "Annulla un attacco dichiarato contro una tua Pedina.",
+        "codice": "spezzavolonta"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "blocco-degli-eventi__v1__comune__normale",
+      "nome": "Blocco degli Eventi",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 3,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "TRAPPOLA - Fino alla fine del turno in corso, l'avversario non puo' attivare nuovi effetti di carte (Magie, Trappole, abilita' attivate). Gli effetti gia' in corso (Potenziamenti, Terreni, aure) non vengono influenzati.",
+        "codice": "bloccoeventi"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "intervento-superiore__v1__epica__normale",
+      "nome": "Intervento Superiore",
+      "variante": 1,
+      "rarita": "Epica",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "TRAPPOLA - Annulla l'attivazione dell'effetto di una carta qualsiasi, anche tua. Se era l'effetto di una pedina, la pedina resta in campo. Se era una Magia o una Trappola, viene distrutta.",
+        "codice": "intervsuperiore"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "blocca-resuscita__v1__comune__normale",
+      "nome": "Blocca Resuscita",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 3,
+      "limiteCopie": 3,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "TRAPPOLA - Quando l'avversario sta per evocare una pedina dal suo cimitero: annulla l'evocazione e manda quella pedina in esilio (esce definitivamente dal gioco, non recuperabile).",
+        "codice": "bloccaresuscita"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "blocca-magie-per-3-turni__v1__comune__normale",
+      "nome": "Blocca Magie per 3 turni",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 2,
+      "limiteCopie": 2,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "TRAPPOLA - Quando l'avversario attiva una Magia (Normale, Continua, Rapida o Terreno): annulla il suo effetto (va comunque al cimitero). Per i suoi prossimi 3 turni, l'avversario non puo' giocare Magie - solo Trappole.",
+        "codice": "bloccamagie3"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "destino-obbligato__v1__ultra-rara__normale",
+      "nome": "Destino Obbligato",
+      "variante": 1,
+      "rarita": "Ultra Rara",
+      "copie": 1,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "TRAPPOLA - Quando l'avversario dichiara un attacco: scegli un Archetipo. L'attaccante usa il dado di quell'Archetipo invece del suo per questo scontro.",
+        "codice": "destinoobbligato"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "destino-obbligato__v1__leggendaria__normale",
+      "nome": "Destino Obbligato",
+      "variante": 1,
+      "rarita": "Leggendaria",
+      "copie": 1,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "TRAPPOLA - Quando l'avversario dichiara un attacco: scegli un Archetipo. L'attaccante usa il dado di quell'Archetipo invece del suo per questo scontro.",
+        "codice": "destinoobbligato"
+      },
+      "tipoCarta": "trappola"
+    },
+    {
+      "id": "imboscata-potente__v1__comune__normale",
+      "nome": "Imboscata Potente",
+      "variante": 1,
+      "rarita": "Comune",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "trappola",
+        "testo": "Annulla l'attacco e distruggi la Pedina attaccante.",
+        "codice": "ambush"
+      },
+      "tipoCarta": "trappola"
+    }
+  ],
+  "imprevisti": [
+    {
+      "id": "tempesta-selvaggia__v1__comune__normale",
+      "nome": "Tempesta Selvaggia",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Ogni giocatore tira: +1 la Pedina con Parata piu' bassa +3 Parata; +2 la Pedina con Vita piu' bassa viene distrutta.",
+        "codice": "tempesta"
+      }
+    },
+    {
+      "id": "ombra-condivisa__v1__comune__normale",
+      "nome": "Ombra Condivisa",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Ogni giocatore tira: se esce +2, scarta una carta a caso.",
+        "codice": "ombra"
+      }
+    },
+    {
+      "id": "legge-del-piu-forte__v1__comune__normale",
+      "nome": "Legge del Piu' Forte",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Per ciascuno: la Pedina con Attacco piu' alto +5, quella piu' bassa -5, fino a fine turno.",
+        "codice": "forte"
+      }
+    },
+    {
+      "id": "legge-della-ribalta__v1__comune__normale",
+      "nome": "Legge della Ribalta",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Per ciascuno: la Pedina con Attacco piu' basso +5, quella piu' alta -5, fino a fine turno.",
+        "codice": "ribalta"
+      }
+    },
+    {
+      "id": "riserve-dellultima-ora__v1__comune__normale",
+      "nome": "Riserve dell'Ultima Ora",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Ogni giocatore pesca fino ad avere 6 carte in mano.",
+        "codice": "riserve"
+      }
+    },
+    {
+      "id": "respiro-della-vita__v1__comune__normale",
+      "nome": "Respiro della Vita",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Entrambi gli Strateghi recuperano 10 PV.",
+        "codice": "respiro"
+      }
+    },
+    {
+      "id": "convergenza-astrale__v1__comune__normale",
+      "nome": "Convergenza Astrale",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 2,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Entrambi i giocatori pescano una carta.",
+        "codice": "convergenza"
+      }
+    },
+    {
+      "id": "richiamo-degli-effimeri__v1__comune__normale",
+      "nome": "Richiamo degli Effimeri",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 1,
+      "limiteCopie": null,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Tutte le Pedine Effimeri sul campo di entrambi vengono distrutte.",
+        "codice": "effimeri"
+      }
+    },
+    {
+      "id": "il-richiamo-dei-caduti__v1__comune__normale",
+      "nome": "Il Richiamo dei Caduti",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 2,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Ogni giocatore recupera dal cimitero dell'AVVERSARIO una pedina di Livello 1 a sua scelta e la evoca sul proprio terreno in prima linea. Se occupata, sposta in retrovia una pedina a sua scelta; se anche la retrovia e' piena, distrugge 1 carta a sua scelta per fare posto. La pedina evocata cosi' viene distrutta dopo 2 turni.",
+        "codice": "imp_richiamocaduti"
+      }
+    },
+    {
+      "id": "evocazione-rischiosa__v1__leggendaria__normale",
+      "nome": "Evocazione Rischiosa",
+      "variante": 1,
+      "rarita": "Leggendaria",
+      "tipoCarta": "imprevisto",
+      "copie": 1,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Evoca specialmente una pedina di Livello 3 a tua scelta dal tuo Worldloom, se possibile. Se non e' possibile, distruggi una tua pedina.",
+        "codice": "imp_evocrischiosa"
+      }
+    },
+    {
+      "id": "evocazione-rischiosa__v1__comune__normale",
+      "nome": "Evocazione Rischiosa",
+      "variante": 1,
+      "rarita": "Comune",
+      "tipoCarta": "imprevisto",
+      "copie": 1,
+      "limiteCopie": 1,
+      "finitura": "Normale",
+      "effetto": {
+        "tipo": "imprevisto",
+        "testo": "Evoca specialmente una pedina di Livello 3 a tua scelta dal tuo Worldloom, se possibile. Se non e' possibile, distruggi una tua pedina.",
+        "codice": "imp_evocrischiosa"
+      }
+    }
+  ]
+}
