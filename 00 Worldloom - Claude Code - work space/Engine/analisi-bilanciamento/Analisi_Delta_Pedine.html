@@ -1,0 +1,622 @@
+<title>Delta delle Pedine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#EAEEF1;
+  --panel:#F7F9FA;
+  --panel-2:#FDFEFE;
+  --ink:#141C23;
+  --ink-2:#4A5964;
+  --ink-3:#7C8B96;
+  --rule:#D2DAE0;
+  --rule-soft:#E2E8ED;
+  --attacco:#B4531B;
+  --parata:#1B6FA8;
+  --critico:#98292C;
+  --critico-bg:#F5E4E3;
+  --ok:#2C6B4C;
+  --ok-bg:#E2EDE7;
+  --neutro-bg:#E6EBEF;
+  --shadow:0 1px 2px rgba(20,28,35,.06), 0 8px 24px -14px rgba(20,28,35,.22);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#10161B;
+    --panel:#192127;
+    --panel-2:#1E272E;
+    --ink:#E3E9ED;
+    --ink-2:#9DACB7;
+    --ink-3:#6E7E8A;
+    --rule:#2B353D;
+    --rule-soft:#232C33;
+    --attacco:#CE6A28;
+    --parata:#3C93CE;
+    --critico:#D9666A;
+    --critico-bg:#2E1D1F;
+    --ok:#5FAF87;
+    --ok-bg:#17281F;
+    --neutro-bg:#222B32;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#10161B;
+  --panel:#192127;
+  --panel-2:#1E272E;
+  --ink:#E3E9ED;
+  --ink-2:#9DACB7;
+  --ink-3:#6E7E8A;
+  --rule:#2B353D;
+  --rule-soft:#232C33;
+  --attacco:#CE6A28;
+  --parata:#3C93CE;
+  --critico:#D9666A;
+  --critico-bg:#2E1D1F;
+  --ok:#5FAF87;
+  --ok-bg:#17281F;
+  --neutro-bg:#222B32;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  font-size:20px;
+  line-height:1.62;
+  margin:0;
+  padding:0 24px 96px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto}
+.prose{max-width:64ch}
+
+/* ── typographic system ────────────────────────────────────── */
+h1,h2,h3{font-family:Cinzel,"Trajan Pro",Georgia,serif;font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6vw,3.9rem);line-height:1.02;letter-spacing:.005em}
+h2{font-size:clamp(1.5rem,3.2vw,2.05rem);line-height:1.16;margin-bottom:.5rem}
+h3{font-size:1.12rem;line-height:1.3;letter-spacing:.02em;margin-bottom:.35rem}
+p{margin:0 0 1.05rem}
+strong{font-weight:600;color:var(--ink)}
+em{font-style:italic}
+a{color:var(--parata)}
+
+.mono{font-family:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;font-size:.665rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);
+}
+
+/* ── page head ─────────────────────────────────────────────── */
+header.masthead{padding:76px 0 0}
+.masthead .kicker{
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--attacco);margin-bottom:1.4rem;
+}
+.masthead .standfirst{
+  font-size:1.36rem;line-height:1.48;color:var(--ink-2);max-width:56ch;margin:1.5rem 0 0;
+}
+.meta{
+  display:flex;flex-wrap:wrap;gap:0 2.2rem;margin-top:2.4rem;padding-top:1.1rem;
+  border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-3);
+  letter-spacing:.045em;
+}
+.meta b{font-weight:500;color:var(--ink-2)}
+
+/* ── sections ──────────────────────────────────────────────── */
+section{margin-top:76px}
+.sec-head{
+  display:flex;align-items:baseline;gap:1.1rem;
+  border-top:2px solid var(--ink);padding-top:.85rem;margin-bottom:1.6rem;
+}
+.sec-head .eyebrow{flex:0 0 auto;padding-top:.28rem}
+
+/* ── verdict slab ──────────────────────────────────────────── */
+.verdict{
+  background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--attacco);
+  padding:30px 34px;margin-top:44px;box-shadow:var(--shadow);
+}
+.verdict p:last-child{margin-bottom:0}
+.verdict .lead{font-size:1.22rem;line-height:1.5}
+
+/* ── figures ───────────────────────────────────────────────── */
+figure{margin:2.2rem 0;padding:0}
+.figbox{
+  background:var(--panel);border:1px solid var(--rule);padding:26px 26px 20px;
+  overflow-x:auto;box-shadow:var(--shadow);
+}
+figcaption{
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;line-height:1.65;color:var(--ink-3);
+  margin-top:.95rem;padding-top:.8rem;border-top:1px solid var(--rule-soft);letter-spacing:.02em;
+}
+figcaption b{color:var(--ink-2);font-weight:500}
+svg{display:block;max-width:100%;height:auto}
+.legend{
+  display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.1rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-2);letter-spacing:.03em;
+}
+.legend span{display:inline-flex;align-items:center;gap:.5rem}
+.swatch{width:22px;height:11px;flex:0 0 auto;display:inline-block}
+
+/* ── tables ────────────────────────────────────────────────── */
+.tablebox{overflow-x:auto;margin:2rem 0;border:1px solid var(--rule);background:var(--panel);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:600px}
+caption{
+  text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  padding:16px 20px 12px;border-bottom:1px solid var(--rule);
+}
+th,td{
+  padding:11px 20px;text-align:right;border-bottom:1px solid var(--rule-soft);
+  font-family:"IBM Plex Mono",monospace;font-size:.79rem;font-variant-numeric:tabular-nums;
+  color:var(--ink-2);white-space:nowrap;
+}
+th{
+  font-size:.665rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);border-bottom:1px solid var(--rule);
+}
+th:first-child,td:first-child{text-align:left;color:var(--ink);font-weight:500}
+tbody tr:last-child td{border-bottom:none}
+tr.spot td{background:var(--critico-bg)}
+tr.spot td:first-child{color:var(--critico)}
+td.bad{color:var(--critico);font-weight:600}
+td.good{color:var(--ok);font-weight:600}
+
+/* ── die strip ─────────────────────────────────────────────── */
+.die{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:2px;margin:1.4rem 0 0;background:var(--rule)}
+.face{background:var(--panel-2);padding:16px 14px 15px;display:flex;flex-direction:column;gap:.55rem;align-items:flex-start}
+.face .nome{font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase}
+.face .prob{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink-3);letter-spacing:.05em}
+.face .esito{font-size:.94rem;line-height:1.32;color:var(--ink-2)}
+.face .esito b{font-family:"IBM Plex Mono",monospace;font-size:.86rem;font-weight:600}
+.face.f-ok{background:var(--ok-bg);color:var(--ok)} .face.f-ok .nome{color:var(--ok)} .face.f-ok .esito b{color:var(--ok)}
+.face.f-bad{background:var(--critico-bg);color:var(--critico)} .face.f-bad .nome{color:var(--critico)} .face.f-bad .esito b{color:var(--critico)}
+.face.f-null{background:var(--neutro-bg);color:var(--ink-3)} .face.f-null .nome{color:var(--ink-3)}
+.glyph{width:26px;height:26px;flex:0 0 auto}
+
+/* ── ratio row ─────────────────────────────────────────────── */
+.ratios{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:2rem 0;box-shadow:var(--shadow)}
+.ratio{background:var(--panel);padding:20px 22px 18px}
+.ratio .lab{font-family:"IBM Plex Mono",monospace;font-size:.655rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.7rem}
+.ratio .vals{display:flex;align-items:baseline;gap:.85rem;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.ratio .v{font-size:1.34rem;font-weight:500;color:var(--ink-2)}
+.ratio .v.hot{color:var(--critico);font-weight:600}
+.ratio .lv{font-size:.6rem;color:var(--ink-3);letter-spacing:.08em;display:block;margin-top:.15rem;font-weight:400}
+.ratio .note{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink-3);margin-top:.75rem;line-height:1.5}
+
+/* ── decision list ─────────────────────────────────────────── */
+.decisioni{list-style:none;margin:1.6rem 0 0;padding:0;counter-reset:d}
+.decisioni li{
+  counter-increment:d;border-top:1px solid var(--rule);padding:20px 0 20px 62px;position:relative;
+}
+.decisioni li:last-child{border-bottom:1px solid var(--rule)}
+.decisioni li::before{
+  content:"D" counter(d);position:absolute;left:0;top:21px;
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.1em;color:var(--attacco);
+}
+.decisioni h3{margin-bottom:.3rem}
+.decisioni p{margin:0;color:var(--ink-2);font-size:.98rem;line-height:1.55}
+.opzioni{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.85rem}
+.opz{
+  font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.03em;
+  border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);padding:.35rem .7rem;
+}
+.opz.pref{border-color:var(--ok);color:var(--ok);background:var(--ok-bg);font-weight:600}
+
+/* ── caveat ────────────────────────────────────────────────── */
+.caveat{
+  border:1px dashed var(--rule);background:transparent;padding:22px 26px;margin:2.2rem 0 0;
+  font-size:.97rem;line-height:1.58;color:var(--ink-2);
+}
+.caveat .eyebrow{display:block;margin-bottom:.6rem}
+.caveat p:last-child{margin-bottom:0}
+
+footer{margin-top:80px;padding-top:1.2rem;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-3);letter-spacing:.04em;line-height:1.8}
+
+@media (max-width:640px){
+  body{font-size:18px;padding:0 18px 64px}
+  .verdict{padding:24px 22px}
+  .figbox{padding:18px 16px 14px}
+  .decisioni li{padding-left:0;padding-top:44px}
+  .decisioni li::before{top:20px}
+}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">Worldloom · analisi di bilanciamento</div>
+  <h1>Delta delle Pedine</h1>
+  <p class="standfirst">Perché al Livello 1 la partita respira e al Livello 3 si inchioda. Una sola causa, misurata sulle 63 Pedine dei due mazzi.</p>
+  <div class="meta">
+    <span><b>Dati</b> Frost Land + Marbion · 63 Pedine</span>
+    <span><b>Motore</b> combattimento.js · costanti.js</span>
+    <span><b>Metodo</b> analitico + Monte Carlo 20.000 duelli</span>
+    <span><b>Modifiche</b> nessuna</span>
+  </div>
+</header>
+
+<div class="verdict prose">
+  <p class="lead"><strong>Hai ragione, e i numeri veri sono peggiori dell'esempio che ricordavi.</strong></p>
+  <p>Nel caso che mi hai raccontato — attacco 50 contro parata 30 — il pavimento <span class="mono">⌈A/2⌉</span> del motore ti darebbe <strong>25 danni a colpo</strong>: due colpi e la Pedina cade. Quella situazione sarebbe giocabile.</p>
+  <p>Le carte vere di Livello 3 hanno attacco mediano <span class="mono">24</span> e parata mediana <span class="mono">28</span>. Su Scudo non fai 25 danni: ne fai <strong>zero</strong>, e ti prendi 6 di contraccolpo. La sensazione che hai avuto al tavolo è giusta; la causa è più profonda di quella che avevi in mente.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Sintomo</span>
+    <h2>Il Livello 3 tira a vuoto tre volte su quattro</h2>
+  </div>
+
+  <div class="prose">
+    <p>Il difensore tira il proprio dado da 8 facce. Solo il <strong>Cuore</strong> fa danno sempre; Spada e Scudo fanno danno solo se il tuo Attacco supera rispettivamente l'Attacco o la Parata del difensore, altrimenti sono zero — e ti restituiscono la differenza come contraccolpo. La Schivata è sempre zero.</p>
+    <p>Ecco cosa succede in pratica, misurato su tutte le coppie attaccante × difensore dello stesso livello.</p>
+  </div>
+
+  <div class="ratios">
+    <div class="ratio">
+      <div class="lab">Colpi che fanno zero danni</div>
+      <div class="vals">
+        <span class="v">51%<span class="lv">LIV 1</span></span>
+        <span class="v">42%<span class="lv">LIV 2</span></span>
+        <span class="v hot">71%<span class="lv">LIV 3</span></span>
+      </div>
+      <div class="note">Tre attacchi su quattro non lasciano il segno.</div>
+    </div>
+    <div class="ratio">
+      <div class="lab">Danno che arriva dal Cuore</div>
+      <div class="vals">
+        <span class="v">59%<span class="lv">LIV 1</span></span>
+        <span class="v">59%<span class="lv">LIV 2</span></span>
+        <span class="v hot">74%<span class="lv">LIV 3</span></span>
+      </div>
+      <div class="note">Spada e Scudo diventano decorativi: decide il sorteggio.</div>
+    </div>
+    <div class="ratio">
+      <div class="lab">Turni per uccidere (mediana)</div>
+      <div class="vals">
+        <span class="v">1,9<span class="lv">LIV 1</span></span>
+        <span class="v">1,8<span class="lv">LIV 2</span></span>
+        <span class="v hot">4,0<span class="lv">LIV 3</span></span>
+      </div>
+      <div class="note">Il 23% delle coppie L3 supera i 6 turni.</div>
+    </div>
+    <div class="ratio">
+      <div class="lab">Rapporto Attacco / Parata</div>
+      <div class="vals">
+        <span class="v">1,56<span class="lv">LIV 1</span></span>
+        <span class="v">1,53<span class="lv">LIV 2</span></span>
+        <span class="v hot">0,91<span class="lv">LIV 3</span></span>
+      </div>
+      <div class="note">Al Livello 3 il rapporto si <em>inverte</em>: la Parata batte l'Attacco.</div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Quell'ultimo riquadro è il vero indizio. A Livello 1 e 2 l'Attacco tipico supera di una volta e mezza la Parata tipica, quindi Spada e Scudo funzionano. A Livello 3 il rapporto scende sotto 1 e le due facce si spengono.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Radice</span>
+    <h2>Le finestre dei livelli non si sovrappongono</h2>
+  </div>
+
+  <div class="prose">
+    <p>Non è un problema di una carta o di una statistica storta. È una sola cosa, e si vede in un colpo d'occhio: <strong>la Parata del Livello 3 comincia dove l'Attacco dei livelli inferiori è già finito.</strong></p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--attacco)"></span> Attacco</span>
+        <span><span class="swatch" style="background:var(--parata);opacity:.28;border:1.5px solid var(--parata)"></span> Parata</span>
+        <span><span class="swatch" style="background:var(--critico);height:2px"></span> soglia invalicabile</span>
+      </div>
+
+      <svg viewBox="0 0 920 348" role="img" aria-label="Intervalli di Attacco e Parata per livello: l'Attacco massimo di Livello 1 è 12 e di Livello 2 è 19, mentre la Parata minima di Livello 3 è 22, quindi nessuna Pedina di livello inferiore può superarla.">
+        <!-- asse -->
+        <line x1="100" y1="44" x2="880" y2="44" stroke="var(--rule)" stroke-width="1"></line>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)" text-anchor="middle">
+          <text x="100" y="34">0</text><line x1="100" y1="38" x2="100" y2="44" stroke="var(--rule)"></line>
+          <text x="270" y="34">10</text><line x1="270" y1="38" x2="270" y2="44" stroke="var(--rule)"></line>
+          <text x="439" y="34">20</text><line x1="439" y1="38" x2="439" y2="44" stroke="var(--rule)"></line>
+          <text x="609" y="34">30</text><line x1="609" y1="38" x2="609" y2="44" stroke="var(--rule)"></line>
+          <text x="778" y="34">40</text><line x1="778" y1="38" x2="778" y2="44" stroke="var(--rule)"></line>
+        </g>
+
+        <!-- soglia invalicabile a 22 -->
+        <line x1="473" y1="44" x2="473" y2="300" stroke="var(--critico)" stroke-width="2" stroke-dasharray="5 4"></line>
+
+        <!-- LIVELLO 1 -->
+        <text x="88" y="90" font-family="Cinzel, serif" font-size="14" font-weight="600" fill="var(--ink)" text-anchor="end">LIV 1</text>
+        <text x="88" y="106" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-3)" text-anchor="end">36 Pedine</text>
+        <rect x="134" y="62" width="170" height="18" fill="var(--attacco)"></rect>
+        <text x="128" y="75" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)" text-anchor="end">2</text>
+        <text x="310" y="75" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--attacco)" text-anchor="start">12</text>
+        <rect x="134" y="86" width="170" height="18" fill="var(--parata)" fill-opacity="0.22" stroke="var(--parata)" stroke-width="1.5"></rect>
+        <text x="128" y="99" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)" text-anchor="end">2</text>
+        <text x="310" y="99" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--parata)" text-anchor="start">12</text>
+
+        <!-- LIVELLO 2 -->
+        <text x="88" y="170" font-family="Cinzel, serif" font-size="14" font-weight="600" fill="var(--ink)" text-anchor="end">LIV 2</text>
+        <text x="88" y="186" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-3)" text-anchor="end">13 Pedine</text>
+        <rect x="236" y="142" width="186" height="18" fill="var(--attacco)"></rect>
+        <text x="230" y="155" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)" text-anchor="end">8</text>
+        <text x="428" y="155" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--attacco)" text-anchor="start">19</text>
+        <rect x="202" y="166" width="186" height="18" fill="var(--parata)" fill-opacity="0.22" stroke="var(--parata)" stroke-width="1.5"></rect>
+        <text x="196" y="179" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)" text-anchor="end">6</text>
+        <text x="394" y="179" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--parata)" text-anchor="start">17</text>
+
+        <!-- LIVELLO 3 -->
+        <text x="88" y="250" font-family="Cinzel, serif" font-size="14" font-weight="600" fill="var(--ink)" text-anchor="end">LIV 3</text>
+        <text x="88" y="266" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-3)" text-anchor="end">14 Pedine</text>
+        <rect x="439" y="222" width="170" height="18" fill="var(--attacco)"></rect>
+        <text x="433" y="235" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)" text-anchor="end">20</text>
+        <text x="615" y="235" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--attacco)" text-anchor="start">30</text>
+        <rect x="473" y="246" width="136" height="18" fill="var(--parata)" fill-opacity="0.22" stroke="var(--parata)" stroke-width="1.5"></rect>
+        <text x="467" y="259" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--critico)" text-anchor="end">22</text>
+        <text x="615" y="259" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--parata)" text-anchor="start">30</text>
+
+        <!-- annotazione del vuoto: le verticali tratteggiate legano il gap alle barre da cui è misurato -->
+        <g stroke="var(--attacco)" stroke-width="1" stroke-dasharray="2 4" fill="none" opacity=".55">
+          <path d="M 304 80 L 304 292"></path>
+          <path d="M 422 160 L 422 292"></path>
+        </g>
+        <g stroke="var(--critico)" stroke-width="1.5" fill="none">
+          <path d="M 304 288 L 304 300 L 473 300"></path>
+          <path d="M 422 288 L 422 300"></path>
+        </g>
+        <text x="483" y="304" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="var(--critico)" text-anchor="start">nessun Attacco di Livello 1 o 2 arriva fin qui</text>
+        <text x="483" y="322" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)" text-anchor="start">→ contro un L3 resta una sola faccia utile su otto: il Cuore</text>
+      </svg>
+    </div>
+    <figcaption>
+      Intervalli reali nei due mazzi. <b>Attacco massimo di Livello 1: 12. Attacco massimo di Livello 2: 19. Parata minima di Livello 3: 22.</b>
+      Nessuna delle 49 Pedine di Livello 1 e 2 può superare la Parata di <em>nessuna</em> delle 14 Pedine di Livello 3 — 0 casi su 686.
+      L'Attacco di Livello 3 è mostrato 20–30 escludendo <span class="mono">Guardiano di Marbion</span>, che ha Attacco 0 (vedi D3).
+    </figcaption>
+  </figure>
+
+  <div class="prose">
+    <p>E non è un guaio solo per chi attacca dal basso. <strong>Il muro vale anche contro sé stesso:</strong> con Attacco mediano 24 contro Parata mediana 28, dentro il Livello 3 la Parata regge nel <span class="mono">78%</span> dei matchup.</p>
+    <p>La cosa che rende tutto questo strutturale, e non un incidente di trascrizione, è che <strong><span class="mono">rules.json</span> dichiara Attacco e Parata con lo stesso identico intervallo a ogni livello</strong> — <span class="mono">[1,12]</span> e <span class="mono">[1,12]</span>, poi <span class="mono">[10,18]</span> e <span class="mono">[10,18]</span>, poi <span class="mono">[16,30]</span> e <span class="mono">[16,30]</span>. L'asimmetria che fa funzionare il Livello 1 non è progettata: è successa, perché chi ha scritto quelle carte ha messo parate basse. A Livello 3 ha messo parate alte, e la fortuna è finita.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Il dado</span>
+    <h2>Uno scontro vero, faccia per faccia</h2>
+  </div>
+
+  <div class="prose">
+    <p><span class="mono">Il Re Antico</span> (Attacco 24 · Parata 26 · Vita 43 · 3 attacchi · Colosso) attacca <span class="mono">Potere Divino</span> (Attacco 24 · Parata 30 · Vita 45 · Colosso). Sono due delle Pedine più forti del gioco. Ecco cosa può uscire.</p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <div class="die">
+        <div class="face f-bad">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18.5 3.2 L20.8 5.5 L9.6 16.7 L7.3 14.4 Z" fill="currentColor" fill-opacity=".18"></path>
+            <path d="M7.3 14.4 L4.2 19.8 L9.6 16.7"></path><path d="M14.6 18.4 L19.4 13.6"></path>
+          </svg>
+          <div class="nome">Spada</div>
+          <div class="prob">1 faccia su 8</div>
+          <div class="esito"><b>Pareggio mortale.</b> 24 contro 24: si distruggono entrambe.</div>
+        </div>
+        <div class="face f-bad">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2.8 L20 5.6 V12 c0 4.6 -3.4 7.5 -8 9.2 -4.6 -1.7 -8 -4.6 -8 -9.2 V5.6 Z" fill="currentColor" fill-opacity=".18"></path>
+          </svg>
+          <div class="nome">Scudo</div>
+          <div class="prob">3 facce su 8</div>
+          <div class="esito"><b>0 danni.</b> 24 contro Parata 30 — e prendi 6 di contraccolpo.</div>
+        </div>
+        <div class="face f-ok">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20.4 C6.2 16.4 3 13.2 3 9.4 A4.4 4.4 0 0 1 12 7.2 A4.4 4.4 0 0 1 21 9.4 C21 13.2 17.8 16.4 12 20.4 Z" fill="currentColor" fill-opacity=".18"></path>
+          </svg>
+          <div class="nome">Cuore</div>
+          <div class="prob">1 faccia su 8</div>
+          <div class="esito"><b>24 danni.</b> L'unica faccia che funziona davvero.</div>
+        </div>
+        <div class="face f-null">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 17.5 C8 17.5 8 6.5 12 6.5 C16 6.5 16 17.5 20 17.5"></path><path d="M17.4 14.6 L20.4 17.5 L17.4 20.4"></path>
+          </svg>
+          <div class="nome">Schivata</div>
+          <div class="prob">3 facce su 8</div>
+          <div class="esito"><b>0 danni.</b> Nulla di fatto.</div>
+        </div>
+      </div>
+    </div>
+    <figcaption>
+      Danno atteso per colpo: <b>3,0</b> · contraccolpo atteso su di te: <b>2,25</b>.
+      Con 3 attacchi fai <b>9 danni a turno</b> contro 45 di Vita — <b>5 turni</b> — mentre ne subisci 6,8.
+      Il dado del Colosso è il più chiuso del gioco: 1 solo Cuore e 3 Schivate su 8.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Conseguenza</span>
+    <h2>Il problema che non avevi ancora nominato</h2>
+  </div>
+
+  <div class="prose">
+    <p>Lo stesso muro rompe una seconda cosa, più grossa dello stallo: <strong>l'economia dei tributi</strong>. Un Livello 2 costa 2 tributi, un Livello 3 ne costa 3 — quindi tre Pedine di Livello 1 dovrebbero valere, più o meno, un Livello 3. Ho simulato quegli scontri con le regole vere.</p>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>Chi vince davvero — 20.000 duelli per riga, turni alternati</caption>
+      <thead>
+        <tr><th>Scontro</th><th>Costo in tributi</th><th>Vince il gruppo</th><th>Vince il livello alto</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2 × Livello 1 &nbsp;vs&nbsp; 1 × Livello 1</td><td>2 contro 1</td><td class="good">88%</td><td>12%</td></tr>
+        <tr><td>2 × Livello 1 &nbsp;vs&nbsp; 1 × Livello 2</td><td>pari</td><td class="bad">19%</td><td>81%</td></tr>
+        <tr class="spot"><td>3 × Livello 1 &nbsp;vs&nbsp; 1 × Livello 3</td><td>pari</td><td class="bad">0,9%</td><td>99,1%</td></tr>
+        <tr><td>1 × Livello 2 &nbsp;vs&nbsp; 1 × Livello 3</td><td>2 contro 3</td><td class="bad">0,9%</td><td>99,1%</td></tr>
+        <tr><td>3 × Livello 2 &nbsp;vs&nbsp; 2 × Livello 3</td><td>6 contro 6</td><td class="bad">0,6%</td><td>99,4%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Due Pedine di Livello 1 contro una sola battono il singolo l'88% delle volte: il vantaggio numerico funziona, finché si resta dentro il livello. Ma <strong>a parità di prezzo pagato in tributi, il livello alto vince il 99% delle volte.</strong> Livello 1 e Livello 2 non sono scelte di gioco: sono carburante. Non c'è nessuna ragione per tenerli in campo.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Effetto collaterale</span>
+    <h2>Al Livello 3 la Ruota degli Archetipi non gira mai</h2>
+  </div>
+
+  <div class="prose">
+    <p>Delle 14 Pedine di Livello 3, <strong>10 sono Colosso e 4 sono Tessitore</strong> — e tutti e quattro i Tessitori hanno ruolo <span class="mono">bilanciato</span>, che per regola forza il matchup a neutro. Colosso contro Colosso è neutro di suo. Il risultato è che il diritto di ripetizione non si attiva <em>mai</em>.</p>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>Attivazione della Ruota per livello, su tutti i matchup possibili</caption>
+      <thead>
+        <tr><th>Livello</th><th>Matchup</th><th>Efficace</th><th>Inefficace</th><th>Neutro (Ruota spenta)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Livello 1</td><td>1.260</td><td>12%</td><td>12%</td><td>75%</td></tr>
+        <tr><td>Livello 2</td><td>156</td><td>1%</td><td>1%</td><td class="bad">99%</td></tr>
+        <tr class="spot"><td>Livello 3</td><td>182</td><td>0%</td><td>0%</td><td class="bad">100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Il Colosso è anche il difensore più duro del gioco — 1 Cuore e 3 Schivate su 8 facce. Concentrando lì il Livello 3 gli hai dato insieme <strong>il dado più lento e la Parata più alta</strong>. Le due cose si moltiplicano, ed è per questo che il Livello 3 è l'unico che si inchioda.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Proposta</span>
+    <h2>Tre curve, misurate</h2>
+  </div>
+
+  <div class="prose">
+    <p>Ho provato diverse famiglie di correzione facendole girare contro le regole vere del motore. La domanda che le separa è una sola: <strong>quanto deve crescere la Parata quando sale il livello?</strong></p>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>Curve candidate — Monte Carlo con combattimento, dado e contraccolpo reali · anche le righe “Oggi” sono ricampionate sugli intervalli, per essere confrontabili</caption>
+      <thead>
+        <tr>
+          <th>Curva</th><th>Attacco</th><th>Parata</th><th>Vita</th><th>Att.</th>
+          <th>Scontro</th><th>A vuoto</th><th>Cuore</th><th>2×L1 vs L2</th><th>3×L1 vs L3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Oggi · L1</td><td>2–12</td><td>2–12</td><td>5–18</td><td>2</td><td>1 t</td><td>54%</td><td>57%</td><td rowspan="3">25%</td><td rowspan="3" class="bad">1%</td></tr>
+        <tr><td>Oggi · L2</td><td>8–19</td><td>6–17</td><td>16–30</td><td>2</td><td>2 t</td><td>51%</td><td>59%</td></tr>
+        <tr class="spot"><td>Oggi · L3</td><td>20–30</td><td>22–30</td><td>33–45</td><td>2</td><td>2 t</td><td class="bad">57%</td><td class="bad">66%</td></tr>
+
+        <tr><td>A · L1</td><td>6–14</td><td>3–9</td><td>9–19</td><td>2</td><td>1 t</td><td>47%</td><td>55%</td><td rowspan="3">34%</td><td rowspan="3" class="bad">8%</td></tr>
+        <tr><td>A · L2</td><td>11–24</td><td>6–15</td><td>16–33</td><td>2</td><td>1 t</td><td>46%</td><td>55%</td></tr>
+        <tr><td>A · L3</td><td>18–40</td><td>10–26</td><td>27–56</td><td>2</td><td>2 t</td><td>45%</td><td>55%</td></tr>
+
+        <tr><td>E · L1</td><td>6–13</td><td>2–9</td><td>9–17</td><td>2</td><td>1 t</td><td class="good">47%</td><td class="good">55%</td><td rowspan="3" class="good">54%</td><td rowspan="3">41%</td></tr>
+        <tr><td>E · L2</td><td>10–20</td><td>3–11</td><td>13–24</td><td>2</td><td>1 t</td><td class="good">45%</td><td class="good">53%</td></tr>
+        <tr><td>E · L3</td><td>15–30</td><td>4–13</td><td>18–33</td><td>2</td><td>1 t</td><td class="good">43%</td><td class="good">52%</td></tr>
+
+        <tr><td>F · L1</td><td>6–13</td><td>2–9</td><td>9–17</td><td>2</td><td>1 t</td><td>48%</td><td>55%</td><td rowspan="3" class="good">58%</td><td rowspan="3">41%</td></tr>
+        <tr><td>F · L2</td><td>10–18</td><td>3–11</td><td>13–24</td><td>2</td><td>1 t</td><td>45%</td><td>54%</td></tr>
+        <tr><td>F · L3</td><td>13–24</td><td>4–13</td><td>18–33</td><td class="good">3</td><td>1 t</td><td>44%</td><td>53%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p><strong>Curva A</strong> tiene i rapporti fissi (Attacco ≈ 1,5 × Parata) e fa crescere tutto di ×1,7 a livello. Sistema il ritmo, non l'economia: l'Attacco di Livello 1 resta troppo indietro rispetto alla Parata di Livello 3.</p>
+    <p><strong>Curva E</strong> frena la Parata (×1,2 a livello, contro ×1,5 dell'Attacco) e frena la Vita (×1,35). È l'unica che porta l'economia vicino al giusto: due Livello 1 contro un Livello 2 diventa <span class="mono">54%</span> — un vero pari. <strong>È quella che consiglio.</strong></p>
+    <p><strong>Curva F</strong> è la stessa idea, ma il salto di livello si sente <em>negli attacchi</em> (3 invece di 2) invece che nella potenza del singolo colpo. Un Livello 3 diventa una Pedina che agisce più volte, non una che è più difficile da bucare. È una scelta di sapore, e cambia molto la sensazione al tavolo.</p>
+  </div>
+
+  <div class="caveat prose">
+    <span class="eyebrow">Il limite onesto di questa simulazione</span>
+    <p><strong>Nessuna curva arriva al 50% su “3 Livello 1 contro 1 Livello 3”</strong>, e non ci arriverà mai coi soli numeri. Il motivo è strutturale: un Livello 3 <em>uccide un Livello 1 con un colpo solo</em>, quindi il gruppo perde un attaccante per turno e il suo vantaggio numerico evapora prima di poter contare. Con la curva migliore servono <strong>5 Pedine di Livello 1</strong> per pareggiare un Livello 3, non 3. Sistemarlo richiede una scelta di regole — il prezzo in tributi, oppure un tetto al danno in eccesso — non un ritocco alle statistiche. È una conversazione a parte, quando vuoi.</p>
+    <p>Inoltre la simulazione è volutamente nuda: <strong>niente effetti carta, niente Magie o Trappole, niente diritto di ripetizione, niente effetti di ruolo.</strong> Sono i numeri di partenza, non la partita completa. Gli effetti tendono a favorire lo sciame, quindi le percentuali del gruppo nella realtà saranno un po' più alte.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Decisione</span>
+    <h2>Cosa mi serve da te</h2>
+  </div>
+
+  <div class="prose">
+    <p>Non ho toccato nulla: né gli Excel, né i <span class="mono">cards.json</span>, né <span class="mono">rules.json</span>, né il motore. Queste sono le scelte che stanno a monte di qualunque modifica, in ordine di importanza.</p>
+  </div>
+
+  <ol class="decisioni">
+    <li>
+      <h3>La Parata deve crescere col livello?</h3>
+      <p>È la domanda che decide tutto il resto. Oggi cresce come l'Attacco, e questo è il guasto. Può crescere più piano dell'Attacco, oppure restare in una banda comune a tutti i livelli — un Livello 3 non è più corazzato di un Livello 1, è solo più grosso e picchia più forte.</p>
+      <div class="opzioni">
+        <span class="opz pref">cresce ×1,2 (curva E)</span>
+        <span class="opz">banda comune 2–14</span>
+        <span class="opz">resta com'è</span>
+      </div>
+    </li>
+    <li>
+      <h3>Dove si deve <em>sentire</em> il livello?</h3>
+      <p>Nella potenza del colpo singolo (curva E) o nel numero di attacchi (curva F)? È la differenza tra un Livello 3 che colpisce come un maglio e uno che agisce tre volte. Cambia la sensazione al tavolo più di qualunque numero.</p>
+      <div class="opzioni">
+        <span class="opz pref">Attacco e Vita</span>
+        <span class="opz">numero di attacchi</span>
+        <span class="opz">un misto</span>
+      </div>
+    </li>
+    <li>
+      <h3><span class="mono">Guardiano di Marbion</span> ha Attacco 0</h3>
+      <p>Parata 30, Vita 44, un solo attacco, Attacco 0. Non può fare danno su nessuna faccia del dado, nemmeno sul Cuore. Mi hai detto che controlli tu l'Excel: se è un refuso lo correggiamo, se è un muro voluto lo annoto come caso speciale e lo escludo dal bilanciamento.</p>
+    </li>
+    <li>
+      <h3>Il Livello 3 resta un monopolio Colosso?</h3>
+      <p>10 Colosso su 14 spengono la Ruota e regalano al livello il dado più lento del gioco. Ridistribuire due o tre Pedine su altri archetipi riaccenderebbe il diritto di ripetizione senza toccare una sola statistica — è la correzione più economica che esiste in questa analisi.</p>
+      <div class="opzioni">
+        <span class="opz pref">ridistribuire 3–4 Pedine</span>
+        <span class="opz">lasciare com'è</span>
+      </div>
+    </li>
+    <li>
+      <h3>E poi i range di <span class="mono">rules.json</span></h3>
+      <p>Otto Pedine di Livello 3 hanno Vita 43–45 contro un massimo dichiarato di 40, e venti Pedine su 63 sono fuori range. Non è una decisione a sé: i range corretti cadono da soli una volta scelta la curva. Lo mettiamo in fondo.</p>
+    </li>
+  </ol>
+</section>
+
+<footer>
+  Analisi svolta sui dati reali di <span class="mono">Mazzi/*/cards.json</span> con la matematica di <span class="mono">src/game/combattimento.js</span> e <span class="mono">src/game/costanti.js</span>.<br>
+  Nessun file di gioco è stato modificato. Ramo <span class="mono">claude/analisi-pedine-delta-c5yt06</span>.
+</footer>
+
+</div>
