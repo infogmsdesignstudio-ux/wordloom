@@ -240,7 +240,104 @@ separata (la Parata): è quella doppia stratificazione la cosa insolita.
 
 ---
 
-## 6. Decisioni aperte
+## 6. Proposta aperta — il modello a confronto puro (senza Vita)
+
+Proposta dell'autore, 2026-09-02. **Non è una modifica decisa: è una strada misurata e da valutare.**
+
+### La regola proposta
+
+Si **toglie la Vita** dalle Pedine. Ogni faccia del dado confronta la **stessa statistica** fra le due:
+
+| Faccia | Confronto | Esito |
+|---|---|---|
+| **Spada** | Attacco vs Attacco | più alto → l'altro muore · più basso → **muoio io** · pari → **muoiono entrambi** |
+| **Scudo** | Difesa vs Difesa | attaccante più alto → il difensore muore · altrimenti **niente** |
+| **Schivata** | — | niente |
+| **Cuore** | **da decidere** | vedi le domande aperte |
+
+È il modello di **Doomtrooper** (nessun punto ferita, confronto secco) con una torsione: lì si
+confronta l'attacco contro l'armatura, qui ogni faccia confronta la statistica omonima.
+
+### Misurato sulle carte vere — esito di un singolo attacco
+
+Con la lettura *«Cuore = il difensore muore»*:
+
+| | niente | muore il difensore | muore l'attaccante | entrambi |
+|---|---|---|---|---|
+| Livello 1 | 41% | 41% | 15% | 3% |
+| Livello 2 | **26%** | 48% | 21% | 5% |
+| Livello 3 | **57%** | 30% | 12% | 2% |
+
+Con la lettura *«Cuore = danno allo Stratega»*: a L3 diventa 57% niente · 14% muore il difensore ·
+12% muore l'attaccante · 2% entrambi · **16% di colpi allo Stratega**.
+
+**Verdetto: funziona meglio del sistema attuale.** Oggi a L3 il 71% dei colpi fa zero; qui il 57%,
+e soprattutto **il 44% degli attacchi produce una morte** invece di limare. La partita si sblocca.
+
+**MA non basta a sistemare il Livello 3.** Resta al 57% di niente contro il 26% del Livello 2. La
+causa è sempre la stessa e non dipende dal sistema di danno: il **monopolio Colosso** (3 Schivate su
+8 facce) più la **Difesa 30 che nessuno supera**. Il lavoro su ruoli e archetipi (§3, §4) serve
+comunque.
+
+### ⚠️ Il tranello: comprimere i numeri moltiplica i doppi KO
+
+In un sistema di confronto **conta solo l'ordine, non la grandezza**: Attacco 24 contro 26 dà lo
+stesso esito di 2 contro 3. Verrebbe quindi voglia di comprimere i numeri come Magic. Misurato:
+
+| Scala | valori distinti (L3) | coppie in pareggio (L3) | doppi KO per attacco |
+|---|---|---|---|
+| 1–30 (oggi) | 7 | 11% | 2% |
+| 1–12 | 6 | 13% | 2% |
+| 1–10 | 5 | **22%** | 4% |
+| 1–6 (Magic puro) | 4 | **31%** | 5% |
+
+A scala 1–6 **un terzo degli scontri di Livello 3 finisce con la morte di entrambe**, perché ci sono
+14 carte e solo 4 valori disponibili. E lo **specchio pareggia sempre**.
+
+> **La regola che ne esce: o numeri larghi col pareggio mortale, o numeri stretti col pareggio
+> innocuo. Non i due insieme.** Raccomandazione: numeri stretti (1–10) e pareggio innocuo, come
+> Doomtrooper. Si guadagna la leggibilità di Magic e si toglie l'ultima fonte di doppi KO.
+
+### Una conseguenza forte, da mettere a fuoco
+
+Con *«Attacco più basso → muoio io»*, una Pedina con Attacco basso che attacca **muore ogni volta che
+esce Spada**. Il muro (Attacco 3-4) diventa **puramente difensivo: non potrà mai attaccare in tutta
+la partita**. È coerente col mestiere, ma è una scelta di design pesante.
+
+### I riferimenti numerici di Magic
+
+Le creature stanno quasi tutte fra **1/1 e 5/5**; una creatura «grossa» è 6/6; sopra il 10 è
+eccezionale. **Numeri a una cifra sola.** E i punti vita del giocatore sono **20**, non 200 —
+proprio perché i danni sono a una cifra. Worldloom oggi è a 2–30 di Attacco, 5–45 di Vita,
+200 PV di Stratega: una scala dieci volte più larga con molto meno significato per punto.
+
+### Tre buchi da riempire prima di poter simulare il pacchetto
+
+1. **Cosa fa il Cuore?** Senza Vita sulle Pedine diventa probabilmente l'unica strada per vincere.
+   La lettura «danno allo Stratega» sembra la più sensata, ma è da decidere.
+2. **Sullo Scudo può morire anche l'attaccante?** La misura qui sopra assume di no (solo il difensore
+   muore, altrimenti niente). Se fosse simmetrico come la Spada, gli esiti cambierebbero molto.
+3. **Lo Stratega tiene i 200 PV?** Se l'Attacco scende a 1–10 servirebbero da 20 a 200 colpi.
+   Vanno compressi anche quelli: indicativamente **20–25 PV**.
+
+### Il pacchetto coerente, se si va in questa direzione
+
+- Pedine: **Attacco 1–10 · Difesa 1–10 · niente Vita**
+- Stratega: **~20 PV** invece di 200
+- **Pareggio = non succede niente**, né su Spada né su Scudo
+- **Cuore = danno allo Stratega** pari all'Attacco
+- **Il lavoro su ruoli e archetipi (§3, §4) resta necessario**: il 57% di «niente» al Livello 3 non
+  lo risolve il sistema di danno
+
+**Impatto sul motore:** è una riscrittura di `risolviSimbolo` e `danneggiaSimmetrico` in
+`combattimento.js`, più la rimozione di `vitaMax`/`danno` dalle creature e di `vitaAttuale` in
+`mazzo.js`. Tocca anche l'interfaccia (la Vita è stampata in carta e mostrata in campo) e tutti gli
+effetti che parlano di Vita. **È il cambiamento più invasivo fra quelli sul tavolo** — molto più del
+colpo di striscio, che è una funzione sola.
+
+---
+
+## 7. Decisioni aperte
 
 | # | Decisione | Stato |
 |---|---|---|
@@ -250,10 +347,13 @@ separata (la Parata): è quella doppia stratificazione la cosa insolita.
 | **D4** | Applicare le tre leve del modello? Le prime due sono solo Excel. | 🔴 aperta |
 | **D5** | Al Livello 3 **manca il ruolo evasivo**: nessuna carta esistente ha un effetto compatibile. Va creata. | 🔴 aperta |
 | **D6** | **La Ruota non è mai stata modellata** nelle simulazioni. È l'unica leva che può trasformare l'ordine di dominanza fra i ruoli in vera morra cinese. | 🔴 aperta |
+| **D7** | **Si toglie la Vita** e si passa al confronto puro (§6)? È il cambiamento più invasivo sul tavolo: tocca motore, interfaccia, carte stampate e tutti gli effetti che parlano di Vita. | 🔴 aperta · l'autore sta ragionando |
+| **D8** | Se sì a D7: **cosa fa il Cuore**, **sullo Scudo può morire l'attaccante**, e **quanti PV ha lo Stratega**? Senza queste tre risposte il pacchetto non è simulabile. | 🔴 aperta |
+| **D9** | **Si comprimono i numeri a 1–10** come Magic? Solo insieme al pareggio innocuo: altrimenti a L3 un terzo degli scontri diventa un doppio KO. | 🔴 aperta |
 
 ---
 
-## 7. Come rifare le misure
+## 8. Come rifare le misure
 
 ```bash
 node Engine/analisi-bilanciamento/motore_bilanciamento.mjs   # i 5 cancelli sul roster reale
