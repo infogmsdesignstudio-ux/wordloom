@@ -153,6 +153,9 @@ ora** con un test — parcheggiato, si fa dopo aver definito il metodo di blinda
 | `WORLDLOOM.md` (questo) | vivo | pannello unico |
 | `CLAUDE.md` | vivo · **snellito 2026-08-28** | solo regole di processo + gotcha + mappa doc (era 166 KB) |
 | `Engine/Roadmap_Sessione_2026-08-27.md` | vivo | lista bug/task, stato per punto, regole anti-regressione in cima |
+| **`Engine/Bilanciamento.md`** | **vivo · creato 02-09** | **Quadro di riferimento del bilanciamento — da leggere PRIMA di toccare statistiche, ruoli, archetipi, dadi o tributi.** Contiene i fatti accertati sul motore, quali misure sono valide e quali invalidate dalla guarigione a fine turno, i 4 guasti strutturali, il modello «Scala dei Ruoli» e le 6 decisioni aperte |
+| `Engine/Analisi_Delta_Pedine.md` | vivo · creato 01-09 | la diagnosi: perché il Livello 3 si inchioda. Strumenti in `Engine/analisi-bilanciamento/` |
+| `Engine/Modello_Scala_Ruoli.md` | vivo · creato 02-09 | il modello proposto + la griglia per gli Excel + i duelli 1v1. Excel delle 63 Pedine ri-statate in `Engine/analisi-bilanciamento/Worldloom_Bilanciamento_Pedine.xlsx` |
 | `tools/validate_cards.py` | vivo (creato 29-08) | validatore dei dati carte, 9 controlli sui quattro Excel. **Gate al build**: `genera_cards_json.py` non rigenera `cards.json` se ci sono ERRORI. `python tools/validate_cards.py` |
 | `tools/vocabolari.json` · `tools/keywords.json` | vivi (creati 29-08) | vocabolari chiusi (ruoli, archetipi, rarità, sottotipi, tipo effetto congelato) e glossario keyword. **Autoritativi**: fuori lista = errore |
 | `Engine/Effetti_Mancanti_Piano.md` | vivo (creato 29-08) | piano a blocchi per i 62 effetti mancanti + le 8 concatenazioni da testare |

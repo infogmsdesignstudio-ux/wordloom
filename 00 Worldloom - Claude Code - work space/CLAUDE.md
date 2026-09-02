@@ -32,6 +32,7 @@ MAPPA DEI DOCUMENTI — parti sempre da qui
 |---|---|---|
 | **`WORLDLOOM.md`** (root) | Pannello di controllo: stato dello sprint corrente + indice di tutti i documenti + link | **PRIMA COSA in ogni chat nuova** |
 | `Engine/Roadmap_Sessione_2026-08-27.md` | Lista bug/task in corso, con stato ✅/🟡/🔴 e regole anti-regressione | per sapere cosa si sta facendo e cosa manca |
+| **`Engine/Bilanciamento.md`** | Quadro di riferimento del bilanciamento: come funziona davvero il combattimento, i fatti accertati, **quali numeri sono validi e quali invalidati**, il modello proposto, le decisioni aperte | **PRIMA di ragionare su statistiche, ruoli, archetipi, dadi o economia dei tributi** |
 | `Engine/Idea59_Coda_Step.md` | Progettazione della "coda di step unica" (refactor animazioni/pacing) | prima di toccare timing/animazioni/pop-up di combattimento |
 | `Engine/Worldloom_Engine_Vocabolario_Effetti.md` | Le 19 caselle effetti + tabella di ogni codice-carta | **prima di scrivere/riparare QUALUNQUE effetto** (vedi skill `effetti-carta`) |
 | `Engine/Storico_Lavoro.md` | Log cronologico di tutto il lavoro fatto (ex-coda di CLAUDE.md) | su richiesta, per ricostruire il "perché" di una scelta passata |

@@ -21,6 +21,10 @@ description: >-
    lungo termine. Da qui capisci in 30 secondi dove siamo.
 2. Se `WORLDLOOM.md` rimanda a un documento per il dettaglio (`Engine/Roadmap_Sessione_2026-08-27.md`,
    `Engine/Idea59_Coda_Step.md`, ecc.), aprilo **solo se il lavoro di oggi lo tocca**.
+2-bis. **Se il lavoro di oggi tocca statistiche, ruoli, archetipi, dadi, danno o economia dei tributi,
+   apri SUBITO `Engine/Bilanciamento.md`.** Contiene come funziona davvero il combattimento, quali
+   misure sono valide e quali sono state invalidate, e le decisioni aperte. Non ragionare a memoria
+   sul bilanciamento: i numeri sono già stati misurati una volta, e una parte è già stata corretta.
 3. `CLAUDE.md` è già in contesto (auto-caricato) — contiene le regole di processo + i gotcha nel
    codice + la mappa documenti. Non serve rileggerlo, serve **applicarlo**.
 4. **NON** aprire `Engine/Storico_Lavoro.md` né `Archivio/` se non serve davvero ricostruire il
@@ -35,6 +39,7 @@ description: >-
 | `WORLDLOOM.md` | indice + stato sprint | aggiornalo a fine sessione |
 | `Engine/Roadmap_Sessione_2026-08-27.md` | dettaglio per-punto dei bug/task (P0.x…F.x…X.x) | stato ✅/🟡/🔴 + note; ri-proponi la lista dopo ogni punto chiuso |
 | `Engine/Idea59_Coda_Step.md` | design del refactor coda di step | segui le sue Fasi (§10 del doc) |
+| **`Engine/Bilanciamento.md`** | **fatti accertati sul combattimento + validità delle misure + modello + decisioni aperte** | **PRIMA di ragionare su statistiche, ruoli, archetipi, dadi, tributi** |
 | `Engine/Worldloom_Engine_Vocabolario_Effetti.md` | le 19 caselle effetti + tabella carte | consulta PRIMA di ogni effetto (skill `effetti-carta`) |
 | `Regolamento/Worldloom_Regolamento_v2.1.html` | regole del gioco fisico | sync quando l'engine cambia una regola; nota "warn" se l'engine semplifica |
 | `Regolamento/Worldloom_Regolamento_Giocatori.html` | versione giocatore | tenere in sync col v2.1 |
