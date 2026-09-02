@@ -1,0 +1,607 @@
+<title>La Scala dei Ruoli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#EAEEF1; --panel:#F7F9FA; --panel-2:#FDFEFE;
+  --ink:#141C23; --ink-2:#4A5964; --ink-3:#7C8B96;
+  --rule:#D2DAE0; --rule-soft:#E2E8ED;
+  --attacco:#B4531B; --parata:#1B6FA8; --vita:#4E7B2A;
+  --critico:#98292C; --critico-bg:#F5E4E3;
+  --ok:#2C6B4C; --ok-bg:#E2EDE7;
+  --neutro-bg:#E6EBEF;
+  --shadow:0 1px 2px rgba(20,28,35,.06), 0 8px 24px -14px rgba(20,28,35,.22);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --ground:#10161B; --panel:#192127; --panel-2:#1E272E;
+  --ink:#E3E9ED; --ink-2:#9DACB7; --ink-3:#6E7E8A;
+  --rule:#2B353D; --rule-soft:#232C33;
+  --attacco:#CE6A28; --parata:#3C93CE; --vita:#6FA340;
+  --critico:#D9666A; --critico-bg:#2E1D1F;
+  --ok:#5FAF87; --ok-bg:#17281F;
+  --neutro-bg:#222B32;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}}
+:root[data-theme="dark"]{
+  --ground:#10161B; --panel:#192127; --panel-2:#1E272E;
+  --ink:#E3E9ED; --ink-2:#9DACB7; --ink-3:#6E7E8A;
+  --rule:#2B353D; --rule-soft:#232C33;
+  --attacco:#CE6A28; --parata:#3C93CE; --vita:#6FA340;
+  --critico:#D9666A; --critico-bg:#2E1D1F;
+  --ok:#5FAF87; --ok-bg:#17281F;
+  --neutro-bg:#222B32;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  font-size:20px;line-height:1.62;margin:0;padding:0 24px 96px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto}
+.prose{max-width:64ch}
+
+h1,h2,h3{font-family:Cinzel,"Trajan Pro",Georgia,serif;font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6vw,3.9rem);line-height:1.02}
+h2{font-size:clamp(1.5rem,3.2vw,2.05rem);line-height:1.16;margin-bottom:.5rem}
+h3{font-size:1.12rem;line-height:1.3;letter-spacing:.02em;margin-bottom:.35rem}
+p{margin:0 0 1.05rem}
+strong{font-weight:600;color:var(--ink)}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.665rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+
+header.masthead{padding:76px 0 0}
+.masthead .kicker{font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--attacco);margin-bottom:1.4rem}
+.masthead .standfirst{font-size:1.36rem;line-height:1.48;color:var(--ink-2);max-width:56ch;margin:1.5rem 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:0 2.2rem;margin-top:2.4rem;padding-top:1.1rem;
+  border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+  color:var(--ink-3);letter-spacing:.045em}
+.meta b{font-weight:500;color:var(--ink-2)}
+
+section{margin-top:76px}
+.sec-head{display:flex;align-items:baseline;gap:1.1rem;border-top:2px solid var(--ink);
+  padding-top:.85rem;margin-bottom:1.6rem}
+.sec-head .eyebrow{flex:0 0 auto;padding-top:.28rem}
+
+.verdict{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--ok);
+  padding:30px 34px;margin-top:44px;box-shadow:var(--shadow)}
+.verdict p:last-child{margin-bottom:0}
+.verdict .lead{font-size:1.22rem;line-height:1.5}
+
+figure{margin:2.2rem 0;padding:0}
+.figbox{background:var(--panel);border:1px solid var(--rule);padding:26px 26px 20px;
+  overflow-x:auto;box-shadow:var(--shadow)}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:.72rem;line-height:1.65;color:var(--ink-3);
+  margin-top:.95rem;padding-top:.8rem;border-top:1px solid var(--rule-soft);letter-spacing:.02em}
+figcaption b{color:var(--ink-2);font-weight:500}
+svg{display:block;max-width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.1rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-2);letter-spacing:.03em}
+.legend span{display:inline-flex;align-items:center;gap:.5rem}
+.swatch{width:22px;height:11px;flex:0 0 auto;display:inline-block}
+
+.tablebox{overflow-x:auto;margin:2rem 0;border:1px solid var(--rule);background:var(--panel);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:600px}
+caption{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  padding:16px 20px 12px;border-bottom:1px solid var(--rule)}
+th,td{padding:11px 20px;text-align:right;border-bottom:1px solid var(--rule-soft);
+  font-family:"IBM Plex Mono",monospace;font-size:.79rem;font-variant-numeric:tabular-nums;
+  color:var(--ink-2);white-space:nowrap}
+th{font-size:.665rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{text-align:left;color:var(--ink);font-weight:500}
+tbody tr:last-child td{border-bottom:none}
+tr.spot td{background:var(--critico-bg)}
+tr.spot td:first-child{color:var(--critico)}
+tr.win td{background:var(--ok-bg)}
+tr.win td:first-child{color:var(--ok)}
+td.bad{color:var(--critico);font-weight:600}
+td.good{color:var(--ok);font-weight:600}
+td.sep{border-left:1px solid var(--rule)}
+
+/* allocazione: barre impilate */
+.alloc{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.4rem 0 0}
+.alloc-riga{background:var(--panel-2);display:grid;grid-template-columns:130px 1fr;
+  align-items:center;gap:16px;padding:9px 16px}
+.alloc-riga .r{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;
+  letter-spacing:.06em;color:var(--ink-2);text-transform:uppercase}
+.barra{display:flex;height:22px;gap:2px;min-width:0}
+.seg{display:flex;align-items:center;justify-content:center;min-width:0;
+  font-family:"IBM Plex Mono",monospace;font-size:.63rem;font-weight:600;color:#fff;letter-spacing:.02em}
+.seg.a{background:var(--attacco)} .seg.p{background:var(--parata)} .seg.v{background:var(--vita)}
+.alloc-tit{background:var(--panel);padding:12px 16px;font-family:"IBM Plex Mono",monospace;
+  font-size:.665rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.alloc-tit b{color:var(--ink);font-weight:600}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:1.6rem 0 0}
+@media (max-width:760px){.duo{grid-template-columns:1fr}}
+
+/* leve */
+.leve{list-style:none;margin:1.6rem 0 0;padding:0;counter-reset:l}
+.leve li{counter-increment:l;border-top:1px solid var(--rule);padding:22px 0 22px 66px;position:relative}
+.leve li:last-child{border-bottom:1px solid var(--rule)}
+.leve li::before{content:"LEVA " counter(l);position:absolute;left:0;top:24px;
+  font-family:"IBM Plex Mono",monospace;font-size:.6rem;font-weight:600;letter-spacing:.1em;color:var(--attacco)}
+.leve h3{margin-bottom:.35rem}
+.leve p{margin:0 0 .7rem;color:var(--ink-2);font-size:.99rem;line-height:1.55}
+.leve p:last-child{margin-bottom:0}
+.tag{display:inline-flex;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.04em;
+  border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);padding:.3rem .6rem;margin-right:.4rem}
+.tag.excel{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
+.tag.motore{border-color:var(--attacco);color:var(--attacco)}
+
+.caveat{border:1px dashed var(--rule);padding:22px 26px;margin:2.2rem 0 0;
+  font-size:.97rem;line-height:1.58;color:var(--ink-2)}
+.caveat .eyebrow{display:block;margin-bottom:.6rem}
+.caveat p:last-child{margin-bottom:0}
+
+.formula{background:var(--panel-2);border:1px solid var(--rule);padding:18px 22px;margin:1.3rem 0;
+  font-family:"IBM Plex Mono",monospace;font-size:.84rem;line-height:1.9;color:var(--ink);overflow-x:auto}
+.formula .c{color:var(--ink-3)}
+
+footer{margin-top:80px;padding-top:1.2rem;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-3);letter-spacing:.04em;line-height:1.8}
+
+@media (max-width:640px){
+  body{font-size:18px;padding:0 18px 64px}
+  .verdict{padding:24px 22px}.figbox{padding:18px 16px 14px}
+  .leve li{padding-left:0;padding-top:46px}.leve li::before{top:22px}
+  .alloc-riga{grid-template-columns:96px 1fr;gap:10px}
+}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">Worldloom · modello di bilanciamento</div>
+  <h1>La Scala dei Ruoli</h1>
+  <p class="standfirst">Il muro di Livello 3 resta un muro, con Parata 26. E la partita si sblocca. Tre leve, cinque cancelli su cinque.</p>
+  <div class="meta">
+    <span><b>Vincolo</b> i muri L3 devono esistere</span>
+    <span><b>Metodo</b> banco di prova parametrico</span>
+    <span><b>Esito</b> 5/5 cancelli (oggi 1/5)</span>
+    <span><b>Modifiche al gioco</b> nessuna ancora</span>
+  </div>
+</header>
+
+<div class="verdict prose">
+  <p class="lead"><strong>Avevi ragione a fermarmi.</strong></p>
+  <p>La prima analisi concludeva «abbassa la Parata del Livello 3». Con il tuo vincolo — i muri devono esistere — quella risposta è sbagliata, e i dati ti danno ragione: <strong>il guasto non è che la Parata sia alta. È che i ruoli hanno smesso di essere diversi.</strong></p>
+  <p>Nel modello che segue il muro di Livello 3 tiene <span class="mono">Parata 26</span> contro i 30 di oggi, ha <span class="mono">Vita 82</span>, e resiste <strong>×4,0 più a lungo</strong> di un aggressore. È più muro di adesso. Ma cade in 5,8 turni invece che mai.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">La prova</span>
+    <h2>I ruoli collassano man mano che sale il livello</h2>
+  </div>
+
+  <div class="prose">
+    <p>Ho misurato quanto vale un punto di ogni statistica facendo variare una sonda contro il pool del suo livello. Ne esce un budget calcolabile: <span class="mono">Attacco + Parata/4 + Vita/4 + 3×(attacchi−2)</span>. Applicato alle carte vere, il budget per livello è <strong>già coerente</strong> — 12, 24, 44 di mediana, con solo il 5% di dispersione al Livello 3.</p>
+    <p>Non è il budget a essere sbagliato. È come viene <em>speso</em>.</p>
+  </div>
+
+  <figure>
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--attacco)"></span> Attacco</span>
+      <span><span class="swatch" style="background:var(--parata)"></span> Parata</span>
+      <span><span class="swatch" style="background:var(--vita)"></span> Vita</span>
+    </div>
+    <div class="duo">
+      <div>
+        <div class="alloc">
+          <div class="alloc-tit"><b>Livello 1</b> — dispersione del budget 21%</div>
+          <div class="alloc-riga"><span class="r">aggressore</span><div class="barra"><div class="seg a" style="flex:79">79%</div><div class="seg p" style="flex:3"></div><div class="seg v" style="flex:18">18</div></div></div>
+          <div class="alloc-riga"><span class="r">evasivo</span><div class="barra"><div class="seg a" style="flex:77">77%</div><div class="seg p" style="flex:4"></div><div class="seg v" style="flex:19">19</div></div></div>
+          <div class="alloc-riga"><span class="r">bilanciato</span><div class="barra"><div class="seg a" style="flex:65">65%</div><div class="seg p" style="flex:11">11</div><div class="seg v" style="flex:24">24</div></div></div>
+          <div class="alloc-riga"><span class="r">supporto</span><div class="barra"><div class="seg a" style="flex:53">53%</div><div class="seg p" style="flex:18">18</div><div class="seg v" style="flex:29">29</div></div></div>
+          <div class="alloc-riga"><span class="r">difensore</span><div class="barra"><div class="seg a" style="flex:40">40%</div><div class="seg p" style="flex:30">30</div><div class="seg v" style="flex:30">30</div></div></div>
+          <div class="alloc-riga"><span class="r">tank</span><div class="barra"><div class="seg a" style="flex:23">23</div><div class="seg p" style="flex:26">26</div><div class="seg v" style="flex:51">51%</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="alloc">
+          <div class="alloc-tit"><b>Livello 3</b> — dispersione del budget <span style="color:var(--critico)">5%</span></div>
+          <div class="alloc-riga"><span class="r">aggressore</span><div class="barra"><div class="seg a" style="flex:58">58%</div><div class="seg p" style="flex:16">16</div><div class="seg v" style="flex:26">26</div></div></div>
+          <div class="alloc-riga"><span class="r">bilanciato</span><div class="barra"><div class="seg a" style="flex:65">65%</div><div class="seg p" style="flex:14">14</div><div class="seg v" style="flex:22">22</div></div></div>
+          <div class="alloc-riga"><span class="r">difensore</span><div class="barra"><div class="seg a" style="flex:56">56%</div><div class="seg p" style="flex:19">19</div><div class="seg v" style="flex:25">25</div></div></div>
+          <div class="alloc-riga"><span class="r">tank</span><div class="barra"><div class="seg a" style="flex:56">56%</div><div class="seg p" style="flex:18">18</div><div class="seg v" style="flex:26">26</div></div></div>
+          <div class="alloc-riga" style="opacity:.45"><span class="r">supporto</span><div class="barra"><div class="seg" style="flex:100;background:var(--neutro-bg);color:var(--ink-3)">non esiste a questo livello</div></div></div>
+          <div class="alloc-riga" style="opacity:.45"><span class="r">evasivo</span><div class="barra"><div class="seg" style="flex:100;background:var(--neutro-bg);color:var(--ink-3)">non esiste a questo livello</div></div></div>
+        </div>
+      </div>
+    </div>
+    <figcaption>
+      Quota di budget spesa in ciascuna statistica, dalle carte vere. Al Livello 1 l'aggressore mette il <b>79%</b> in Attacco e il 3% in Parata; il tank ribalta tutto col <b>51%</b> in Vita.
+      Al Livello 3 <b>ogni ruolo spende fra il 56% e il 65% in Attacco</b>: tank e aggressore sono la stessa carta con due nomi. E due ruoli su sei non esistono proprio.
+      Dispersione del budget: L1 <b>21%</b> → L2 10% → L3 <b>5%</b>.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">La regola</span>
+    <h2>Il margine di penetrazione</h2>
+  </div>
+
+  <div class="prose">
+    <p>Da lì cade la regola che mancava. Perché un muro sia un muro <em>e non un blocco</em>, deve esistere qualcuno che lo buca: <strong>l'Attacco del miglior aggressore deve superare la Parata del miglior muro dello stesso livello.</strong></p>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>Il margine spiega da solo la salute di ogni livello</caption>
+      <thead>
+        <tr><th>Livello</th><th>Attacco migliore aggressore</th><th>Parata migliore muro</th><th>Margine</th><th class="sep">Coppie in stallo</th><th>Turni per uccidere</th></tr>
+      </thead>
+      <tbody>
+        <tr class="win"><td>Livello 2</td><td>19</td><td>17</td><td class="good">+2</td><td class="sep good">0,6%</td><td>1,80</td></tr>
+        <tr><td>Livello 1</td><td>12</td><td>12</td><td>+0</td><td class="sep">12,5%</td><td>1,89</td></tr>
+        <tr class="spot"><td>Livello 3</td><td>26</td><td>30</td><td class="bad">−4</td><td class="sep bad">23,1%</td><td class="bad">4,00</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Tre livelli, tre margini, tre esiti in ordine perfetto. Il Livello 2 ha margine <span class="mono">+2</span> ed è il livello più sano del gioco. Il Livello 3 ha margine <span class="mono">−4</span>: nemmeno il miglior aggressore buca il miglior muro.</p>
+    <p>E il motivo è che <strong>l'Attacco sta sulle carte sbagliate.</strong> Al Livello 3 l'Attacco più alto del gioco (30 e 28) è sui <span class="mono">bilanciati</span> — l'unico ruolo che per regola forza il matchup a neutro, cioè l'unico che non può usare la Ruota. Gli aggressori si fermano a 24-26, sotto la Parata 30 dei muri.</p>
+  </div>
+
+  <div class="formula">
+    <span class="c">// La regola, da scrivere in rules.json e nel regolamento</span><br>
+    Parata massima di un livello  ≤  Attacco dell'aggressore di quel livello − 4
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Esempi</span>
+    <h2>Nove Pedine vere, una contro una</h2>
+  </div>
+
+  <div class="prose">
+    <p>Basta di astrazioni: ecco le Pedine di Livello 3 che hai già in mano, fatte scontrare con le regole del motore. <strong>20.000 duelli per ogni casella</strong>, turni alternati, metà delle volte inizia l'una metà l'altra, nessun effetto carta.</p>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>Probabilità che la riga batta la colonna — Livello 3 di oggi</caption>
+      <thead>
+        <tr>
+          <th>Att · Par · Vita</th><th>Mago</th><th>Manip.</th><th>Presc.</th><th>Re Ant.</th>
+          <th>Potere</th><th>Drago</th><th>Figlio</th><th>Custode</th><th>Guard.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Mago Sorprendente <span style="color:var(--ink-3)">30·22·33</span></td><td>—</td><td>74%</td><td>63%</td><td>49%</td><td class="bad">38%</td><td>60%</td><td>62%</td><td>63%</td><td>100%</td></tr>
+        <tr><td>Manipolatrice Suprema <span style="color:var(--ink-3)">28·25·40</span></td><td>26%</td><td>—</td><td>36%</td><td>61%</td><td class="bad">47%</td><td>59%</td><td>58%</td><td>60%</td><td>100%</td></tr>
+        <tr class="win"><td>Il Prescelto <span style="color:var(--ink-3)">26·28·45</span></td><td>37%</td><td>64%</td><td>—</td><td>65%</td><td>70%</td><td>80%</td><td>84%</td><td>84%</td><td>100%</td></tr>
+        <tr class="spot"><td>Il Re Antico <span style="color:var(--ink-3)">24·26·43</span></td><td>51%</td><td>39%</td><td>34%</td><td>—</td><td class="bad">12%</td><td>70%</td><td>71%</td><td>71%</td><td>99%</td></tr>
+        <tr><td>Potere Divino <span style="color:var(--ink-3)">24·30·45</span></td><td>62%</td><td>53%</td><td>30%</td><td>10%</td><td>—</td><td>76%</td><td>79%</td><td>81%</td><td>100%</td></tr>
+        <tr><td>Drago Linfatico <span style="color:var(--ink-3)">22·30·40</span></td><td>40%</td><td>41%</td><td>20%</td><td>30%</td><td>24%</td><td>—</td><td>62%</td><td>64%</td><td>96%</td></tr>
+        <tr><td>Figlio del Gelo <span style="color:var(--ink-3)">20·30·45</span></td><td>38%</td><td>42%</td><td>16%</td><td>29%</td><td>21%</td><td>38%</td><td>—</td><td>13%</td><td>94%</td></tr>
+        <tr><td>Custode del Ghiaccio <span style="color:var(--ink-3)">20·30·44</span></td><td>37%</td><td>40%</td><td>16%</td><td>29%</td><td>19%</td><td>36%</td><td>13%</td><td>—</td><td>94%</td></tr>
+        <tr class="spot"><td>Guardiano di Marbion <span style="color:var(--ink-3)">0·30·44</span></td><td>0%</td><td>0%</td><td>0%</td><td>1%</td><td>0%</td><td>4%</td><td>6%</td><td>6%</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Tre righe di questa tabella raccontano tre guasti diversi. Vale la pena aprirle.</p>
+  </div>
+
+  <h3 style="margin-top:2.4rem">1 · Il Re Antico contro Potere Divino — il 78% delle volte muoiono entrambi</h3>
+  <div class="prose">
+    <p>Le due Pedine più forti del gioco si affrontano. Il Re Antico ha <span class="mono">Attacco 24</span> e <strong>tre</strong> attacchi per turno; Potere Divino ha <span class="mono">Attacco 24</span>, Parata 30, Vita 45. Ecco cosa può uscire quando il Re Antico attacca:</p>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>Il Re Antico attacca Potere Divino · dado Colosso</caption>
+      <thead><tr><th>Faccia</th><th>Probabilità</th><th>Esito</th></tr></thead>
+      <tbody>
+        <tr><td>Cuore</td><td>1 su 8</td><td>24 danni</td></tr>
+        <tr class="spot"><td>Spada</td><td>1 su 8</td><td>24 contro 24 → <b>pareggio mortale: muoiono entrambi</b></td></tr>
+        <tr><td>Scudo</td><td>3 su 8</td><td>0 danni, e Il Re Antico subisce 6 di contraccolpo</td></tr>
+        <tr><td>Schivata</td><td>3 su 8</td><td>0 danni</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Con cinque attacchi complessivi per giro fra i due, la faccia Spada esce quasi subito. Esito su 20.000 duelli: <strong>vince Il Re Antico l'11,5%, vince Potere Divino il 10,5%, muoiono entrambi il 78%.</strong> Durata mediana: un turno.</p>
+    <p>Non è un duello. È una monetina che uccide tutti e due. E succede perché <strong>al Livello 3 gli Attacchi si ammassano</strong>: ci sono quattro carte con Attacco 24 e il 17,3% degli accoppiamenti condivide lo stesso valore. Negli <em>specchi</em> — la stessa carta contro sé stessa, che in un mazzo con 2-3 copie capita di continuo — il pareggio è garantito.</p>
+  </div>
+
+  <h3 style="margin-top:2.4rem">2 · Mago Sorprendente contro Potere Divino — l'attacco più alto del gioco perde</h3>
+  <div class="prose">
+    <p>Il Mago ha <span class="mono">Attacco 30</span>, il massimo esistente. Potere Divino è il muro più duro. Il Mago infligge <strong>11,3 danni a turno</strong> e non subisce contraccolpo — la sua Parata 22 non lo espone. Eppure:</p>
+    <p><strong>vince Potere Divino il 61,7%.</strong> Perché il muro gli restituisce 15 danni a turno: il Mago ha solo Vita 33 e Parata 22, e il dado Tessitore che tira ha due Cuori su otto. <strong>Il muro fa più male dell'aggressore.</strong> È l'inversione della scala, in un numero solo.</p>
+  </div>
+
+  <h3 style="margin-top:2.4rem">3 · Guardiano di Marbion — Attacco 0, eppure vince qualche partita</h3>
+  <div class="prose">
+    <p>Con <span class="mono">Attacco 0</span> non può fare danno su nessuna faccia, nemmeno sul Cuore. Perde 94 volte su 100 e non sorprende. La stranezza è l'altro 6%: <strong>vince quando l'avversario si uccide da solo col contraccolpo.</strong></p>
+    <p>Figlio del Gelo (Attacco 20) contro la sua Parata 30 fa zero danni e incassa <strong>10 di contraccolpo per ogni Scudo</strong>, due volte per turno. Il Guardiano, che attacca una volta sola, ne incassa meno di chi lo attacca due volte. Una carta che non può fare male vince per logoramento contro una che ci prova.</p>
+    <p>È la prova più netta che <strong>oggi attaccare un muro è un'autopunizione</strong> — ed è esattamente ciò che la leva 2, togliendo il contraccolpo, elimina.</p>
+  </div>
+
+  <h3 style="margin-top:2.4rem">Gli stessi scontri, col modello</h3>
+  <div class="prose">
+    <p>Il Livello 3 del modello ha sei Pedine, una per ruolo. Ecco chi batte chi:</p>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>Probabilità che la riga batta la colonna — Livello 3 del modello</caption>
+      <thead>
+        <tr><th>Att · Par · Vita · att</th><th>Aggress.</th><th>Evasivo</th><th>Bilanc.</th><th>Supporto</th><th>Difens.</th><th>Muro</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Aggressore <span style="color:var(--ink-3)">30·4·26·2</span></td><td>—</td><td>44%</td><td>45%</td><td>39%</td><td>32%</td><td>50%</td></tr>
+        <tr><td>Evasivo <span style="color:var(--ink-3)">22·6·20·3</span></td><td>56%</td><td>—</td><td>34%</td><td>44%</td><td>35%</td><td>53%</td></tr>
+        <tr><td>Bilanciato <span style="color:var(--ink-3)">23·16·35·2</span></td><td>55%</td><td>66%</td><td>—</td><td>50%</td><td>44%</td><td>66%</td></tr>
+        <tr><td>Supporto <span style="color:var(--ink-3)">19·26·42·2</span></td><td>61%</td><td>56%</td><td>50%</td><td>—</td><td>39%</td><td>61%</td></tr>
+        <tr><td>Difensore <span style="color:var(--ink-3)">14·26·43·2</span></td><td>68%</td><td>65%</td><td>56%</td><td>61%</td><td>—</td><td>77%</td></tr>
+        <tr class="win"><td>Muro · tank <span style="color:var(--ink-3)">12·26·82·1</span></td><td>50%</td><td>47%</td><td>34%</td><td>39%</td><td>23%</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Confronta le due matrici. Oggi ci sono caselle allo <strong>0%</strong> e al <strong>100%</strong>, una riga che perde sempre, e una casella dove il 78% dei duelli uccide entrambi. Col modello <strong>tutte le caselle stanno fra il 23% e il 77%</strong>, i doppi KO sono <strong>zero</strong> e gli stalli sono <strong>zero</strong>.</p>
+    <p>Il duello aggressore contro muro finisce <span class="mono">50% – 50%</span>: l'aggressore ha la potenza per bucarlo, il muro ha la stazza per reggere. È il tipo di scontro che al tavolo si gioca volentieri.</p>
+  </div>
+
+  <div class="caveat prose">
+    <span class="eyebrow">Due cose che questa verifica ha prodotto</span>
+    <p><strong>Una regola nuova.</strong> Provando a correggere il muro ho trovato che <strong>è il numero di attacchi a decidere se una carta è un muro o un boss</strong>. A parità di budget, lo stesso profilo difensivo con <em>un</em> attacco per turno vince il 15-46% dei duelli; con <em>due</em> ne vince il 59-82%. Sempre, in ogni variante provata. Non è la Parata a fare il muro, non è la Vita: è il fatto che colpisce una volta sola. Va scritta nel regolamento.</p>
+    <p><strong>Una correzione al modello.</strong> La prima versione dava al muro Attacco 8, e il muro sopravviveva a tutti senza mai vincere (11%): un bersaglio inerte, non una Pedina. Portandolo ad Attacco 12 e Vita 82 vince il 39% e resta il più duro del livello. La correzione è già dentro le tabelle qui sotto.</p>
+    <p><strong>E un limite che resta.</strong> Guardando la matrice per colonne si vede che non c'è morra cinese fra i ruoli, ma un <strong>ordine di dominanza</strong>: il Difensore batte tutti, l'Aggressore perde quasi con tutti nell'uno-contro-uno. Non è degenere — 23-77% è una forbice sana per un TCG — ma non è ancora il gioco di scelte che vorrei consegnarti. Il rimedio esiste già nel tuo regolamento e in questa simulazione <strong>non è acceso</strong>: la <strong>Ruota degli Archetipi</strong> e il suo diritto di ripetizione. È lì che deve nascere il "porta lo strumento giusto", e va misurato in un passo successivo.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Il modello</span>
+    <h2>Tre leve</h2>
+  </div>
+
+  <ol class="leve">
+    <li>
+      <h3>Riallocare il budget per ruolo</h3>
+      <p>Le quote di spesa del Livello 1 — quelle che funzionano — si applicano a tutti i livelli, con la Parata tagliata dal tetto di penetrazione. L'aggressore torna a spendere in Attacco, il tank in Vita. Nessuna carta cambia budget: cambia solo come lo spende.</p>
+      <p><span class="tag excel">solo Excel</span> Nessuna riga di codice.</p>
+    </li>
+    <li>
+      <h3>Il colpo di striscio</h3>
+      <p>Oggi chi non supera la statistica del difensore fa <strong>zero</strong> e si prende il contraccolpo. Diventa: chi non supera porta comunque a casa <span class="mono">⌈Attacco/4⌉</span>, e il contraccolpo sparisce. Il muro assorbe moltissimo ma non è più impermeabile, e attaccare smette di essere un'autopunizione.</p>
+      <p>I tiri a vuoto crollano dal <strong>71% al 29%</strong> e il dominio del Cuore dal 74% al 58%: Spada e Scudo tornano a contare.</p>
+      <p><span class="tag motore">motore</span> Una funzione: <span class="mono">danneggiaSimmetrico</span> in <span class="mono">combattimento.js</span>.</p>
+    </li>
+    <li>
+      <h3>Il budget cresce come il prezzo</h3>
+      <p>Un Livello 3 costa 3 tributi ma oggi porta ×3,67 del budget di un Livello 1. Sottopagato in prezzo, strapagato in potenza. Portando il budget a <span class="mono">12 / 24 / 36</span> — esattamente ×1, ×2, ×3 come i tributi — l'economia si chiude da sola.</p>
+      <p>Tre Pedine di Livello 1 contro una di Livello 3 passano dallo <strong>0,9% al 55%</strong> di vittorie.</p>
+      <p><span class="tag excel">solo Excel</span> Nessuna riga di codice.</p>
+    </li>
+  </ol>
+
+  <div class="formula">
+    <span class="c">// Il budget di una Pedina, calcolabile a mente</span><br>
+    Punti  =  Attacco  +  Parata/4  +  Vita/4  +  3 × (attacchi − 2)<br><br>
+    <span class="c">// I tetti per livello</span><br>
+    Livello 1 → 12 punti &nbsp;·&nbsp; Livello 2 → 24 punti &nbsp;·&nbsp; Livello 3 → 36 punti
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Il risultato</span>
+    <h2>La scala si raddrizza</h2>
+  </div>
+
+  <div class="prose">
+    <p>Questo è il modello in una figura. A sinistra il Livello 3 di oggi, a destra col modello: quanto sopravvive ciascun ruolo sotto attacco.</p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--parata)"></span> ruoli difensivi (tank, difensore)</span>
+        <span><span class="swatch" style="background:var(--attacco)"></span> ruoli offensivi (aggressore, evasivo)</span>
+        <span><span class="swatch" style="background:var(--ink-3)"></span> ruoli intermedi</span>
+      </div>
+
+      <svg viewBox="0 0 920 296" role="img" aria-label="Turni di sopravvivenza per ruolo al Livello 3. Oggi l'aggressore sopravvive più di tutti con 7,17 turni e il tank solo 5. Col modello il tank sopravvive 5,75 turni e l'aggressore 1,42, ristabilendo la scala corretta.">
+        <!-- PANNELLO A — OGGI -->
+        <text x="0" y="18" font-family="Cinzel, serif" font-size="14" font-weight="600" fill="var(--critico)">OGGI</text>
+        <text x="60" y="18" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)">— il ruolo offensivo è il più resistente</text>
+        <line x1="112" y1="44" x2="400" y2="44" stroke="var(--rule)" stroke-width="1"></line>
+        <g font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-3)" text-anchor="middle">
+          <text x="112" y="36">0</text><text x="184" y="36">2</text><text x="256" y="36">4</text><text x="328" y="36">6</text><text x="400" y="36">8</text>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="11">
+          <text x="104" y="72" fill="var(--ink)" text-anchor="end">aggressore</text>
+          <rect x="112" y="58" width="258" height="20" fill="var(--attacco)"></rect>
+          <text x="378" y="72" fill="var(--attacco)" font-weight="600">7,17</text>
+
+          <text x="104" y="106" fill="var(--ink)" text-anchor="end">tank</text>
+          <rect x="112" y="92" width="180" height="20" fill="var(--parata)"></rect>
+          <text x="300" y="106" fill="var(--parata)" font-weight="600">5,00</text>
+
+          <text x="104" y="140" fill="var(--ink)" text-anchor="end">difensore</text>
+          <rect x="112" y="126" width="151" height="20" fill="var(--parata)"></rect>
+          <text x="271" y="140" fill="var(--parata)" font-weight="600">4,19</text>
+
+          <text x="104" y="174" fill="var(--ink)" text-anchor="end">bilanciato</text>
+          <rect x="112" y="160" width="82" height="20" fill="var(--ink-3)"></rect>
+          <text x="202" y="174" fill="var(--ink-3)" font-weight="600">2,29</text>
+        </g>
+        <text x="112" y="212" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-3)">supporto ed evasivo non esistono</text>
+        <text x="112" y="228" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-3)">a questo livello</text>
+        <rect x="0" y="248" width="400" height="34" fill="var(--critico-bg)"></rect>
+        <text x="14" y="269" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--critico)">scala invertita · 4 ruoli su 6</text>
+
+        <!-- PANNELLO B — MODELLO -->
+        <text x="480" y="18" font-family="Cinzel, serif" font-size="14" font-weight="600" fill="var(--ok)">MODELLO</text>
+        <text x="576" y="18" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)">— il muro è il più resistente</text>
+        <line x1="592" y1="44" x2="880" y2="44" stroke="var(--rule)" stroke-width="1"></line>
+        <g font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-3)" text-anchor="middle">
+          <text x="592" y="36">0</text><text x="664" y="36">2</text><text x="736" y="36">4</text><text x="808" y="36">6</text><text x="880" y="36">8</text>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="11">
+          <text x="584" y="72" fill="var(--ink)" text-anchor="end">tank</text>
+          <rect x="592" y="58" width="207" height="20" fill="var(--parata)"></rect>
+          <text x="807" y="72" fill="var(--parata)" font-weight="600">5,75</text>
+
+          <text x="584" y="106" fill="var(--ink)" text-anchor="end">difensore</text>
+          <rect x="592" y="92" width="107" height="20" fill="var(--parata)"></rect>
+          <text x="707" y="106" fill="var(--parata)" font-weight="600">2,97</text>
+
+          <text x="584" y="140" fill="var(--ink)" text-anchor="end">supporto</text>
+          <rect x="592" y="126" width="95" height="20" fill="var(--ink-3)"></rect>
+          <text x="695" y="140" fill="var(--ink-3)" font-weight="600">2,63</text>
+
+          <text x="584" y="174" fill="var(--ink)" text-anchor="end">bilanciato</text>
+          <rect x="592" y="160" width="87" height="20" fill="var(--ink-3)"></rect>
+          <text x="687" y="174" fill="var(--ink-3)" font-weight="600">2,41</text>
+
+          <text x="584" y="208" fill="var(--ink)" text-anchor="end">aggressore</text>
+          <rect x="592" y="194" width="51" height="20" fill="var(--attacco)"></rect>
+          <text x="651" y="208" fill="var(--attacco)" font-weight="600">1,42</text>
+
+          <text x="584" y="242" fill="var(--ink)" text-anchor="end">evasivo</text>
+          <rect x="592" y="228" width="39" height="20" fill="var(--attacco)"></rect>
+          <text x="639" y="242" fill="var(--attacco)" font-weight="600">1,08</text>
+        </g>
+        <rect x="480" y="248" width="440" height="34" fill="var(--ok-bg)"></rect>
+        <text x="494" y="269" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="var(--ok)">scala corretta · 6 ruoli su 6 · il muro dura ×3,9</text>
+      </svg>
+    </div>
+    <figcaption>
+      Turni mediani perché una Pedina di quel ruolo venga abbattuta, al Livello 3, misurati contro tutti gli attaccanti del livello.
+      <b>Oggi la scala è capovolta:</b> l'aggressore è il ruolo più difficile da uccidere (7,17 turni), il tank regge meno (5,00).
+      <b>Col modello</b> il tank torna in cima con 5,75 turni e l&#39;aggressore scende a 1,42 — un divario di <b>×4,0</b> — e i sei ruoli sono tutti presenti e tutti distinti.
+    </figcaption>
+  </figure>
+
+  <div class="tablebox">
+    <table>
+      <caption>Tutti gli indicatori, oggi contro modello</caption>
+      <thead>
+        <tr><th>Indicatore</th><th>L1 oggi</th><th>L1 mod.</th><th class="sep">L2 oggi</th><th>L2 mod.</th><th class="sep">L3 oggi</th><th>L3 mod.</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Turni per uccidere</td><td>1,89</td><td>2,40</td><td class="sep">1,80</td><td>2,33</td><td class="sep bad">4,00</td><td class="good">2,41</td></tr>
+        <tr><td>Colpi a vuoto</td><td>51%</td><td class="good">29%</td><td class="sep">42%</td><td class="good">29%</td><td class="sep bad">71%</td><td class="good">29%</td></tr>
+        <tr><td>Danno dal Cuore</td><td>59%</td><td>55%</td><td class="sep">59%</td><td>57%</td><td class="sep bad">74%</td><td class="good">58%</td></tr>
+        <tr><td>Economia dei tributi</td><td>58%</td><td>68%</td><td class="sep bad">17%</td><td class="good">52%</td><td class="sep bad">1%</td><td class="good">55%</td></tr>
+        <tr><td>Matchup neutri (Ruota spenta)</td><td>75%</td><td>74%</td><td class="sep bad">99%</td><td class="good">74%</td><td class="sep bad">100%</td><td class="good">74%</td></tr>
+        <tr><td>Archetipo dominante</td><td>31%</td><td>33%</td><td class="sep bad">69%</td><td class="good">33%</td><td class="sep bad">69%</td><td class="good">33%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>I cinque cancelli</caption>
+      <thead><tr><th>Cancello</th><th>Soglia</th><th>Oggi</th><th>Modello</th></tr></thead>
+      <tbody>
+        <tr><td>G1 · Nessuna coppia immortale</td><td>0 coppie</td><td class="good">✅</td><td class="good">✅</td></tr>
+        <tr><td>G2 · Ritmo uniforme</td><td>TTK 1,5–3 a ogni livello</td><td class="bad">❌ 4,00 a L3</td><td class="good">✅ 2,33–2,41</td></tr>
+        <tr><td>G3 · Il dado non è una lotteria</td><td>Cuore ≤ 60%</td><td class="bad">❌ 74% a L3</td><td class="good">✅ 55–58%</td></tr>
+        <tr><td>G4 · Economia onesta</td><td>fra 35% e 65%</td><td class="bad">❌ 1% a L3</td><td class="good">✅ 52–68%</td></tr>
+        <tr><td>G5 · La Ruota gira</td><td>≤80% neutri, ≤45% un archetipo</td><td class="bad">❌ 100% a L3</td><td class="good">✅ 74% · 33%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Da copiare</span>
+    <h2>La griglia, ruolo per ruolo</h2>
+  </div>
+
+  <div class="prose">
+    <p>Questi sono i valori centrali. Ogni carta può scostarsi di <span class="mono">±15%</span> per avere personalità — quello che conta è che resti dentro il budget del livello e sotto il tetto di Parata.</p>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>Griglia proposta · budget 12 / 24 / 36 · tetto Parata 8 / 20 / 26</caption>
+      <thead>
+        <tr><th>Ruolo</th><th>Att</th><th>Par</th><th>Vita</th><th>Att/turno</th><th class="sep">Att</th><th>Par</th><th>Vita</th><th>Att/turno</th><th class="sep">Att</th><th>Par</th><th>Vita</th><th>Att/turno</th><th class="sep">Archetipi</th></tr>
+        <tr><th></th><th colspan="4" style="text-align:center;color:var(--ink-2)">LIVELLO 1</th><th colspan="4" class="sep" style="text-align:center;color:var(--ink-2)">LIVELLO 2</th><th colspan="4" class="sep" style="text-align:center;color:var(--ink-2)">LIVELLO 3</th><th class="sep"></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>aggressore</td><td>12</td><td>1</td><td>9</td><td>2</td><td class="sep">24</td><td>3</td><td>17</td><td>2</td><td class="sep">30</td><td>4</td><td>26</td><td>2</td><td class="sep">Assalitore · Tessitore</td></tr>
+        <tr><td>evasivo</td><td>7</td><td>2</td><td>7</td><td>3</td><td class="sep">15</td><td>4</td><td>13</td><td>3</td><td class="sep">22</td><td>6</td><td>20</td><td>3</td><td class="sep">Effimeri · Viandante</td></tr>
+        <tr><td>bilanciato</td><td>8</td><td>5</td><td>12</td><td>2</td><td class="sep">16</td><td>11</td><td>23</td><td>2</td><td class="sep">23</td><td>16</td><td>35</td><td>2</td><td class="sep">Viandante · Tessitore</td></tr>
+        <tr><td>supporto</td><td>6</td><td>8</td><td>14</td><td>2</td><td class="sep">13</td><td>17</td><td>28</td><td>2</td><td class="sep">19</td><td>26</td><td>42</td><td>2</td><td class="sep">Viandante · Effimeri</td></tr>
+        <tr><td>difensore</td><td>5</td><td>8</td><td>14</td><td>2</td><td class="sep">10</td><td>20</td><td>29</td><td>2</td><td class="sep">14</td><td>26</td><td>43</td><td>2</td><td class="sep">Colosso · Viandante</td></tr>
+        <tr class="win"><td>tank · il muro</td><td>4</td><td>8</td><td>28</td><td>1</td><td class="sep">8</td><td>20</td><td>56</td><td>1</td><td class="sep">12</td><td>26</td><td>82</td><td>1</td><td class="sep">Colosso · Effimeri</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p><strong>Guarda la riga del muro.</strong> Al Livello 3 ha Parata 26 — quattro punti meno di oggi — ma Vita 82 contro 45, e soprattutto <strong>un solo attacco per turno</strong>. Quell&#39;ultimo numero è ciò che separa un muro da un boss: a parità di budget, lo stesso profilo con due attacchi vince il 78% dei duelli invece del 39%. E l&#39;aggressore, con Attacco 30, buca la sua Parata: margine <span class="mono">+4</span>.</p>
+    <p>Sugli archetipi: ogni ruolo prende <strong>due archetipi diversi</strong>, scelti perché il dado sia coerente col mestiere — il Colosso (3 Scudi, 3 Schivate) ai ruoli difensivi, l'Assalitore (4 Spade) agli aggressori, gli Effimeri (3 Schivate) agli evasivi. Così ogni livello contiene tutti e cinque gli archetipi e la Ruota torna a girare.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Percorso</span>
+    <h2>Come si applica, a tappe</h2>
+  </div>
+
+  <div class="tablebox">
+    <table>
+      <caption>In ordine di rapporto fra effetto e rischio</caption>
+      <thead><tr><th>Tappa</th><th>Cosa</th><th>Tocca</th><th>Effetto misurato</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Ridistribuire gli archetipi al Livello 2 e 3</td><td class="good">solo Excel</td><td>Ruota da 100% neutri a 74%. Nessuna statistica cambia.</td></tr>
+        <tr><td>2</td><td>Riallocare le statistiche per ruolo</td><td class="good">solo Excel</td><td>Margine di penetrazione da −4 a +4. Scala dei ruoli raddrizzata.</td></tr>
+        <tr><td>3</td><td>Portare il budget L3 da 44 a 36</td><td class="good">solo Excel</td><td>Economia dei tributi da 1% a 55%.</td></tr>
+        <tr><td>4</td><td>Il colpo di striscio <span class="mono">⌈A/4⌉</span></td><td>motore</td><td>Colpi a vuoto da 71% a 29%. Cuore da 74% a 58%.</td></tr>
+        <tr><td>5</td><td>Scrivere le due regole in <span class="mono">rules.json</span> e nel regolamento</td><td>documenti</td><td>Impedisce che il guasto torni con le carte future.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Le prime tre tappe non toccano una riga di codice: sono colonne degli Excel, poi <span class="mono">genera_cards_json.py</span> e via. Da sole portano il modello a <strong>3 cancelli su 5</strong>. La quarta — l'unica che tocca il motore — è una funzione sola, <span class="mono">danneggiaSimmetrico</span>, e chiude gli altri due.</p>
+  </div>
+
+  <div class="caveat prose">
+    <span class="eyebrow">Cosa resta aperto, onestamente</span>
+    <p><strong>Il ritmo al Livello 1 rallenta un po':</strong> da 1,89 a 2,40 turni. È dentro la soglia sana, ma è un cambiamento che sentirai. Nasce dal colpo di striscio, che distribuisce il danno invece di concentrarlo nel Cuore. Se lo trovi lento, la manopola è il divisore: <span class="mono">⌈A/3⌉</span> invece di <span class="mono">⌈A/4⌉</span> accelera tutto.</p>
+    <p><strong>Le coppie lente restano il 20-23%</strong> a tutti i livelli. Ma ora sono le coppie <em>giuste</em>: un tank che attacca un altro tank è lento per costruzione, ed è corretto che lo sia — nessuno dei due è un killer. Oggi invece erano lente le coppie sbagliate, aggressore contro muro.</p>
+    <p><strong>Tutto è misurato senza effetti carta</strong>, senza Magie e Trappole, senza diritto di ripetizione. Gli effetti sposteranno i numeri: il modello è la base su cui poggiano, non la partita completa. Va riverificato col banco di prova dopo che i 62 effetti mancanti saranno implementati.</p>
+    <p><strong>Sto ancora aspettando</strong> quattro progetti indipendenti che stanno esplorando altrettante strade alternative (la Parata come scala continua, l'armatura che si consuma, il contro-gioco per ruolo). Se ne esce qualcosa di meglio su un punto, aggiorno questa pagina — l'indirizzo resta lo stesso.</p>
+  </div>
+</section>
+
+<footer>
+  Modello derivato dai dati reali di <span class="mono">Mazzi/*/cards.json</span> e misurato con
+  <span class="mono">Engine/analisi-bilanciamento/motore_bilanciamento.mjs</span>, che applica la matematica di
+  <span class="mono">combattimento.js</span> · <span class="mono">costanti.js</span> · <span class="mono">evocazione.js</span>.<br>
+  Nessun file di gioco è stato modificato. Diagnosi che precede questo documento: <b>Delta delle Pedine</b>.
+</footer>
+
+</div>
