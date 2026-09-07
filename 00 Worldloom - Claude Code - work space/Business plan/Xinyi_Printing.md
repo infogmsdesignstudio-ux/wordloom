@@ -37,7 +37,10 @@ Please quote the following tiers, with unit cost, total cost and MOQ for each an
 We appreciate your flexibility on the MOQ for a first cooperation: for the prototyping and playtesting phase we would like the smallest run you can produce, so please tell us the minimum feasible quantity and its cost.
 
 **4. Cards per set**
-The first set has 200 unique cards/artworks: 150 Common, 40 Rare, 10 Ultra Rare. The same artwork will also exist in different finishes (Foil, Rainbow Foil, Glossy; combinations to be evaluated), plus limited numbered cards (e.g. 023/100, up to /999).
+The first set has 200 unique cards/artworks: 150 Common, 40 Rare, 10 Ultra Rare. The rarity levels are identified visually on the card artwork itself (printed as discrete graphical markers), not through different finishes.
+
+**Card finishes**
+A selection of 10 special cards will be available in both Normal and Rainbow Foil finishes. All other cards print in normal finish only.
 
 **Card specifications**
 - Premium quality, comparable to the major international TCGs.
@@ -46,10 +49,10 @@ The first set has 200 unique cards/artworks: 150 Common, 40 Rare, 10 Ultra Rare.
 - Durable for play both with and without sleeves.
 
 **Unique ID on each card**
-Each physical copy should carry a unique, randomly generated 7-character alphanumeric code, visible but discreet, in the same position on all card layouts. Please tell us which technology you can offer, its feasibility and cost. The IDs must be linkable to card, variant and production batch through a database/list; we are also evaluating a future use for authentication through our app.
+Each physical copy should carry a unique, randomly generated 7-character alphanumeric code, visible but discreet, in the same position on all card layouts. Please tell us which technology you can offer, its feasibility and cost. We will maintain the database mapping IDs to card, variant and production batch on our side; you will provide us with a list of all printed IDs and their associations.
 
 **Randomization and collation**
-Boosters must be randomized; Ultra Rare, Foil and Rainbow Foil cards can replace a normal card. Please propose a collation structure and pull rates based on your experience. Randomization should also apply to the position of the packs within the display.
+Boosters must be randomized. Ultra Rare cards can replace a normal card. Of the 10 Ultra Rare cards, some will also be available in Rainbow Foil finish as an alternative pull. Please propose a collation structure and pull rates based on your experience. Randomization should also apply to the position of the packs within the display.
 
 **Samples, proofs and quality control**
 - Physical samples of stocks, weights and finishes before production, with information on abrasion, scratching, humidity, bending and print durability.
@@ -93,7 +96,13 @@ Giacomo
 | ID 7 caratteri alfanumerici | RFQ §3 |
 | Collation, campioni, proof, QC, prestampa, costi, tempi, info al produttore | RFQ §4, §7, §8, §9, §11, §12, §13 |
 
-**Cose che NON tornano fra RFQ e regolamento — decidi tu, poi aggiorniamo l'RFQ**
+**Chiarimenti applicati dopo conversazione con l'utente**
+
+- ✅ **Rarità** = rimangono 3 livelli (non 5), identificate tramite marcatori grafici stampati sulla carta
+- ✅ **Finiture** = normale + Rainbow Foil solo su 10 carte specifiche (le Ultra Rare)
+- ✅ **ID univoco** = Xinyi stampa gli ID a 7 caratteri; il cliente mantiene il database di mapping ID → carta/variante/lotto
+
+**Cose ancora aperte fra RFQ e regolamento — decidi tu, poi aggiorniamo**
 
 1. **Dadi.** L'RFQ chiede solo *5 × D8*. Il Regolamento v2.1 (cap. 3) prevede *un D8 per ciascun
    Archetipo nel mazzo* (5 Archetipi in `rules.json`, ognuno con distribuzione di facce diversa:
@@ -111,6 +120,9 @@ Giacomo
    *Italy* e chiesto i termini che offrono. Confermami se va bene.
 6. **Listino di Rose.** Non l'ho visto (non è nel repository): nella mail lo ringrazio e basta, senza
    commentarlo.
+7. **Copie Rainbow delle 10 Ultra Rare.** Nella mail ho scritto che "some will also be available in Rainbow Foil", ma Xinyi
+   avrà bisogno di sapere: di ognuna delle 10 Ultra Rare, quante copie normale e quante copie Rainbow? È
+   una proporzione fissa (es. 50/50) o varia per carta? Specificare nella prossima comunicazione.
 
 **Prossimi passi proposti (non fatti)**
 
