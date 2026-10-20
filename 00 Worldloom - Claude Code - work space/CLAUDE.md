@@ -47,7 +47,9 @@ MAPPA DEI DOCUMENTI — parti sempre da qui
 **Skill installate:** `avvio-sessione` (**rituale di avvio + disciplina di lavoro — carica come prima cosa
 in ogni chat nuova**), `graphify` / `graphify-progetto` (grafo), `effetti-carta` (implementare effetti
 carta), `pipeline-carte` (dati carte Excel→json→immagini), `documenti-e-backup` (sincronizzare doc +
-misurare/registrare animazioni + backup pre-lavoro-grosso).
+misurare/registrare animazioni + backup pre-lavoro-grosso), `skill-inspector` (NVIDIA: valutare una
+skill prima di installarla, verdetto APPROVE/CAUTION/REJECT; vuole il CLI SkillSpector 2.12.0, copia e
+istruzioni in `../Strumenti esterni/LEGGIMI.md`).
 
 ═══════════════════════════════════════════════════════════════════════════════════════
 REGOLE DI PROCESSO — non negoziabili

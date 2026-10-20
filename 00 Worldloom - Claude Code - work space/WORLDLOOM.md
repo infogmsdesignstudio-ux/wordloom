@@ -2,7 +2,7 @@
 
 > **Parti da qui in ogni chat nuova.** Questo file è l'indice unico: stato corrente + dove vive ogni cosa.
 > Aggiornalo alla fine di ogni sessione (stato sprint + eventuali documenti nuovi).
-> Ultimo aggiornamento: **2026-08-29** (sessione "finiture": rinomina Pedina/Marbion · identità carta · mazzo legale)
+> Ultimo aggiornamento: **2026-10-20** (scaricati SkillSpector 2.12.0 + skill `skill-inspector`; stato sprint invariato dal 29-08)
 
 ---
 
@@ -171,6 +171,8 @@ ora** con un test — parcheggiato, si fa dopo aver definito il metodo di blinda
 | `graphify-out/` | rigenerabile · gitignorato | grafo di conoscenza |
 | `Archivio/` | congelato | ~60 file morti spostati il 2026-08-28 (vedi sotto) |
 | `.claude/skills/avvio-sessione/` | vivo | rituale di avvio + disciplina di lavoro — caricare come prima cosa in ogni chat nuova |
+| `.claude/skills/skill-inspector/` | vivo (installata 20-10) | skill NVIDIA: valutare una skill prima di installarla (verdetto APPROVE/CAUTION/REJECT). Vuole il CLI SkillSpector |
+| `../Strumenti esterni/SkillSpector-2.12.0/` | congelato (tag v2.12.0) | scanner di sicurezza NVIDIA per skill, copia del sorgente ufficiale fuori dal workspace. Come installarlo: `../Strumenti esterni/LEGGIMI.md` |
 
 ---
 

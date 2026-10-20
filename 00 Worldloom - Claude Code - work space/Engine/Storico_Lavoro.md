@@ -2252,3 +2252,31 @@ Dati Carte" (36 nodi). Le 296 immagini/documenti **restano non timbrati nel mani
 restano invariati; nessuna interazione o animazione è cambiata, quindi UX Codex e Foglio Maestro UX
 restano invariati. Le divergenze trovate nei regolamenti (cap. 8 range, cap. 3/17 limite copie) sono
 segnalate come V.8 e V.12, non riscritte: cambiarle è una decisione di game design.
+
+---
+
+## 2026-10-20 — Scaricati SkillSpector 2.12.0 e la skill `skill-inspector` (NVIDIA)
+
+**Consegna.** Scaricare dal repository ufficiale NVIDIA lo scanner SkillSpector 2.12.0 e la skill
+Skill Inspector, così che Claude li abbia a disposizione nelle sessioni sul progetto.
+
+**Verifica della fonte, prima di toccare qualcosa.** Repository `github.com/NVIDIA/SkillSpector`
+(licenza Apache-2.0). Tag `v2.12.0` = commit `c7958a3` "release: SkillSpector 2.12.0 (#550)";
+versione confermata in `pyproject.toml`. La skill vive nello stesso repository, in
+`skills/skill-inspector/SKILL.md` (un solo file, niente script).
+
+**Dove sono finiti.**
+- `../Strumenti esterni/SkillSpector-2.12.0/`: sorgente del tag estratto con `git archive`, messo
+  **fuori** dal workspace per non finire nel grafo graphify. Esclusa solo la cartella `tests/`
+  (175 file: fixture di skill volutamente malevole, inutili per usare lo strumento). 216 file, 4,4 MB.
+- `.claude/skills/skill-inspector/SKILL.md`: copia byte-identica dell'originale (sha256 verificato).
+  Testo inglese lasciato com'è.
+- `../Strumenti esterni/LEGGIMI.md`: provenienza, cosa è escluso, comandi di installazione.
+
+**Non verificato.** L'installazione del CLI (`uv tool install …`) non è riuscita dalla sessione cloud:
+PyPI non è raggiungibile da lì (errore DNS). Quindi nessuna scansione di prova è stata eseguita: da
+fare sul PC con il comando nel LEGGIMI. Senza CLI la skill, per sua regola, dichiara la mancanza e
+fa solo la revisione manuale.
+
+**Documenti aggiornati.** `CLAUDE.md` (riga "Skill installate"), `WORLDLOOM.md` (mappa documenti +
+data di aggiornamento), questo Storico. Stato dello sprint invariato dal 29-08.
