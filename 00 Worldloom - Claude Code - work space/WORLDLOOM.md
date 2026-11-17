@@ -2,7 +2,25 @@
 
 > **Parti da qui in ogni chat nuova.** Questo file è l'indice unico: stato corrente + dove vive ogni cosa.
 > Aggiornalo alla fine di ogni sessione (stato sprint + eventuali documenti nuovi).
-> Ultimo aggiornamento: **2026-08-29** (sessione "finiture": rinomina Pedina/Marbion · identità carta · mazzo legale)
+> Ultimo aggiornamento: **2026-11-17** (regole permanenti dell'utente: push su GitHub a ogni modifica · .md di stato sempre aggiornati · APK con aggiornamenti senza riscaricare)
+> Lo stato tecnico del gioco qui sotto è fermo al **2026-08-29**: da allora nessuna modifica al codice.
+
+## 🔴 Regole permanenti dell'utente (dal 2026-11-17) — prima di qualsiasi cosa
+
+1. **Ogni modifica → commit + push su GitHub.** L'utente segue il progetto dal telefono.
+2. **Ogni modifica → aggiorna i .md di stato nello stesso commit** (`README.md` alla radice del repo,
+   questo file, i documenti toccati). Lo stato scritto deve essere sempre perfetto e attuale.
+3. **APK con aggiornamenti "over-the-air"**: le modifiche devono arrivare sull'app Android senza
+   riscaricare l'APK. Vedi sezione "📱 APK e aggiornamenti" qui sotto.
+
+Dettaglio in `CLAUDE.md`, blocco "REGOLE PERMANENTI DELL'UTENTE".
+
+## 📱 APK e aggiornamenti — stato
+
+🔴 **Non iniziato.** Oggi non esiste nessun APK: l'app è solo `GIOCA.html` (file singolo, ~26 MB).
+È la fase 5 ("PWA/APK") della roadmap infrastruttura. **Architettura dell'aggiornamento
+automatico in attesa di decisione dell'utente** (domande poste il 2026-11-17).
+
 
 ---
 
@@ -39,8 +57,10 @@ prima tre cantieri che gli stavano davanti. Backup: `Versioni gioco/Worldloom_Gi
 **Prossimo:** B (i 62 effetti) → poi A (il foil).
 
 
-**Branch git:** `editor-mazzi-salvataggi-bugfix` · working tree con lavoro non committato (incluso una
-sessione parallela su Excel/grafiche in `Mazzi/`).
+**Git / GitHub (aggiornato 2026-11-17):** repository `infogmsdesignstudio-ux/wordloom`. Branch principale
+`main`; branch di lavoro delle sessioni Claude `ccr-c391abd8-2qpdzr`. Il vecchio branch locale
+`editor-mazzi-salvataggi-bugfix` non è su GitHub: tutto il lavoro è entrato nel commit `75e8ebf`
+("primo commit di giacomo mario spreafico").
 
 **Sprint corrente: ✅ CHIUSO — coda di step unica** (idea 59), tutte e 5 le fasi fatte e blindate il
 2026-08-29. Il refactor ha sostituito i ~10 campi-evento + ~10 timer + ~25 guardie sparse con UNA fila
@@ -219,7 +239,7 @@ Ordine consigliato: idea 59 ✅ finita → ora foil e/o carte come sessioni sepa
 
 Gioco → app → pubblicazione online → gioco da tavolo fisico.
 Roadmap infrastruttura a 6 fasi: (1) git+hosting ✅ · (2) editor mazzi ✅ · (3) salvataggio ✅ ·
-(4) menu principale + restyling · (5) PWA/APK · (6) i 17 bug dal vivo, intercalati.
+(4) menu principale + restyling · (5) PWA/APK — **con aggiornamenti senza riscaricare (richiesta 2026-11-17)** · (6) i 17 bug dal vivo, intercalati.
 
 ---
 

@@ -16,6 +16,11 @@ description: >-
 
 ## 0. Rituale di avvio (in questo ordine, sempre)
 
+0. **Regole permanenti dell'utente (dal 2026-11-17)** — valgono sempre:
+   - **ogni modifica → commit + push su GitHub** (l'utente segue dal telefono);
+   - **ogni modifica → `README.md` (radice repo) + `WORLDLOOM.md` + doc toccati aggiornati nello
+     stesso commit**: lo stato scritto deve essere perfetto e attuale;
+   - **APK con aggiornamenti senza riscaricare** — vedi `WORLDLOOM.md`, sezione "📱 APK e aggiornamenti".
 1. **Apri `WORLDLOOM.md`** alla radice del progetto — è il pannello di controllo unico: stato dello
    sprint corrente, indice di ogni documento vivo con il suo stato, sintesi della roadmap, visione
    lungo termine. Da qui capisci in 30 secondi dove siamo.
@@ -108,7 +113,9 @@ property) · i 3 componenti pop-up si riscrivono · 1v1 locale verificato in Fas
 - [ ] graphify risincronizzato se sono cambiate strutture/relazioni di codice
 - [ ] simulazioni headless `sim-*.mjs` usa-e-getta cancellate (`rm -f`) — i **blindati** invece restano
 - [ ] build finale pulita (`npm run build`), console pulita nel browser
-- [ ] riportato all'utente cosa è cambiato; **niente commit/push se non richiesto**
+- [ ] `README.md` (radice repo) aggiornato con lo stato attuale
+- [ ] **commit + push su GitHub** (regola permanente dal 2026-11-17 — sostituisce il vecchio "niente push se non richiesto")
+- [ ] riportato all'utente cosa è cambiato
 
 ## Riferimenti
 

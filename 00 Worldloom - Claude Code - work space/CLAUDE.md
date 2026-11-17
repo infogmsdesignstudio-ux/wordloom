@@ -25,6 +25,27 @@ COME LAVORARE (convenzioni consolidate)
 - cards.json non si modifica MAI a mano: solo tramite Excel + genera_cards_json.py
 
 ═══════════════════════════════════════════════════════════════════════════════════════
+🔴 REGOLE PERMANENTI DELL'UTENTE — dal 2026-11-17 — leggere PRIMA di fare qualsiasi cosa
+═══════════════════════════════════════════════════════════════════════════════════════
+
+Valgono in OGNI chat e in OGNI versione, prima di qualunque lavoro. L'utente segue il progetto
+**dal telefono, leggendo GitHub**: quello che non è su GitHub per lui non esiste.
+
+⚠️ **A. Ogni modifica va pubblicata su GitHub.** Dopo OGNI modifica (codice, dati, documenti):
+commit + push sul branch di lavoro. Niente lavoro lasciato solo in locale. (Sostituisce la vecchia
+regola "niente commit/push se non richiesto".)
+
+⚠️ **B. Ogni modifica aggiorna i Markdown di stato nello stesso commit**: `README.md` (radice del
+repo, quello che GitHub mostra per primo sul telefono) + `WORLDLOOM.md` + i documenti toccati.
+Lo stato scritto nei .md deve essere **sempre perfetto e attuale**: data, cosa è cambiato, cosa
+manca, branch e ultimo commit. Mai un .md che descrive uno stato vecchio.
+
+⚠️ **C. Aggiornamenti dell'app senza riscaricare l'APK.** L'utente vuole ricevere le modifiche
+sull'app Android **direttamente**, senza installare un nuovo APK ogni volta (aggiornamento
+"over-the-air"). Architettura **da concordare con l'utente** — stato in `WORLDLOOM.md`, sezione
+"📱 APK e aggiornamenti". Finché non è decisa, non costruire nulla di APK di iniziativa.
+
+═══════════════════════════════════════════════════════════════════════════════════════
 MAPPA DEI DOCUMENTI — parti sempre da qui
 ═══════════════════════════════════════════════════════════════════════════════════════
 
@@ -79,7 +100,8 @@ Imprevisti) devono avere SEMPRE la stessa dimensione e proporzione carta (~5:7).
 "compatto"/più piccolo per le pile. L'utente ha fermato il lavoro due volte per questo.
 
 ⚠️ **7. Aggiornare i documenti nella stessa sessione** in cui la modifica atterra (Regolamento, UX Codex,
-Vocabolario, Roadmap, `Engine/Storico_Lavoro.md`, `WORLDLOOM.md`). Se l'engine "semplifica" una regola,
+Vocabolario, Roadmap, `Engine/Storico_Lavoro.md`, `WORLDLOOM.md`, `README.md` della radice) — e
+pubblicarli su GitHub insieme alla modifica (regole A e B). Se l'engine "semplifica" una regola,
 dirlo nel testo del regolamento con una nota di revisione — non fingere che coincidano.
 
 ⚠️ **8. Backup prima di lavoro grosso/architetturale** (skill `documenti-e-backup`): copia giocabile in

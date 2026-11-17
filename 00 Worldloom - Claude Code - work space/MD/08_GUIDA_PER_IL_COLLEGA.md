@@ -148,6 +148,9 @@ partita reale. Metterci dentro dei `null` fa esplodere `CellaCreatura`.
 - [ ] se hai implementato un effetto → tabella del **Vocabolario Effetti** a ✅ con la data
 - [ ] simulazioni usa-e-getta `sim-*.mjs` **cancellate**
 - [ ] eventuale diagnostica temporanea rimossa (o annotata nella roadmap se resta)
+- [ ] `README.md` della radice del repo aggiornato con lo stato attuale
+- [ ] **commit + push su GitHub** — regola permanente dell'utente dal 2026-11-17: ogni modifica va
+      pubblicata, l'utente segue il progetto dal telefono
 
 ---
 

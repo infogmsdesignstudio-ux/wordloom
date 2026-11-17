@@ -171,22 +171,15 @@ con la data. I 6 blindati devono restare verdi a ogni passo.
 
 ## 4.7 Stato del repository git
 
-**Branch corrente:** `editor-mazzi-salvataggi-bugfix` (il branch principale è `main`).
+> Aggiornato il **2026-11-17**.
 
-⚠️ **Il working tree ha molto lavoro non committato** al momento di questa fotografia: le
-modifiche delle sessioni del 29-08 (rinomina Pedina/Marbion, identità carta, validatore, `tools/`,
-`Business plan/`, le immagini rinominate). Chi subentra dovrebbe **decidere con l'utente cosa
-committare** prima di iniziare, per non lavorare sopra a modifiche non salvate.
+**Repository GitHub:** `infogmsdesignstudio-ux/wordloom`. Branch principale `main`; branch di
+lavoro delle sessioni Claude `ccr-c391abd8-2qpdzr`. Tutto il lavoro (compreso quello che il
+29-08 era ancora non committato) è entrato nel commit `75e8ebf` "primo commit di giacomo mario
+spreafico". Il vecchio branch `editor-mazzi-salvataggi-bugfix` e i suoi commit (`65ab99f`,
+`042bcad`, …) non sono su GitHub.
 
-Ultimi commit significativi:
-
-```
-65ab99f  Sito worldloomtcg.com: prima versione, non pubblicata
-042bcad  Idea 59: Fasi 3-5 — la coda di step unica è completa
-e1df055  Nuova carta 55 — TUTTE le 61 idee completate
-1794d8c  Idea 59: design "coda di step unica" chiuso + skill avvio-sessione
-9885e0d  Checkpoint pre-refactor "coda di step unica" + riordino documenti
-```
+**Regola permanente dal 2026-11-17:** ogni modifica → commit + push + `.md` di stato aggiornati.
 
 ---
 
